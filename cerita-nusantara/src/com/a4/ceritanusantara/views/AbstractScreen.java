@@ -10,9 +10,11 @@ public abstract class AbstractScreen implements Screen{
 	
 	private Aplikasi app;
 	
-	public final int DEFAULT_WIDTH = 1280;
-	public final int DEFAULT_HEIGHT = 800;
-	protected int width, height;
+	public final float DEFAULT_WIDTH = 1280.0f;
+	public final float DEFAULT_HEIGHT = 800.0f;
+	public int width, height;
+	public float ppuX, ppuY;
+	
 	protected OrthographicCamera cam;
 	protected SpriteBatch batcher;
 	
@@ -26,8 +28,13 @@ public abstract class AbstractScreen implements Screen{
 	public AbstractScreen(Aplikasi app){
 		this.app = app;
 		
-		width = DEFAULT_WIDTH;
-		height = DEFAULT_HEIGHT;
+		width = (int)DEFAULT_WIDTH;
+		height = (int)DEFAULT_HEIGHT;
+		//width = 800;
+		//height = 480;
+		
+		ppuX = (float)width/DEFAULT_WIDTH;
+		ppuY = (float)height/DEFAULT_HEIGHT;
 		
 		cam = new OrthographicCamera(width, height);
 		cam.position.set(width / 2, height / 2, 0);
@@ -37,6 +44,10 @@ public abstract class AbstractScreen implements Screen{
 	
 	public Aplikasi getAplikasi(){
 		return app;
+	}
+	
+	public OrthographicCamera getCam(){
+		return cam;
 	}
 
 	@Override
@@ -48,8 +59,11 @@ public abstract class AbstractScreen implements Screen{
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
+		System.out.println("halo");
 		this.width = width; 
 		this.height = height;
+		ppuX = (float)this.width/DEFAULT_WIDTH;
+		ppuY = (float)this.height/DEFAULT_HEIGHT;
 	}
 
 	@Override

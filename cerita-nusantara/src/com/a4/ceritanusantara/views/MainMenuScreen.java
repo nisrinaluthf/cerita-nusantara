@@ -36,9 +36,7 @@ public class MainMenuScreen extends AbstractScreen {
 	public MainMenuScreen(Aplikasi app){
 		super(app);
 		
-		//setiap kali di-show dia inisialisasi
-		controller = new MainMenuController(this);
-		
+		//inisialisasi semuanya
 		background = new Texture(Gdx.files.internal("backgrounds/mainmenu_bg.png"));
 		
 		playButtonTexture = 
@@ -54,15 +52,17 @@ public class MainMenuScreen extends AbstractScreen {
 				new Texture(Gdx.files.internal("buttons/settings_pressed.png"));
 		
 		playButtonBounds = new Rectangle((DEFAULT_WIDTH-playButtonTexture.getWidth())/2,
-				(DEFAULT_HEIGHT-playButtonTexture.getHeight())/2, playButtonTexture.getWidth(),
+				440, playButtonTexture.getWidth(),
 				playButtonTexture.getHeight());
 		
-		playButtonBounds = new Rectangle((DEFAULT_WIDTH-settingsButtonTexture.getWidth())/2,
-				(DEFAULT_HEIGHT-settingsButtonTexture.getHeight())/2, settingsButtonTexture.getWidth(),
+		settingsButtonBounds = new Rectangle((DEFAULT_WIDTH-settingsButtonTexture.getWidth())/2,
+				160, settingsButtonTexture.getWidth(),
 				settingsButtonTexture.getHeight());
 		
 		playButtonPressed = false;
 		settingsButtonPressed = false;
+		
+		controller = new MainMenuController(this);
 	}
 	
 	/* render(float delta) dipanggil terus-terusan setiap
@@ -82,8 +82,8 @@ public class MainMenuScreen extends AbstractScreen {
 		cam.update();
 		
 		/*
-		 * Setiap gambar diawali batcher.begin()
-		 * ,diakhiri batcher.end()
+		 * Setiap mau gambar diawali batcher.begin()
+		 * diakhiri batcher.end()
 		 */
 		batcher.begin();
 			/* 
@@ -97,27 +97,36 @@ public class MainMenuScreen extends AbstractScreen {
 			 * nge-glow atau kayak masuk gitu buttonnya
 			 * atau gimana.
 			 */
+			
 			if (playButtonPressed) {
-				batcher.draw(playButtonTexture, (width-playButtonTexture.getWidth())/2, 600);
+				batcher.draw(playButtonPressedTexture, 
+						(DEFAULT_WIDTH-playButtonPressedTexture.getWidth())/2, 440);
+				
 			}
 			else {
-				batcher.draw(playButtonPressedTexture, 
-						(width-playButtonPressedTexture.getWidth())/2, 600);
+				batcher.draw(playButtonTexture, 
+						(DEFAULT_WIDTH-playButtonTexture.getWidth())/2, 440);
 			}
 			
 			if (settingsButtonPressed) {
-				batcher.draw(settingsButtonTexture, (width-settingsButtonTexture.getWidth())/2, 200);
+				batcher.draw(settingsButtonPressedTexture, 
+						(DEFAULT_WIDTH-settingsButtonPressedTexture.getWidth())/2, 160);
 			}
 			else{
-				batcher.draw(settingsButtonPressedTexture, 
-						(width-settingsButtonPressedTexture.getWidth())/2, 200);
-			}
-			
-			if(debug){
-				drawDebug();
+				batcher.draw(settingsButtonTexture, 
+						(DEFAULT_WIDTH-settingsButtonTexture.getWidth())/2, 160);
 			}
 			
 		batcher.end();
+		
+		//kalo mau ngeliat boundnya ada di mana
+		if(debug){
+			drawDebug();
+		}
+		
+		//--kalo mau ada sfx atau musik nanti di sini aja--
+		
+		//----------------end of sfx/musik-----------------
 		
 		/*
 		 * Selesai gambar panggil method processInput() nya
@@ -128,26 +137,58 @@ public class MainMenuScreen extends AbstractScreen {
 		
 	}
 	
+	//rectangle boundsnya digambar
 	private void drawDebug(){
 		debugRenderer.setProjectionMatrix(cam.combined);
 		debugRenderer.begin(ShapeType.Rectangle);
-			debugRenderer.setColor(new Color(1, 0, 0, 1));
+			if(playButtonPressed){
+				debugRenderer.setColor(new Color(1, 1, 0, 1));
+			}
+			else{
+				debugRenderer.setColor(new Color(1, 0, 0, 1));
+			}
 			debugRenderer.rect(playButtonBounds.x, playButtonBounds.y,
 					playButtonBounds.width, playButtonBounds.height);
+			
+			if(settingsButtonPressed){
+				debugRenderer.setColor(new Color(1, 1, 0, 1));
+			}
+			else{
+				debugRenderer.setColor(new Color(1, 0, 0, 1));
+			}
 			debugRenderer.rect(settingsButtonBounds.x, settingsButtonBounds.y,
 					settingsButtonBounds.width, settingsButtonBounds.height);
 		debugRenderer.end();
+	}
+	
+	
+	public Rectangle getPlayButtonBounds(){
+		return playButtonBounds;
+	}
+	
+	public Rectangle getSettingsButtonBounds(){
+		return settingsButtonBounds;
 	}
 	
 	public void setPlayButtonPressed (boolean pressed){
 		playButtonPressed = pressed;
 	}
 	
+	public boolean playButtonIsPressed() {
+		return playButtonPressed;
+	}
+	
 	public void setSettingsButtonPressed (boolean pressed){
 		settingsButtonPressed = pressed;
 	}
 	
-	/* show() dipanggil saat screennya ini pertama kali
+	public boolean settingsButtonIsPressed() {
+		return settingsButtonPressed;
+	}
+	
+	/* 
+	 * -------------------ignore------------------
+	 * show() dipanggil saat screennya ini pertama kali
 	 * dibuat, di sini objek2 yang diperluin sama
 	 * screen, kayak controller, gambar2, dll dibuat
 	 * atau diinisialisasi. 
