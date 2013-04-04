@@ -22,7 +22,6 @@ public abstract class AbstractScreen implements Screen{
 	 * kalo mau ngeliat posisi boundsnya, kalo ini true
 	 * rectangle bounds-nya digambar.
 	 */
-	protected boolean debug = true;
 	protected ShapeRenderer debugRenderer = new ShapeRenderer();
 	
 	public AbstractScreen(Aplikasi app){
@@ -30,8 +29,6 @@ public abstract class AbstractScreen implements Screen{
 		
 		width = (int)DEFAULT_WIDTH;
 		height = (int)DEFAULT_HEIGHT;
-		//width = 800;
-		//height = 480;
 		
 		ppuX = (float)width/DEFAULT_WIDTH;
 		ppuY = (float)height/DEFAULT_HEIGHT;
@@ -59,7 +56,6 @@ public abstract class AbstractScreen implements Screen{
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
-		System.out.println("halo");
 		this.width = width; 
 		this.height = height;
 		ppuX = (float)this.width/DEFAULT_WIDTH;

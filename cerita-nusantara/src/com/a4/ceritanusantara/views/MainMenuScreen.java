@@ -32,6 +32,8 @@ public class MainMenuScreen extends AbstractScreen {
 	boolean playButtonPressed;
 	boolean settingsButtonPressed;
 	
+	private boolean debug = true;
+	
 	//awalnya samain aja sama supernya
 	public MainMenuScreen(Aplikasi app){
 		super(app);
@@ -92,7 +94,7 @@ public class MainMenuScreen extends AbstractScreen {
 			batcher.draw(background, 0, 0);
 			
 			/*
-			 * gambar button di sini.
+			 * gambar button2 di sini.
 			 * Kalo buttonnya lagi dipencet gambarnya beda,
 			 * nge-glow atau kayak masuk gitu buttonnya
 			 * atau gimana.
@@ -119,7 +121,10 @@ public class MainMenuScreen extends AbstractScreen {
 			
 		batcher.end();
 		
-		//kalo mau ngeliat boundnya ada di mana
+		/*
+		 * kalo mau ngeliat boundnya ada di mana, ubah debug=true 
+		 * (line 35 kalo ngga salah)
+		 */
 		if(debug){
 			drawDebug();
 		}
@@ -137,7 +142,7 @@ public class MainMenuScreen extends AbstractScreen {
 		
 	}
 	
-	//rectangle boundsnya digambar
+	//rectangle boundsnya digambar kalo mau debug==true
 	private void drawDebug(){
 		debugRenderer.setProjectionMatrix(cam.combined);
 		debugRenderer.begin(ShapeType.Rectangle);
@@ -187,7 +192,8 @@ public class MainMenuScreen extends AbstractScreen {
 	}
 	
 	/* 
-	 * -------------------ignore------------------
+	 * --ignore dulu deh yak, bingung sebenernya buat apa ._.--
+	 * 
 	 * show() dipanggil saat screennya ini pertama kali
 	 * dibuat, di sini objek2 yang diperluin sama
 	 * screen, kayak controller, gambar2, dll dibuat

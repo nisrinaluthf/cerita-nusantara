@@ -7,7 +7,6 @@ import com.a4.ceritanusantara.views.PilihCeritaScreen;
 import com.a4.ceritanusantara.views.SettingsScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 
 public class MainMenuController {
 	
@@ -27,7 +26,6 @@ public class MainMenuController {
 	private Rectangle playButtonBounds;
 	private Rectangle settingsButtonBounds;
 	
-	private Vector2 touchPoint;
 	
 	/*
 	 * Constructor
@@ -59,7 +57,7 @@ public class MainMenuController {
 		}
 		
 		if(Gdx.input.isTouched()){
-			//kosongin dulu deh :(
+			//kosongin dulu deh~
 		}
 		else{
 			if(screen.playButtonIsPressed()){
@@ -81,7 +79,5 @@ public class MainMenuController {
 			}
 		}
 	}
-	
-	
 	
 }
