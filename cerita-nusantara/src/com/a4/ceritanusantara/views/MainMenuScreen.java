@@ -32,11 +32,11 @@ public class MainMenuScreen extends AbstractScreen {
 	private boolean playButtonPressed;
 	private boolean settingsButtonPressed;
 	
-	private boolean debug = true;
+	private boolean debug = false;
 	
 	//awalnya samain aja sama supernya
-	public MainMenuScreen(Aplikasi app, int width, int height){
-		super(app, width, height);
+	public MainMenuScreen(Aplikasi app){
+		super(app);
 		
 		//inisialisasi semuanya
 		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
@@ -54,7 +54,7 @@ public class MainMenuScreen extends AbstractScreen {
 				new Texture(Gdx.files.internal("buttons/settings_pressed.png"));
 		
 		playButtonBounds = new Rectangle((VIRTUAL_WIDTH-playButtonTexture.getWidth())/2,
-				440, playButtonTexture.getWidth(),
+				280, playButtonTexture.getWidth(),
 				playButtonTexture.getHeight());
 		
 		settingsButtonBounds = new Rectangle((VIRTUAL_WIDTH-settingsButtonTexture.getWidth())/2,
@@ -65,6 +65,7 @@ public class MainMenuScreen extends AbstractScreen {
 		settingsButtonPressed = false;
 		
 		controller = new MainMenuController(this);
+		
 	}
 	
 	/* render(float delta) dipanggil terus-terusan setiap
@@ -74,27 +75,29 @@ public class MainMenuScreen extends AbstractScreen {
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
-		
-		/*
+        cam.update();
+
+        // set viewport
+        Gdx.gl.glViewport((int) viewport.x, (int) viewport.y,
+                          (int) viewport.width, (int) viewport.height);
+ 
+        /*
 		 * kalo ngga salah ini supaya background VIRTUALnya
 		 * warna hitam, tapi ngga tau juga sih ._.
 		 */
-		
-		
-		
-		//cam.update();
+        Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		/*
-		 * Setiap mau gambar diawali batcher.begin()
-		 * diakhiri batcher.end()
+		 * Setiap mau gambar set dulu projection matrixnya, terus
+		 * diawali batcher.begin(), diakhiri batcher.end()
 		 */
+        batcher.setProjectionMatrix(cam.combined);
 		batcher.begin();
+			
 			/* 
 			 * gambar background di sini
 			 */
-		
-			Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
-			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 			batcher.draw(background, 0, 0);
 			
 			/*
@@ -106,12 +109,12 @@ public class MainMenuScreen extends AbstractScreen {
 			
 			if (playButtonPressed) {
 				batcher.draw(playButtonPressedTexture, 
-						(VIRTUAL_WIDTH-playButtonPressedTexture.getWidth())/2, 440);
+						(VIRTUAL_WIDTH-playButtonPressedTexture.getWidth())/2, 280);
 				
 			}
 			else {
 				batcher.draw(playButtonTexture, 
-						(VIRTUAL_WIDTH-playButtonTexture.getWidth())/2, 440);
+						(VIRTUAL_WIDTH-playButtonTexture.getWidth())/2, 280);
 			}
 			
 			if (settingsButtonPressed) {

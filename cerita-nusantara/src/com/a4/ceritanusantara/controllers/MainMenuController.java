@@ -6,7 +6,9 @@ import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PilihCeritaScreen;
 import com.a4.ceritanusantara.views.SettingsScreen;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 
 public class MainMenuController {
 	
@@ -25,7 +27,8 @@ public class MainMenuController {
 	private MainMenuScreen screen;
 	private Rectangle playButtonBounds;
 	private Rectangle settingsButtonBounds;
-	
+	private OrthographicCamera cam;
+	private Rectangle viewport;
 	
 	/*
 	 * Constructor
@@ -35,22 +38,28 @@ public class MainMenuController {
 		app = screen.getAplikasi();
 		playButtonBounds = screen.getPlayButtonBounds();
 		settingsButtonBounds = screen.getSettingsButtonBounds();
+		cam = screen.getCam();
+		viewport = screen.getViewport();
 		
 	}
 	
 	
 	public void processInput(){
 		
+		
 		if(Gdx.input.justTouched()){
 			
-			if(OverlapTester.pointInRectangle( playButtonBounds, 
-					Gdx.input.getX()/screen.ppuX, (screen.height-Gdx.input.getY())/screen.ppuY)){
+			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+			System.out.printf("%f %f %f %f%n", viewport.x, viewport.y, viewport.width, viewport.height);
+			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
+			
+			if(OverlapTester.pointInRectangle( playButtonBounds, pos.x, pos.y)){
 				screen.setPlayButtonPressed(true);
 				
 			}
 			
 			else if(OverlapTester.pointInRectangle( settingsButtonBounds, 
-					Gdx.input.getX()/screen.ppuX, (screen.height-Gdx.input.getY())/screen.ppuY)){
+					pos.x, pos.y)){
 				screen.setSettingsButtonPressed(true);
 				
 			}
@@ -60,20 +69,21 @@ public class MainMenuController {
 			//kosongin dulu deh~
 		}
 		else{
+			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
+			
 			if(screen.playButtonIsPressed()){
 				screen.setPlayButtonPressed(false);
-				if(OverlapTester.pointInRectangle( playButtonBounds, 
-						Gdx.input.getX()/screen.ppuX, (screen.height-Gdx.input.getY())/screen.ppuY)){
-					app.setScreen(new PilihCeritaScreen(app, screen.width, screen.height));
+				if(OverlapTester.pointInRectangle( playButtonBounds, pos.x, pos.y)){
+					app.setScreen(new PilihCeritaScreen(app));
 					
 				}
 			}
 			
 			else if(screen.settingsButtonIsPressed()){
 				screen.setSettingsButtonPressed(false);
-				if(OverlapTester.pointInRectangle( settingsButtonBounds, 
-						Gdx.input.getX()/screen.ppuX, (screen.height-Gdx.input.getY())/screen.ppuY)){
-					app.setScreen(new SettingsScreen(app, screen.width, screen.height));
+				if(OverlapTester.pointInRectangle( settingsButtonBounds, pos.x, pos.y)){
+					app.setScreen(new SettingsScreen(app));
 					
 				}
 			}
