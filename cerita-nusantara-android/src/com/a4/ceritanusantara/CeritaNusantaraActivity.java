@@ -1,15 +1,23 @@
 package com.a4.ceritanusantara;
 
 import android.os.Bundle;
-import android.app.Activity;
+
+import com.badlogic.gdx.backends.android.AndroidApplication;
+import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import android.view.Menu;
 
-public class CeritaNusantaraActivity extends Activity {
+public class CeritaNusantaraActivity extends AndroidApplication {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cerita_nusantara);
+		super.onCreate(savedInstanceState);
+		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+		config.useAccelerometer = false;
+		config.useCompass = false;
+		config.useWakelock = true;
+		config.useGL20 = true;
+		initialize(new Aplikasi(), config);
 	}
 
 	@Override
