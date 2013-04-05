@@ -1,6 +1,7 @@
 package com.a4.ceritanusantara.views;
 
 import com.a4.ceritanusantara.Aplikasi;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,11 +25,11 @@ public abstract class AbstractScreen implements Screen{
 	 */
 	protected ShapeRenderer debugRenderer = new ShapeRenderer();
 	
-	public AbstractScreen(Aplikasi app){
+	public AbstractScreen(Aplikasi app, int width, int height){
 		this.app = app;
 		
-		width = (int)DEFAULT_WIDTH;
-		height = (int)DEFAULT_HEIGHT;
+		this.width = width;
+		this.height = height;
 		
 		ppuX = (float)width/DEFAULT_WIDTH;
 		ppuY = (float)height/DEFAULT_HEIGHT;
@@ -65,7 +66,11 @@ public abstract class AbstractScreen implements Screen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("haaai");
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
+		ppuX = (float)width/DEFAULT_WIDTH;
+		ppuY = (float)height/DEFAULT_HEIGHT;
 	}
 
 	@Override

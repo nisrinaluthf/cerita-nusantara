@@ -64,7 +64,7 @@ public class MainMenuController {
 				screen.setPlayButtonPressed(false);
 				if(OverlapTester.pointInRectangle( playButtonBounds, 
 						Gdx.input.getX()/screen.ppuX, (screen.height-Gdx.input.getY())/screen.ppuY)){
-					app.setScreen(new PilihCeritaScreen(app));
+					app.setScreen(new PilihCeritaScreen(app, screen.width, screen.height));
 					
 				}
 			}
@@ -73,7 +73,7 @@ public class MainMenuController {
 				screen.setSettingsButtonPressed(false);
 				if(OverlapTester.pointInRectangle( settingsButtonBounds, 
 						Gdx.input.getX()/screen.ppuX, (screen.height-Gdx.input.getY())/screen.ppuY)){
-					app.setScreen(new SettingsScreen(app));
+					app.setScreen(new SettingsScreen(app, screen.width, screen.height));
 					
 				}
 			}

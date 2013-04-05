@@ -7,6 +7,6 @@ public class Aplikasi extends Game {
 
 	@Override
 	public void create() {
-		setScreen(new MainMenuScreen(this));
+		setScreen(new MainMenuScreen(this, 1280, 800));
 	}
 }

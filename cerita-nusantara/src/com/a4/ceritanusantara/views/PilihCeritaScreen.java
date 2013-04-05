@@ -9,8 +9,8 @@ public class PilihCeritaScreen extends AbstractScreen {
 
 Texture background;
 	
-	public PilihCeritaScreen(Aplikasi app) {
-		super(app);
+	public PilihCeritaScreen(Aplikasi app, int width, int height) {
+		super(app, width, height);
 		// TODO Auto-generated constructor stub
 		
 		background = new Texture(Gdx.files.internal("backgrounds/pilihcerita_bg.png"));

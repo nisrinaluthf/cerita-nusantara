@@ -17,29 +17,29 @@ public class MainMenuScreen extends AbstractScreen {
 	  boolean pressed buat ngecek suatu button lagi dipencet
 	  apa enggak.
 	*/
-	MainMenuController controller;
+	private MainMenuController controller;
 	
-	Texture background;
+	private Texture background;
 	
-	Texture playButtonTexture;
-	Texture settingsButtonTexture;
-	Texture playButtonPressedTexture;
-	Texture settingsButtonPressedTexture;
+	private Texture playButtonTexture;
+	private Texture settingsButtonTexture;
+	private Texture playButtonPressedTexture;
+	private Texture settingsButtonPressedTexture;
 	
-	Rectangle playButtonBounds;
-	Rectangle settingsButtonBounds;
+	private Rectangle playButtonBounds;
+	private Rectangle settingsButtonBounds;
 	
-	boolean playButtonPressed;
-	boolean settingsButtonPressed;
+	private boolean playButtonPressed;
+	private boolean settingsButtonPressed;
 	
 	private boolean debug = true;
 	
 	//awalnya samain aja sama supernya
-	public MainMenuScreen(Aplikasi app){
-		super(app);
+	public MainMenuScreen(Aplikasi app, int width, int height){
+		super(app, width, height);
 		
 		//inisialisasi semuanya
-		background = new Texture(Gdx.files.internal("backgrounds/mainmenu_bg.png"));
+		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
 		
 		playButtonTexture = 
 				new Texture(Gdx.files.internal("buttons/play.png"));
