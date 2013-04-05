@@ -53,11 +53,11 @@ public class MainMenuScreen extends AbstractScreen {
 		settingsButtonPressedTexture = 
 				new Texture(Gdx.files.internal("buttons/settings_pressed.png"));
 		
-		playButtonBounds = new Rectangle((DEFAULT_WIDTH-playButtonTexture.getWidth())/2,
+		playButtonBounds = new Rectangle((VIRTUAL_WIDTH-playButtonTexture.getWidth())/2,
 				440, playButtonTexture.getWidth(),
 				playButtonTexture.getHeight());
 		
-		settingsButtonBounds = new Rectangle((DEFAULT_WIDTH-settingsButtonTexture.getWidth())/2,
+		settingsButtonBounds = new Rectangle((VIRTUAL_WIDTH-settingsButtonTexture.getWidth())/2,
 				160, settingsButtonTexture.getWidth(),
 				settingsButtonTexture.getHeight());
 		
@@ -76,12 +76,13 @@ public class MainMenuScreen extends AbstractScreen {
 		// TODO Auto-generated method stub
 		
 		/*
-		 * kalo ngga salah ini supaya background defaultnya
+		 * kalo ngga salah ini supaya background VIRTUALnya
 		 * warna hitam, tapi ngga tau juga sih ._.
 		 */
-		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		cam.update();
+		
+		
+		
+		//cam.update();
 		
 		/*
 		 * Setiap mau gambar diawali batcher.begin()
@@ -91,6 +92,9 @@ public class MainMenuScreen extends AbstractScreen {
 			/* 
 			 * gambar background di sini
 			 */
+		
+			Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 			batcher.draw(background, 0, 0);
 			
 			/*
@@ -102,21 +106,21 @@ public class MainMenuScreen extends AbstractScreen {
 			
 			if (playButtonPressed) {
 				batcher.draw(playButtonPressedTexture, 
-						(DEFAULT_WIDTH-playButtonPressedTexture.getWidth())/2, 440);
+						(VIRTUAL_WIDTH-playButtonPressedTexture.getWidth())/2, 440);
 				
 			}
 			else {
 				batcher.draw(playButtonTexture, 
-						(DEFAULT_WIDTH-playButtonTexture.getWidth())/2, 440);
+						(VIRTUAL_WIDTH-playButtonTexture.getWidth())/2, 440);
 			}
 			
 			if (settingsButtonPressed) {
 				batcher.draw(settingsButtonPressedTexture, 
-						(DEFAULT_WIDTH-settingsButtonPressedTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-settingsButtonPressedTexture.getWidth())/2, 160);
 			}
 			else{
 				batcher.draw(settingsButtonTexture, 
-						(DEFAULT_WIDTH-settingsButtonTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-settingsButtonTexture.getWidth())/2, 160);
 			}
 			
 		batcher.end();

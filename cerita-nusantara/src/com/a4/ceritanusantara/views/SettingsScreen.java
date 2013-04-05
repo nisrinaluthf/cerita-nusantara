@@ -48,11 +48,11 @@ public class SettingsScreen extends AbstractScreen {
 		musicOffTexture = 
 				new Texture(Gdx.files.internal("buttons/toggle_music_off.png"));
 		
-		soundButtonBounds = new Rectangle((DEFAULT_WIDTH-soundOnTexture.getWidth())/2,
+		soundButtonBounds = new Rectangle((VIRTUAL_WIDTH-soundOnTexture.getWidth())/2,
 				440, soundOnTexture.getWidth(),
 				soundOnTexture.getHeight()); 
 				
-		musicButtonBounds = new Rectangle((DEFAULT_WIDTH-musicOnTexture.getWidth())/2,
+		musicButtonBounds = new Rectangle((VIRTUAL_WIDTH-musicOnTexture.getWidth())/2,
 				440, musicOnTexture.getWidth(),
 				musicOnTexture.getHeight());  
 		
@@ -75,7 +75,7 @@ public class SettingsScreen extends AbstractScreen {
 			
 			batcher.draw(background, 0, 0);
 			
-			batcher.draw(buttonBackground, (DEFAULT_WIDTH-buttonBackground.getWidth())/2, 300);
+			batcher.draw(buttonBackground, (VIRTUAL_WIDTH-buttonBackground.getWidth())/2, 300);
 			
 			//batcher.draw(soundOnTexture, 
 			//		(DEFAULT_WIDTH-soundOnTexture.getWidth())/2, 440);

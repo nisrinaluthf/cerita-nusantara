@@ -11,8 +11,8 @@ public abstract class AbstractScreen implements Screen{
 	
 	private Aplikasi app;
 	
-	public final float DEFAULT_WIDTH = 1280.0f;
-	public final float DEFAULT_HEIGHT = 800.0f;
+	public final float VIRTUAL_WIDTH = 1024.0f;
+	public final float VIRTUAL_HEIGHT = 600.0f;
 	public int width, height;
 	public float ppuX, ppuY;
 	
@@ -31,8 +31,8 @@ public abstract class AbstractScreen implements Screen{
 		this.width = width;
 		this.height = height;
 		
-		ppuX = (float)width/DEFAULT_WIDTH;
-		ppuY = (float)height/DEFAULT_HEIGHT;
+		ppuX = (float)width/VIRTUAL_WIDTH;
+		ppuY = (float)height/VIRTUAL_HEIGHT;
 		
 		cam = new OrthographicCamera(width, height);
 		cam.position.set(width / 2, height / 2, 0);
@@ -59,8 +59,8 @@ public abstract class AbstractScreen implements Screen{
 		// TODO Auto-generated method stub
 		this.width = width; 
 		this.height = height;
-		ppuX = (float)this.width/DEFAULT_WIDTH;
-		ppuY = (float)this.height/DEFAULT_HEIGHT;
+		ppuX = (float)this.width/VIRTUAL_WIDTH;
+		ppuY = (float)this.height/VIRTUAL_HEIGHT;
 	}
 
 	@Override
@@ -69,8 +69,8 @@ public abstract class AbstractScreen implements Screen{
 		System.out.println("haaai");
 		width = Gdx.graphics.getWidth();
 		height = Gdx.graphics.getHeight();
-		ppuX = (float)width/DEFAULT_WIDTH;
-		ppuY = (float)height/DEFAULT_HEIGHT;
+		ppuX = (float)width/VIRTUAL_WIDTH;
+		ppuY = (float)height/VIRTUAL_HEIGHT;
 	}
 
 	@Override
