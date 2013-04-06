@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+   <PreferenceCategory android:title="General-Setting">
+      <CheckBoxPreference android:key="soundOn"
+                     android:title="sound effect enabled"
+                     android:summary="sound effect status"
+                     android:defaultValue="true" />
+      <CheckBoxPreference android:key="musicOn"
+                     android:title="music enabled"
+                     android:summary="music status"
+                     android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>
