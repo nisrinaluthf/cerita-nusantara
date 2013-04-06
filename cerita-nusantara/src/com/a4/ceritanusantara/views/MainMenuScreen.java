@@ -17,6 +17,7 @@ public class MainMenuScreen extends AbstractScreen {
 	  boolean pressed buat ngecek suatu button lagi dipencet
 	  apa enggak.
 	*/
+	
 	private MainMenuController controller;
 	
 	private Texture background;

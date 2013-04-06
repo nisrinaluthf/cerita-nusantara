@@ -34,6 +34,7 @@ public class MainMenuController {
 	 * Constructor
 	 */
 	public MainMenuController(MainMenuScreen screen){
+		Gdx.input.setCatchBackKey(false);
 		this.screen = screen;
 		app = screen.getAplikasi();
 		playButtonBounds = screen.getPlayButtonBounds();
