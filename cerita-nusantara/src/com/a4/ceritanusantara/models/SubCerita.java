@@ -11,7 +11,7 @@ public class SubCerita {
 	public static final int RUNNING_GAME = 4;
 	public static final int KUIS = 5;
 	
-	
+
 	private String nama;
 	private int tipe;
 	private boolean unlocked;
