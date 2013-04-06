@@ -1,9 +1,13 @@
 package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
-import com.a4.ceritanusantara.views.MainMenuScreen;
+import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.SettingsScreen;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 
 public class SettingsController {
 	
@@ -17,12 +21,77 @@ public class SettingsController {
 	private SettingsScreen screen;
 	private Rectangle soundButtonBounds;
 	private Rectangle musicButtonBounds;
+	private Preferences prefs;
+
+	private OrthographicCamera cam;
+	private Rectangle viewport;
 	
 	public SettingsController(SettingsScreen screen){
 		this.screen = screen;
-		app = screen.getAplikasi();
-		soundButtonBounds = screen.getSoundButtonBounds();
-		musicButtonBounds = screen.getMusicButtonBounds();
+		this.app = screen.getAplikasi();
+		soundButtonBounds = this.screen.getSoundButtonBounds();
+		musicButtonBounds = this.screen.getMusicButtonBounds();
+		prefs = Gdx.app.getPreferences("preferences");
+		//if (prefs == null) {
+			//prefs.putBoolean("soundOn", true);
+			//prefs.putBoolean("musicOn", true);
+			//prefs.flush();
+		//}
+		System.out.println("setting controller di create");
+		cam = this.screen.getCam();
+		viewport = this.screen.getViewport();
+
+	}
+	
+public void processInput(){
+	//System.out.println("masuk setting controller process input");
+	if(Gdx.input.justTouched()){
+		Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+		cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 		
+		//System.out.println(soundButtonBounds+" x: "+Gdx.input.getX()/screen.ppuX+" y: "+(screen.height-Gdx.input.getY())/screen.ppuY);
+		if(OverlapTester.pointInRectangle( soundButtonBounds,pos.x, pos.y)){
+			screen.setSoundButtonPressed(true);
+			System.out.println("toggle sound button");
+
+		}
+		
+		else if(OverlapTester.pointInRectangle( musicButtonBounds,pos.x, pos.y)){
+			screen.setMusicButtonPressed(true);
+			System.out.println("toggle music button");
+		}
+	}
+		
+		if(Gdx.input.isTouched()){
+			//kosongin dulu deh~
+		}
+		else{
+			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
+			if(screen.soundButtonIsPressed()){
+				screen.setSoundButtonPressed(false);
+				if(OverlapTester.pointInRectangle( soundButtonBounds, 
+						pos.x, pos.y)){
+					//app.setScreen(new PilihCeritaScreen(app, screen.width, screen.height));
+					prefs.putBoolean("soundOn", !prefs.getBoolean("soundOn"));
+				}
+				System.out.println("sound diklik");
+			}
+			
+			else if(screen.musicButtonIsPressed()){
+				screen.setMusicButtonPressed(false);
+				if(OverlapTester.pointInRectangle( musicButtonBounds, pos.x, pos.y)){
+					//app.setScreen(new SettingsScreen(app, screen.width, screen.height));
+					prefs.putBoolean("musicOn", !prefs.getBoolean("musicOn"));
+				}
+				System.out.println("music diklik");
+			}
+		}
+		prefs.flush();
+
+	}
+
+	public Preferences getSettings() {
+		return prefs;
 	}
 }
