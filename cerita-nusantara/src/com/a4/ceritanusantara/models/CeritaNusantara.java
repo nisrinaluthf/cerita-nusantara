@@ -1,5 +1,7 @@
 package com.a4.ceritanusantara.models;
 
+import com.a4.ceritanusantara.utils.InitCerita;
+
 public class CeritaNusantara {
 	
 	public static final int SUMATERA = 0;
@@ -26,20 +28,24 @@ public class CeritaNusantara {
 	
 	private void initCeritaSumatera(){
 		
-		SubCerita[] tmp = new SubCerita[10];
+		cerita[SUMATERA].setSubCerita(new SubCerita[]{
+				new Adegan("Adegan 1", SubCerita.ADEGAN),
+				new Adegan("Adegan 2", SubCerita.ADEGAN),
+				new Adegan("Adegan 3", SubCerita.ADEGAN),
+				new TapGame("Permainan 1", SubCerita.TAP_GAME),
+				new Adegan("Adegan 4", SubCerita.ADEGAN),
+				new Adegan("Adegan 5", SubCerita.ADEGAN),
+				new Adegan("Adegan 6", SubCerita.ADEGAN),
+				new Adegan("Adegan 7", SubCerita.ADEGAN),
+				new Labirin("Permainan 2", SubCerita.LABIRIN),
+				new Kuis("Kuis", SubCerita.KUIS)
+		});
 		
-		tmp[0] = new SubCerita("Adegan 1", SubCerita.ADEGAN);
-		tmp[1] = new SubCerita("Adegan 2", SubCerita.ADEGAN);
-		tmp[2] = new SubCerita("Adegan 3", SubCerita.ADEGAN);
-		tmp[3] = new SubCerita("Permainan 1", SubCerita.TAP_GAME);
-		tmp[4] = new SubCerita("Adegan 4", SubCerita.ADEGAN);
-		tmp[5] = new SubCerita("Adegan 5", SubCerita.ADEGAN);
-		tmp[6] = new SubCerita("Adegan 6", SubCerita.ADEGAN);
-		tmp[7] = new SubCerita("Adegan 7", SubCerita.ADEGAN);
-		tmp[8] = new SubCerita("Permainan 2", SubCerita.LABIRIN);
-		tmp[9] = new SubCerita("Kuis", SubCerita.KUIS);
+		InitCerita.initSumatera(cerita[SUMATERA]);
 		
-		cerita[0].setSubCerita(tmp);
+		
+		
+		
 		
 	}
 }

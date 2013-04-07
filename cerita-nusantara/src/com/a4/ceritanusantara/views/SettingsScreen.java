@@ -78,10 +78,15 @@ public class SettingsScreen extends AbstractScreen {
 	public void render(float delta) {
 		// TODO Auto-generated method stub
 		
+		cam.update();
+
+        // set viewport
+        Gdx.gl.glViewport((int) viewport.x, (int) viewport.y,
+                          (int) viewport.width, (int) viewport.height);
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		cam.update();
 		
+		batcher.setProjectionMatrix(cam.combined);
 		batcher.begin();
 			
 			batcher.draw(background, 0, 0);
@@ -90,21 +95,21 @@ public class SettingsScreen extends AbstractScreen {
 			
 			if(controller.getSettings().getBoolean("soundOn")) {
 				batcher.draw(soundOnTexture, 
-						(VIRTUAL_WIDTH-soundOnTexture.getWidth())/2+130, 380);
+						(VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 280);
 				
 			} else {
 				batcher.draw(soundOffTexture, 
-						(VIRTUAL_WIDTH-soundOffTexture.getWidth())/2+130, 380);
+						(VIRTUAL_WIDTH-soundOffTexture.getWidth())/2, 280);
 				
 			}
 			
 			if(controller.getSettings().getBoolean("musicOn")) {
 				batcher.draw(musicOnTexture, 
-						(VIRTUAL_WIDTH-musicOnTexture.getWidth())/2+130, 220);
+						(VIRTUAL_WIDTH-musicOnTexture.getWidth())/2, 160);
 						
 			} else {
 				batcher.draw(musicOffTexture, 
-						(VIRTUAL_WIDTH-musicOffTexture.getWidth())/2+130, 220);
+						(VIRTUAL_WIDTH-musicOffTexture.getWidth())/2, 160);
 					
 			}
 				

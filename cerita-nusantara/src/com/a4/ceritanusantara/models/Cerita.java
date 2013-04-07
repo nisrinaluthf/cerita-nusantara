@@ -31,6 +31,10 @@ public class Cerita {
 		return subcerita;
 	}
 	
+	public SubCerita getSubCerita(int i){
+		return subcerita[i];
+	}
+	
 	public void setSubCerita(SubCerita[] subcerita){
 		this.subcerita = subcerita;
 	}

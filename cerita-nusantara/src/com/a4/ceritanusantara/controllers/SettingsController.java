@@ -2,9 +2,11 @@ package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.utils.OverlapTester;
+import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.SettingsScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -27,6 +29,7 @@ public class SettingsController {
 	private Rectangle viewport;
 	
 	public SettingsController(SettingsScreen screen){
+		Gdx.input.setCatchBackKey(true);
 		this.screen = screen;
 		this.app = screen.getAplikasi();
 		soundButtonBounds = this.screen.getSoundButtonBounds();
@@ -88,6 +91,10 @@ public void processInput(){
 			}
 		}
 		prefs.flush();
+		
+		if (Gdx.input.isKeyPressed(Keys.BACK)){
+			app.setScreen(new MainMenuScreen(app));
+		}
 
 	}
 
