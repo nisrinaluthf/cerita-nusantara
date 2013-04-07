@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
 public class PauseScreen extends AbstractScreen {
-  private PauseController controller;
+	private PauseController controller;
 	
 	private Texture background;
 	
@@ -62,7 +62,7 @@ public class PauseScreen extends AbstractScreen {
 						resumeButtonTexture.getHeight());
 				
 				restartButtonBounds = new Rectangle((VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2,
-						160, restartButtonTexture.getWidth(),
+						220, restartButtonTexture.getWidth(),
 						restartButtonTexture.getHeight());
 				
 				exitButtonBounds = new Rectangle((VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2,
@@ -123,7 +123,7 @@ public class PauseScreen extends AbstractScreen {
 			}
 			else {
 				batcher.draw(resumeButtonTexture, 
-						(VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2, 280);
+						(VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2, 220);
 			}
 			
 			if (restartButtonPressed) {
