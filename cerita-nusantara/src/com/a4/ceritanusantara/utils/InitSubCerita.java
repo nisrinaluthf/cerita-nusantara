@@ -17,8 +17,8 @@ public class InitSubCerita {
 						2),
 				new KuisQuestion("1+2=?", "87", "12", "3", "4" , 2),
 				new KuisQuestion("11+1=?", "245", "12", "9", "76" , 1),
-				new KuisQuestion("3+2=?", "4", "5", "6", "7" , 2),
-				new KuisQuestion("198-54=?", "144", "148", "60", "134" , 3)
+				new KuisQuestion("3+2=?", "4", "5", "6", "7" , 1),
+				new KuisQuestion("198-54=?", "144", "148", "60", "134" , 0)
 		});
 	}
 }

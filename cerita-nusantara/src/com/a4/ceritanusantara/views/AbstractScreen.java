@@ -70,7 +70,7 @@ public abstract class AbstractScreen implements Screen{
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
-		System.out.printf("resize called with width: %d and height: %d%n", width, height);
+		//System.out.printf("resize called with width: %d and height: %d%n", width, height);
 		this.width = width; 
 		this.height = height;
 		
@@ -101,7 +101,7 @@ public abstract class AbstractScreen implements Screen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		System.out.println("show called");
+		//System.out.println("show called");
 	}
 
 	@Override

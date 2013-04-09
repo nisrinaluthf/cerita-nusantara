@@ -5,26 +5,35 @@ import com.a4.ceritanusantara.controllers.PilihSubCeritaController;
 import com.a4.ceritanusantara.models.Cerita;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 public class PilihSubCeritaScreen extends AbstractScreen{
 	
 	
 	PilihSubCeritaController controller;
 	
-	Cerita cerita;
-	SubCerita[] subcerita;
+	private Cerita cerita;
+	private SubCerita[] subcerita;
+	
+	private Vector2[] buttonPos;
+	private Rectangle[] buttonBounds;
 	
 	private Texture background;
 	private Texture timelineTexture;
 	
 	private Texture lockTexture;
 	
+	private boolean debug = true;
+	
 	public PilihSubCeritaScreen(Aplikasi app, Cerita cerita) {
 		super(app);
 		// TODO Auto-generated constructor stub
-		controller = new PilihSubCeritaController(app);
+		
 		
 		subcerita = cerita.getSubCerita();
 
@@ -34,6 +43,31 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 				"backgrounds/timeline_"+subcerita.length+".png"));
 		
 		lockTexture = new Texture(Gdx.files.internal("buttons/lock.png"));
+		
+		buttonPos = new Vector2[]{
+				new Vector2(644, 465),
+				new Vector2(497, 465),
+				new Vector2(347, 465),
+				
+				new Vector2(261, 379),
+				
+				new Vector2(347, 281),
+				new Vector2(497, 281),
+				new Vector2(644, 281),
+				
+				new Vector2(733, 207),
+				
+				new Vector2(644, 126),
+				new Vector2(497, 126)
+		};
+		
+		buttonBounds = new Rectangle[buttonPos.length];
+		for(int i=0; i<buttonBounds.length; i++){
+			buttonBounds[i] = new Rectangle(buttonPos[i].x, buttonPos[i].y,
+					lockTexture.getWidth(), lockTexture.getHeight());
+		}
+		
+		controller = new PilihSubCeritaController(this);
 		
 	}
 	
@@ -53,27 +87,27 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 			batcher.draw(timelineTexture, 
 					(VIRTUAL_WIDTH-timelineTexture.getWidth())/2, 80);
 			
-			
-			batcher.draw(lockTexture, 497, 465);
-			batcher.draw(lockTexture, 347, 465);
-			
-			batcher.draw(lockTexture, 261, 379);
-			
-			batcher.draw(lockTexture, 347, 281);
-			batcher.draw(lockTexture, 497, 281);
-			batcher.draw(lockTexture, 644, 281);
-			
-			batcher.draw(lockTexture, 733, 207);
-			
-			batcher.draw(lockTexture, 644, 126);
-			batcher.draw(lockTexture, 497, 126);
-			
-			
-			
-			
+			for(int i=0; i<subcerita.length; i++){
+				batcher.draw(lockTexture, buttonPos[i].x, buttonPos[i].y);
+			}
+				
 		batcher.end();
+		
+		if(debug){
+			drawDebug();
+		}
 		
 		controller.processInput();
 	}
-
+	
+	private void drawDebug(){
+		debugRenderer.setProjectionMatrix(cam.combined);
+		debugRenderer.begin(ShapeType.Rectangle);
+			for(int i=0; i<buttonBounds.length; i++){
+				debugRenderer.rect(buttonBounds[i].x, buttonBounds[i].y,
+						buttonBounds[i].width, buttonBounds[i].height);
+			}
+		debugRenderer.end();
+	}
+	
 }

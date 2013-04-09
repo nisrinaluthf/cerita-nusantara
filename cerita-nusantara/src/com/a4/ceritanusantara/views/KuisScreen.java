@@ -2,7 +2,6 @@ package com.a4.ceritanusantara.views;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.KuisController;
-import com.a4.ceritanusantara.controllers.MainMenuController;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
 import com.badlogic.gdx.Gdx;
@@ -27,7 +26,6 @@ public class KuisScreen extends SubCeritaScreen{
 	private BitmapFont font;
 	
 	private boolean[] optionPressed;
-	private Rectangle[] optionBounds;
 	
 	private boolean debug;
 
@@ -37,7 +35,7 @@ public class KuisScreen extends SubCeritaScreen{
 		
 		this.kuis = kuis;
 		
-		int currentNo = 0;
+		currentNo = 0;
 		
 		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
 		soalBackgroundTexture = new 
@@ -98,6 +96,15 @@ public class KuisScreen extends SubCeritaScreen{
 			
 			if(kuis.getKuisQuestion(currentNo).getOptionPressed(1)){
 				batcher.draw(opsiBackgroundPressedTexture, 
+						(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 20);
+			}
+			else{
+				batcher.draw(opsiBackgroundTexture, 
+						(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 20);
+			}
+			
+			if(kuis.getKuisQuestion(currentNo).getOptionPressed(2)){
+				batcher.draw(opsiBackgroundPressedTexture, 
 						((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
 						opsiBackgroundTexture.getWidth()+60, 180);
 				System.out.println("option 1 pressed");
@@ -106,15 +113,6 @@ public class KuisScreen extends SubCeritaScreen{
 				batcher.draw(opsiBackgroundTexture, 
 						((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
 						opsiBackgroundTexture.getWidth()+60, 180);
-			}
-			
-			if(kuis.getKuisQuestion(currentNo).getOptionPressed(2)){
-				batcher.draw(opsiBackgroundPressedTexture, 
-						(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 20);
-			}
-			else{
-				batcher.draw(opsiBackgroundTexture, 
-						(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 20);
 			}
 			
 			if(kuis.getKuisQuestion(currentNo).getOptionPressed(3)){
@@ -130,6 +128,14 @@ public class KuisScreen extends SubCeritaScreen{
 			
 			
 			KuisQuestion question = kuis.getKuisQuestion(currentNo);
+			
+			String tmp = ""+(int)kuis.timeLeft;
+			if(tmp.length()==1){
+				tmp = "0"+tmp;
+			}
+			
+			font.draw(batcher, "Waktu Tersisa= 0:"+tmp, 350, 570);
+			
 			font.drawWrapped(batcher, question.getQuestion(), (VIRTUAL_WIDTH-700)/2, 475, 800);
 			
 			font.drawWrapped(batcher, question.getOptions(0), 100, 
@@ -154,7 +160,7 @@ public class KuisScreen extends SubCeritaScreen{
 		}
 		
 		
-		controller.processInput();
+		controller.processInput(delta);
 	}
 	
 	private void drawDebug(){

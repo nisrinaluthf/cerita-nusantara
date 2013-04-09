@@ -1,8 +1,9 @@
 package com.a4.ceritanusantara.controllers;
 
+import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.KuisScreen;
-import com.a4.ceritanusantara.views.PilihCeritaScreen;
+import com.a4.ceritanusantara.views.WinLoseScreen;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
 import com.badlogic.gdx.Gdx;
@@ -11,6 +12,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class KuisController {
+	
+	private Aplikasi app;
 	
 	private KuisScreen screen;
 	private Kuis kuis;
@@ -24,6 +27,7 @@ public class KuisController {
 	public KuisController(KuisScreen screen) {
 		// TODO Auto-generated constructor stub
 		this.screen = screen;
+		app = screen.getAplikasi();
 		kuis = screen.getKuis();
 		kuisQuestion = kuis.getKuisQuestion(0);
 		
@@ -34,7 +38,19 @@ public class KuisController {
 		
 	}
 	
-	public void processInput(){
+	public void processInput(float delta){
+		
+		kuis.timeLeft-=delta;
+		
+		if(kuis.timeLeft<0){
+			if(kuis.getCurrentNo()<4){
+				kuis.timeLeft=21.0f;
+				kuis.setCurrentNo(kuis.getCurrentNo()+1);
+			}
+			else{
+				app.setScreen(new WinLoseScreen(app, kuis.getScore()));
+			}
+		}
 		
 		kuisQuestion = kuis.getKuisQuestion(kuis.getCurrentNo());
 		
@@ -59,11 +75,22 @@ public class KuisController {
 				if(kuisQuestion.getOptionPressed(i)){
 					kuisQuestion.setOptionPressed(i, false);
 					if(OverlapTester.pointInRectangle(optionsBounds[i], pos.x, pos.y)){
+						
+						//kalo bener
+						if(kuisQuestion.getAnswer()==i){
+							
+							kuis.setScore(kuis.getScore()+20);
+						}
+						
 						if(kuis.getCurrentNo()<4){
+							
+							System.out.printf("answer = %d, harusnya %d%n", i, kuisQuestion.getAnswer());
+							
+							kuis.timeLeft=21.0f;
 							kuis.setCurrentNo(kuis.getCurrentNo()+1);
 						}
 						else{
-							//kuis.setScreen(new )
+							app.setScreen(new WinLoseScreen(app, kuis.getScore()));
 						}
 					}
 				}

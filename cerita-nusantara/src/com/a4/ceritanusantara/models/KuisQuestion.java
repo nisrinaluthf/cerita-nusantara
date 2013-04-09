@@ -24,8 +24,8 @@ public class KuisQuestion {
 		
 		bounds = new Rectangle[4];
 		bounds[0] = new Rectangle((1024-860)/2, 180, 400, 140);
-		bounds[1] = new Rectangle(((1024-860)/2)+460, 180, 400, 140);
-		bounds[2] = new Rectangle((1024-860)/2, 20, 400, 140);
+		bounds[1] = new Rectangle((1024-860)/2, 20, 400, 140);
+		bounds[2] = new Rectangle(((1024-860)/2)+460, 180, 400, 140);
 		bounds[3] = new Rectangle(((1024-860)/2)+460, 20, 400, 140);
 		
 		optionPressed = new boolean[4];
