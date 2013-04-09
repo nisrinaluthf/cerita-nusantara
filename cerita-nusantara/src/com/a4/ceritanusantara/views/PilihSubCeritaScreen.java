@@ -5,7 +5,6 @@ import com.a4.ceritanusantara.controllers.PilihSubCeritaController;
 import com.a4.ceritanusantara.models.Cerita;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -21,12 +20,14 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 	private SubCerita[] subcerita;
 	
 	private Vector2[] buttonPos;
-	private Rectangle[] buttonBounds;
+	private Rectangle[] subCeritaButtonBounds;
 	
 	private Texture background;
 	private Texture timelineTexture;
 	
 	private Texture lockTexture;
+	
+	private boolean[] subCeritaButtonPressed;
 	
 	private boolean debug = true;
 	
@@ -61,10 +62,15 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 				new Vector2(497, 126)
 		};
 		
-		buttonBounds = new Rectangle[buttonPos.length];
-		for(int i=0; i<buttonBounds.length; i++){
-			buttonBounds[i] = new Rectangle(buttonPos[i].x, buttonPos[i].y,
+		subCeritaButtonBounds = new Rectangle[buttonPos.length];
+		for(int i=0; i<subCeritaButtonBounds.length; i++){
+			subCeritaButtonBounds[i] = new Rectangle(buttonPos[i].x, buttonPos[i].y,
 					lockTexture.getWidth(), lockTexture.getHeight());
+		}
+		
+		subCeritaButtonPressed = new boolean[buttonPos.length];
+		for(int i=0; i<subCeritaButtonPressed.length; i++){
+			subCeritaButtonPressed[i] = false;
 		}
 		
 		controller = new PilihSubCeritaController(this);
@@ -103,11 +109,27 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 	private void drawDebug(){
 		debugRenderer.setProjectionMatrix(cam.combined);
 		debugRenderer.begin(ShapeType.Rectangle);
-			for(int i=0; i<buttonBounds.length; i++){
-				debugRenderer.rect(buttonBounds[i].x, buttonBounds[i].y,
-						buttonBounds[i].width, buttonBounds[i].height);
+			for(int i=0; i<subCeritaButtonBounds.length; i++){
+				debugRenderer.rect(subCeritaButtonBounds[i].x, subCeritaButtonBounds[i].y,
+						subCeritaButtonBounds[i].width, subCeritaButtonBounds[i].height);
 			}
 		debugRenderer.end();
+	}
+	
+	public Rectangle[] getSubCeritaButtonBounds(){
+		return subCeritaButtonBounds;
+	}
+	
+	public boolean isSubCeritaButtonPressed(int i){
+		return subCeritaButtonPressed[i];
+	}
+	
+	public void setSubCeritaButtonPressed(int i, boolean pressed){
+		subCeritaButtonPressed[i] = pressed;
+	}
+	
+	public SubCerita getSubCerita(int i){
+		return subcerita[i];
 	}
 	
 }
