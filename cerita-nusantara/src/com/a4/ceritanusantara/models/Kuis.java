@@ -4,9 +4,13 @@ public class Kuis extends SubCerita{
 	
 	private int score;
 	private KuisQuestion[] questions;
+	private int currentNo;
+	public int timeLeft;
 
 	public Kuis(String nama, int tipe) {
 		super(nama, tipe);
+		questions = new KuisQuestion[5];
+		currentNo = 0;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -20,12 +24,20 @@ public class Kuis extends SubCerita{
 	
 	public void setQuestions(KuisQuestion[] questions){
 		for(int i=0; i<questions.length; i++){
-			
+			this.questions[i] = questions[i];
 		}
 	}
 	
-	public KuisQuestion[] getKuisQuestion(){
-		return questions;
+	public KuisQuestion getKuisQuestion(int i){
+		return questions[i];
 	}
-
+	
+	public void setCurrentNo(int i){
+		currentNo = i;
+	}
+	
+	public int getCurrentNo(){
+		return currentNo;
+	}
+	
 }

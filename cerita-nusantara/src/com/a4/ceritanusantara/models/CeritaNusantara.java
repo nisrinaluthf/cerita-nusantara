@@ -1,6 +1,6 @@
 package com.a4.ceritanusantara.models;
 
-import com.a4.ceritanusantara.utils.InitCerita;
+import com.a4.ceritanusantara.utils.InitSubCerita;
 
 public class CeritaNusantara {
 	
@@ -19,14 +19,14 @@ public class CeritaNusantara {
 				null
 		};
 		
-		initCeritaSumatera();
+		initCerita();
 	}
 	
 	public Cerita getCerita(int indeks){
 		return cerita[indeks];
 	}
 	
-	private void initCeritaSumatera(){
+	private void initCerita(){
 		
 		cerita[SUMATERA].setSubCerita(new SubCerita[]{
 				new Adegan("Adegan 1", SubCerita.ADEGAN),
@@ -41,7 +41,7 @@ public class CeritaNusantara {
 				new Kuis("Kuis", SubCerita.KUIS)
 		});
 		
-		InitCerita.initSumatera(cerita[SUMATERA]);
+		InitSubCerita.initSumatera(cerita[SUMATERA]);
 		
 		
 		

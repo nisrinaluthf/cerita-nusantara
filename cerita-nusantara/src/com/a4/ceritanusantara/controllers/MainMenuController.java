@@ -51,7 +51,6 @@ public class MainMenuController {
 		if(Gdx.input.justTouched()){
 			
 			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-			System.out.printf("%f %f %f %f%n", viewport.x, viewport.y, viewport.width, viewport.height);
 			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 			
 			if(OverlapTester.pointInRectangle( playButtonBounds, pos.x, pos.y)){
