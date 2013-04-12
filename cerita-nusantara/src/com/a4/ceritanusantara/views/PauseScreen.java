@@ -1,7 +1,6 @@
 package com.a4.ceritanusantara.views;
 
 import com.a4.ceritanusantara.Aplikasi;
-import com.a4.ceritanusantara.controllers.MainMenuController;
 import com.a4.ceritanusantara.controllers.PauseController;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
