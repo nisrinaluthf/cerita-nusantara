@@ -1,95 +1,233 @@
-package com.a4.ceritanusantara.controllers;
+package com.a4.ceritanusantara.views;
 
 import com.a4.ceritanusantara.Aplikasi;
-import com.a4.ceritanusantara.models.CeritaNusantara;
-import com.a4.ceritanusantara.utils.OverlapTester;
-import com.a4.ceritanusantara.views.MainMenuScreen;
-import com.a4.ceritanusantara.views.PilihCeritaScreen;
-import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
+import com.a4.ceritanusantara.controllers.SettingsController;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 
-	
 
-	public class PilihCeritaController {
+public class SettingsScreen extends AbstractScreen {
+
+	private SettingsController controller;
+	private Texture background;
+	//private Texture buttonBackground;
 	
-	private Aplikasi app;
+	private Texture soundOnTexture;
+	private Texture soundOffTexture;
+	private Texture musicOnTexture;
+	private Texture musicOffTexture;
 	
-	private PilihCeritaScreen screen;
-	private Rectangle[] sumateraBounds;
-	private Rectangle[] kalimantanBounds;
-	private OrthographicCamera cam;
-	private Rectangle viewport;
+	private Texture backButtonTexture;
+	private Texture backButtonPressedTexture;
 	
-	public PilihCeritaController(PilihCeritaScreen screen){
-		Gdx.input.setCatchBackKey(true);
-		this.screen = screen;
-		app = screen.getAplikasi();
-		sumateraBounds = screen.getSumateraBounds();
-		kalimantanBounds = screen.getKalimantanBounds();
-		cam = screen.getCam();
-		viewport = screen.getViewport();
+	private Rectangle soundButtonBounds;
+	private Rectangle musicButtonBounds;
+	private Rectangle backButtonBounds;
+	
+	private boolean soundButtonPressed;
+	private boolean musicButtonPressed;
+	private boolean backButtonPressed;
+	
+	private boolean debug = true;
+	private BitmapFont font;
+	
+	public SettingsScreen(Aplikasi app) {
+		super(app);
+		// TODO Auto-generated constructor stub
+
+		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
+		
+		//buttonBackground = new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
+		
+		//if(controller.getSettings().getBoolean("soundOn")) {
+			soundOnTexture = 
+				new Texture(Gdx.files.internal("buttons/toggle_sound_on.png"));
+		
+		//} else {
+			soundOffTexture =
+					new Texture(Gdx.files.internal("buttons/toggle_sound_off.png"));
+		//}
+				
+		//if(controller.getSettings().getBoolean("musicOn")) {
+		musicOnTexture = 
+				new Texture(Gdx.files.internal("buttons/toggle_music_on.png"));
+		
+		//} else {
+			musicOffTexture =
+					new Texture(Gdx.files.internal("buttons/toggle_music_off.png"));
+		//}
+		backButtonTexture = new Texture(Gdx.files.internal("buttons/home.png"));
+		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/home_pressed.png"));
+				
+		
+		soundButtonBounds = new Rectangle((VIRTUAL_WIDTH-soundOnTexture.getWidth())/2,
+				280, soundOnTexture.getWidth(),
+				soundOnTexture.getHeight()); 
+				
+		musicButtonBounds = new Rectangle((VIRTUAL_WIDTH-musicOnTexture.getWidth())/2,
+				160, musicOnTexture.getWidth(),
+				musicOnTexture.getHeight());  
+		
+		backButtonBounds = new Rectangle((VIRTUAL_WIDTH-backButtonTexture.getWidth()),
+				0, backButtonTexture.getWidth(),
+				backButtonTexture.getHeight());
+		
+		soundButtonPressed = false;
+		musicButtonPressed = false;
+		backButtonPressed = false;
+		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
+				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
+		controller = new SettingsController(this);
+	}
+	
+		
+	@Override
+	public void render(float delta) {
+		// TODO Auto-generated method stub
+		
+		cam.update();
+
+        // set viewport
+        Gdx.gl.glViewport((int) viewport.x, (int) viewport.y,
+                          (int) viewport.width, (int) viewport.height);
+		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		batcher.setProjectionMatrix(cam.combined);
+		batcher.begin();
+			
+			batcher.draw(background, 0, 0);
+			
+			//batcher.draw(buttonBackground, (VIRTUAL_WIDTH-buttonBackground.getWidth())/2, 100);
+			
+			if(controller.getSettings().getBoolean("soundOn")) {
+				batcher.draw(soundOnTexture, 
+						(VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 280);
+				
+			} else {
+				batcher.draw(soundOffTexture, 
+						(VIRTUAL_WIDTH-soundOffTexture.getWidth())/2, 280);
+				
+			}
+			
+			if(controller.getSettings().getBoolean("musicOn")) {
+				batcher.draw(musicOnTexture, 
+						(VIRTUAL_WIDTH-musicOnTexture.getWidth())/2, 160);
+						
+			} else {
+				batcher.draw(musicOffTexture, 
+						(VIRTUAL_WIDTH-musicOffTexture.getWidth())/2, 160);
+					
+			}
+			
+			if (backButtonPressed) {
+				batcher.draw(backButtonPressedTexture, 
+						(VIRTUAL_WIDTH-backButtonPressedTexture.getWidth()), 0);
+			}
+			else{
+				batcher.draw(backButtonTexture, 
+						(VIRTUAL_WIDTH-backButtonTexture.getWidth()), 0);
+			}
+				
+				
+			//batcher.draw(soundOnTexture, 
+				//	(VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 440);
+			
+			//batcher.draw(musicOnTexture, 
+			//	(VIRTUAL_WIDTH-musicOnTexture.getWidth())/2, 160);
+			font.setColor(3);
+			font.draw(batcher, "Suara", (VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 350);
+			font.draw(batcher, "Musik", (VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 230);
+			
+			
+		batcher.end();
+		
+		if(debug){
+			drawDebug();
+		}
+		
+		controller.processInput();
+		
+		//--kalo mau ada sfx atau musik nanti di sini aja--
+		
+		//----------------end of sfx/musik-----------------
+		
+		//kalo udah bikin controllernya jangan lupa panggil controller.processInput()
 		
 	}
 	
-	public void processInput(){
-		
-		
-		if(Gdx.input.justTouched()){
-			
-			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
-			
-			for(int i=0; i<sumateraBounds.length; i++){
-				if(OverlapTester.pointInRectangle( sumateraBounds[i], pos.x, pos.y)){
-					screen.setSumateraPressed(true);
-				}
-			}
-			
-			for(int i=0; i<kalimantanBounds.length; i++){
-				if(OverlapTester.pointInRectangle( kalimantanBounds[i], pos.x, pos.y)){
-					screen.setKalimantanPressed(true);
-				}
-			}
-		}
-		
-		if(Gdx.input.isTouched()){
-			//kosongin dulu deh~
-		}
-		else{
-			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
-			
-			if(screen.sumateraIsPressed()){
-				screen.setSumateraPressed(false);
-				for(int i=0; i<sumateraBounds.length; i++){
-					if(OverlapTester.pointInRectangle( sumateraBounds[i], pos.x, pos.y)){
-						app.setScreen(new PilihSubCeritaScreen(app, 
-								app.getCeritaNusantara().getCerita(CeritaNusantara.SUMATERA)));
-						
-					}
-				}
-			}
-			
-			if(screen.kalimantanIsPressed()){
-				screen.setKalimantanPressed(false);
-				for(int i=0; i<kalimantanBounds.length; i++){
-					if(OverlapTester.pointInRectangle( kalimantanBounds[i], pos.x, pos.y)){
-						app.setScreen(new PilihSubCeritaScreen(app, 
-								app.getCeritaNusantara().getCerita(CeritaNusantara.KALIMANTAN)));
-						
-					}
-				}
-			}
-			
-			
-		}
-		
-		if (Gdx.input.isKeyPressed(Keys.BACK)){
-			app.setScreen(new MainMenuScreen(app));
-		}
+	public Rectangle getSoundButtonBounds(){
+		return soundButtonBounds;
 	}
+	
+	public Rectangle getMusicButtonBounds(){
+		return musicButtonBounds;
+	}
+	
+	public Rectangle getBackButtonBounds(){
+		return backButtonBounds;
+	}
+	
+	public boolean musicButtonIsPressed() {
+		return musicButtonPressed;
+	}
+	
+	public boolean soundButtonIsPressed() {
+		return soundButtonPressed;
+	}
+	
+	public boolean backButtonIsPressed() {
+		return backButtonPressed;
+	}
+	
+	public void setMusicButtonPressed(boolean b) {
+		this.musicButtonPressed = b;
+	}
+	
+	public void setSoundButtonPressed(boolean b) {
+		this.soundButtonPressed = b;
+	}
+	
+	public void setBackButtonPressed(boolean b) {
+		this.backButtonPressed = b;
+	}
+	
+	//rectangle boundsnya digambar kalo mau debug==true
+		private void drawDebug(){
+			debugRenderer.setProjectionMatrix(cam.combined);
+			debugRenderer.begin(ShapeType.Rectangle);
+				if(soundButtonPressed){
+					debugRenderer.setColor(new Color(1, 1, 0, 1));
+				}
+				else{
+					debugRenderer.setColor(new Color(1, 0, 0, 1));
+				}
+				debugRenderer.rect(soundButtonBounds.x, soundButtonBounds.y,
+						soundButtonBounds.width, soundButtonBounds.height);
+				
+				if(musicButtonPressed){
+					debugRenderer.setColor(new Color(1, 1, 0, 1));
+				}
+				else{
+					debugRenderer.setColor(new Color(1, 0, 0, 1));
+				}
+				debugRenderer.rect(musicButtonBounds.x, musicButtonBounds.y,
+						musicButtonBounds.width, musicButtonBounds.height);
+				
+				if(backButtonPressed){
+					debugRenderer.setColor(new Color(1, 1, 0, 1));
+				}
+				else{
+					debugRenderer.setColor(new Color(1, 0, 0, 1));
+				}
+				debugRenderer.rect(backButtonBounds.x, backButtonBounds.y,
+						backButtonBounds.width, backButtonBounds.height);
+			debugRenderer.end();
+		}
+
 }
