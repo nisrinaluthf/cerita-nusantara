@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -16,21 +15,25 @@ public class SettingsScreen extends AbstractScreen {
 
 	private SettingsController controller;
 	private Texture background;
-	private Texture buttonBackground;
+	//private Texture buttonBackground;
 	
 	private Texture soundOnTexture;
 	private Texture soundOffTexture;
 	private Texture musicOnTexture;
 	private Texture musicOffTexture;
 	
+	private Texture backButtonTexture;
+	private Texture backButtonPressedTexture;
+	
 	private Rectangle soundButtonBounds;
 	private Rectangle musicButtonBounds;
+	private Rectangle backButtonBounds;
 	
 	private boolean soundButtonPressed;
 	private boolean musicButtonPressed;
+	private boolean backButtonPressed;
 	
 	private boolean debug = true;
-	private SpriteBatch spriteBatch;
 	private BitmapFont font;
 	
 	public SettingsScreen(Aplikasi app) {
@@ -39,7 +42,7 @@ public class SettingsScreen extends AbstractScreen {
 
 		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
 		
-		buttonBackground = new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
+		//buttonBackground = new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
 		
 		//if(controller.getSettings().getBoolean("soundOn")) {
 			soundOnTexture = 
@@ -58,6 +61,8 @@ public class SettingsScreen extends AbstractScreen {
 			musicOffTexture =
 					new Texture(Gdx.files.internal("buttons/toggle_music_off.png"));
 		//}
+		backButtonTexture = new Texture(Gdx.files.internal("buttons/home.png"));
+		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/home_pressed.png"));
 				
 		
 		soundButtonBounds = new Rectangle((VIRTUAL_WIDTH-soundOnTexture.getWidth())/2,
@@ -68,8 +73,15 @@ public class SettingsScreen extends AbstractScreen {
 				160, musicOnTexture.getWidth(),
 				musicOnTexture.getHeight());  
 		
+		backButtonBounds = new Rectangle((VIRTUAL_WIDTH-backButtonTexture.getWidth()),
+				0, backButtonTexture.getWidth(),
+				backButtonTexture.getHeight());
+		
 		soundButtonPressed = false;
 		musicButtonPressed = false;
+		backButtonPressed = false;
+		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
+				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		controller = new SettingsController(this);
 	}
 	
@@ -91,7 +103,7 @@ public class SettingsScreen extends AbstractScreen {
 			
 			batcher.draw(background, 0, 0);
 			
-			batcher.draw(buttonBackground, (VIRTUAL_WIDTH-buttonBackground.getWidth())/2, 300);
+			//batcher.draw(buttonBackground, (VIRTUAL_WIDTH-buttonBackground.getWidth())/2, 100);
 			
 			if(controller.getSettings().getBoolean("soundOn")) {
 				batcher.draw(soundOnTexture, 
@@ -112,6 +124,15 @@ public class SettingsScreen extends AbstractScreen {
 						(VIRTUAL_WIDTH-musicOffTexture.getWidth())/2, 160);
 					
 			}
+			
+			if (backButtonPressed) {
+				batcher.draw(backButtonPressedTexture, 
+						(VIRTUAL_WIDTH-backButtonPressedTexture.getWidth()), 0);
+			}
+			else{
+				batcher.draw(backButtonTexture, 
+						(VIRTUAL_WIDTH-backButtonTexture.getWidth()), 0);
+			}
 				
 				
 			//batcher.draw(soundOnTexture, 
@@ -119,7 +140,9 @@ public class SettingsScreen extends AbstractScreen {
 			
 			//batcher.draw(musicOnTexture, 
 			//	(VIRTUAL_WIDTH-musicOnTexture.getWidth())/2, 160);
-			
+			font.setColor(3);
+			font.draw(batcher, "Suara", (VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 350);
+			font.draw(batcher, "Musik", (VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 230);
 			
 			
 		batcher.end();
@@ -146,6 +169,10 @@ public class SettingsScreen extends AbstractScreen {
 		return musicButtonBounds;
 	}
 	
+	public Rectangle getBackButtonBounds(){
+		return backButtonBounds;
+	}
+	
 	public boolean musicButtonIsPressed() {
 		return musicButtonPressed;
 	}
@@ -154,12 +181,20 @@ public class SettingsScreen extends AbstractScreen {
 		return soundButtonPressed;
 	}
 	
+	public boolean backButtonIsPressed() {
+		return backButtonPressed;
+	}
+	
 	public void setMusicButtonPressed(boolean b) {
 		this.musicButtonPressed = b;
 	}
 	
 	public void setSoundButtonPressed(boolean b) {
 		this.soundButtonPressed = b;
+	}
+	
+	public void setBackButtonPressed(boolean b) {
+		this.backButtonPressed = b;
 	}
 	
 	//rectangle boundsnya digambar kalo mau debug==true
@@ -183,6 +218,15 @@ public class SettingsScreen extends AbstractScreen {
 				}
 				debugRenderer.rect(musicButtonBounds.x, musicButtonBounds.y,
 						musicButtonBounds.width, musicButtonBounds.height);
+				
+				if(backButtonPressed){
+					debugRenderer.setColor(new Color(1, 1, 0, 1));
+				}
+				else{
+					debugRenderer.setColor(new Color(1, 0, 0, 1));
+				}
+				debugRenderer.rect(backButtonBounds.x, backButtonBounds.y,
+						backButtonBounds.width, backButtonBounds.height);
 			debugRenderer.end();
 		}
 
