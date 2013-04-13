@@ -59,14 +59,14 @@ public class AdeganScreen extends SubCeritaScreen {
 		character = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
 
 		previousButtonTexture = new Texture(
-				Gdx.files.internal("backgrounds/back.png"));
+				Gdx.files.internal("backgrounds/dialog_back.png"));
 		nextButtonTexture = new Texture(
-				Gdx.files.internal("backgrounds/next.png"));
+				Gdx.files.internal("backgrounds/dialog_next.png"));
 
 		previousButtonPressedTexture = new Texture(
-				Gdx.files.internal("backgrounds/back_pressed.png"));
+				Gdx.files.internal("backgrounds/dialog_back_pressed.png"));
 		nextButtonPressedTexture = new Texture(
-				Gdx.files.internal("backgrounds/next_pressed.png"));
+				Gdx.files.internal("backgrounds/dialog_next_pressed.png"));
 
 		previousButtonBounds = new Rectangle(0, previousButtonTexture.getHeight(),
 				previousButtonTexture.getWidth(),

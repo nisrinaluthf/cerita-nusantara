@@ -57,11 +57,10 @@ public class PilihCeritaScreen extends AbstractScreen {
 			new Rectangle(455, 365, 65, 70)
 		};
 		
-		backButtonTexture = new Texture(Gdx.files.internal("buttons/home.png"));
-		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/home_pressed.png"));
+		backButtonTexture = new Texture(Gdx.files.internal("buttons/back.png"));
+		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/back_pressed.png"));
 		
-		backButtonBounds = new Rectangle((VIRTUAL_WIDTH-backButtonTexture.getWidth()),
-				0, backButtonTexture.getWidth(),
+		backButtonBounds = new Rectangle(0, 0, backButtonTexture.getWidth(),
 				backButtonTexture.getHeight());
 		
 		sumateraPressed = false;
@@ -108,12 +107,10 @@ public class PilihCeritaScreen extends AbstractScreen {
 			}
 			
 			if (backButtonPressed) {
-				batcher.draw(backButtonPressedTexture, 
-						(VIRTUAL_WIDTH-backButtonPressedTexture.getWidth()), 0);
+				batcher.draw(backButtonPressedTexture, 0, 0);
 			}
 			else{
-				batcher.draw(backButtonTexture, 
-						(VIRTUAL_WIDTH-backButtonTexture.getWidth()), 0);
+				batcher.draw(backButtonTexture, 0, 0);
 			}
 
 		batcher.end();
