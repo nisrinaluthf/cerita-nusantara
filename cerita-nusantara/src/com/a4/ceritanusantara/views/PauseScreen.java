@@ -3,6 +3,7 @@ package com.a4.ceritanusantara.views;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.PauseController;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class PauseScreen extends AbstractScreen {
 	private PauseController controller;
+	private Screen originScreen;
 	
 	private Texture background;
 	
@@ -31,9 +33,10 @@ public class PauseScreen extends AbstractScreen {
 	
 	private boolean debug = false;
 
-	public PauseScreen(Aplikasi app) {
+	public PauseScreen(Aplikasi app, Screen originScreen) {
 		super(app);
 		// TODO Auto-generated constructor stub
+		this.originScreen = originScreen;
 		
 		//inisialisasi semuanya
 				background = new Texture(Gdx.files.internal("backgrounds/pause_bg.png"));

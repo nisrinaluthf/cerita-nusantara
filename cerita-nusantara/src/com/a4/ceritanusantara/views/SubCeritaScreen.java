@@ -11,6 +11,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 
 public class SubCeritaScreen extends AbstractScreen {
+	public SubCeritaScreen(Aplikasi app, SubCerita subCerita) {
+		super(app);
+	}
+	/*
 	private SubCeritaController controller;
 	private SubCerita subCerita;
 
@@ -92,5 +96,5 @@ public class SubCeritaScreen extends AbstractScreen {
 	
 	public void setStatus(int status) {
 		this.status = status;
-	}
+	}*/
 }
