@@ -48,7 +48,8 @@ public class KuisController {
 				kuis.setCurrentNo(kuis.getCurrentNo()+1);
 			}
 			else{
-				app.setScreen(new WinLoseScreen(app, kuis.getScore()));
+				//kuis.setScore()
+				app.setScreen(new WinLoseScreen(app, true, kuis.getScore()));
 			}
 		}
 		
@@ -90,7 +91,7 @@ public class KuisController {
 							kuis.setCurrentNo(kuis.getCurrentNo()+1);
 						}
 						else{
-							app.setScreen(new WinLoseScreen(app, kuis.getScore()));
+							app.setScreen(new WinLoseScreen(app, true, kuis.getScore()));
 						}
 					}
 				}
