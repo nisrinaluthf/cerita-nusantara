@@ -21,6 +21,7 @@ import com.badlogic.gdx.math.Vector3;
 	private PilihCeritaScreen screen;
 	private Rectangle[] sumateraBounds;
 	private Rectangle[] kalimantanBounds;
+	private Rectangle backButtonBounds;
 	private OrthographicCamera cam;
 	private Rectangle viewport;
 	
@@ -30,6 +31,7 @@ import com.badlogic.gdx.math.Vector3;
 		app = screen.getAplikasi();
 		sumateraBounds = screen.getSumateraBounds();
 		kalimantanBounds = screen.getKalimantanBounds();
+		backButtonBounds = this.screen.getBackButtonBounds();
 		cam = screen.getCam();
 		viewport = screen.getViewport();
 		
@@ -53,6 +55,10 @@ import com.badlogic.gdx.math.Vector3;
 				if(OverlapTester.pointInRectangle( kalimantanBounds[i], pos.x, pos.y)){
 					screen.setKalimantanPressed(true);
 				}
+			}
+			if(OverlapTester.pointInRectangle( backButtonBounds,pos.x, pos.y)){
+				screen.setBackButtonPressed(true);
+				System.out.println("back to home");
 			}
 		}
 		
@@ -84,7 +90,14 @@ import com.badlogic.gdx.math.Vector3;
 					}
 				}
 			}
-			
+			if(screen.backButtonIsPressed()){
+				screen.setBackButtonPressed(false);
+				if(OverlapTester.pointInRectangle( backButtonBounds, pos.x, pos.y)){
+					//app.setScreen(new SettingsScreen(app, screen.width, screen.height));
+					app.setScreen(new MainMenuScreen(app));
+				}
+				System.out.println("back diklik");
+			}
 			
 		}
 		

@@ -23,6 +23,7 @@ public class SettingsController {
 	private SettingsScreen screen;
 	private Rectangle soundButtonBounds;
 	private Rectangle musicButtonBounds;
+	private Rectangle backButtonBounds;
 	private Preferences prefs;
 
 	private OrthographicCamera cam;
@@ -34,6 +35,7 @@ public class SettingsController {
 		this.app = screen.getAplikasi();
 		soundButtonBounds = this.screen.getSoundButtonBounds();
 		musicButtonBounds = this.screen.getMusicButtonBounds();
+		backButtonBounds = this.screen.getBackButtonBounds();
 		prefs = Gdx.app.getPreferences("preferences");
 		//if (prefs == null) {
 			//prefs.putBoolean("soundOn", true);
@@ -63,6 +65,11 @@ public void processInput(){
 			screen.setMusicButtonPressed(true);
 			System.out.println("toggle music button");
 		}
+		
+		else if(OverlapTester.pointInRectangle( backButtonBounds,pos.x, pos.y)){
+			screen.setBackButtonPressed(true);
+			System.out.println("back to home");
+		}
 	}
 		
 		if(Gdx.input.isTouched()){
@@ -88,6 +95,15 @@ public void processInput(){
 					prefs.putBoolean("musicOn", !prefs.getBoolean("musicOn"));
 				}
 				System.out.println("music diklik");
+			}
+			
+			else if(screen.backButtonIsPressed()){
+				screen.setBackButtonPressed(false);
+				if(OverlapTester.pointInRectangle( backButtonBounds, pos.x, pos.y)){
+					//app.setScreen(new SettingsScreen(app, screen.width, screen.height));
+					app.setScreen(new MainMenuScreen(app));
+				}
+				System.out.println("back diklik");
 			}
 		}
 		prefs.flush();
