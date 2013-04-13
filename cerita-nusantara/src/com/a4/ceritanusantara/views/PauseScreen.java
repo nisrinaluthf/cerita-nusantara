@@ -120,30 +120,30 @@ public class PauseScreen extends AbstractScreen {
 			
 			if (resumeButtonPressed) {
 				batcher.draw(resumeButtonPressedTexture, 
-						(VIRTUAL_WIDTH-resumeButtonPressedTexture.getWidth())/2, 280);
+						(VIRTUAL_WIDTH-resumeButtonPressedTexture.getWidth())/2, 400);
 				
 			}
 			else {
 				batcher.draw(resumeButtonTexture, 
-						(VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2, 220);
+						(VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2, 400);
 			}
 			
 			if (restartButtonPressed) {
 				batcher.draw(restartButtonPressedTexture, 
-						(VIRTUAL_WIDTH-restartButtonPressedTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-restartButtonPressedTexture.getWidth())/2, 300);
 			}
 			else{
 				batcher.draw(restartButtonTexture, 
-						(VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2, 300);
 			}
 			
 			if (exitButtonPressed) {
 				batcher.draw(exitButtonPressedTexture, 
-						(VIRTUAL_WIDTH-exitButtonPressedTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-exitButtonPressedTexture.getWidth())/2, 200);
 			}
 			else{
 				batcher.draw(exitButtonTexture, 
-						(VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2, 200);
 			}
 			
 		batcher.end();
