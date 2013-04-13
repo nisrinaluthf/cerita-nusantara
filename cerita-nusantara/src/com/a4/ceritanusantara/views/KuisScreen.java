@@ -23,9 +23,14 @@ public class KuisScreen extends AbstractScreen{
 	private Texture opsiBackgroundTexture;
 	private Texture opsiBackgroundPressedTexture;
 	
+	private Texture pauseButtonTexture;
+	private Texture pauseButtonPressedTexture;
+	private Rectangle pauseButtonBounds;
+	
 	private BitmapFont font;
 	
 	private boolean[] optionPressed;
+	private boolean pauseButtonPressed;
 	
 	private boolean debug;
 
@@ -45,16 +50,22 @@ public class KuisScreen extends AbstractScreen{
 		opsiBackgroundPressedTexture = new 
 				Texture(Gdx.files.internal("backgrounds/opsi_kuis_bg_pressed.png"));
 		
+		
+		pauseButtonTexture = new Texture(
+				Gdx.files.internal("buttons/pause.png"));
+		pauseButtonPressedTexture = new Texture(
+				Gdx.files.internal("buttons/pause_pressed.png"));
+
+		pauseButtonBounds = new Rectangle( 950, 526, 60, 60);
+		
 		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		
-		
+		pauseButtonPressed = false;
 		
 		debug = true;
 		
 		controller = new KuisController(this);
-		
-		
 		
 	}
 	
@@ -126,6 +137,11 @@ public class KuisScreen extends AbstractScreen{
 						opsiBackgroundTexture.getWidth()+60, 20);
 			}
 			
+			if (pauseButtonPressed) {
+				batcher.draw(pauseButtonPressedTexture,950, 526);
+			} else {
+				batcher.draw(pauseButtonTexture, 950, 526);
+			}
 			
 			KuisQuestion question = kuis.getKuisQuestion(currentNo);
 			
@@ -139,18 +155,20 @@ public class KuisScreen extends AbstractScreen{
 			font.drawWrapped(batcher, question.getQuestion(), (VIRTUAL_WIDTH-700)/2, 475, 800);
 			
 			font.drawWrapped(batcher, question.getOptions(0), 100, 
-					290, opsiBackgroundTexture.getWidth());
+					290, opsiBackgroundTexture.getWidth()-10);
 			
 			font.drawWrapped(batcher, question.getOptions(1), 100, 
-					130, opsiBackgroundTexture.getWidth());
+					130, opsiBackgroundTexture.getWidth()-10);
 			
 			font.drawWrapped(batcher, question.getOptions(2), 
 					100+opsiBackgroundTexture.getWidth()+60, 
-					290, opsiBackgroundTexture.getWidth());
+					290, opsiBackgroundTexture.getWidth()-10);
 			
 			font.drawWrapped(batcher, question.getOptions(3), 
 					100+opsiBackgroundTexture.getWidth()+60, 
-					130, opsiBackgroundTexture.getWidth());
+					130, opsiBackgroundTexture.getWidth()-10);
+			
+			
 			
 		batcher.end();
 		
@@ -177,6 +195,19 @@ public class KuisScreen extends AbstractScreen{
 	
 	public Kuis getKuis(){
 		return kuis;
+	}
+	
+	public Rectangle getPauseButtonBounds(){
+		return pauseButtonBounds;
+	}
+
+	public void setPauseButtonPressed(boolean b) {
+		pauseButtonPressed = b;
+		
+	}
+	
+	public boolean pauseButtonIsPressed(){
+		return pauseButtonPressed;
 	}
 	
 }
