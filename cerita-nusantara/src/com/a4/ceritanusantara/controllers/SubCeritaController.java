@@ -18,7 +18,6 @@ public class SubCeritaController {
 	
 	private SubCeritaScreen screen;
 	private Rectangle pauseButtonBounds;
-	private Preferences prefs;
 
 	private OrthographicCamera cam;
 	private Rectangle viewport;
@@ -28,8 +27,6 @@ public class SubCeritaController {
 		this.screen = screen;
 		this.app = screen.getAplikasi();
 		pauseButtonBounds = this.screen.getPauseButtonBounds();
-		prefs = Gdx.app.getPreferences("preferences");
-		System.out.println("sub cerita controller di create");
 		cam = this.screen.getCam();
 		viewport = this.screen.getViewport();
 
