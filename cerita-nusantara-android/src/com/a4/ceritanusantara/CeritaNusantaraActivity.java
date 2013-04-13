@@ -3,6 +3,7 @@ package com.a4.ceritanusantara;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
+
 public class CeritaNusantaraActivity extends AndroidApplication {
 
 	@Override

@@ -32,7 +32,6 @@ public class PilihSubCeritaController {
 		app = screen.getAplikasi();
 		subCeritaButtonBounds = screen.getSubCeritaButtonBounds();
 		
-		
 		cam = screen.getCam();
 		viewport = screen.getViewport();
 	}
