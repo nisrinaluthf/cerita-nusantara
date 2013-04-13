@@ -1,8 +1,13 @@
 package com.a4.ceritanusantara.models;
 
 public class Adegan extends SubCerita {
-
-
+	private String [] dialogNusa;
+	private String [] dialogAdik;
+	private String [] dialogIstri;
+	private String [] dialogSaluang;
+	private String [] dialogJelawat;
+	private String [] narasiKalimantan;
+	
 	private String [] dialogPemburu;
 	private String [] dialogSiParkit;
 	private String [] dialogParkit1;
@@ -10,12 +15,52 @@ public class Adegan extends SubCerita {
 	private String [] dialogRaja;
 	private String [] dialogPengawal;
 	private String [] narasiSumatera;
-	
-	
+		
 	public Adegan(String nama, int tipe) {
 		super(nama, tipe);		
 		// TODO Auto-generated constructor stub
 		
+	}
+	
+	public String [] getDialogNusa() {
+		dialogNusa[0]="Aku akan pergi mencari makanan di tengah hutan itu. Kamu selesaikan saja pekerjaan itu.";
+		return dialogNusa;
+	}
+	
+	public String [] getDialogAdik() {
+		dialogAdik[0]="Baik, Bang!";
+		
+		return dialogAdik;
+	}
+	
+	public String [] getDialogIstri() {
+		
+		return dialogIstri;
+	}
+	
+	public String [] getDialogSaluang() {
+		
+		return dialogSaluang;
+	}
+	
+	public String [] getDialogJelawat() {
+		
+		return dialogJelawat;
+	}
+	
+	public String [] getNarasiKalimantan() {
+		narasiKalimantan[0]="Dahulu kala, hiduplah seorang laki-laki bernama Nusa. Ia tinggal bersama istri dan adik ipar laki-lakinya di sebuah kampung di pinggir Sungai Kahayan, Kalimantan Tengah.";
+		narasiKalimantan[1]="Pekerjaan sehari-hari Nusa dan adik iparnya adalah bercocok tanam serta menangkap ikan di Sungai Kahayan.";
+		narasiKalimantan[2]="Pada suatu waktu, kemarau panjang melanda daerah tempat tinggal mereka. Kelaparan terjadi di mana-mana. " +
+				"Semua tanaman penduduk tidak dapat tumbuh dengan baik. Air Sungai Kahayan surut dan ikan-ikannya pun semakin berkurang.";
+		narasiKalimantan[3]="Melihat kondisi itu, Nusa bersama istri dan adik iparnya memutuskan untuk pindah ke sebuah udik (dusun) dengan harapan akan mendapatkan sumber penghidupan yang lebih baik.";
+		narasiKalimantan[4]="Setelah tiga hari menyusuri Sungai Rungan (anak Sungai Kahayan) dengan bekal seadanya, sampailah mereka di persimpangan sungai. " +
+				"Namun, mereka tidak dapat melanjutkan perjalanan, karena ada sebatang pohon besar yang tumbang dan melintang di tengah sungai. " +
+				"Untuk melintasi sungai itu, mereka harus memotong pohon itu. Akhirnya Nusa dan adik iparnya secara bergantian memotong pohon itu dengan menggunakan kapak.";
+		narasiKalimantan[5]="Hingga sore, pohon itu belum juga terputus. Perut mereka pun sudah mulai keroncongan. Sementara bekal yang mereka bawa sudah habis. " +
+				"Akhirnya, Nusa memutuskan untuk pergi mencari makanan ke hutan di sekitar sungai itu.";
+		
+		return narasiKalimantan;
 	}
 	
 	public String [] getDialogPemburu() {
@@ -157,13 +202,8 @@ public class Adegan extends SubCerita {
 		narasiSumatera[37]="Akhirnya si Parkit yang cerdik itu bebas terbang ke hutan belantara tempat tinggalnya dulu yang ia cintai.";
 		narasiSumatera[38]="Kedatangan si Parkit pun disambut dengan meriah oleh rakyatnya.";
 		narasiSumatera[39]="Akhirnya, Si Parkit, Raja Parakeet, kembali tempat tinggalnya.";
-		
 
-
-		
-		
 		return narasiSumatera;
-		
 	}
 	
 }
