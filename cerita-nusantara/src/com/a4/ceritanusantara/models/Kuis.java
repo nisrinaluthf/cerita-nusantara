@@ -2,11 +2,10 @@ package com.a4.ceritanusantara.models;
 
 public class Kuis extends SubCerita{
 	
-	private int score;
 	private KuisQuestion[] questions;
 	private int currentNo;
 	
-	//public dulu ye males bikin set/get :(, ingetin nanti kalo sempet haha.
+	//public dulu ye males bikin set/get, ganti nanti kalo sempet haha.
 	public float timeLeft;
 	
 	public Kuis(String nama, int tipe) {

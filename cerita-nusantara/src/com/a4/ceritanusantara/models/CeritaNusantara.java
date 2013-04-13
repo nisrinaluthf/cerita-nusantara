@@ -1,6 +1,11 @@
 package com.a4.ceritanusantara.models;
 
+import java.io.Reader;
+import java.util.StringTokenizer;
+
 import com.a4.ceritanusantara.utils.InitSubCerita;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 
 public class CeritaNusantara {
 	
@@ -28,6 +33,15 @@ public class CeritaNusantara {
 	
 	private void initCerita(){
 		
+		FileHandle file = Gdx.files.local("datacerita");
+		String data = file.readString();
+		StringTokenizer st = new StringTokenizer(data,  " ");
+		
+		boolean sumateraUnlocked = false, kalimantanUnlocked = false;
+		if(st.nextToken().equals("unlocked")) sumateraUnlocked = true;
+		if(st.nextToken().equals("unlocked")) kalimantanUnlocked = true;
+		
+		cerita[SUMATERA].setUnlocked(sumateraUnlocked);
 		cerita[SUMATERA].setSubCerita(new SubCerita[]{
 				new Adegan("Adegan 1", SubCerita.ADEGAN),
 				new Adegan("Adegan 2", SubCerita.ADEGAN),
@@ -38,10 +52,27 @@ public class CeritaNusantara {
 				new Adegan("Adegan 6", SubCerita.ADEGAN),
 				new Adegan("Adegan 7", SubCerita.ADEGAN),
 				new Labirin("Permainan 2", SubCerita.LABIRIN),
+				new Adegan("Adegan 8", SubCerita.ADEGAN),
 				new Kuis("Kuis", SubCerita.KUIS)
 		});
 		
 		InitSubCerita.initSumatera(cerita[SUMATERA]);
+		
+		cerita[KALIMANTAN].setUnlocked(kalimantanUnlocked);
+		cerita[KALIMANTAN].setSubCerita(new SubCerita[]{
+				new Adegan("Adegan 1", SubCerita.ADEGAN),
+				new Adegan("Adegan 2", SubCerita.ADEGAN),
+				new Labirin("Permainan 1", SubCerita.LABIRIN),
+				new Adegan("Adegan 3", SubCerita.ADEGAN),
+				new Adegan("Adegan 4", SubCerita.ADEGAN),
+				new Adegan("Adegan 5", SubCerita.ADEGAN),
+				new Adegan("Adegan 6", SubCerita.ADEGAN),
+				new TapGame("Permainan 2", SubCerita.TAP_GAME),
+				new Adegan("Adegan 7", SubCerita.ADEGAN),
+				new Kuis("Kuis", SubCerita.KUIS)
+		});
+		
+		InitSubCerita.initKalimantan(cerita[KALIMANTAN]);
 		
 		
 		

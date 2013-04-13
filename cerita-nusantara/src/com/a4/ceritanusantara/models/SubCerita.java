@@ -12,18 +12,24 @@ public class SubCerita {
 	public static final int KUIS = 5;
 	
 
-	private String nama;
-	private int tipe;
-	private boolean unlocked;
+	protected String nama;
+	protected int tipe;
+	protected boolean unlocked;
+	protected int score;
 	
 	public SubCerita(String nama, int tipe){
 		this.nama = nama;
 		this.tipe = tipe;
 		
-		Json json = new Json();
-		
 	}
 	
+	public void setUnlocked(boolean unlocked){
+		this.unlocked = unlocked;
+	}
+	
+	public void setScore(int score){
+		this.score = score;
+	}
 	
 	public String getNama(){
 		return nama;

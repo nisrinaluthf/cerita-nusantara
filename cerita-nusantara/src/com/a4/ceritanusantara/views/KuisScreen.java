@@ -50,7 +50,7 @@ public class KuisScreen extends SubCeritaScreen{
 		
 		
 		
-		debug = true;
+		debug = false;
 		
 		controller = new KuisController(this);
 		

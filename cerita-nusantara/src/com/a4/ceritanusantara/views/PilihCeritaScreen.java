@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.PilihCeritaController;
+import com.a4.ceritanusantara.models.CeritaNusantara;
 
 public class PilihCeritaScreen extends AbstractScreen {
 	
@@ -15,8 +16,10 @@ public class PilihCeritaScreen extends AbstractScreen {
 	private Texture background;
 	private Texture sumateraTexture;
 	private Texture sumateraPressedTexture;
+	private Texture sumateraLockedTexture;
 	private Texture kalimantanTexture;
 	private Texture kalimantanPressedTexture;
+	private Texture kalimantanLockedTexture;
 	
 	private Rectangle[] sumateraBounds;
 	private Rectangle[] kalimantanBounds;
@@ -24,6 +27,8 @@ public class PilihCeritaScreen extends AbstractScreen {
 	private boolean sumateraPressed;
 	private boolean kalimantanPressed;
 	
+	private boolean sumateraUnlocked;
+	private boolean kalimantanUnlocked;
 	
 	private boolean debug = false;
 	
@@ -34,8 +39,10 @@ public class PilihCeritaScreen extends AbstractScreen {
 		
 		sumateraTexture = new Texture(Gdx.files.internal("buttons/sumatera.png"));
 		sumateraPressedTexture = new Texture(Gdx.files.internal("buttons/sumatera_pressed.png"));
+		sumateraLockedTexture = new Texture(Gdx.files.internal("buttons/sumatera_locked.png"));
 		kalimantanTexture = new Texture(Gdx.files.internal("buttons/kalimantan.png"));
 		kalimantanPressedTexture = new Texture(Gdx.files.internal("buttons/kalimantan_pressed.png"));
+		kalimantanLockedTexture = new Texture(Gdx.files.internal("buttons/kalimantan_locked.png"));
 		
 		sumateraBounds = new Rectangle[]{
 			new Rectangle(20, 400, 60, 60),
@@ -53,6 +60,11 @@ public class PilihCeritaScreen extends AbstractScreen {
 		
 		sumateraPressed = false;
 		kalimantanPressed = false;
+		
+		sumateraUnlocked = 
+				app.getCeritaNusantara().getCerita(CeritaNusantara.SUMATERA).isUnlocked();
+		kalimantanUnlocked = 
+				app.getCeritaNusantara().getCerita(CeritaNusantara.KALIMANTAN).isUnlocked();
 		
 		controller = new PilihCeritaController(this);
 	
@@ -79,18 +91,29 @@ public class PilihCeritaScreen extends AbstractScreen {
 			
 			batcher.draw(background, 0, 0);
 			
-			if(sumateraPressed){
-				batcher.draw(sumateraPressedTexture, 0, 158);
+			if(sumateraUnlocked){
+			
+				if(sumateraPressed){
+					batcher.draw(sumateraPressedTexture, 0, 158);
+				}
+				else{
+					batcher.draw(sumateraTexture, 0, 163);
+				}
 			}
 			else{
-				batcher.draw(sumateraTexture, 0, 163);
+				batcher.draw(sumateraLockedTexture, 0, 163);
 			}
 			
-			if(kalimantanPressed){
-				batcher.draw(kalimantanPressedTexture, 270, 190);
+			if(kalimantanUnlocked){
+				if(kalimantanPressed){
+					batcher.draw(kalimantanPressedTexture, 270, 190);
+				}
+				else{
+					batcher.draw(kalimantanTexture, 275, 200);
+				}
 			}
 			else{
-				batcher.draw(kalimantanTexture, 275, 200);
+				batcher.draw(kalimantanLockedTexture, 275, 200);
 			}
 			
 		batcher.end();

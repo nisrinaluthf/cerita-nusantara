@@ -20,13 +20,17 @@ public class WinLoseScreen extends AbstractScreen{
 	
 	private BitmapFont font;
 	
+	private boolean win;
 	private int score;
 	
 	private boolean debug;
 
-	public WinLoseScreen(Aplikasi app, int score) {
+	
+	public WinLoseScreen(Aplikasi app, boolean win, int score) {
+		// TODO Auto-generated constructor stub
 		super(app);
 		
+		this.win = win;
 		this.score = score;
 		// TODO Auto-generated constructor stub
 		
@@ -44,7 +48,7 @@ public class WinLoseScreen extends AbstractScreen{
 		
 		
 	}
-	
+
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
@@ -63,9 +67,16 @@ public class WinLoseScreen extends AbstractScreen{
 			
 			
 			
+			if(win){
+				font.draw(batcher, "Score = "+score, 350, 570);
+			}
+			else{
+				font.drawWrapped(batcher, 
+						"Kamu gagal menyelesaikan permainan kali ini :( Coba lagi ya :)", 
+						150, 570, 800);
+			}
 			
 			
-			font.draw(batcher, "Score = "+score, 350, 570);
 			
 			
 			
