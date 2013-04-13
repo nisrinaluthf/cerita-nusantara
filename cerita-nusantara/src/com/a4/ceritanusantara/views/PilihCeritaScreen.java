@@ -17,12 +17,18 @@ public class PilihCeritaScreen extends AbstractScreen {
 	private Texture sumateraPressedTexture;
 	private Texture kalimantanTexture;
 	private Texture kalimantanPressedTexture;
+	
+	private Texture backButtonTexture;
+	private Texture backButtonPressedTexture;
 
 	private Rectangle[] sumateraBounds;
 	private Rectangle[] kalimantanBounds;
 
+	private Rectangle backButtonBounds;
+
 	private boolean sumateraPressed;
 	private boolean kalimantanPressed;
+	private boolean backButtonPressed;
 
 
 	private boolean debug = false;
@@ -50,10 +56,18 @@ public class PilihCeritaScreen extends AbstractScreen {
 			new Rectangle(320, 250, 200, 120),
 			new Rectangle(455, 365, 65, 70)
 		};
-
+		
+		backButtonTexture = new Texture(Gdx.files.internal("buttons/home.png"));
+		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/home_pressed.png"));
+		
+		backButtonBounds = new Rectangle((VIRTUAL_WIDTH-backButtonTexture.getWidth()),
+				0, backButtonTexture.getWidth(),
+				backButtonTexture.getHeight());
+		
 		sumateraPressed = false;
 		kalimantanPressed = false;
-
+		backButtonPressed = false;
+		
 		controller = new PilihCeritaController(this);
 
 	}
@@ -91,6 +105,15 @@ public class PilihCeritaScreen extends AbstractScreen {
 			}
 			else{
 				batcher.draw(kalimantanTexture, 275, 200);
+			}
+			
+			if (backButtonPressed) {
+				batcher.draw(backButtonPressedTexture, 
+						(VIRTUAL_WIDTH-backButtonPressedTexture.getWidth()), 0);
+			}
+			else{
+				batcher.draw(backButtonTexture, 
+						(VIRTUAL_WIDTH-backButtonTexture.getWidth()), 0);
 			}
 
 		batcher.end();
@@ -132,6 +155,10 @@ public class PilihCeritaScreen extends AbstractScreen {
 	public Rectangle[] getKalimantanBounds(){
 		return kalimantanBounds;
 	}
+	
+	public Rectangle getBackButtonBounds(){
+		return backButtonBounds;
+	}
 
 	public void setSumateraPressed (boolean pressed){
 		sumateraPressed = pressed;
@@ -149,5 +176,11 @@ public class PilihCeritaScreen extends AbstractScreen {
 		return kalimantanPressed;
 	}
 
-
+	public boolean backButtonIsPressed() {
+		return backButtonPressed;
+	}
+	
+	public void setBackButtonPressed(boolean b) {
+		this.backButtonPressed = b;
+	}
 }
