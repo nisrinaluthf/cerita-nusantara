@@ -224,10 +224,15 @@ public class AdeganScreen extends SubCeritaScreen {
 		this.pauseButtonPressed = b;
 	}
 	
-	public void setAdegan(String narration,int tipe, Texture character) {
-		this.narration = narration;
-		this.tipeAdegan = tipe;
-		this.character = character;
+	public void setAdegan(Adegan adegan) {
+		this.adegan = adegan;
+		this.narration = adegan.getNarration();
+		this.tipeAdegan = adegan.getTipeAdegan();
+		this.character = new Texture( Gdx.files.internal(adegan.getCharacter()));
+	}
+	
+	public Adegan getAdegan() {
+		return adegan;
 	}
 
 }
