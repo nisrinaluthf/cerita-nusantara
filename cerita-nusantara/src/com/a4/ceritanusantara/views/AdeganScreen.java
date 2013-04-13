@@ -1,6 +1,7 @@
 package com.a4.ceritanusantara.views;
 
 import com.a4.ceritanusantara.Aplikasi;
+import com.a4.ceritanusantara.models.Adegan;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,6 +16,7 @@ public class AdeganScreen extends SubCeritaScreen {
 	
 	private Texture previousButtonPressedTexture;
 	private Texture nextButtonPressedTexture;
+	private Texture character;
 	
 	private Rectangle previousButtonBounds;
 	private Rectangle nextButtonBounds;
@@ -23,11 +25,20 @@ public class AdeganScreen extends SubCeritaScreen {
 	private boolean nextButtonPressed;
 	
 	private BitmapFont font;
+	
+	private String narration;
+	
+	private final int DIALOG;
+	private final int NARASI;
 
+	private Adegan adegan;
 	
 	
-	public AdeganScreen(Aplikasi app) {
-		super(app);
+	public AdeganScreen(Aplikasi app, Adegan adegan) {
+		super(app, adegan);
+		
+		this.adegan = adegan;
+		
 		// TODO Auto-generated constructor stub
 		
 		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
@@ -53,6 +64,7 @@ public class AdeganScreen extends SubCeritaScreen {
 		previousButtonPressed = false;
 		nextButtonPressed = false;
 
+		narration = "";
 		
 		font = new BitmapFont(
 				Gdx.files
@@ -96,9 +108,7 @@ public class AdeganScreen extends SubCeritaScreen {
 						(VIRTUAL_WIDTH - nextButtonTexture.getWidth()), 0);
 			}
 
-			font.setColor(3);
-			font.draw(batcher, "Musik", 0, 230);
-
+			font.drawWrapped(batcher, narration, x, y, wrapWidth)
 		
 
 

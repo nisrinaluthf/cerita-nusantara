@@ -24,6 +24,8 @@ public class SubCeritaScreen extends AbstractScreen {
 	private boolean pauseButtonPressed;
 
 	private int tipeCerita;
+	
+	private int status;
 
 	public static final int ADEGAN = 0;
 	public static final int LABIRIN = 1;
@@ -32,8 +34,8 @@ public class SubCeritaScreen extends AbstractScreen {
 	public static final int RUNNING_GAME = 4;
 	public static final int KUIS = 5;
 
-	public static final int PAUSED = 6;
-	public static final int PLAYING = 7;
+	public final int PAUSED = 6;
+	public final int PLAYING = 7;
 	
 	
 	public SubCeritaScreen(Aplikasi app, SubCerita subCerita) {
@@ -56,6 +58,7 @@ public class SubCeritaScreen extends AbstractScreen {
 
 		pauseButtonPressed = false;
 
+		status = PLAYING;
 		
 		controller = new SubCeritaController(this);
 	}
@@ -103,5 +106,21 @@ public class SubCeritaScreen extends AbstractScreen {
 		// kalo udah bikin controllernya jangan lupa panggil
 		// controller.processInput()
 
+	}
+	
+	public Rectangle getPauseButtonBounds(){
+		return pauseButtonBounds;
+	}
+	
+	public boolean pauseButtonIsPressed() {
+		return pauseButtonPressed;
+	}
+	
+	public void setPauseButtonPressed(boolean b) {
+		this.pauseButtonPressed = b;
+	}
+	
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }
