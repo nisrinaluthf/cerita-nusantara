@@ -3,6 +3,7 @@ package com.a4.ceritanusantara.views;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.PauseController;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class PauseScreen extends AbstractScreen {
 	private PauseController controller;
+	private Screen originScreen;
 	
 	private Texture background;
 	
@@ -31,9 +33,10 @@ public class PauseScreen extends AbstractScreen {
 	
 	private boolean debug = false;
 
-	public PauseScreen(Aplikasi app) {
+	public PauseScreen(Aplikasi app, Screen originScreen) {
 		super(app);
 		// TODO Auto-generated constructor stub
+		this.originScreen = originScreen;
 		
 		//inisialisasi semuanya
 				background = new Texture(Gdx.files.internal("backgrounds/pause_bg.png"));
@@ -117,30 +120,30 @@ public class PauseScreen extends AbstractScreen {
 			
 			if (resumeButtonPressed) {
 				batcher.draw(resumeButtonPressedTexture, 
-						(VIRTUAL_WIDTH-resumeButtonPressedTexture.getWidth())/2, 280);
+						(VIRTUAL_WIDTH-resumeButtonPressedTexture.getWidth())/2, 400);
 				
 			}
 			else {
 				batcher.draw(resumeButtonTexture, 
-						(VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2, 220);
+						(VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2, 400);
 			}
 			
 			if (restartButtonPressed) {
 				batcher.draw(restartButtonPressedTexture, 
-						(VIRTUAL_WIDTH-restartButtonPressedTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-restartButtonPressedTexture.getWidth())/2, 300);
 			}
 			else{
 				batcher.draw(restartButtonTexture, 
-						(VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2, 300);
 			}
 			
 			if (exitButtonPressed) {
 				batcher.draw(exitButtonPressedTexture, 
-						(VIRTUAL_WIDTH-exitButtonPressedTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-exitButtonPressedTexture.getWidth())/2, 200);
 			}
 			else{
 				batcher.draw(exitButtonTexture, 
-						(VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2, 160);
+						(VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2, 200);
 			}
 			
 		batcher.end();

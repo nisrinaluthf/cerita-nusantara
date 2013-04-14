@@ -11,17 +11,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 
 public class SubCeritaScreen extends AbstractScreen {
+	public SubCeritaScreen(Aplikasi app, SubCerita subCerita) {
+		super(app);
+	}
+	/*
 	private SubCeritaController controller;
 	private SubCerita subCerita;
-	
-	private Texture pauseButtonTexture;
-
-	
-	private Texture pauseButtonPressedTexture;
-
-	private Rectangle pauseButtonBounds;
-
-	private boolean pauseButtonPressed;
 
 	private int tipeCerita;
 	
@@ -46,18 +41,7 @@ public class SubCeritaScreen extends AbstractScreen {
 		tipeCerita = subCerita.getTipe();
 
 			
-		pauseButtonTexture = new Texture(
-				Gdx.files.internal("backgrounds/main_bg.png"));
-		pauseButtonPressedTexture = new Texture(
-				Gdx.files.internal("backgrounds/main_bg.png"));
-
-		pauseButtonBounds = new Rectangle(
-				(VIRTUAL_WIDTH - pauseButtonTexture.getWidth()),
-				VIRTUAL_HEIGHT, pauseButtonTexture.getWidth(),
-				pauseButtonTexture.getHeight());
-
-		pauseButtonPressed = false;
-
+		
 		status = PLAYING;
 		
 		controller = new SubCeritaController(this);
@@ -78,16 +62,6 @@ public class SubCeritaScreen extends AbstractScreen {
 		batcher.setProjectionMatrix(cam.combined);
 		batcher.begin();
 
-
-		if (pauseButtonPressed) {
-			batcher.draw(pauseButtonPressedTexture,
-					(VIRTUAL_WIDTH - pauseButtonPressedTexture.getWidth()),
-					VIRTUAL_HEIGHT);
-		} else {
-			batcher.draw(pauseButtonTexture,
-					(VIRTUAL_WIDTH - pauseButtonTexture.getWidth()),
-					VIRTUAL_HEIGHT);
-		}
 
 		// batcher.draw(soundOnTexture,
 		// (VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 440);
@@ -122,5 +96,5 @@ public class SubCeritaScreen extends AbstractScreen {
 	
 	public void setStatus(int status) {
 		this.status = status;
-	}
+	}*/
 }

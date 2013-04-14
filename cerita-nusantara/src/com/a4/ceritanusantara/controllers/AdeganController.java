@@ -2,31 +2,32 @@ package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.utils.OverlapTester;
-import com.a4.ceritanusantara.views.MainMenuScreen;
+import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
-import com.a4.ceritanusantara.views.SettingsScreen;
-import com.a4.ceritanusantara.views.SubCeritaScreen;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
-public class SubCeritaController {
-	/*
+public class AdeganController {
+
 	private Aplikasi app;
 	
-	private SubCeritaScreen screen;
+	private AdeganScreen screen;
+	private Rectangle previousButtonBounds;
+	private Rectangle nextButtonBounds;
 	private Rectangle pauseButtonBounds;
 
 	private OrthographicCamera cam;
 	private Rectangle viewport;
 	
-	public SubCeritaController(SubCeritaScreen screen){
+	public AdeganController(AdeganScreen screen) {
+		// TODO Auto-generated constructor stub
 		Gdx.input.setCatchBackKey(true);
 		this.screen = screen;
 		this.app = screen.getAplikasi();
+		previousButtonBounds = this.screen.getPreviousButtonBounds();
+		nextButtonBounds = this.screen.getNextButtonBounds();
 		pauseButtonBounds = this.screen.getPauseButtonBounds();
 		cam = this.screen.getCam();
 		viewport = this.screen.getViewport();
@@ -41,8 +42,13 @@ public class SubCeritaController {
 			
 			//System.out.println(soundButtonBounds+" x: "+Gdx.input.getX()/screen.ppuX+" y: "+(screen.height-Gdx.input.getY())/screen.ppuY);
 			if(OverlapTester.pointInRectangle( pauseButtonBounds,pos.x, pos.y)){
-				screen.setPauseButtonPressed(true);
-				
+				screen.setPauseButtonPressed(true);	
+			}
+			else if(OverlapTester.pointInRectangle( previousButtonBounds,pos.x, pos.y)){
+				screen.setPreviousButtonPressed(true);	
+			}
+			else if(OverlapTester.pointInRectangle( nextButtonBounds,pos.x, pos.y)){
+				screen.setNextButtonPressed(true);	
 			}
 		}
 			
@@ -57,7 +63,16 @@ public class SubCeritaController {
 					if(OverlapTester.pointInRectangle( pauseButtonBounds, 
 							pos.x, pos.y)){
 						screen.setStatus(screen.PAUSED);
-						app.setScreen(new PauseScreen(app, screen));
+						app.setScreen(new PauseScreen(app, screen.getAdegan()));
+						
+					}
+					else if(OverlapTester.pointInRectangle( previousButtonBounds, 
+							pos.x, pos.y)){
+						//screen.setAdegan();
+						
+					}
+					else if(OverlapTester.pointInRectangle( nextButtonBounds, 
+							pos.x, pos.y)){
 						
 					}
 				}
@@ -67,5 +82,5 @@ public class SubCeritaController {
 			
 
 		}
-*/
+
 }

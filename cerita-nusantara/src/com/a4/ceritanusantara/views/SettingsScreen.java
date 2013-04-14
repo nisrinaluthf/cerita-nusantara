@@ -15,7 +15,7 @@ public class SettingsScreen extends AbstractScreen {
 
 	private SettingsController controller;
 	private Texture background;
-	//private Texture buttonBackground;
+	private Texture buttonBackground;
 	
 	private Texture soundOnTexture;
 	private Texture soundOffTexture;
@@ -42,27 +42,27 @@ public class SettingsScreen extends AbstractScreen {
 
 		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
 		
-		//buttonBackground = new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
+		buttonBackground = new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
 		
 		//if(controller.getSettings().getBoolean("soundOn")) {
 			soundOnTexture = 
-				new Texture(Gdx.files.internal("buttons/toggle_sound_on.png"));
+				new Texture(Gdx.files.internal("buttons/toggle_on.png"));
 		
 		//} else {
 			soundOffTexture =
-					new Texture(Gdx.files.internal("buttons/toggle_sound_off.png"));
+					new Texture(Gdx.files.internal("buttons/toggle_off.png"));
 		//}
 				
 		//if(controller.getSettings().getBoolean("musicOn")) {
 		musicOnTexture = 
-				new Texture(Gdx.files.internal("buttons/toggle_music_on.png"));
+				new Texture(Gdx.files.internal("buttons/toggle_on.png"));
 		
 		//} else {
 			musicOffTexture =
-					new Texture(Gdx.files.internal("buttons/toggle_music_off.png"));
+					new Texture(Gdx.files.internal("buttons/toggle_off.png"));
 		//}
-		backButtonTexture = new Texture(Gdx.files.internal("buttons/home.png"));
-		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/home_pressed.png"));
+		backButtonTexture = new Texture(Gdx.files.internal("buttons/back.png"));
+		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/back_pressed.png"));
 				
 		
 		soundButtonBounds = new Rectangle((VIRTUAL_WIDTH-soundOnTexture.getWidth())/2,
@@ -73,7 +73,7 @@ public class SettingsScreen extends AbstractScreen {
 				160, musicOnTexture.getWidth(),
 				musicOnTexture.getHeight());  
 		
-		backButtonBounds = new Rectangle((VIRTUAL_WIDTH-backButtonTexture.getWidth()),
+		backButtonBounds = new Rectangle(0,
 				0, backButtonTexture.getWidth(),
 				backButtonTexture.getHeight());
 		
@@ -103,7 +103,7 @@ public class SettingsScreen extends AbstractScreen {
 			
 			batcher.draw(background, 0, 0);
 			
-			//batcher.draw(buttonBackground, (VIRTUAL_WIDTH-buttonBackground.getWidth())/2, 100);
+			batcher.draw(buttonBackground, (VIRTUAL_WIDTH-buttonBackground.getWidth())/2, 145);
 			
 			if(controller.getSettings().getBoolean("soundOn")) {
 				batcher.draw(soundOnTexture, 
@@ -126,12 +126,10 @@ public class SettingsScreen extends AbstractScreen {
 			}
 			
 			if (backButtonPressed) {
-				batcher.draw(backButtonPressedTexture, 
-						(VIRTUAL_WIDTH-backButtonPressedTexture.getWidth()), 0);
+				batcher.draw(backButtonPressedTexture,0, 0);
 			}
 			else{
-				batcher.draw(backButtonTexture, 
-						(VIRTUAL_WIDTH-backButtonTexture.getWidth()), 0);
+				batcher.draw(backButtonTexture, 0, 0);
 			}
 				
 				
