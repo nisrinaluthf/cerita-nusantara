@@ -25,6 +25,13 @@ public class TapGameScreen extends AbstractScreen{
 	private Texture[] indicatorsTexture;
 	private Texture scoreBgTexture;
 	private Texture scoreFrameTexture;
+	
+	private Texture pauseButtonTexture;
+	private Texture pauseButtonPressedTexture;
+	private Rectangle pauseButtonBounds;
+	
+	private boolean pauseButtonPressed;
+	
 	private TapGameButton[] buttons;
 	
 	private boolean debug = true;
@@ -34,16 +41,27 @@ public class TapGameScreen extends AbstractScreen{
 		
 		this.tapGame = tapGame;
 		tapGame.reinit();
-		controller = new TapGameController(this, app, tapGame);
+		
 		background = tapGame.getBackground();
 		panelBgTexture = tapGame.getPanelBackground();
 		targetsTexture = tapGame.getTargetsTexture();
 		indicatorsTexture = tapGame.getIndicators();
 		
+		pauseButtonTexture = new Texture(
+				Gdx.files.internal("buttons/pause.png"));
+		pauseButtonPressedTexture = new Texture(
+				Gdx.files.internal("buttons/pause_pressed.png"));
+
+		pauseButtonBounds = new Rectangle(950, 526, 60, 60);
+		
+		pauseButtonPressed = false;
+		
 		scoreBgTexture = new Texture(Gdx.files.internal("parkit-tapgame/score_bg.png"));
 		scoreFrameTexture = new Texture(Gdx.files.internal("parkit-tapgame/score_frame.png"));
 		
 		buttons = tapGame.getButtons();
+		
+		controller = new TapGameController(this, app, tapGame);
 	}
 	
 	public void render(float delta){
@@ -68,6 +86,11 @@ public class TapGameScreen extends AbstractScreen{
 			batcher.draw(panelBgTexture, 
 					(VIRTUAL_WIDTH-panelBgTexture.getWidth())/2, 0);
 			batcher.draw(scoreBgTexture, 900, 80);
+			if (pauseButtonPressed) {
+				batcher.draw(pauseButtonPressedTexture,950, 526);
+			} else {
+				batcher.draw(pauseButtonTexture, 950, 526);
+			}
 		batcher.end();
 		
 		debugRenderer.begin(ShapeType.FilledRectangle);
@@ -138,5 +161,18 @@ public class TapGameScreen extends AbstractScreen{
 			}	
 			
 		debugRenderer.end();
+	}
+	
+	public Rectangle getPauseButtonBounds(){
+		return pauseButtonBounds;
+	}
+
+	public void setPauseButtonPressed(boolean b) {
+		pauseButtonPressed = b;
+		
+	}
+	
+	public boolean pauseButtonIsPressed(){
+		return pauseButtonPressed;
 	}
 }

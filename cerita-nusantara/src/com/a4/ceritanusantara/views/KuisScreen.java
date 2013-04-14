@@ -156,18 +156,18 @@ public class KuisScreen extends AbstractScreen{
 			font.drawWrapped(batcher, question.getQuestion(), (VIRTUAL_WIDTH-700)/2, 475, 800);
 			
 			font.drawWrapped(batcher, question.getOptions(0), 100, 
-					290, opsiBackgroundTexture.getWidth()-10);
+					290, opsiBackgroundTexture.getWidth()-15);
 			
 			font.drawWrapped(batcher, question.getOptions(1), 100, 
-					130, opsiBackgroundTexture.getWidth()-10);
+					130, opsiBackgroundTexture.getWidth()-15);
 			
 			font.drawWrapped(batcher, question.getOptions(2), 
 					100+opsiBackgroundTexture.getWidth()+60, 
-					290, opsiBackgroundTexture.getWidth()-10);
+					290, opsiBackgroundTexture.getWidth()-15);
 			
 			font.drawWrapped(batcher, question.getOptions(3), 
 					100+opsiBackgroundTexture.getWidth()+60, 
-					130, opsiBackgroundTexture.getWidth()-10);
+					130, opsiBackgroundTexture.getWidth()-15);
 			
 			
 			

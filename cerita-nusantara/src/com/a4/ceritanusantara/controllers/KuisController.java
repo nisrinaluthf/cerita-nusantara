@@ -8,6 +8,7 @@ import com.a4.ceritanusantara.views.WinLoseScreen;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -28,14 +29,13 @@ public class KuisController {
 
 	public KuisController(KuisScreen screen) {
 		// TODO Auto-generated constructor stub
+		Gdx.input.setCatchBackKey(true);
 		this.screen = screen;
 		app = screen.getAplikasi();
 		kuis = screen.getKuis();
 		kuisQuestion = kuis.getKuisQuestion(0);
 		
 		pauseButtonBounds = screen.getPauseButtonBounds();
-		System.out.printf("x: %f, y: %f, w: %f, l: %f%n", pauseButtonBounds.x,
-				pauseButtonBounds.y, pauseButtonBounds.width, pauseButtonBounds.height);
 		optionsBounds = kuisQuestion.getBounds();
 		
 		cam = screen.getCam();
@@ -44,6 +44,11 @@ public class KuisController {
 	}
 	
 	public void processInput(float delta){
+		
+		if (Gdx.input.isKeyPressed(Keys.BACK)){
+			screen.pause();
+			app.setScreen(new PauseScreen(app, screen, kuis));
+		}
 		
 		kuis.timeLeft-=delta;
 		

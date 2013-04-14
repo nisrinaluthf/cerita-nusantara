@@ -89,14 +89,12 @@ public void processInput(){
 						app.setScreen(new TapGameScreen(app, (TapGame)(screen.getSubCerita())));
 					}
 					else if(type==SubCerita.LABIRIN){
-						//app.setScreen(new LabirinScreen(app, (Labirin)(screen.getSubCerita())));
+						//set screen ke labirin
 					}
 					else if(type==SubCerita.KUIS){
-						app.setScreen(new TapGameScreen(app, (TapGame)(screen.getSubCerita())));
+						app.setScreen(new KuisScreen(app, (Kuis)(screen.getSubCerita())));
 					}
 					
-					//app.setScreen(new SettingsScreen(app));
-					// ke awal subcerita
 				}
 			}
 			

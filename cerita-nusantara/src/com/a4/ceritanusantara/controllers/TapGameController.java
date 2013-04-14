@@ -10,6 +10,7 @@ import com.a4.ceritanusantara.models.TapGameButton;
 import com.a4.ceritanusantara.models.TapGameTarget;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.KuisScreen;
+import com.a4.ceritanusantara.views.PauseScreen;
 import com.a4.ceritanusantara.views.PilihCeritaScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
 import com.a4.ceritanusantara.views.WinLoseScreen;
@@ -22,6 +23,7 @@ import com.badlogic.gdx.math.Vector3;
 public class TapGameController {
 
 	private Aplikasi app;
+	private TapGameScreen screen;
 	private TapGame tapGame;
 	
 	private OrthographicCamera cam;
@@ -29,10 +31,12 @@ public class TapGameController {
 	
 	private TapGameButton[] buttons;
 	private Rectangle[] buttonsBounds;
+	private Rectangle pauseButtonBounds;
 
 	public TapGameController(TapGameScreen screen, Aplikasi app, TapGame tapGame) {
 		// TODO Auto-generated constructor stub
 		Gdx.input.setCatchBackKey(true);
+		this.screen = screen;
 		this.app = app;
 		this.tapGame = tapGame;
 		this.cam = screen.getCam();
@@ -42,17 +46,20 @@ public class TapGameController {
 		for(int i=0; i<buttons.length; i++){
 			buttonsBounds[i] = buttons[i].getBounds();
 		}
+		
+		pauseButtonBounds = screen.getPauseButtonBounds();
+		System.out.println(pauseButtonBounds.x+" "+pauseButtonBounds.y);
 				
 	}
 
 	public void processInput() {
 		// TODO Auto-generated method stub
-		/* Kalo back pause screen muncul
+		// Kalo back pause screen muncul
 		if (Gdx.input.isKeyPressed(Keys.BACK)){
-			
-			app.setScreen(new PilihCeritaScreen(app));
+			screen.pause();
+			app.setScreen(new PauseScreen(app, screen, tapGame));
 		}
-		*/
+		
 		if(tapGame.getHits()<=0){
 			app.setScreen(new WinLoseScreen(app, false, -1));
 		}
@@ -67,6 +74,11 @@ public class TapGameController {
 		if(Gdx.input.justTouched()){
 			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
+			
+			System.out.println(pauseButtonBounds.x+" "+pauseButtonBounds.y);
+			if(OverlapTester.pointInRectangle(pauseButtonBounds, pos.x, pos.y)){
+				screen.setPauseButtonPressed(true);	
+			}
 			
 			for(int i=0; i<buttonsBounds.length; i++){
 				if(OverlapTester.pointInRectangle(buttonsBounds[i], pos.x, pos.y)){
@@ -102,6 +114,15 @@ public class TapGameController {
 		else{
 			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
+			
+			if(screen.pauseButtonIsPressed()){
+				screen.setPauseButtonPressed(false);
+				if(OverlapTester.pointInRectangle( pauseButtonBounds, pos.x, pos.y)){
+					screen.pause();
+					app.setScreen(new PauseScreen(app, screen, tapGame));
+					
+				}
+			}
 			
 			for(int i=0; i<buttonsBounds.length; i++){
 				if(buttons[i].isPressed()){
