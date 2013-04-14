@@ -1,6 +1,7 @@
 package com.a4.ceritanusantara.views;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -35,6 +36,8 @@ public class MainMenuScreen extends AbstractScreen {
 	
 	private boolean debug = false;
 	
+	private Music mainMenuMusicBg;
+	
 	//awalnya samain aja sama supernya
 	public MainMenuScreen(Aplikasi app){
 		super(app);
@@ -64,6 +67,8 @@ public class MainMenuScreen extends AbstractScreen {
 		
 		playButtonPressed = false;
 		settingsButtonPressed = false;
+		
+		mainMenuMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
 		
 		controller = new MainMenuController(this);
 		
@@ -138,6 +143,15 @@ public class MainMenuScreen extends AbstractScreen {
 		}
 		
 		//--kalo mau ada sfx atau musik nanti di sini aja--
+		//System.out.println(Gdx.app.getPreferences("preferences").getBoolean("musicOn"));
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			mainMenuMusicBg.setLooping(true);
+			mainMenuMusicBg.play();
+		} else if(this.mainMenuMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+		//System.out.println(Gdx.app.getPreferences("preferences").getBoolean("musicON")+"");
 		
 		//----------------end of sfx/musik-----------------
 		
@@ -197,6 +211,17 @@ public class MainMenuScreen extends AbstractScreen {
 	
 	public boolean settingsButtonIsPressed() {
 		return settingsButtonPressed;
+	}
+	
+	public void stopMusic() {
+		System.out.println("stop");
+		if (this.mainMenuMusicBg.isPlaying()) {
+			if (this.mainMenuMusicBg.isLooping()) {
+				this.mainMenuMusicBg.setLooping(false);
+			}
+			this.mainMenuMusicBg.stop();
+			this.mainMenuMusicBg.dispose();
+		}
 	}
 	
 	/* 

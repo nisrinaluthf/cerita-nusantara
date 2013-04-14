@@ -54,6 +54,8 @@ public class MainMenuController {
 			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 			
 			if(OverlapTester.pointInRectangle( playButtonBounds, pos.x, pos.y)){
+				System.out.println("musik berhenti harusnya");
+				screen.stopMusic();
 				screen.setPlayButtonPressed(true);
 				
 			}
@@ -75,6 +77,8 @@ public class MainMenuController {
 			if(screen.playButtonIsPressed()){
 				screen.setPlayButtonPressed(false);
 				if(OverlapTester.pointInRectangle( playButtonBounds, pos.x, pos.y)){
+					screen.stopMusic();
+					screen.dispose();
 					app.setScreen(new PilihCeritaScreen(app));
 					
 				}
@@ -83,6 +87,7 @@ public class MainMenuController {
 			else if(screen.settingsButtonIsPressed()){
 				screen.setSettingsButtonPressed(false);
 				if(OverlapTester.pointInRectangle( settingsButtonBounds, pos.x, pos.y)){
+					screen.dispose();
 					app.setScreen(new SettingsScreen(app));
 					
 				}
