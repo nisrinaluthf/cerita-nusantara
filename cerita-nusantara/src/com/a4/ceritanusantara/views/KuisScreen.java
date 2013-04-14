@@ -135,13 +135,15 @@ public class KuisScreen extends AbstractScreen{
 					batcher.draw(replayPressedTexture, 0, 0);
 				}
 				else{
-					batcher.draw(replayTexture, VIRTUAL_WIDTH-400, 200);
+					batcher.draw(replayTexture, 
+							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
 				}
 				if(mainMenuButtonPressed){
 					batcher.draw(mainMenuPressedTexture, 0, 0);
 				}
 				else{
-					batcher.draw(mainMenuPressedTexture, 540, 300);
+					batcher.draw(mainMenuTexture, 
+							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
 				}
 				if(false){
 					
