@@ -1,9 +1,15 @@
 package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
+import com.a4.ceritanusantara.models.Kuis;
+import com.a4.ceritanusantara.models.SubCerita;
+import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.utils.OverlapTester;
+import com.a4.ceritanusantara.views.KuisScreen;
+import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
+import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
@@ -66,7 +72,8 @@ public void processInput(){
 			if(screen.resumeButtonIsPressed()){
 				screen.setResumeButtonPressed(false);
 				if(OverlapTester.pointInRectangle( resumeButtonBounds, pos.x, pos.y)){
-					//app.setScreen(new PilihCeritaScreen(app));
+					screen.getOriginScreen().resume();
+					app.setScreen(screen.getOriginScreen());
 					// ganti state game jadi main lagi
 				}
 			}
@@ -74,6 +81,20 @@ public void processInput(){
 			else if(screen.restartButtonIsPressed()){
 				screen.setRestartButtonPressed(false);
 				if(OverlapTester.pointInRectangle( restartButtonBounds, pos.x, pos.y)){
+					int type = screen.getType();
+					if(type==SubCerita.ADEGAN){
+						//set screen ke adegan
+					}
+					else if(type==SubCerita.TAP_GAME){
+						app.setScreen(new TapGameScreen(app, (TapGame)(screen.getSubCerita())));
+					}
+					else if(type==SubCerita.LABIRIN){
+						//app.setScreen(new LabirinScreen(app, (Labirin)(screen.getSubCerita())));
+					}
+					else if(type==SubCerita.KUIS){
+						app.setScreen(new TapGameScreen(app, (TapGame)(screen.getSubCerita())));
+					}
+					
 					//app.setScreen(new SettingsScreen(app));
 					// ke awal subcerita
 				}

@@ -44,4 +44,10 @@ public class Kuis extends SubCerita{
 		return currentNo;
 	}
 	
+	public void reinit(){
+		score = 0;
+		currentNo = 0;
+		timeLeft = 21.0f;
+	}
+	
 }

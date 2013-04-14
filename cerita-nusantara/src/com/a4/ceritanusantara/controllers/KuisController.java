@@ -86,7 +86,7 @@ public class KuisController {
 				screen.setPauseButtonPressed(false);
 				if(OverlapTester.pointInRectangle( pauseButtonBounds, pos.x, pos.y)){
 					screen.pause();
-					app.setScreen(new PauseScreen(app, screen));
+					app.setScreen(new PauseScreen(app, screen, kuis));
 					
 				}
 			}

@@ -122,5 +122,14 @@ public class TapGame extends SubCerita {
 		// TODO Auto-generated method stub
 		return badHit;
 	}
+	
+	public void reinit(){
+		rand = new Random();
+		time = 0;
+		latestGeneration = new float[]{-2f, -1.5f, -1f};
+		targets = new ArrayList<TapGameTarget>();
+		hit = 5;
+		badHit = 0;
+	}
 
 }

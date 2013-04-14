@@ -33,6 +33,7 @@ public class TapGameScreen extends AbstractScreen{
 		super(app);
 		
 		this.tapGame = tapGame;
+		tapGame.reinit();
 		controller = new TapGameController(this, app, tapGame);
 		background = tapGame.getBackground();
 		panelBgTexture = tapGame.getPanelBackground();

@@ -40,6 +40,8 @@ public class KuisScreen extends AbstractScreen{
 		
 		this.kuis = kuis;
 		
+		kuis.reinit();
+		
 		currentNo = 0;
 		
 		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
@@ -49,7 +51,6 @@ public class KuisScreen extends AbstractScreen{
 				Texture(Gdx.files.internal("backgrounds/opsi_kuis_bg.png"));
 		opsiBackgroundPressedTexture = new 
 				Texture(Gdx.files.internal("backgrounds/opsi_kuis_bg_pressed.png"));
-		
 		
 		pauseButtonTexture = new Texture(
 				Gdx.files.internal("buttons/pause.png"));

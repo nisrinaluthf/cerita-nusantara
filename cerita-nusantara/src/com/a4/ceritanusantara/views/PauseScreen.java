@@ -2,6 +2,11 @@ package com.a4.ceritanusantara.views;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.PauseController;
+import com.a4.ceritanusantara.models.Adegan;
+import com.a4.ceritanusantara.models.Kuis;
+import com.a4.ceritanusantara.models.Labirin;
+import com.a4.ceritanusantara.models.SubCerita;
+import com.a4.ceritanusantara.models.TapGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -15,6 +20,9 @@ public class PauseScreen extends AbstractScreen {
 	private Screen originScreen;
 	
 	private Texture background;
+	
+	private int type;
+	private SubCerita subcerita;
 	
 	private Texture resumeButtonTexture;
 	private Texture restartButtonTexture;
@@ -33,50 +41,77 @@ public class PauseScreen extends AbstractScreen {
 	
 	private boolean debug = false;
 
-	public PauseScreen(Aplikasi app, Screen originScreen) {
+	public PauseScreen(Aplikasi app, Screen originScreen, Adegan adegan) {
 		super(app);
-		// TODO Auto-generated constructor stub
 		this.originScreen = originScreen;
+		type = SubCerita.ADEGAN;
+		subcerita = adegan;
+		init();
+	}
+	
+	public PauseScreen(Aplikasi app, Screen originScreen, Labirin labirin) {
+		super(app);
+		this.originScreen = originScreen;
+		type = SubCerita.LABIRIN;
+		subcerita = labirin;
+		init();
+	}
+	
+	public PauseScreen(Aplikasi app, Screen originScreen, TapGame tapGame) {
+		super(app);
+		this.originScreen = originScreen;
+		type = SubCerita.TAP_GAME;
+		subcerita = tapGame;
+		init();
+	}
+	
+	public PauseScreen(Aplikasi app, Screen originScreen, Kuis kuis) {
+		super(app);
+		this.originScreen = originScreen;
+		type = SubCerita.KUIS;
+		subcerita = kuis;
+		init();
+	}
+	
+	private void init(){
+		background = new Texture(Gdx.files.internal("backgrounds/pause_bg.png"));
 		
-		//inisialisasi semuanya
-				background = new Texture(Gdx.files.internal("backgrounds/pause_bg.png"));
-				
-				resumeButtonTexture = 
-						new Texture(Gdx.files.internal("buttons/resume.png"));
-				
-				resumeButtonPressedTexture = 
-						new Texture(Gdx.files.internal("buttons/resume_pressed.png"));
-				
-				restartButtonTexture = 
-						new Texture(Gdx.files.internal("buttons/restart.png"));
-				
-				restartButtonPressedTexture = 
-						new Texture(Gdx.files.internal("buttons/restart_pressed.png"));
-				
-				exitButtonTexture = 
-						new Texture(Gdx.files.internal("buttons/exit.png"));
-				
-				exitButtonPressedTexture = 
-						new Texture(Gdx.files.internal("buttons/exit_pressed.png"));
-				
-				resumeButtonBounds = new Rectangle((VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2,
-						280, resumeButtonTexture.getWidth(),
-						resumeButtonTexture.getHeight());
-				
-				restartButtonBounds = new Rectangle((VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2,
-						220, restartButtonTexture.getWidth(),
-						restartButtonTexture.getHeight());
-				
-				exitButtonBounds = new Rectangle((VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2,
-						160, exitButtonTexture.getWidth(),
-						exitButtonTexture.getHeight());
+		resumeButtonTexture = 
+				new Texture(Gdx.files.internal("buttons/resume.png"));
+		
+		resumeButtonPressedTexture = 
+				new Texture(Gdx.files.internal("buttons/resume_pressed.png"));
+		
+		restartButtonTexture = 
+				new Texture(Gdx.files.internal("buttons/restart.png"));
+		
+		restartButtonPressedTexture = 
+				new Texture(Gdx.files.internal("buttons/restart_pressed.png"));
+		
+		exitButtonTexture = 
+				new Texture(Gdx.files.internal("buttons/exit.png"));
+		
+		exitButtonPressedTexture = 
+				new Texture(Gdx.files.internal("buttons/exit_pressed.png"));
+		
+		resumeButtonBounds = new Rectangle((VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2,
+				400, resumeButtonTexture.getWidth(),
+				resumeButtonTexture.getHeight());
+		
+		restartButtonBounds = new Rectangle((VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2,
+				300, restartButtonTexture.getWidth(),
+				restartButtonTexture.getHeight());
+		
+		exitButtonBounds = new Rectangle((VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2,
+				200, exitButtonTexture.getWidth(),
+				exitButtonTexture.getHeight());
 
-				
-				resumeButtonPressed = false;
-				restartButtonPressed = false;
-				exitButtonPressed = false;
-				
-				controller = new PauseController(this);
+		
+		resumeButtonPressed = false;
+		restartButtonPressed = false;
+		exitButtonPressed = false;
+		
+		controller = new PauseController(this);
 	}
 
 	/* render(float delta) dipanggil terus-terusan setiap
@@ -200,6 +235,18 @@ public class PauseScreen extends AbstractScreen {
 			debugRenderer.rect(exitButtonBounds.x, exitButtonBounds.y,
 					exitButtonBounds.width, exitButtonBounds.height);
 		debugRenderer.end();
+	}
+	
+	public int getType(){
+		return type;
+	}
+	
+	public SubCerita getSubCerita(){
+		return subcerita;
+	}
+	
+	public Screen getOriginScreen(){
+		return originScreen;
 	}
 	
 	
