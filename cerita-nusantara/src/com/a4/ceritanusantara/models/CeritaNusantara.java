@@ -1,5 +1,6 @@
 package com.a4.ceritanusantara.models;
 
+import java.io.IOException;
 import java.io.Reader;
 import java.util.StringTokenizer;
 
@@ -23,15 +24,19 @@ public class CeritaNusantara {
 				null,
 				null
 		};
-		
-		initCerita();
+		try{
+			initCerita();
+		}
+		catch(Exception exc){
+			exc.printStackTrace();
+		}
 	}
 	
 	public Cerita getCerita(int indeks){
 		return cerita[indeks];
 	}
 	
-	private void initCerita(){
+	private void initCerita() throws IOException{
 		
 		FileHandle file = Gdx.files.local("datacerita");
 		String data = file.readString();

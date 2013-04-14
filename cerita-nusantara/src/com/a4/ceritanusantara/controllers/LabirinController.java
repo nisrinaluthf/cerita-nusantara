@@ -135,6 +135,33 @@ private Aplikasi app;
 				}
 				
 			}
+			
+			if(!Gdx.input.isTouched()){
+				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
+				
+				if(screen.pauseButtonIsPressed()){
+					screen.setPauseButtonPressed(false);
+					if(OverlapTester.pointInRectangle( pauseButtonBounds, pos.x, pos.y)){
+						screen.pause();
+						app.setScreen(new PauseScreen(app, screen, labirin));
+						
+					}
+				}
+			}
+			
+			float accelX = Gdx.input.getAccelerometerX();
+			float accelY = Gdx.input.getAccelerometerX();
+			
+			if(Math.abs(accelX)>=Math.abs(accelY)){
+				accelY = 0f;
+			}
+			else{
+				accelX = 0f;
+			}
+			
+			labirin.getPlayer().setVelocityX(accelX);
+			labirin.getPlayer().setVelocityY(accelY);
 		}
 		
 	}

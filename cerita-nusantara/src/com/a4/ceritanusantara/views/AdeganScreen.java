@@ -226,9 +226,9 @@ public class AdeganScreen extends SubCeritaScreen {
 	
 	public void setAdegan(Adegan adegan) {
 		this.adegan = adegan;
-		this.narration = adegan.getNarration();
-		this.tipeAdegan = adegan.getTipeAdegan();
-		this.character = new Texture( Gdx.files.internal(adegan.getCharacter()));
+		//this.narration = adegan.getNarration();
+		//this.tipeAdegan = adegan.getTipeAdegan();
+		//this.character = new Texture( Gdx.files.internal(adegan.getCharacter()));
 	}
 	
 	public Adegan getAdegan() {

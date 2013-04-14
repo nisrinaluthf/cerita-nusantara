@@ -32,9 +32,24 @@ public class TapGameScreen extends AbstractScreen{
 	
 	private boolean pauseButtonPressed;
 	
+	private Texture gameOverBg;
+	private Texture replayTexture;
+	private Texture replayPressedTexture;
+	private Texture mainMenuTexture;
+	private Texture mainMenuPressedTexture;
+	private Texture nextTexture;
+	
+	private Rectangle replayBounds;
+	private Rectangle mainMenuBounds;
+	private Rectangle nextBounds;
+	
 	private TapGameButton[] buttons;
 	
 	private boolean debug = false;
+	
+	private boolean replayButtonPressed;
+	private boolean mainMenuButtonPressed;
+	private boolean nextButtonPressed;
 		
 	public TapGameScreen(Aplikasi app, TapGame tapGame){
 		super(app);
@@ -46,6 +61,30 @@ public class TapGameScreen extends AbstractScreen{
 		panelBgTexture = tapGame.getPanelBackground();
 		targetsTexture = tapGame.getTargetsTexture();
 		indicatorsTexture = tapGame.getIndicators();
+		
+		gameOverBg = new
+				Texture(Gdx.files.internal("backgrounds/gameover_bg.png"));
+		replayTexture = new
+				Texture(Gdx.files.internal("buttons/restart.png"));
+		replayPressedTexture = new
+				Texture(Gdx.files.internal("buttons/restart_pressed.png"));
+		mainMenuTexture = new
+				Texture(Gdx.files.internal("buttons/mainmenu.png"));
+		mainMenuPressedTexture = new
+				Texture(Gdx.files.internal("buttons/mainmenu_pressed.png"));
+		nextTexture = new
+				Texture(Gdx.files.internal("buttons/dialog_next.png"));
+		
+		//inisialisasi bounds buat game over screen here
+		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240,
+				replayTexture.getWidth(), replayTexture.getHeight());
+		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180,
+				mainMenuTexture.getWidth(), mainMenuTexture.getHeight());
+		nextBounds = new Rectangle(950, 30, nextTexture.getWidth(), nextTexture.getHeight());
+		
+		replayButtonPressed = false;
+		mainMenuButtonPressed = false;
+		nextButtonPressed = false;
 		
 		pauseButtonTexture = new Texture(
 				Gdx.files.internal("buttons/pause.png"));
@@ -80,63 +119,92 @@ public class TapGameScreen extends AbstractScreen{
 		
 		
         batcher.setProjectionMatrix(cam.combined);
-        
-		batcher.begin();
-			batcher.draw(background, 0, 0);
-			batcher.draw(panelBgTexture, 
-					(VIRTUAL_WIDTH-panelBgTexture.getWidth())/2, 0);
-			batcher.draw(scoreBgTexture, 900, 80);
-			if (pauseButtonPressed) {
-				batcher.draw(pauseButtonPressedTexture,950, 526);
-			} else {
-				batcher.draw(pauseButtonTexture, 950, 526);
-			}
-		batcher.end();
-		
-		debugRenderer.begin(ShapeType.FilledRectangle);
-			int hits = tapGame.getHits();
-			if(hits>10){
-				debugRenderer.setColor(new Color(0, 1, 0, 1));
-			}
-			else if(hits>4){
-				debugRenderer.setColor(new Color(1, 1, 0, 1));
-			}
-			else{
-				debugRenderer.setColor(new Color(1, 0, 0, 1));
-			}
-			debugRenderer.filledRect(904, 84, 35, (hits/25.0f)*480);
-		debugRenderer.end();
-		
-		batcher.begin();
-			batcher.draw(scoreFrameTexture, 900, 80);
-			if(tapGame.getHits()>10){
-				batcher.draw(indicatorsTexture[0], 865, 10);
-			}
-			else{
-				batcher.draw(indicatorsTexture[1], 865, 0);
-			}
-		
-			Iterator<TapGameTarget> itr = tapGame.getTargets().iterator();
-			while(itr.hasNext()){
-				TapGameTarget target = itr.next();
-				batcher.draw(targetsTexture[target.getType()], 
-						target.getIndex() == 0 ? 274 : target.getIndex() == 1 ? 449 : 634,
-						target.getPos());
-			}
-			
-			
-			for(int i=0; i<buttons.length; i++){
-				if(buttons[i].isPressed()){
-					batcher.draw(buttons[i].getButtonPressedTexture(), 
-							buttons[i].getX(), buttons[i].getY());
+        if(tapGame.isGameOver()){
+			batcher.begin();
+				batcher.draw(gameOverBg, 0, 0);
+				if(replayButtonPressed){
+					batcher.draw(replayPressedTexture, 
+							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
 				}
 				else{
-					batcher.draw(buttons[i].getButtonTexture(), 
-							buttons[i].getX(), buttons[i].getY());
+					batcher.draw(replayTexture, 
+							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
 				}
-			}
-		batcher.end();
-		
+				
+				if(mainMenuButtonPressed){
+					System.out.println("mainmenu pressed drawed");
+					batcher.draw(mainMenuPressedTexture, 
+							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
+				}
+				else{
+					batcher.draw(mainMenuTexture, 
+							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
+				}
+				
+				if(tapGame.getScore()>=60){
+					batcher.draw(nextTexture, 950, 30);
+				}
+			batcher.end();
+		}
+        else{
+			batcher.begin();
+				
+				batcher.draw(background, 0, 0);
+				batcher.draw(panelBgTexture, 
+						(VIRTUAL_WIDTH-panelBgTexture.getWidth())/2, 0);
+				batcher.draw(scoreBgTexture, 900, 80);
+				if (pauseButtonPressed) {
+					batcher.draw(pauseButtonPressedTexture,950, 526);
+				} else {
+					batcher.draw(pauseButtonTexture, 950, 526);
+				}
+				
+			batcher.end();
+			
+			debugRenderer.begin(ShapeType.FilledRectangle);
+				int hits = tapGame.getHits();
+				if(hits>10){
+					debugRenderer.setColor(new Color(0, 1, 0, 1));
+				}
+				else if(hits>4){
+					debugRenderer.setColor(new Color(1, 1, 0, 1));
+				}
+				else{
+					debugRenderer.setColor(new Color(1, 0, 0, 1));
+				}
+				debugRenderer.filledRect(904, 84, 35, (hits/25.0f)*480);
+			debugRenderer.end();
+			
+			batcher.begin();
+				batcher.draw(scoreFrameTexture, 900, 80);
+				if(tapGame.getHits()>10){
+					batcher.draw(indicatorsTexture[0], 865, 10);
+				}
+				else{
+					batcher.draw(indicatorsTexture[1], 865, 0);
+				}
+			
+				Iterator<TapGameTarget> itr = tapGame.getTargets().iterator();
+				while(itr.hasNext()){
+					TapGameTarget target = itr.next();
+					batcher.draw(targetsTexture[target.getType()], 
+							target.getIndex() == 0 ? 274 : target.getIndex() == 1 ? 449 : 634,
+							target.getPos());
+				}
+				
+				
+				for(int i=0; i<buttons.length; i++){
+					if(buttons[i].isPressed()){
+						batcher.draw(buttons[i].getButtonPressedTexture(), 
+								buttons[i].getX(), buttons[i].getY());
+					}
+					else{
+						batcher.draw(buttons[i].getButtonTexture(), 
+								buttons[i].getX(), buttons[i].getY());
+					}
+				}
+			batcher.end();
+        }	
 		
 		if(debug){
 			drawDebug();
@@ -174,5 +242,41 @@ public class TapGameScreen extends AbstractScreen{
 	
 	public boolean pauseButtonIsPressed(){
 		return pauseButtonPressed;
+	}
+	
+	public Rectangle getReplayBounds(){
+		return replayBounds;
+	}
+	
+	public Rectangle getMainMenuBounds(){
+		return mainMenuBounds;
+	}
+	
+	public Rectangle getNextBounds(){
+		return nextBounds;
+	}
+	
+	public void setReplayButtonPressed(boolean b){
+		replayButtonPressed = b;
+	}
+	
+	public void setMainMenuButtonPressed(boolean b){
+		mainMenuButtonPressed = b;
+	}
+	
+	public void setNextButtonPressed(boolean b){
+		nextButtonPressed = b;
+	}
+	
+	public boolean replayButtonIsPressed(){
+		return replayButtonPressed;
+	}
+	
+	public boolean mainMenuButtonIsPressed(){
+		return mainMenuButtonPressed;
+	}
+	
+	public boolean nextButtonIsPressed(){
+		return nextButtonPressed;
 	}
 }

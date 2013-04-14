@@ -62,8 +62,8 @@ public class AdeganController {
 					screen.setPauseButtonPressed(false);
 					if(OverlapTester.pointInRectangle( pauseButtonBounds, 
 							pos.x, pos.y)){
-						screen.setStatus(screen.PAUSED);
-						app.setScreen(new PauseScreen(app, screen.getAdegan()));
+						//screen.setStatus(screen.PAUSED);
+						//app.setScreen(new PauseScreen(app, screen.getAdegan()));
 						
 					}
 					else if(OverlapTester.pointInRectangle( previousButtonBounds, 
