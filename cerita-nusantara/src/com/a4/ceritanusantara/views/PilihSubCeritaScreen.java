@@ -24,12 +24,13 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 	
 	private Texture background;
 	private Texture timelineTexture;
+	private Texture timelinePressedTexture;
 	
 	private Texture lockTexture;
 	
 	private boolean[] subCeritaButtonPressed;
 	
-	private boolean debug = true;
+	private boolean debug = false;
 	
 	public PilihSubCeritaScreen(Aplikasi app, Cerita cerita) {
 		super(app);
@@ -42,6 +43,9 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 		
 		timelineTexture = new Texture(Gdx.files.internal(
 				"backgrounds/timeline_"+subcerita.length+".png"));
+		
+		timelinePressedTexture = new Texture(Gdx.files.internal(
+				"buttons/timeline_pressed.png"));
 		
 		lockTexture = new Texture(Gdx.files.internal("buttons/lock.png"));
 		
@@ -59,7 +63,8 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 				new Vector2(733, 207),
 				
 				new Vector2(644, 126),
-				new Vector2(497, 126)
+				new Vector2(497, 126),
+				new Vector2(347, 126)
 		};
 		
 		subCeritaButtonBounds = new Rectangle[buttonPos.length];
@@ -73,7 +78,7 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 			subCeritaButtonPressed[i] = false;
 		}
 		
-		controller = new PilihSubCeritaController(this);
+		controller = new PilihSubCeritaController(this, subcerita);
 		
 	}
 	
@@ -94,7 +99,16 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 					(VIRTUAL_WIDTH-timelineTexture.getWidth())/2, 80);
 			
 			for(int i=0; i<subcerita.length; i++){
-				batcher.draw(lockTexture, buttonPos[i].x, buttonPos[i].y);
+				if(!subcerita[i].isUnlocked()){
+					batcher.draw(lockTexture, buttonPos[i].x, buttonPos[i].y);
+				}
+			}
+			
+			for(int i=0; i<subcerita.length; i++){
+				if(subCeritaButtonPressed[i]){
+					batcher.draw(timelinePressedTexture, buttonPos[i].x-21, buttonPos[i].y-14);
+				}
+				
 			}
 				
 		batcher.end();

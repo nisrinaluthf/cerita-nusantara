@@ -18,6 +18,7 @@ import com.badlogic.gdx.math.Vector3;
 public class PilihSubCeritaController {
 	
 	private Aplikasi app;
+	private SubCerita[] subcerita;
 	private PilihSubCeritaScreen screen;
 	
 	private Rectangle[] subCeritaButtonBounds;
@@ -26,11 +27,12 @@ public class PilihSubCeritaController {
 	private Rectangle viewport;
 	
 	
-	public PilihSubCeritaController(PilihSubCeritaScreen screen){
+	public PilihSubCeritaController(PilihSubCeritaScreen screen, SubCerita[] subcerita){
 		
 		Gdx.input.setCatchBackKey(true);
 		
 		this.screen = screen;
+		this.subcerita = subcerita;
 		app = screen.getAplikasi();
 		subCeritaButtonBounds = screen.getSubCeritaButtonBounds();
 		
@@ -52,7 +54,9 @@ public class PilihSubCeritaController {
 			
 			for(int i=0; i<subCeritaButtonBounds.length; i++){
 				if(OverlapTester.pointInRectangle(subCeritaButtonBounds[i], pos.x, pos.y)){
-					screen.setSubCeritaButtonPressed(i, true);
+					if(subcerita[i].isUnlocked()){
+						screen.setSubCeritaButtonPressed(i, true);
+					}
 				}
 			}
 			

@@ -109,17 +109,34 @@ public class InitSubCerita {
 	
 	public static void initKalimantan(Cerita cerita){
 		
+		FileHandle file = Gdx.files.local("datakalimantan");
+		String data = file.readString();
+		StringTokenizer st = new StringTokenizer(data,  ";");
+		int i=0;
+		while(st.hasMoreTokens()){
+			String token = st.nextToken();
+			StringTokenizer st2 = new StringTokenizer(token,  " ");
+			boolean unlocked = false;
+			if(st2.nextToken().equals("unlocked")) unlocked = true;
+			int score = Integer.parseInt(st2.nextToken());
+			
+			cerita.getSubCerita(i).setUnlocked(unlocked);
+			cerita.getSubCerita(i).setScore(score);
+			
+			i++;
+		}
+		
 		((TapGame) cerita.getSubCerita(7)).setBackground(new 
 				Texture(Gdx.files.internal("nusa-tapgame/bg.png")));
 		((TapGame) cerita.getSubCerita(7)).setPanelBackground(new 
 				Texture(Gdx.files.internal("parkit-tapgame/panel_bg.png")));
 		((TapGame) cerita.getSubCerita(7)).setTargetsTexture(new Texture[]{
-				new Texture(Gdx.files.internal("parkit-tapgame/target1.png")),
-				new Texture(Gdx.files.internal("parkit-tapgame/target2.png")),
-				new Texture(Gdx.files.internal("parkit-tapgame/target3.png")),
-				new Texture(Gdx.files.internal("parkit-tapgame/target1_bad.png")),
-				new Texture(Gdx.files.internal("parkit-tapgame/target2_bad.png")),
-				new Texture(Gdx.files.internal("parkit-tapgame/target3_bad.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1_bad.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1_bad.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1_bad.png")),
 		});
 		((TapGame) cerita.getSubCerita(7)).setIndicators(new Texture[]{
 				new Texture(Gdx.files.internal("nusa-tapgame/nusa_senang.png")),
