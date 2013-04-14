@@ -15,6 +15,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
+/** 
+ * Kelas <code>PauseScreen</code> menampilkan halaman menu saat jalannya subcerita (adegan, permainan atau kuis) dihentikan sementara.
+ * Menu yang ada yaitu restart (mengulang subcerita), resume(menjalankan subcerita), dan exit (kembali ke menu utama)
+ * Kelas ini menerima input dari pengguna dan meneruskannya ke controller.
+ */
+
 public class PauseScreen extends AbstractScreen {
 	private PauseController controller;
 	private Screen originScreen;

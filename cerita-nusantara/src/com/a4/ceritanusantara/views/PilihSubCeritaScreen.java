@@ -11,6 +11,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+/** 
+ * Kelas <code>PilihSubCeritaScreen</code> menampilkan halaman menu untuk memilih subcerita dari sebuah cerita.
+ * Kelas ini menerima input dari pengguna dan meneruskannya ke PilihSubCeritaontroller.
+ */
+
 public class PilihSubCeritaScreen extends AbstractScreen{
 	
 	

@@ -11,6 +11,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
+
+/** 
+ * Kelas <code>KuisScreen</code> menampilkan halaman kuis.
+ * Elemen utama yang ditampilkan adalah pertanyaan kuis dan opsi jawaban kuis
+ * Kelas ini menerima input dari pengguna dan meneruskannya ke KuisController.
+ */
+
 public class KuisScreen extends AbstractScreen{
 	
 	private KuisController controller;

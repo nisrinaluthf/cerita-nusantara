@@ -10,6 +10,12 @@ import com.badlogic.gdx.math.Rectangle;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.MainMenuController;
 
+
+/** 
+ * Kelas <code>MainMenuScreen</code> menampilkan halaman menu utama aplikasi
+ * Kelas ini menerima input dari pengguna dan meneruskannya ke kelas MainMenuController.
+ */
+
 public class MainMenuScreen extends AbstractScreen {
 	
 	/*di sini taro controller, texture(gambar) apa aja yang 

@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+/** 
+ * Kelas <code>AbstractScreen</code> menampilkan halaman aplikasi secara generik.
+ * Kelas ini adalah abstract class yang di-extend oleh semua kelas bertipe view.
+ */
+
 public abstract class AbstractScreen implements Screen{
 	
 	private Aplikasi app;

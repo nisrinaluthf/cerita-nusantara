@@ -8,6 +8,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.PilihCeritaController;
 
+/** Kelas <code>PilihCeritaScreen</code> menampilkan halaman untuk memilih daerah cerita, yang berupa pulau-pulau.
+Kelas ini juga menerima input dari pengguna dan meneruskannya ke controller */
+
 public class PilihCeritaScreen extends AbstractScreen {
 
 	private PilihCeritaController controller;
