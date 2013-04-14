@@ -1,9 +1,14 @@
 package com.a4.ceritanusantara.utils;
 
 import java.util.StringTokenizer;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.a4.ceritanusantara.models.Cerita;
-import com.a4.ceritanusantara.models.Labirin;
+import com.a4.ceritanusantara.models.Labirin; 
+import com.a4.ceritanusantara.models.LabirinWall;
+import com.a4.ceritanusantara.models.LabirinPlayer;
+import com.a4.ceritanusantara.models.LabirinItem; 
 import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
@@ -125,6 +130,53 @@ public class InitSubCerita {
 			
 			i++;
 		}
+		
+		List<LabirinWall> walls = new ArrayList<LabirinWall>();
+		List<LabirinItem> items = new ArrayList<LabirinItem>();
+		
+		file = Gdx.files.local("labirin/labirin_nusa.txt");
+		data = file.readString();
+		st = new StringTokenizer(data, System.getProperty("line.separator"));
+		
+		
+		LabirinPlayer player = null;
+		int start = 137;
+		i=0;
+		while(st.hasMoreTokens()){
+			String line = st.nextToken();
+			for(int j=0; j<30; j++){
+				if(line.charAt(j)=='X'){
+					walls.add(new LabirinWall(new Vector2(start+(25*j), 575-(i*25))));
+				}
+				
+				else if(line.charAt(j)=='O'){
+					items.add(new LabirinItem(new Vector2(start+(25*j), 575-(i*25))));
+				}
+				
+				else if(line.charAt(j)=='P'){
+					player = new LabirinPlayer(new Vector2(start+(25*j), 575-(i*25)));
+				}
+			}
+			
+			i++;
+		}
+		
+		((Labirin) cerita.getSubCerita(2)).setWalls(walls.toArray(new LabirinWall[0]));
+		((Labirin) cerita.getSubCerita(2)).setItems(items.toArray(new LabirinItem[0]));
+		((Labirin) cerita.getSubCerita(2)).setPlayer(player);
+		
+		((Labirin) cerita.getSubCerita(2)).setBackground(new
+				Texture(Gdx.files.internal("nusa-labirin/background.png")));
+		((Labirin) cerita.getSubCerita(2)).setPlayerTexture(new Texture[]{
+				new Texture(Gdx.files.internal("nusa-labirin/nusa_up.png")),
+				new Texture(Gdx.files.internal("nusa-labirin/nusa_right.png")),
+				new Texture(Gdx.files.internal("nusa-labirin/nusa_down.png")),
+				new Texture(Gdx.files.internal("nusa-labirin/nusa_left.png")),
+		});
+		((Labirin) cerita.getSubCerita(2)).setWallTexture(new
+				Texture(Gdx.files.internal("nusa-labirin/wall.png")));
+		((Labirin) cerita.getSubCerita(2)).setItemTexture(new
+				Texture(Gdx.files.internal("nusa-labirin/item.png")));
 		
 		((TapGame) cerita.getSubCerita(7)).setBackground(new 
 				Texture(Gdx.files.internal("nusa-tapgame/bg.png")));

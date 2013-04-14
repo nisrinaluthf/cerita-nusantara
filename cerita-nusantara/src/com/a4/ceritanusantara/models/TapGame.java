@@ -90,6 +90,8 @@ public class TapGame extends SubCerita {
 	}
 	
 	public void generateTargets(float delta){
+		if(gameOver) return;
+		
 		time += delta;
 		if(rand.nextFloat()>0.97){
 			int index = rand.nextInt(3);
@@ -107,7 +109,7 @@ public class TapGame extends SubCerita {
 	}
 	
 	public void updateTargets (float delta){
-		
+		if (gameOver) return;
 		Iterator<TapGameTarget> itr = targets.iterator();
 		while(itr.hasNext()){
 			TapGameTarget target = itr.next();

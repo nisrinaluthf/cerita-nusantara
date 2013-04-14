@@ -20,6 +20,10 @@ public class LabirinWall {
 		return pos.y;
 	}
 	
+	public Vector2 getPos(){
+		return pos;
+	}
+	
 	public Rectangle getBounds(){
 		return bounds;
 	}

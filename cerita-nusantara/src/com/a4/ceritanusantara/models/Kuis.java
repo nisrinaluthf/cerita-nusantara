@@ -2,7 +2,6 @@ package com.a4.ceritanusantara.models;
 
 public class Kuis extends SubCerita{
 	
-	private int score;
 	private KuisQuestion[] questions;
 	private int currentNo;
 	private boolean gameOver;
@@ -16,6 +15,7 @@ public class Kuis extends SubCerita{
 		currentNo = 0;
 		timeLeft = 21.0f;
 		gameOver = false;
+		score = 0;
 		
 		// TODO Auto-generated constructor stub
 	}
@@ -24,9 +24,6 @@ public class Kuis extends SubCerita{
 		this.score = score;
 	}
 	
-	public int getScore(){
-		return score;
-	}
 	
 	public void setQuestions(KuisQuestion[] questions){
 		for(int i=0; i<questions.length; i++){

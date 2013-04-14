@@ -31,6 +31,10 @@ public class SubCerita {
 		this.score = score;
 	}
 	
+	public int getScore(){
+		return score;
+	}
+	
 	public String getNama(){
 		return nama;
 	}

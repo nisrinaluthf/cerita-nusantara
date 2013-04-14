@@ -2,7 +2,9 @@ package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.utils.OverlapTester;
+import com.a4.ceritanusantara.views.CongratulationsScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
+import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
@@ -23,6 +25,10 @@ public class KuisController {
 	private Rectangle[] optionsBounds;
 	private KuisQuestion kuisQuestion;
 	
+	private Rectangle replayBounds;
+	private Rectangle mainMenuBounds;
+	private Rectangle nextBounds;
+	
 	private OrthographicCamera cam;
 	private Rectangle viewport;
 
@@ -37,6 +43,10 @@ public class KuisController {
 		pauseButtonBounds = screen.getPauseButtonBounds();
 		optionsBounds = kuisQuestion.getBounds();
 		
+		replayBounds = screen.getReplayBounds();
+		mainMenuBounds = screen.getMainMenuBounds();
+		nextBounds = screen.getNextBounds();
+		
 		cam = screen.getCam();
 		viewport = screen.getViewport();
 		
@@ -45,7 +55,53 @@ public class KuisController {
 	public void processInput(float delta){
 		
 		if(kuis.isGameOver()){
+			if(Gdx.input.justTouched()){
+				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
+				
+				if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
+					screen.setReplayButtonPressed(true);
+				}
+				
+				else if(OverlapTester.pointInRectangle(mainMenuBounds, 
+						pos.x, pos.y)){
+					screen.setMainMenuButtonPressed(true);
+				}
+				
+				else if(OverlapTester.pointInRectangle(nextBounds, 
+						pos.x, pos.y)&&kuis.getScore()>60){
+					screen.setNextButtonPressed(true);
+					
+				}
+			}
 			
+			if(!Gdx.input.isTouched()){
+				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
+				if(screen.replayButtonIsPressed()){
+					screen.setReplayButtonPressed(false);
+					if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
+						app.setScreen(new KuisScreen(app, kuis));
+					}
+				}
+				
+				else if(screen.mainMenuButtonIsPressed()){
+					screen.setMainMenuButtonPressed(false);
+					if(OverlapTester.pointInRectangle(mainMenuBounds, 
+							pos.x, pos.y)){
+						app.setScreen(new MainMenuScreen(app));
+					}
+				}
+				
+				
+				else if(screen.nextButtonIsPressed()){
+					screen.setNextButtonPressed(false);
+					if(OverlapTester.pointInRectangle(nextBounds, 
+							pos.x, pos.y)){
+						app.setScreen(new CongratulationsScreen(app));
+					}
+				}
+			}
 		}
 		else{
 		
@@ -82,7 +138,6 @@ public class KuisController {
 				for(int i=0; i<optionsBounds.length; i++){
 					if(OverlapTester.pointInRectangle(optionsBounds[i], pos.x, pos.y)){
 						kuisQuestion.setOptionPressed(i, true);
-						System.out.println(i);
 					}
 				}
 			}
@@ -108,14 +163,10 @@ public class KuisController {
 							
 							//kalo bener
 							if(kuisQuestion.getAnswer()==i){
-								
 								kuis.setScore(kuis.getScore()+20);
 							}
 							
 							if(kuis.getCurrentNo()<4){
-								
-								System.out.printf("answer = %d, harusnya %d%n", i, kuisQuestion.getAnswer());
-								
 								kuis.timeLeft=21.0f;
 								kuis.setCurrentNo(kuis.getCurrentNo()+1);
 							}
