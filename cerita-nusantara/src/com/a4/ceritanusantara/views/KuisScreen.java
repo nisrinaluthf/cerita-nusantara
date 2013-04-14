@@ -11,13 +11,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
-
-/** 
- * Kelas <code>KuisScreen</code> menampilkan halaman kuis.
- * Elemen utama yang ditampilkan adalah pertanyaan kuis dan opsi jawaban kuis
- * Kelas ini menerima input dari pengguna dan meneruskannya ke KuisController.
- */
-
 public class KuisScreen extends AbstractScreen{
 	
 	private KuisController controller;
@@ -29,8 +22,8 @@ public class KuisScreen extends AbstractScreen{
 	private Texture soalBackgroundTexture;
 	private Texture opsiBackgroundTexture;
 	private Texture opsiBackgroundPressedTexture;
-	private Texture gameOverBg;
 	
+	private Texture gameOverBg;
 	private Texture replayTexture;
 	private Texture replayPressedTexture;
 	private Texture mainMenuTexture;
@@ -53,9 +46,7 @@ public class KuisScreen extends AbstractScreen{
 	private boolean debug = false;
 
 	private boolean replayButtonPressed;
-
 	private boolean mainMenuButtonPressed;
-
 	private boolean nextButtonPressed;
 
 	public KuisScreen(Aplikasi app, Kuis kuis) {
@@ -87,9 +78,14 @@ public class KuisScreen extends AbstractScreen{
 		mainMenuPressedTexture = new
 				Texture(Gdx.files.internal("buttons/mainmenu_pressed.png"));
 		nextTexture = new
-				Texture(Gdx.files.internal("buttons/next.png"));
+				Texture(Gdx.files.internal("buttons/dialog_next.png"));
 		
 		//inisialisasi bounds buat game over screen here
+		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240,
+				replayTexture.getWidth(), replayTexture.getHeight());
+		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180,
+				mainMenuTexture.getWidth(), mainMenuTexture.getHeight());
+		nextBounds = new Rectangle(950, 30, nextTexture.getWidth(), nextTexture.getHeight());
 		
 		replayButtonPressed = false;
 		mainMenuButtonPressed = false;
@@ -106,9 +102,6 @@ public class KuisScreen extends AbstractScreen{
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		
 		pauseButtonPressed = false;
-		
-		
-		
 		
 		controller = new KuisController(this);
 		
@@ -137,26 +130,33 @@ public class KuisScreen extends AbstractScreen{
         batcher.setProjectionMatrix(cam.combined);
 		batcher.begin();
 			if(kuis.isGameOver()){
+				
 				batcher.draw(gameOverBg, 0, 0);
 				if(replayButtonPressed){
-					batcher.draw(replayPressedTexture, 0, 0);
+					batcher.draw(replayPressedTexture, 
+							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
 				}
 				else{
 					batcher.draw(replayTexture, 
 							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
 				}
+				
 				if(mainMenuButtonPressed){
-					batcher.draw(mainMenuPressedTexture, 0, 0);
+					System.out.println("mainmenu pressed drawed");
+					batcher.draw(mainMenuPressedTexture, 
+							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
 				}
 				else{
 					batcher.draw(mainMenuTexture, 
 							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
 				}
-				if(false){
-					
+				
+				if(kuis.getScore()>=60){
+					batcher.draw(nextTexture, 950, 30);
 				}
 				
 			}
+			
 			else{
 				batcher.draw(background, 0, 0);
 				
@@ -293,11 +293,11 @@ public class KuisScreen extends AbstractScreen{
 	}
 	
 	public void setMainMenuButtonPressed(boolean b){
-		replayButtonPressed = b;
+		mainMenuButtonPressed = b;
 	}
 	
 	public void setNextButtonPressed(boolean b){
-		replayButtonPressed = b;
+		nextButtonPressed = b;
 	}
 	
 	public boolean replayButtonIsPressed(){

@@ -15,7 +15,8 @@ public class Labirin extends SubCerita{
 	private Texture[] playerTexture;
 	private Texture itemTexture;
 	
-	private float timeLeft;
+	public float timeLeft;
+	private boolean gameOver;
 	
 	/*
 	private Vector2[] wallsPos;
@@ -29,7 +30,8 @@ public class Labirin extends SubCerita{
 	public Labirin(String nama, int tipe){
 		super(nama, tipe);
 		
-		initWalls();
+		timeLeft = 61.00f;
+		gameOver = false;
 	}
 	
 	public void setBackground(Texture background){
@@ -88,13 +90,27 @@ public class Labirin extends SubCerita{
 		return itemTexture;
 	}
 	
-	private void initWalls(){
-		
-	}
 
 	public void reinit() {
 		player.reinit();
 		timeLeft = 61.00f;
+		for(int i=0; i<items.length; i++){
+			items[i].setFound(false);
+		}
+		gameOver = false;
+	}
+	
+	public void update(){
+		player.updatePos();
+	}
+
+	public boolean isGameOver() {
+		// TODO Auto-generated method stub
+		return gameOver;
+	}
+	
+	public void gameOver(){
+		gameOver = false;
 	}
 	
 	

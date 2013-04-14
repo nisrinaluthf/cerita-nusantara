@@ -1,11 +1,13 @@
 package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
+import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.KuisScreen;
+import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.PilihCeritaScreen;
 import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
@@ -73,6 +75,9 @@ public class PilihSubCeritaController {
 					if(OverlapTester.pointInRectangle(subCeritaButtonBounds[i], pos.x, pos.y)){
 						if(screen.getSubCerita(i).getTipe()==SubCerita.KUIS){
 							app.setScreen(new KuisScreen(app, (Kuis)(screen.getSubCerita(i))));
+						}
+						if(screen.getSubCerita(i).getTipe()==SubCerita.LABIRIN){
+							app.setScreen(new LabirinScreen(app, (Labirin)(screen.getSubCerita(i))));
 						}
 						if(screen.getSubCerita(i).getTipe()==SubCerita.TAP_GAME){
 							app.setScreen(new TapGameScreen(app, (TapGame)(screen.getSubCerita(i))));
