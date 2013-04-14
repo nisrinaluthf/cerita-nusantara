@@ -9,5 +9,7 @@
 	<classpathentry exported="true" kind="lib" path="/cerita-nusantara/libs/gdx.jar" sourcepath="/cerita-nusantara/libs/gdx-sources.jar"/>
 	<classpathentry kind="lib" path="libs/android-support-v4.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="libs/tween-engine-api-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/tween-engine-api.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

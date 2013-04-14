@@ -20,6 +20,7 @@ public class TapGame extends SubCerita {
 	private Random rand;
 	private float time;
 	private float[] latestGeneration;
+	private boolean gameOver;
 
 	public TapGame(String nama, int tipe) {
 		super(nama, tipe);
@@ -130,6 +131,18 @@ public class TapGame extends SubCerita {
 		targets = new ArrayList<TapGameTarget>();
 		hit = 5;
 		badHit = 0;
+		gameOver = false;
 	}
+
+	public void gameOver() {
+		// TODO Auto-generated method stub
+		gameOver = true;
+	}
+	
+	public boolean isGameOver(){
+		return gameOver;
+	}
+	
+	
 
 }

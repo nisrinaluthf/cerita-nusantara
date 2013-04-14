@@ -89,10 +89,10 @@ public class PauseScreen extends AbstractScreen {
 				new Texture(Gdx.files.internal("buttons/restart_pressed.png"));
 		
 		exitButtonTexture = 
-				new Texture(Gdx.files.internal("buttons/exit.png"));
+				new Texture(Gdx.files.internal("buttons/mainmenu.png"));
 		
 		exitButtonPressedTexture = 
-				new Texture(Gdx.files.internal("buttons/exit_pressed.png"));
+				new Texture(Gdx.files.internal("buttons/mainmenu_pressed.png"));
 		
 		resumeButtonBounds = new Rectangle((VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2,
 				400, resumeButtonTexture.getWidth(),

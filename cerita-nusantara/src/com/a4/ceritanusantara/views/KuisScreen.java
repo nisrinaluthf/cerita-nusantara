@@ -22,6 +22,17 @@ public class KuisScreen extends AbstractScreen{
 	private Texture soalBackgroundTexture;
 	private Texture opsiBackgroundTexture;
 	private Texture opsiBackgroundPressedTexture;
+	private Texture gameOverBg;
+	
+	private Texture replayTexture;
+	private Texture replayPressedTexture;
+	private Texture mainMenuTexture;
+	private Texture mainMenuPressedTexture;
+	private Texture nextTexture;
+	
+	private Rectangle replayBounds;
+	private Rectangle mainMenuBounds;
+	private Rectangle nextBounds;
 	
 	private Texture pauseButtonTexture;
 	private Texture pauseButtonPressedTexture;
@@ -32,7 +43,13 @@ public class KuisScreen extends AbstractScreen{
 	private boolean[] optionPressed;
 	private boolean pauseButtonPressed;
 	
-	private boolean debug;
+	private boolean debug = false;
+
+	private boolean replayButtonPressed;
+
+	private boolean mainMenuButtonPressed;
+
+	private boolean nextButtonPressed;
 
 	public KuisScreen(Aplikasi app, Kuis kuis) {
 		super(app);
@@ -52,6 +69,25 @@ public class KuisScreen extends AbstractScreen{
 		opsiBackgroundPressedTexture = new 
 				Texture(Gdx.files.internal("backgrounds/opsi_kuis_bg_pressed.png"));
 		
+		gameOverBg = new
+				Texture(Gdx.files.internal("backgrounds/gameover_bg.png"));
+		replayTexture = new
+				Texture(Gdx.files.internal("buttons/restart.png"));
+		replayPressedTexture = new
+				Texture(Gdx.files.internal("buttons/restart_pressed.png"));
+		mainMenuTexture = new
+				Texture(Gdx.files.internal("buttons/mainmenu.png"));
+		mainMenuPressedTexture = new
+				Texture(Gdx.files.internal("buttons/mainmenu_pressed.png"));
+		nextTexture = new
+				Texture(Gdx.files.internal("buttons/next.png"));
+		
+		//inisialisasi bounds buat game over screen here
+		
+		replayButtonPressed = false;
+		mainMenuButtonPressed = false;
+		nextButtonPressed = false;
+		
 		pauseButtonTexture = new Texture(
 				Gdx.files.internal("buttons/pause.png"));
 		pauseButtonPressedTexture = new Texture(
@@ -64,7 +100,8 @@ public class KuisScreen extends AbstractScreen{
 		
 		pauseButtonPressed = false;
 		
-		debug = true;
+		
+		
 		
 		controller = new KuisController(this);
 		
@@ -92,85 +129,104 @@ public class KuisScreen extends AbstractScreen{
 		
         batcher.setProjectionMatrix(cam.combined);
 		batcher.begin();
-			batcher.draw(background, 0, 0);
-			
-			batcher.draw(soalBackgroundTexture, 
-					(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 340);
-			
-			if(kuis.getKuisQuestion(currentNo).getOptionPressed(0)){
-				batcher.draw(opsiBackgroundPressedTexture, 
-						(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 180);
+			if(kuis.isGameOver()){
+				batcher.draw(gameOverBg, 0, 0);
+				if(replayButtonPressed){
+					batcher.draw(replayPressedTexture, 0, 0);
+				}
+				else{
+					batcher.draw(replayTexture, VIRTUAL_WIDTH-400, 200);
+				}
+				if(mainMenuButtonPressed){
+					batcher.draw(mainMenuPressedTexture, 0, 0);
+				}
+				else{
+					batcher.draw(mainMenuPressedTexture, 540, 300);
+				}
+				if(false){
+					
+				}
+				
 			}
 			else{
-				batcher.draw(opsiBackgroundTexture, 
-						(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 180);
+				batcher.draw(background, 0, 0);
+				
+				batcher.draw(soalBackgroundTexture, 
+						(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 340);
+				
+				if(kuis.getKuisQuestion(currentNo).getOptionPressed(0)){
+					batcher.draw(opsiBackgroundPressedTexture, 
+							(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 180);
+				}
+				else{
+					batcher.draw(opsiBackgroundTexture, 
+							(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 180);
+				}
+				
+				if(kuis.getKuisQuestion(currentNo).getOptionPressed(1)){
+					batcher.draw(opsiBackgroundPressedTexture, 
+							(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 20);
+				}
+				else{
+					batcher.draw(opsiBackgroundTexture, 
+							(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 20);
+				}
+				
+				if(kuis.getKuisQuestion(currentNo).getOptionPressed(2)){
+					batcher.draw(opsiBackgroundPressedTexture, 
+							((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
+							opsiBackgroundTexture.getWidth()+60, 180);
+				}
+				else{
+					batcher.draw(opsiBackgroundTexture, 
+							((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
+							opsiBackgroundTexture.getWidth()+60, 180);
+				}
+				
+				if(kuis.getKuisQuestion(currentNo).getOptionPressed(3)){
+					batcher.draw(opsiBackgroundPressedTexture, 
+							((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
+							opsiBackgroundTexture.getWidth()+60, 20);
+				}
+				else{
+					batcher.draw(opsiBackgroundTexture, 
+							((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
+							opsiBackgroundTexture.getWidth()+60, 20);
+				}
+				
+				if (pauseButtonPressed) {
+					batcher.draw(pauseButtonPressedTexture,950, 526);
+				} else {
+					batcher.draw(pauseButtonTexture, 950, 526);
+				}
+				
+				KuisQuestion question = kuis.getKuisQuestion(currentNo);
+				
+				String tmp = ""+(int)kuis.timeLeft;
+				if(tmp.length()==1){
+					tmp = "0"+tmp;
+				}
+				
+				font.draw(batcher, "Waktu Tersisa= 0:"+tmp, 350, 570);
+				
+				font.drawWrapped(batcher, question.getQuestion(), (VIRTUAL_WIDTH-700)/2, 475, 800);
+				
+				font.drawWrapped(batcher, question.getOptions(0), 100, 
+						290, opsiBackgroundTexture.getWidth()-15);
+				
+				font.drawWrapped(batcher, question.getOptions(1), 100, 
+						130, opsiBackgroundTexture.getWidth()-15);
+				
+				font.drawWrapped(batcher, question.getOptions(2), 
+						100+opsiBackgroundTexture.getWidth()+60, 
+						290, opsiBackgroundTexture.getWidth()-15);
+				
+				font.drawWrapped(batcher, question.getOptions(3), 
+						100+opsiBackgroundTexture.getWidth()+60, 
+						130, opsiBackgroundTexture.getWidth()-15);
+				
+				
 			}
-			
-			if(kuis.getKuisQuestion(currentNo).getOptionPressed(1)){
-				batcher.draw(opsiBackgroundPressedTexture, 
-						(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 20);
-			}
-			else{
-				batcher.draw(opsiBackgroundTexture, 
-						(VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2, 20);
-			}
-			
-			if(kuis.getKuisQuestion(currentNo).getOptionPressed(2)){
-				batcher.draw(opsiBackgroundPressedTexture, 
-						((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
-						opsiBackgroundTexture.getWidth()+60, 180);
-				System.out.println("option 1 pressed");
-			}
-			else{
-				batcher.draw(opsiBackgroundTexture, 
-						((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
-						opsiBackgroundTexture.getWidth()+60, 180);
-			}
-			
-			if(kuis.getKuisQuestion(currentNo).getOptionPressed(3)){
-				batcher.draw(opsiBackgroundPressedTexture, 
-						((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
-						opsiBackgroundTexture.getWidth()+60, 20);
-			}
-			else{
-				batcher.draw(opsiBackgroundTexture, 
-						((VIRTUAL_WIDTH-soalBackgroundTexture.getWidth())/2)+
-						opsiBackgroundTexture.getWidth()+60, 20);
-			}
-			
-			if (pauseButtonPressed) {
-				batcher.draw(pauseButtonPressedTexture,950, 526);
-			} else {
-				batcher.draw(pauseButtonTexture, 950, 526);
-			}
-			
-			KuisQuestion question = kuis.getKuisQuestion(currentNo);
-			
-			String tmp = ""+(int)kuis.timeLeft;
-			if(tmp.length()==1){
-				tmp = "0"+tmp;
-			}
-			
-			font.draw(batcher, "Waktu Tersisa= 0:"+tmp, 350, 570);
-			
-			font.drawWrapped(batcher, question.getQuestion(), (VIRTUAL_WIDTH-700)/2, 475, 800);
-			
-			font.drawWrapped(batcher, question.getOptions(0), 100, 
-					290, opsiBackgroundTexture.getWidth()-15);
-			
-			font.drawWrapped(batcher, question.getOptions(1), 100, 
-					130, opsiBackgroundTexture.getWidth()-15);
-			
-			font.drawWrapped(batcher, question.getOptions(2), 
-					100+opsiBackgroundTexture.getWidth()+60, 
-					290, opsiBackgroundTexture.getWidth()-15);
-			
-			font.drawWrapped(batcher, question.getOptions(3), 
-					100+opsiBackgroundTexture.getWidth()+60, 
-					130, opsiBackgroundTexture.getWidth()-15);
-			
-			
-			
 		batcher.end();
 		
 		
@@ -209,6 +265,42 @@ public class KuisScreen extends AbstractScreen{
 	
 	public boolean pauseButtonIsPressed(){
 		return pauseButtonPressed;
+	}
+	
+	public Rectangle getReplayBounds(){
+		return replayBounds;
+	}
+	
+	public Rectangle getMainMenuBounds(){
+		return mainMenuBounds;
+	}
+	
+	public Rectangle getNextBounds(){
+		return nextBounds;
+	}
+	
+	public void setReplayButtonPressed(boolean b){
+		replayButtonPressed = b;
+	}
+	
+	public void setMainMenuButtonPressed(boolean b){
+		replayButtonPressed = b;
+	}
+	
+	public void setNextButtonPressed(boolean b){
+		replayButtonPressed = b;
+	}
+	
+	public boolean replayButtonIsPressed(){
+		return replayButtonPressed;
+	}
+	
+	public boolean mainMenuButtonIsPressed(){
+		return mainMenuButtonPressed;
+	}
+	
+	public boolean nextButtonIsPressed(){
+		return nextButtonPressed;
 	}
 	
 }

@@ -13,7 +13,6 @@ import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
 import com.a4.ceritanusantara.views.PilihCeritaScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
-import com.a4.ceritanusantara.views.WinLoseScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -61,14 +60,14 @@ public class TapGameController {
 		}
 		
 		if(tapGame.getHits()<=0){
-			app.setScreen(new WinLoseScreen(app, false, -1));
+			tapGame.gameOver();
 		}
 		if(tapGame.getHits()>=25){
 			int score = 50;
 			if(tapGame.getBadHits()<=50){
 				score = 100 - tapGame.getBadHits();
 			}
-			app.setScreen(new WinLoseScreen(app, true, score));
+			tapGame.gameOver();
 		}
 		
 		if(Gdx.input.justTouched()){

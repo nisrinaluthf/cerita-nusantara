@@ -34,7 +34,7 @@ public class TapGameScreen extends AbstractScreen{
 	
 	private TapGameButton[] buttons;
 	
-	private boolean debug = true;
+	private boolean debug = false;
 		
 	public TapGameScreen(Aplikasi app, TapGame tapGame){
 		super(app);

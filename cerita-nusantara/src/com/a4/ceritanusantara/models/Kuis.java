@@ -5,6 +5,7 @@ public class Kuis extends SubCerita{
 	private int score;
 	private KuisQuestion[] questions;
 	private int currentNo;
+	private boolean gameOver;
 	
 	//public dulu ye males bikin set/get :(, ingetin nanti kalo sempet haha.
 	public float timeLeft;
@@ -14,6 +15,7 @@ public class Kuis extends SubCerita{
 		questions = new KuisQuestion[5];
 		currentNo = 0;
 		timeLeft = 21.0f;
+		gameOver = false;
 		
 		// TODO Auto-generated constructor stub
 	}
@@ -44,10 +46,21 @@ public class Kuis extends SubCerita{
 		return currentNo;
 	}
 	
+	public void gameOver() {
+		gameOver = true;
+	}
+	
+	public boolean isGameOver(){
+		return gameOver;
+	}
+	
 	public void reinit(){
 		score = 0;
 		currentNo = 0;
 		timeLeft = 21.0f;
+		gameOver = false;
 	}
+
+	
 	
 }
