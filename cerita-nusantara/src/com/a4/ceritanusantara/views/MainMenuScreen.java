@@ -146,9 +146,17 @@ public class MainMenuScreen extends AbstractScreen {
 		//System.out.println(Gdx.app.getPreferences("preferences").getBoolean("musicOn"));
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
-			mainMenuMusicBg.setLooping(true);
-			mainMenuMusicBg.play();
-		} else if(this.mainMenuMusicBg.isPlaying()) {
+			if (this.mainMenuMusicBg != null) {
+				System.out.println("play music");
+				mainMenuMusicBg.setLooping(true);
+				mainMenuMusicBg.play();
+			} else {
+				this.mainMenuMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+				System.out.println("play music after null");
+				mainMenuMusicBg.setLooping(true);
+				mainMenuMusicBg.play();
+			}
+		} else if(this.mainMenuMusicBg != null && this.mainMenuMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
 		//System.out.println(Gdx.app.getPreferences("preferences").getBoolean("musicON")+"");
@@ -215,13 +223,18 @@ public class MainMenuScreen extends AbstractScreen {
 	
 	public void stopMusic() {
 		System.out.println("stop");
-		if (this.mainMenuMusicBg.isPlaying()) {
-			if (this.mainMenuMusicBg.isLooping()) {
-				this.mainMenuMusicBg.setLooping(false);
+		if(this.mainMenuMusicBg != null) {
+			if (this.mainMenuMusicBg.isPlaying()) {
+				if (this.mainMenuMusicBg.isLooping()) {
+					this.mainMenuMusicBg.setLooping(false);
+				}
+				this.mainMenuMusicBg.stop();
+				this.mainMenuMusicBg.dispose();
 			}
-			this.mainMenuMusicBg.stop();
-			this.mainMenuMusicBg.dispose();
+			this.mainMenuMusicBg = null;
 		}
+		
+		
 	}
 	
 	/* 
