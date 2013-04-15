@@ -62,6 +62,7 @@ public class PilihSubCeritaController {
 				if(OverlapTester.pointInRectangle(subCeritaButtonBounds[i], pos.x, pos.y)){
 					if(subcerita[i].isUnlocked()){
 						screen.playSoundFx("pilihsubcerita");
+						screen.stopMusic();
 						screen.setSubCeritaButtonPressed(i, true);
 					}
 				}
@@ -82,7 +83,7 @@ public class PilihSubCeritaController {
 				if(screen.isSubCeritaButtonPressed(i)){
 					screen.setSubCeritaButtonPressed(i, false);
 					if(OverlapTester.pointInRectangle(subCeritaButtonBounds[i], pos.x, pos.y)){
-						screen.stopMusic();
+						
 						app.getScreen().dispose();
 						
 						if(screen.getSubCerita(i).getTipe()==SubCerita.KUIS){
