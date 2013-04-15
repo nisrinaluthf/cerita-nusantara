@@ -9,6 +9,8 @@ import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -46,6 +48,11 @@ public class PauseScreen extends AbstractScreen {
 	private boolean exitButtonPressed;
 	
 	private boolean debug = false;
+	
+	private Music pauseMusicBg;
+	
+	private Sound clickSfx;
+	
 
 	public PauseScreen(Aplikasi app, Screen originScreen, Adegan adegan) {
 		super(app);
@@ -116,6 +123,28 @@ public class PauseScreen extends AbstractScreen {
 		resumeButtonPressed = false;
 		restartButtonPressed = false;
 		exitButtonPressed = false;
+		
+		pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+		
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.pauseMusicBg != null) {
+				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				pauseMusicBg.setLooping(true);
+				pauseMusicBg.play();
+			} else {
+				this.pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+				System.out.println("play music after null");
+				pauseMusicBg.setLooping(true);
+				pauseMusicBg.play();
+			}
+		} else if(this.pauseMusicBg != null && this.pauseMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+		
+		clickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
+		
 		
 		controller = new PauseController(this);
 	}
@@ -291,7 +320,29 @@ public class PauseScreen extends AbstractScreen {
 	public boolean exitButtonIsPressed() {
 		return exitButtonPressed;
 	}
+
 	
+	public void playSoundFx() {
+		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
+		this.clickSfx.play();
+	}
+	
+	
+	public void stopMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.pauseMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.pauseMusicBg != null) {
+			if (this.pauseMusicBg.isPlaying()) {
+				if (this.pauseMusicBg.isLooping()) {
+					this.pauseMusicBg.setLooping(false);
+				}
+				this.pauseMusicBg.stop();
+				this.pauseMusicBg.dispose();
+				this.pauseMusicBg = null;
+			}
+			this.pauseMusicBg = null;
+		}
+	}
 	/* 
 	 * --ignore dulu deh yak, bingung sebenernya buat apa ._.--
 	 * 

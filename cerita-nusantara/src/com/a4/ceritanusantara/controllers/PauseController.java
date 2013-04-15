@@ -45,18 +45,24 @@ public void processInput(){
 			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 			
 			if(OverlapTester.pointInRectangle( resumeButtonBounds, pos.x, pos.y)){
+				screen.stopMusic();
+				screen.playSoundFx();
 				screen.setResumeButtonPressed(true);
 				
 			}
 			
 			else if(OverlapTester.pointInRectangle( restartButtonBounds, 
 					pos.x, pos.y)){
+				screen.stopMusic();
+				screen.playSoundFx();
 				screen.setRestartButtonPressed(true);
 				
 			}
 			
 			else if(OverlapTester.pointInRectangle( exitButtonBounds, 
 					pos.x, pos.y)){
+				screen.stopMusic();
+				screen.playSoundFx();
 				screen.setExitButtonPressed(true);
 				
 			}
