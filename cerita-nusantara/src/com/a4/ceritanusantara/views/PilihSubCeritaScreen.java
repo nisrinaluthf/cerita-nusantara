@@ -59,6 +59,8 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 
 		background = new Texture(Gdx.files.internal("backgrounds/pilihsubcerita_bg.png"));
 		
+		System.out.println("leeeeeeeeeeength "+subcerita.length);
+		
 		timelineTexture = new Texture(Gdx.files.internal(
 				"backgrounds/timeline_"+subcerita.length+".png"));
 		

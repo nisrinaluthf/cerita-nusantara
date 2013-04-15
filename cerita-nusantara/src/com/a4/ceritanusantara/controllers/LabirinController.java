@@ -29,8 +29,10 @@ private Aplikasi app;
 	
 	private LabirinWall[] walls;
 	private Vector2[] wallsPos;
-	private Rectangle[] wallsBounds;
-	private KuisQuestion kuisQuestion;
+	private Rectangle[] wallsBoundsTop;
+	private Rectangle[] wallsBoundsRight;
+	private Rectangle[] wallsBoundsBottom;
+	private Rectangle[] wallsBoundsLeft;
 	
 	private Rectangle replayBounds;
 	private Rectangle mainMenuBounds;
@@ -39,8 +41,7 @@ private Aplikasi app;
 	private OrthographicCamera cam;
 	private Rectangle viewport;
 
-	public LabirinController(LabirinScreen labirinScreen, Aplikasi app,
-			Labirin labirin) {
+	public LabirinController(LabirinScreen screen) {
 		// TODO Auto-generated constructor stub
 		
 		Gdx.input.setCatchBackKey(true);
@@ -51,10 +52,20 @@ private Aplikasi app;
 		pauseButtonBounds = screen.getPauseButtonBounds();
 		walls = labirin.getWalls();
 		
+		wallsPos = new Vector2[walls.length];
+		wallsBoundsTop = new Rectangle[walls.length];
+		wallsBoundsRight = new Rectangle[walls.length];
+		wallsBoundsBottom = new Rectangle[walls.length];
+		wallsBoundsLeft = new Rectangle[walls.length];
+		
+		
 		for(int i=0; i<walls.length; i++){
 			wallsPos[i] = walls[i].getPos();
-			wallsBounds[i] = walls[i].getBounds();
-			}
+			wallsBoundsTop[i] = walls[i].getBounds(0);
+			wallsBoundsRight[i] = walls[i].getBounds(1);
+			wallsBoundsBottom[i] = walls[i].getBounds(2);
+			wallsBoundsLeft[i] = walls[i].getBounds(3);
+		}
 		
 		replayBounds = screen.getReplayBounds();
 		mainMenuBounds = screen.getMainMenuBounds();

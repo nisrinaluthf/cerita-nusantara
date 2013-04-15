@@ -63,6 +63,8 @@ public class CeritaNusantara {
 		
 		InitSubCerita.initSumatera(cerita[SUMATERA]);
 		
+		System.out.println("init cerita 1 called");
+		
 		cerita[KALIMANTAN].setUnlocked(kalimantanUnlocked);
 		cerita[KALIMANTAN].setSubCerita(new SubCerita[]{
 				new Adegan("Adegan 1", SubCerita.ADEGAN),
@@ -80,7 +82,7 @@ public class CeritaNusantara {
 		InitSubCerita.initKalimantan(cerita[KALIMANTAN]);
 		
 		
-		
+		System.out.println("init cerita 2 called");
 		
 		
 	}

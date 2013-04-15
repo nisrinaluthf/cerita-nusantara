@@ -5,11 +5,17 @@ import com.badlogic.gdx.math.Vector2;
 
 public class LabirinWall {
 	private Vector2 pos;
-	private Rectangle bounds;
+	private Rectangle[] bounds;
 	
 	public LabirinWall(Vector2 pos){
 		this.pos = pos;
-		bounds = new Rectangle(pos.x, pos.y, 25, 25);
+		bounds = new Rectangle[]{
+				new Rectangle(pos.x, pos.y+25, 25, 3),
+				new Rectangle(pos.x+25, pos.y, 3, 25),
+				new Rectangle(pos.x, pos.y-3, 25, 3),
+				new Rectangle(pos.x-3, pos.y, 3, 25),
+		};
+		
 	}
 	
 	public float getX(){
@@ -21,10 +27,15 @@ public class LabirinWall {
 	}
 	
 	public Vector2 getPos(){
+		System.out.println(pos.x+" "+pos.y);
 		return pos;
 	}
 	
-	public Rectangle getBounds(){
+	public Rectangle[] getBounds(){
 		return bounds;
+	}
+	
+	public Rectangle getBounds(int i){
+		return bounds[i];
 	}
 }

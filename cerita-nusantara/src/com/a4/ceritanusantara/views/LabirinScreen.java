@@ -57,6 +57,9 @@ public class LabirinScreen extends AbstractScreen{
 		labirin.reinit();
 		
 		walls = labirin.getWalls();
+		for(int i=0; i<walls.length; i++){
+			System.out.println("wall"+walls[i].getX());
+		}
 		items = labirin.getItems();
 		
 		background = labirin.getBackground();
@@ -97,7 +100,10 @@ public class LabirinScreen extends AbstractScreen{
 		mainMenuButtonPressed = false;
 		nextButtonPressed = false;
 		
-		controller = new LabirinController(this, app, labirin);
+		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
+				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
+		
+		controller = new LabirinController(this);
 		
 	}
 	
@@ -152,8 +158,20 @@ public class LabirinScreen extends AbstractScreen{
 				int state = labirin.getPlayer().getState();
 				batcher.draw(playerTexture[state], labirin.getPlayer().getX(), 
 						labirin.getPlayer().getY());
+				
+				if (pauseButtonPressed) {
+					batcher.draw(pauseButtonPressedTexture,950, 526);
+				} else {
+					batcher.draw(pauseButtonTexture, 950, 526);
+				}
+				
+				int time = (int)labirin.timeLeft;
+				
+				font.draw(batcher, (time/60)+":"+((time%60)/10)+(((time%60)%10)), 23, 580);
+				
 			}
 		batcher.end();
+		controller.processInput(delta);
 	}
 	
 	

@@ -18,6 +18,8 @@ public class Labirin extends SubCerita{
 	public float timeLeft;
 	private boolean gameOver;
 	
+	private final float time = 91f;
+	
 	/*
 	private Vector2[] wallsPos;
 	private Vector2 playerPos;
@@ -30,7 +32,7 @@ public class Labirin extends SubCerita{
 	public Labirin(String nama, int tipe){
 		super(nama, tipe);
 		
-		timeLeft = 61.00f;
+		timeLeft = time;
 		gameOver = false;
 	}
 	
@@ -93,7 +95,7 @@ public class Labirin extends SubCerita{
 
 	public void reinit() {
 		player.reinit();
-		timeLeft = 61.00f;
+		timeLeft = time;
 		for(int i=0; i<items.length; i++){
 			items[i].setFound(false);
 		}

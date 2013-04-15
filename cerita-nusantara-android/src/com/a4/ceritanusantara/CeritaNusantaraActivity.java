@@ -13,7 +13,7 @@ public class CeritaNusantaraActivity extends AndroidApplication {
 		super.onCreate(savedInstanceState);
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		config.useAccelerometer = false;
+		config.useAccelerometer = true;
 		config.useCompass = false;
 		config.useWakelock = true;
 		config.useGL20 = true;

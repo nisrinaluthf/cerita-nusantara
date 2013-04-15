@@ -22,6 +22,7 @@ public class LabirinPlayer {
 		initPos = vector2;
 		pos = initPos;
 		bounds = new Rectangle(pos.x, pos.y, 23, 23);
+		velocity = new Vector2(0, 0);
 		state = UP;
 	}
 	

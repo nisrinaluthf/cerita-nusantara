@@ -16,7 +16,7 @@ public class Aplikasi extends Game {
 	@Override
 	public void create() {
 		ceritaNusantara = new CeritaNusantara();
-		
+		System.out.println("ceritaNusantara constructed");
 		setScreen(new MainMenuScreen(this));
 		
 		/*
