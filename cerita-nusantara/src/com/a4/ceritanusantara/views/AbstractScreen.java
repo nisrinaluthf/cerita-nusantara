@@ -130,7 +130,7 @@ public abstract class AbstractScreen implements Screen{
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		
+		//com.badlogic.gdx.Screen.dispose();
 	}
 	
 }

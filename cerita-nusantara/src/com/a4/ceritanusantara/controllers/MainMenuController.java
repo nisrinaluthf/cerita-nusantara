@@ -62,6 +62,7 @@ public class MainMenuController {
 			
 			else if(OverlapTester.pointInRectangle( settingsButtonBounds, 
 					pos.x, pos.y)){
+				screen.stopMusic();
 				screen.setSettingsButtonPressed(true);
 				
 			}
@@ -77,8 +78,8 @@ public class MainMenuController {
 			if(screen.playButtonIsPressed()){
 				screen.setPlayButtonPressed(false);
 				if(OverlapTester.pointInRectangle( playButtonBounds, pos.x, pos.y)){
-					screen.stopMusic();
-					screen.dispose();
+					//screen.stopMusic();
+					app.getScreen().dispose();
 					app.setScreen(new PilihCeritaScreen(app));
 					
 				}
@@ -87,7 +88,7 @@ public class MainMenuController {
 			else if(screen.settingsButtonIsPressed()){
 				screen.setSettingsButtonPressed(false);
 				if(OverlapTester.pointInRectangle( settingsButtonBounds, pos.x, pos.y)){
-					screen.dispose();
+					app.getScreen().dispose();
 					app.setScreen(new SettingsScreen(app));
 					
 				}

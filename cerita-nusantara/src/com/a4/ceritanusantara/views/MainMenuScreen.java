@@ -76,6 +76,22 @@ public class MainMenuScreen extends AbstractScreen {
 		
 		mainMenuMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
 		
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.mainMenuMusicBg != null) {
+				System.out.println("play music");
+				mainMenuMusicBg.setLooping(true);
+				mainMenuMusicBg.play();
+			} else {
+				this.mainMenuMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+				System.out.println("play music after null");
+				mainMenuMusicBg.setLooping(true);
+				mainMenuMusicBg.play();
+			}
+		} else if(this.mainMenuMusicBg != null && this.mainMenuMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+		
 		controller = new MainMenuController(this);
 		
 	}
@@ -150,21 +166,7 @@ public class MainMenuScreen extends AbstractScreen {
 		
 		//--kalo mau ada sfx atau musik nanti di sini aja--
 		//System.out.println(Gdx.app.getPreferences("preferences").getBoolean("musicOn"));
-		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
-			if (this.mainMenuMusicBg != null) {
-				System.out.println("play music");
-				mainMenuMusicBg.setLooping(true);
-				mainMenuMusicBg.play();
-			} else {
-				this.mainMenuMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
-				System.out.println("play music after null");
-				mainMenuMusicBg.setLooping(true);
-				mainMenuMusicBg.play();
-			}
-		} else if(this.mainMenuMusicBg != null && this.mainMenuMusicBg.isPlaying()) {
-			this.stopMusic();
-		}
+		
 		//System.out.println(Gdx.app.getPreferences("preferences").getBoolean("musicON")+"");
 		
 		//----------------end of sfx/musik-----------------
@@ -236,6 +238,7 @@ public class MainMenuScreen extends AbstractScreen {
 				}
 				this.mainMenuMusicBg.stop();
 				this.mainMenuMusicBg.dispose();
+				this.mainMenuMusicBg = null;
 			}
 			this.mainMenuMusicBg = null;
 		}
