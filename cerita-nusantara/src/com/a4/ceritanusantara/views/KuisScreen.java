@@ -5,6 +5,8 @@ import com.a4.ceritanusantara.controllers.KuisController;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -48,6 +50,14 @@ public class KuisScreen extends AbstractScreen{
 	private boolean replayButtonPressed;
 	private boolean mainMenuButtonPressed;
 	private boolean nextButtonPressed;
+	
+	private Sound falseAnswerSfx;
+	
+	private Sound rightAnswerSfx;
+	
+	private Sound pauseClickSfx;
+	
+	private Music kuisMusicBg;
 
 	public KuisScreen(Aplikasi app, Kuis kuis) {
 		super(app);
@@ -102,6 +112,29 @@ public class KuisScreen extends AbstractScreen{
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		
 		pauseButtonPressed = false;
+		
+		kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.mp3"));
+		
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.kuisMusicBg != null) {
+				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				kuisMusicBg.setLooping(true);
+				kuisMusicBg.play();
+			} else {
+				this.kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.mp3"));
+				System.out.println("play music after null");
+				kuisMusicBg.setLooping(true);
+				kuisMusicBg.play();
+			}
+		} else if(this.kuisMusicBg != null && this.kuisMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+		
+		this.falseAnswerSfx = Gdx.audio.newSound(Gdx.files.internal("sound/answer_false.mp3"));
+		this.rightAnswerSfx = Gdx.audio.newSound(Gdx.files.internal("sound/answer_true.mp3"));
+		this.pauseClickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
 		
 		controller = new KuisController(this);
 		
@@ -310,6 +343,33 @@ public class KuisScreen extends AbstractScreen{
 	
 	public boolean nextButtonIsPressed(){
 		return nextButtonPressed;
+	}
+	
+	public void playSoundFx(String key) {
+		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
+			if (key.equals("default"))
+				this.pauseClickSfx.play();
+			else if (key.equals("false"))
+				this.falseAnswerSfx.play();
+			else if (key.equals("true"))
+				this.rightAnswerSfx.play();
+	}
+	
+	
+	public void stopMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.kuisMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.kuisMusicBg != null) {
+			if (this.kuisMusicBg.isPlaying()) {
+				if (this.kuisMusicBg.isLooping()) {
+					this.kuisMusicBg.setLooping(false);
+				}
+				this.kuisMusicBg.stop();
+				this.kuisMusicBg.dispose();
+				this.kuisMusicBg = null;
+			}
+			this.kuisMusicBg = null;
+		}
 	}
 	
 }

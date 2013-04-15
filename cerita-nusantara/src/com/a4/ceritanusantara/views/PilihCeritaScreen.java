@@ -67,8 +67,8 @@ public class PilihCeritaScreen extends AbstractScreen {
 			new Rectangle(455, 365, 65, 70)
 		};
 		
-		backButtonTexture = new Texture(Gdx.files.internal("buttons/home.png"));
-		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/home_pressed.png"));
+		backButtonTexture = new Texture(Gdx.files.internal("buttons/back.png"));
+		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/back_pressed.png"));
 		
 		backButtonBounds = new Rectangle(0, 0, backButtonTexture.getWidth(),
 				backButtonTexture.getHeight());
