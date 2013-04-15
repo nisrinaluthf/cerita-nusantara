@@ -47,16 +47,19 @@ import com.badlogic.gdx.math.Vector3;
 			
 			for(int i=0; i<sumateraBounds.length; i++){
 				if(OverlapTester.pointInRectangle( sumateraBounds[i], pos.x, pos.y)){
+					screen.playSoundFx("pilihcerita");
 					screen.setSumateraPressed(true);
 				}
 			}
 			
 			for(int i=0; i<kalimantanBounds.length; i++){
 				if(OverlapTester.pointInRectangle( kalimantanBounds[i], pos.x, pos.y)){
+					screen.playSoundFx("pilihcerita");
 					screen.setKalimantanPressed(true);
 				}
 			}
 			if(OverlapTester.pointInRectangle( backButtonBounds,pos.x, pos.y)){
+				screen.playSoundFx("back");
 				screen.setBackButtonPressed(true);
 				System.out.println("back to home");
 			}
@@ -73,6 +76,8 @@ import com.badlogic.gdx.math.Vector3;
 				screen.setSumateraPressed(false);
 				for(int i=0; i<sumateraBounds.length; i++){
 					if(OverlapTester.pointInRectangle( sumateraBounds[i], pos.x, pos.y)){
+						screen.stopMusic();
+						app.getScreen().dispose();
 						app.setScreen(new PilihSubCeritaScreen(app, 
 								app.getCeritaNusantara().getCerita(CeritaNusantara.SUMATERA)));
 						
@@ -84,6 +89,8 @@ import com.badlogic.gdx.math.Vector3;
 				screen.setKalimantanPressed(false);
 				for(int i=0; i<kalimantanBounds.length; i++){
 					if(OverlapTester.pointInRectangle( kalimantanBounds[i], pos.x, pos.y)){
+						screen.stopMusic();
+						app.getScreen().dispose();
 						app.setScreen(new PilihSubCeritaScreen(app, 
 								app.getCeritaNusantara().getCerita(CeritaNusantara.KALIMANTAN)));
 						
@@ -94,6 +101,8 @@ import com.badlogic.gdx.math.Vector3;
 				screen.setBackButtonPressed(false);
 				if(OverlapTester.pointInRectangle( backButtonBounds, pos.x, pos.y)){
 					//app.setScreen(new SettingsScreen(app, screen.width, screen.height));
+					screen.stopMusic();
+					app.getScreen().dispose();
 					app.setScreen(new MainMenuScreen(app));
 				}
 				System.out.println("back diklik");

@@ -2,6 +2,7 @@ package com.a4.ceritanusantara.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -44,6 +45,8 @@ public class MainMenuScreen extends AbstractScreen {
 	
 	private Music mainMenuMusicBg;
 	
+	private Sound clickSfx;
+	
 	//awalnya samain aja sama supernya
 	public MainMenuScreen(Aplikasi app){
 		super(app);
@@ -80,6 +83,7 @@ public class MainMenuScreen extends AbstractScreen {
 			//System.out.println("play music");
 			if (this.mainMenuMusicBg != null) {
 				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				mainMenuMusicBg.setLooping(true);
 				mainMenuMusicBg.play();
 			} else {
@@ -91,6 +95,8 @@ public class MainMenuScreen extends AbstractScreen {
 		} else if(this.mainMenuMusicBg != null && this.mainMenuMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
+		
+		clickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
 		
 		controller = new MainMenuController(this);
 		
@@ -229,7 +235,14 @@ public class MainMenuScreen extends AbstractScreen {
 		return settingsButtonPressed;
 	}
 	
+	public void playSoundFx() {
+		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
+		this.clickSfx.play();
+	}
+	
+	
 	public void stopMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.mainMenuMusicBg.getPosition());
 		System.out.println("stop");
 		if(this.mainMenuMusicBg != null) {
 			if (this.mainMenuMusicBg.isPlaying()) {
@@ -242,8 +255,6 @@ public class MainMenuScreen extends AbstractScreen {
 			}
 			this.mainMenuMusicBg = null;
 		}
-		
-		
 	}
 	
 	/* 
@@ -260,5 +271,6 @@ public class MainMenuScreen extends AbstractScreen {
 		
 		
 	}
+	
 	
 }

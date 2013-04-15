@@ -56,6 +56,7 @@ public class MainMenuController {
 			if(OverlapTester.pointInRectangle( playButtonBounds, pos.x, pos.y)){
 				System.out.println("musik berhenti harusnya");
 				screen.stopMusic();
+				screen.playSoundFx();
 				screen.setPlayButtonPressed(true);
 				
 			}
@@ -63,6 +64,7 @@ public class MainMenuController {
 			else if(OverlapTester.pointInRectangle( settingsButtonBounds, 
 					pos.x, pos.y)){
 				screen.stopMusic();
+				screen.playSoundFx();
 				screen.setSettingsButtonPressed(true);
 				
 			}

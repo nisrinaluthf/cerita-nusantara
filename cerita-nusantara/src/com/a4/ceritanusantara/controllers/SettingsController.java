@@ -56,17 +56,21 @@ public void processInput(){
 		
 		//System.out.println(soundButtonBounds+" x: "+Gdx.input.getX()/screen.ppuX+" y: "+(screen.height-Gdx.input.getY())/screen.ppuY);
 		if(OverlapTester.pointInRectangle( soundButtonBounds,pos.x, pos.y)){
+			
 			screen.setSoundButtonPressed(true);
 			System.out.println("toggle sound button");
 
 		}
 		
 		else if(OverlapTester.pointInRectangle( musicButtonBounds,pos.x, pos.y)){
+			//screen.playSoundFx();
 			screen.setMusicButtonPressed(true);
 			System.out.println("toggle music button");
 		}
 		
 		else if(OverlapTester.pointInRectangle( backButtonBounds,pos.x, pos.y)){
+			screen.stopMusic();
+			screen.playSoundFx();
 			screen.setBackButtonPressed(true);
 			System.out.println("back to home");
 		}
@@ -83,7 +87,10 @@ public void processInput(){
 				if(OverlapTester.pointInRectangle( soundButtonBounds, 
 						pos.x, pos.y)){
 					//app.setScreen(new PilihCeritaScreen(app, screen.width, screen.height));
+					
+					//screen.updateMusic();
 					prefs.putBoolean("soundOn", !prefs.getBoolean("soundOn"));
+					screen.playSoundFx();
 				}
 				System.out.println("sound diklik");
 			}
@@ -92,7 +99,10 @@ public void processInput(){
 				screen.setMusicButtonPressed(false);
 				if(OverlapTester.pointInRectangle( musicButtonBounds, pos.x, pos.y)){
 					//app.setScreen(new SettingsScreen(app, screen.width, screen.height));
+
+					screen.updateMusic();
 					prefs.putBoolean("musicOn", !prefs.getBoolean("musicOn"));
+					screen.playSoundFx();
 				}
 				System.out.println("music diklik");
 			}
@@ -101,6 +111,7 @@ public void processInput(){
 				screen.setBackButtonPressed(false);
 				if(OverlapTester.pointInRectangle( backButtonBounds, pos.x, pos.y)){
 					//app.setScreen(new SettingsScreen(app, screen.width, screen.height));
+					app.getScreen().dispose();
 					app.setScreen(new MainMenuScreen(app));
 				}
 				System.out.println("back diklik");

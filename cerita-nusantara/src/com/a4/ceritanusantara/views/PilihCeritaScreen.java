@@ -1,6 +1,8 @@
 package com.a4.ceritanusantara.views;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -33,6 +35,11 @@ public class PilihCeritaScreen extends AbstractScreen {
 	private boolean kalimantanPressed;
 	private boolean backButtonPressed;
 
+	private Sound clickSfx;
+	
+	private Sound backClickSfx;
+	
+	private Music pilihCeritaMusicBg;
 
 	private boolean debug = false;
 
@@ -69,6 +76,28 @@ public class PilihCeritaScreen extends AbstractScreen {
 		sumateraPressed = false;
 		kalimantanPressed = false;
 		backButtonPressed = false;
+		
+		pilihCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.mp3"));
+		
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.pilihCeritaMusicBg != null) {
+				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				pilihCeritaMusicBg.setLooping(true);
+				pilihCeritaMusicBg.play();
+			} else {
+				this.pilihCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.mp3"));
+				System.out.println("play music after null");
+				pilihCeritaMusicBg.setLooping(true);
+				pilihCeritaMusicBg.play();
+			}
+		} else if(this.pilihCeritaMusicBg != null && this.pilihCeritaMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+		
+		clickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click2.wav"));
+		backClickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
 		
 		controller = new PilihCeritaController(this);
 
@@ -146,6 +175,31 @@ public class PilihCeritaScreen extends AbstractScreen {
 			}
 
 		debugRenderer.end();
+	}
+	
+	public void playSoundFx(String key) {
+		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
+			if (key.equals("back"))
+				this.backClickSfx.play();
+			else
+			this.clickSfx.play();
+	}
+	
+	
+	public void stopMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.pilihCeritaMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.pilihCeritaMusicBg != null) {
+			if (this.pilihCeritaMusicBg.isPlaying()) {
+				if (this.pilihCeritaMusicBg.isLooping()) {
+					this.pilihCeritaMusicBg.setLooping(false);
+				}
+				this.pilihCeritaMusicBg.stop();
+				this.pilihCeritaMusicBg.dispose();
+				this.pilihCeritaMusicBg = null;
+			}
+			this.pilihCeritaMusicBg = null;
+		}
 	}
 
 	public Rectangle[] getSumateraBounds(){

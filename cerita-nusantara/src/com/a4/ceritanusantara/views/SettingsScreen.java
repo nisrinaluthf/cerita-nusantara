@@ -3,6 +3,8 @@ package com.a4.ceritanusantara.views;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.SettingsController;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -35,6 +37,10 @@ public class SettingsScreen extends AbstractScreen {
 	
 	private boolean debug = true;
 	private BitmapFont font;
+	
+	private Music settingsMusicBg;
+	
+	private Sound clickSfx;
 	
 	public SettingsScreen(Aplikasi app) {
 		super(app);
@@ -82,6 +88,27 @@ public class SettingsScreen extends AbstractScreen {
 		backButtonPressed = false;
 		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
+		
+		settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+		
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			System.out.println("play music");
+			if (this.settingsMusicBg != null) {
+				System.out.println("play music");
+				settingsMusicBg.setLooping(true);
+				settingsMusicBg.play();
+			} else {
+			this.settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+			System.out.println("play music after null");
+				settingsMusicBg.setLooping(true);
+				settingsMusicBg.play();
+			}
+		} else if(this.settingsMusicBg != null && this.settingsMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+		
+		clickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
+		
 		controller = new SettingsController(this);
 	}
 	
@@ -153,6 +180,8 @@ public class SettingsScreen extends AbstractScreen {
 		
 		//--kalo mau ada sfx atau musik nanti di sini aja--
 		
+		
+		
 		//----------------end of sfx/musik-----------------
 		
 		//kalo udah bikin controllernya jangan lupa panggil controller.processInput()
@@ -193,6 +222,45 @@ public class SettingsScreen extends AbstractScreen {
 	
 	public void setBackButtonPressed(boolean b) {
 		this.backButtonPressed = b;
+	}
+	
+	public void playSoundFx() {
+		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
+		this.clickSfx.play();
+	}
+	
+	public void stopMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.settingsMusicBg.getPosition());
+		//System.out.println("stop");
+		if(this.settingsMusicBg != null) {
+		if (this.settingsMusicBg.isPlaying()) {
+				if (this.settingsMusicBg.isLooping()) {
+					this.settingsMusicBg.setLooping(false);
+				}
+				this.settingsMusicBg.stop();
+				this.settingsMusicBg.dispose();
+				this.settingsMusicBg = null;
+		}
+			this.settingsMusicBg = null;
+		}
+	}
+	
+	public void updateMusic() {
+		if(this.settingsMusicBg == null || !this.settingsMusicBg.isPlaying()) {
+			System.out.println("play music");
+			if (this.settingsMusicBg != null) {
+				System.out.println("play music");
+				settingsMusicBg.setLooping(true);
+				settingsMusicBg.play();
+			} else {
+			this.settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+			System.out.println("play music after null");
+				settingsMusicBg.setLooping(true);
+				settingsMusicBg.play();
+			}
+		} else {
+			this.stopMusic();
+		}
 	}
 	
 	//rectangle boundsnya digambar kalo mau debug==true
