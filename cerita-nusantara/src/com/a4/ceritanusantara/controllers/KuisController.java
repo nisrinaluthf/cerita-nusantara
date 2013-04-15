@@ -60,16 +60,21 @@ public class KuisController {
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
 				if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.stopMusic();
 					screen.setReplayButtonPressed(true);
 				}
 				
 				else if(OverlapTester.pointInRectangle(mainMenuBounds, 
 						pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.stopMusic();
 					screen.setMainMenuButtonPressed(true);
 				}
 				
 				else if(OverlapTester.pointInRectangle(nextBounds, 
 						pos.x, pos.y)&&kuis.getScore()>60){
+					screen.playSoundFx("default");
 					screen.setNextButtonPressed(true);
 					
 				}
@@ -81,6 +86,7 @@ public class KuisController {
 				if(screen.replayButtonIsPressed()){
 					screen.setReplayButtonPressed(false);
 					if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
+						app.getScreen().dispose();
 						app.setScreen(new KuisScreen(app, kuis));
 					}
 				}
@@ -89,6 +95,7 @@ public class KuisController {
 					screen.setMainMenuButtonPressed(false);
 					if(OverlapTester.pointInRectangle(mainMenuBounds, 
 							pos.x, pos.y)){
+						app.getScreen().dispose();
 						app.setScreen(new MainMenuScreen(app));
 					}
 				}
@@ -98,6 +105,7 @@ public class KuisController {
 					screen.setNextButtonPressed(false);
 					if(OverlapTester.pointInRectangle(nextBounds, 
 							pos.x, pos.y)){
+						app.getScreen().dispose();
 						app.setScreen(new CongratulationsScreen(app));
 					}
 				}
@@ -107,6 +115,9 @@ public class KuisController {
 		
 			if (Gdx.input.isKeyPressed(Keys.BACK)){
 				screen.pause();
+				screen.playSoundFx("default");
+				
+				//app.getScreen().dispose();
 				app.setScreen(new PauseScreen(app, screen, kuis));
 			}
 			
@@ -132,6 +143,7 @@ public class KuisController {
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
 				if(OverlapTester.pointInRectangle( pauseButtonBounds, pos.x, pos.y)){
+					screen.playSoundFx("default");
 					screen.setPauseButtonPressed(true);	
 				}
 				
@@ -163,7 +175,10 @@ public class KuisController {
 							
 							//kalo bener
 							if(kuisQuestion.getAnswer()==i){
+								screen.playSoundFx("true");
 								kuis.setScore(kuis.getScore()+20);
+							} else {
+								screen.playSoundFx("false");
 							}
 							
 							if(kuis.getCurrentNo()<4){
