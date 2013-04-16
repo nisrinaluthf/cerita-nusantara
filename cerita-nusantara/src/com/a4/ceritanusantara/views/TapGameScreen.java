@@ -11,6 +11,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -50,6 +51,7 @@ public class TapGameScreen extends AbstractScreen{
 	private boolean replayButtonPressed;
 	private boolean mainMenuButtonPressed;
 	private boolean nextButtonPressed;
+	private BitmapFont font;
 		
 	public TapGameScreen(Aplikasi app, TapGame tapGame){
 		super(app);
@@ -98,6 +100,9 @@ public class TapGameScreen extends AbstractScreen{
 		scoreBgTexture = new Texture(Gdx.files.internal("parkit-tapgame/score_bg.png"));
 		scoreFrameTexture = new Texture(Gdx.files.internal("parkit-tapgame/score_frame.png"));
 		
+		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
+				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
+		
 		buttons = tapGame.getButtons();
 		
 		controller = new TapGameController(this, app, tapGame);
@@ -132,7 +137,6 @@ public class TapGameScreen extends AbstractScreen{
 				}
 				
 				if(mainMenuButtonPressed){
-					System.out.println("mainmenu pressed drawed");
 					batcher.draw(mainMenuPressedTexture, 
 							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
 				}
@@ -141,9 +145,21 @@ public class TapGameScreen extends AbstractScreen{
 							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
 				}
 				
+				if(tapGame.getBadHits()>10) tapGame.setScore(50);
+				else{
+					tapGame.setScore(100-(tapGame.getBadHits()*5));
+				}
+				
+				
 				if(tapGame.getScore()>=60){
 					batcher.draw(nextTexture, 950, 30);
+					font.draw(batcher, "Skor kamu: "+tapGame.getScore(), 380, 400);
 				}
+				else{
+					font.draw(batcher, "Maaf kamu gagal,", 362, 420);
+					font.draw(batcher, "silakan coba lagi :)", 358, 370);
+				}
+				
 			batcher.end();
 		}
         else{

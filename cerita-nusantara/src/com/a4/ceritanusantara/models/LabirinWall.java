@@ -10,10 +10,10 @@ public class LabirinWall {
 	public LabirinWall(Vector2 pos){
 		this.pos = pos;
 		bounds = new Rectangle[]{
-				new Rectangle(pos.x, pos.y+25, 25, 3),
-				new Rectangle(pos.x+25, pos.y, 3, 25),
-				new Rectangle(pos.x, pos.y-3, 25, 3),
-				new Rectangle(pos.x-3, pos.y, 3, 25),
+				new Rectangle(pos.x, pos.y+25, 25, 2),
+				new Rectangle(pos.x+25, pos.y, 2, 25),
+				new Rectangle(pos.x, pos.y-2, 25, 2),
+				new Rectangle(pos.x-2, pos.y, 2, 25),
 		};
 		
 	}

@@ -16,6 +16,7 @@ import com.a4.ceritanusantara.models.TapGameButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class InitSubCerita {
@@ -29,7 +30,7 @@ public class InitSubCerita {
 				Texture(Gdx.files.internal("backgrounds/sumatera_labirin_player.png")));
 		*/
 		
-		FileHandle file = Gdx.files.local("datasumatera");
+		FileHandle file = Gdx.files.internal("data/datasumatera");
 		String data = file.readString();
 		StringTokenizer st = new StringTokenizer(data,  ";");
 		int i=0;
@@ -76,12 +77,68 @@ public class InitSubCerita {
 						new Texture(Gdx.files.internal("parkit-tapgame/button3_pressed.png")))
 		});
 		
+		
+		List<LabirinWall> walls = new ArrayList<LabirinWall>();
+		List<LabirinItem> items = new ArrayList<LabirinItem>();
+		
+		file = Gdx.files.internal("labirin/labirin_siparkit.txt");
+		data = file.readString();
+		st = new StringTokenizer(data, System.getProperty("line.separator"));
+		
+		
+		LabirinPlayer player = null;
+		Rectangle finish = null;
+		int start = 137;
+		i=0;
+		while(st.hasMoreTokens()){
+			String line = st.nextToken();
+			for(int j=0; j<30; j++){
+				if(line.charAt(j)=='X'){
+					walls.add(new LabirinWall(new Vector2(start+(25*j), 575-(i*25))));
+				}
+				
+				else if(line.charAt(j)=='O'){
+					items.add(new LabirinItem(new Vector2(start+(25*j), 575-(i*25))));
+				}
+				
+				else if(line.charAt(j)=='P'){
+					player = new LabirinPlayer(new Vector2(start+(25*j), 575-(i*25)));
+				}
+				
+				else if(line.charAt(j)=='F'){
+					finish = new Rectangle(start+(25*j), 575-(i*25), 75, 25);
+					j+=2;
+				}
+			}
+			
+			i++;
+		}
+		
+		((Labirin) cerita.getSubCerita(8)).setWalls(walls.toArray(new LabirinWall[0]));
+		((Labirin) cerita.getSubCerita(8)).setItems(items.toArray(new LabirinItem[0]));
+		((Labirin) cerita.getSubCerita(8)).setPlayer(player);
+		((Labirin) cerita.getSubCerita(8)).setFinishBounds(finish);
+		
+		((Labirin) cerita.getSubCerita(8)).setBackground(new
+				Texture(Gdx.files.internal("parkit-labirin/background.png")));
+		((Labirin) cerita.getSubCerita(8)).setPlayerTexture(new Texture[]{
+				new Texture(Gdx.files.internal("parkit-labirin/siparkit_up.png")),
+				new Texture(Gdx.files.internal("parkit-labirin/siparkit_right.png")),
+				new Texture(Gdx.files.internal("parkit-labirin/siparkit_down.png")),
+				new Texture(Gdx.files.internal("parkit-labirin/siparkit_left.png")),
+		});
+		((Labirin) cerita.getSubCerita(8)).setWallTexture(new
+				Texture(Gdx.files.internal("parkit-labirin/wall.png")));
+		((Labirin) cerita.getSubCerita(8)).setItemTexture(new
+				Texture(Gdx.files.internal("nusa-labirin/item.png")));
+		
+		
 		((Kuis) cerita.getSubCerita(10)).setQuestions(new KuisQuestion[]{
 				new KuisQuestion("Apa strategi raja parkit agar terbebas dari tangkapan si pemburu?", 
 						"A. berpura-pura tidur", 
 						"B. berusaha melepas perekat", 
 						"C. berpura-pura mati", 
-						"D. meronat meminta tolong", 
+						"D. meronta meminta tolong", 
 						2),
 				new KuisQuestion("Mengapa kawanan parakeet terbang seketika tanpa menunggu hitungan dari si parkit?", 
 						"A. karena kaget si pemburu terpeleset",
@@ -100,7 +157,7 @@ public class InitSubCerita {
 						"B. karena si Parkit ingin kembali ke hutan",
 						"C. karena si Parkit tidak suka pada Raja",
 						"D. karena si Parkit dibujuk oleh temannya", 
-						0),
+						1),
 				new KuisQuestion("Apa rencana si Parkit agar bisa terbebas dari sangkar sang Raja?",
 						"a. berpura-pura tidur",
 						"b. memohon pada Raja agar dilepaskan",
@@ -114,7 +171,7 @@ public class InitSubCerita {
 	
 	public static void initKalimantan(Cerita cerita){
 		
-		FileHandle file = Gdx.files.local("datakalimantan");
+		FileHandle file = Gdx.files.internal("data/datakalimantan");
 		String data = file.readString();
 		StringTokenizer st = new StringTokenizer(data,  ";");
 		int i=0;
@@ -134,12 +191,13 @@ public class InitSubCerita {
 		List<LabirinWall> walls = new ArrayList<LabirinWall>();
 		List<LabirinItem> items = new ArrayList<LabirinItem>();
 		
-		file = Gdx.files.local("labirin/labirin_nusa.txt");
+		file = Gdx.files.internal("labirin/labirin_nusa.txt");
 		data = file.readString();
 		st = new StringTokenizer(data, System.getProperty("line.separator"));
 		
 		
 		LabirinPlayer player = null;
+		Rectangle finish = null;
 		int start = 137;
 		i=0;
 		while(st.hasMoreTokens()){
@@ -156,6 +214,11 @@ public class InitSubCerita {
 				else if(line.charAt(j)=='P'){
 					player = new LabirinPlayer(new Vector2(start+(25*j), 575-(i*25)));
 				}
+				
+				else if(line.charAt(j)=='F'){
+					finish = new Rectangle(start+(25*j), 575-(i*25), 75, 25);
+					j+=2;
+				}
 			}
 			
 			i++;
@@ -164,6 +227,7 @@ public class InitSubCerita {
 		((Labirin) cerita.getSubCerita(2)).setWalls(walls.toArray(new LabirinWall[0]));
 		((Labirin) cerita.getSubCerita(2)).setItems(items.toArray(new LabirinItem[0]));
 		((Labirin) cerita.getSubCerita(2)).setPlayer(player);
+		((Labirin) cerita.getSubCerita(2)).setFinishBounds(finish);
 		
 		((Labirin) cerita.getSubCerita(2)).setBackground(new
 				Texture(Gdx.files.internal("nusa-labirin/background.png")));

@@ -4,6 +4,7 @@ import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
 import com.a4.ceritanusantara.models.Labirin;
+import com.a4.ceritanusantara.models.LabirinPlayer;
 import com.a4.ceritanusantara.models.LabirinWall;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.CongratulationsScreen;
@@ -34,12 +35,18 @@ private Aplikasi app;
 	private Rectangle[] wallsBoundsBottom;
 	private Rectangle[] wallsBoundsLeft;
 	
+	private LabirinPlayer player;
+	
+	private Rectangle itemsBounds[];
+	
 	private Rectangle replayBounds;
 	private Rectangle mainMenuBounds;
 	private Rectangle nextBounds;
 	
 	private OrthographicCamera cam;
 	private Rectangle viewport;
+
+	private Rectangle finish;
 
 	public LabirinController(LabirinScreen screen) {
 		// TODO Auto-generated constructor stub
@@ -48,6 +55,8 @@ private Aplikasi app;
 		this.screen = screen;
 		app = screen.getAplikasi();
 		labirin = screen.getLabirin();
+		
+		player = labirin.getPlayer();
 		
 		pauseButtonBounds = screen.getPauseButtonBounds();
 		walls = labirin.getWalls();
@@ -67,6 +76,15 @@ private Aplikasi app;
 			wallsBoundsLeft[i] = walls[i].getBounds(3);
 		}
 		
+		itemsBounds = new Rectangle[labirin.getItems().length];
+		
+		
+		for(int i=0; i<labirin.getItems().length; i++){
+			itemsBounds[i] = labirin.getItem(i).getBounds();
+		}
+		
+		finish = labirin.getFinishBounds();
+		
 		replayBounds = screen.getReplayBounds();
 		mainMenuBounds = screen.getMainMenuBounds();
 		nextBounds = screen.getNextBounds();
@@ -76,6 +94,11 @@ private Aplikasi app;
 	}
 	
 	public void processInput(float delta){
+		
+		if(labirin.timeLeft<0){
+			labirin.gameOver();
+		}
+		
 		if(labirin.isGameOver()){
 			if(Gdx.input.justTouched()){
 				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
@@ -161,18 +184,118 @@ private Aplikasi app;
 				}
 			}
 			
-			float accelX = Gdx.input.getAccelerometerX();
-			float accelY = Gdx.input.getAccelerometerX();
+			float accelY = -Gdx.input.getAccelerometerX();
+			float accelX = Gdx.input.getAccelerometerY();
+			
+			player = labirin.getPlayer();
 			
 			if(Math.abs(accelX)>=Math.abs(accelY)){
 				accelY = 0f;
 			}
 			else{
 				accelX = 0f;
+			}	
+			
+			if(Math.abs(accelX)>2f){
+				if(accelX<0f){
+					accelX = -2f;
+				}
+				else if(accelX>0f){
+					accelX = 2f;
+				}
+			}
+			
+			if(Math.abs(accelY)>2f){
+				if(accelY<0f){
+					accelY = -2f;
+				}
+				else if(accelY>0f){
+					accelY = 2f;
+				}
+			}
+			
+			if(accelX<0f){
+				for(int i=0; i<wallsBoundsRight.length; i++){
+					if(OverlapTester.pointInRectangle(wallsBoundsRight[i], player.getX(), player.getY())||
+							OverlapTester.pointInRectangle(wallsBoundsRight[i], player.getX(), player.getY()+23)){
+						accelX=0f;
+						break;
+					}
+				}
+			}
+			else if(accelX>0f){
+				for(int i=0; i<wallsBoundsLeft.length; i++){
+					if(OverlapTester.pointInRectangle(wallsBoundsLeft[i], player.getX()+23, player.getY())||
+							OverlapTester.pointInRectangle(wallsBoundsLeft[i], player.getX()+23, player.getY()+23)){
+						accelX=0f;
+						break;
+					}
+				}
+			}
+			
+			if(accelY<0f){
+				for(int i=0; i<wallsBoundsTop.length; i++){
+					if(OverlapTester.pointInRectangle(wallsBoundsTop[i], player.getX(), player.getY())||
+							OverlapTester.pointInRectangle(wallsBoundsTop[i], player.getX()+23, player.getY())){
+						accelY=0f;
+						break;
+					}
+				}
+			}
+			else if(accelY>0f){
+				for(int i=0; i<wallsBoundsBottom.length; i++){
+					if(OverlapTester.pointInRectangle(wallsBoundsBottom[i], player.getX(), player.getY()+23)||
+							OverlapTester.pointInRectangle(wallsBoundsBottom[i], player.getX()+23, player.getY()+23)){
+						accelY=0f;
+						break;
+					}
+				}
+			}
+			
+			for(int i=0; i<itemsBounds.length; i++){
+				if(OverlapTester.pointInRectangle(itemsBounds[i], player.getX(), player.getY()+23)||
+						OverlapTester.pointInRectangle(itemsBounds[i], player.getX()+23, player.getY()+23)||
+						OverlapTester.pointInRectangle(itemsBounds[i], player.getX()+23, player.getY())||
+						OverlapTester.pointInRectangle(itemsBounds[i], player.getX(), player.getY())){
+					accelY=0;
+					labirin.getItem(i).setFound(true);
+				}
+			}
+			
+			if(OverlapTester.pointInRectangle(finish, player.getX(), player.getY()+23)||
+					OverlapTester.pointInRectangle(finish, player.getX()+23, player.getY()+23)){
+				
+				boolean itemsFound = true;
+				
+				for(int i=0; i<itemsBounds.length; i++){
+					if(!labirin.getItem(i).isFound()){
+						itemsFound = false;
+					}
+				}
+				
+				if(itemsFound){
+					int score;
+					if(labirin.timeLeft<10){
+						score = 50;
+					}
+					else{
+						score = (int) (50+(labirin.timeLeft-10));
+					}
+					
+					labirin.setScore(score);
+					labirin.gameOver();
+				}
+				else{
+					if(accelY>0f){
+						accelY = 0f;
+					}
+				}
 			}
 			
 			labirin.getPlayer().setVelocityX(accelX);
 			labirin.getPlayer().setVelocityY(accelY);
+			
+			System.out.println("X = "+accelX+", Y = "+accelY);
 		}
 		
 	}

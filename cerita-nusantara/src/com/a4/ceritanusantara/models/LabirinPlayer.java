@@ -20,7 +20,7 @@ public class LabirinPlayer {
 	public LabirinPlayer(Vector2 vector2) {
 		// TODO Auto-generated constructor stub
 		initPos = vector2;
-		pos = initPos;
+		pos = new Vector2(initPos.x, initPos.y);
 		bounds = new Rectangle(pos.x, pos.y, 23, 23);
 		velocity = new Vector2(0, 0);
 		state = UP;
@@ -68,9 +68,13 @@ public class LabirinPlayer {
 	public float getY(){
 		return pos.y;
 	}
+	
 	public void reinit() {
 		// TODO Auto-generated method stub
-		pos = initPos;
+		System.out.println("reinit labirinplayer dipanggil");
+		pos = new Vector2(initPos.x, initPos.y);
+		bounds = new Rectangle(pos.x, pos.y, 23, 23);
+		velocity = new Vector2(0, 0);
 		state = UP;
 	}
 

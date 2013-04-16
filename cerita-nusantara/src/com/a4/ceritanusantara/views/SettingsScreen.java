@@ -35,7 +35,7 @@ public class SettingsScreen extends AbstractScreen {
 	private boolean musicButtonPressed;
 	private boolean backButtonPressed;
 	
-	private boolean debug = true;
+	private boolean debug = false;
 	private BitmapFont font;
 	
 	private Music settingsMusicBg;

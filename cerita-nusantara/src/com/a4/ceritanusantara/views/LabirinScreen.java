@@ -10,7 +10,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 public class LabirinScreen extends AbstractScreen{
 	
@@ -30,7 +32,7 @@ public class LabirinScreen extends AbstractScreen{
 	private LabirinWall[] walls;
 	private LabirinItem[] items;
 	
-	private boolean debug = true;
+	private boolean debug = false;
 	private Texture itemTexture;
 	
 	private Texture gameOverBg;
@@ -48,12 +50,13 @@ public class LabirinScreen extends AbstractScreen{
 	private boolean mainMenuButtonPressed;
 	private boolean nextButtonPressed;
 	
-	private BitmapFont font;
+	private BitmapFont font44;
 	
 	public LabirinScreen(Aplikasi app, Labirin labirin) {
 		super(app);
 		// TODO Auto-generated constructor stub
 		this.labirin = labirin;
+		
 		labirin.reinit();
 		
 		walls = labirin.getWalls();
@@ -100,7 +103,7 @@ public class LabirinScreen extends AbstractScreen{
 		mainMenuButtonPressed = false;
 		nextButtonPressed = false;
 		
-		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
+		font44 = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		
 		controller = new LabirinController(this);
@@ -142,9 +145,17 @@ public class LabirinScreen extends AbstractScreen{
 							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
 				}
 				
-				if(labirin.getScore()>=60){
+				
+				
+				if(labirin.getScore()>=50){
 					batcher.draw(nextTexture, 950, 30);
+					font44.draw(batcher, "Skor kamu: "+labirin.getScore(), 380, 400);
 				}
+				else{
+					font44.draw(batcher, "Maaf kamu gagal,", 362, 420);
+					font44.draw(batcher, "silakan coba lagi :)", 358, 370);
+				}
+				
 			
 			}
 			else{
@@ -153,7 +164,9 @@ public class LabirinScreen extends AbstractScreen{
 					batcher.draw(wallTexture, walls[i].getX(), walls[i].getY());
 				}
 				for(int i=0; i<items.length; i++){
-					batcher.draw(itemTexture, items[i].getX(), items[i].getY());
+					if(!labirin.getItem(i).isFound()){
+						batcher.draw(itemTexture, items[i].getX(), items[i].getY());
+					}	
 				}
 				int state = labirin.getPlayer().getState();
 				batcher.draw(playerTexture[state], labirin.getPlayer().getX(), 
@@ -167,14 +180,52 @@ public class LabirinScreen extends AbstractScreen{
 				
 				int time = (int)labirin.timeLeft;
 				
-				font.draw(batcher, (time/60)+":"+((time%60)/10)+(((time%60)%10)), 23, 580);
+				font44.draw(batcher, (time/60)+":"+((time%60)/10)+(((time%60)%10)), 23, 580);
 				
 			}
 		batcher.end();
+		labirin.getPlayer().updatePos();
 		controller.processInput(delta);
+		
+		if(debug){
+			drawDebug();
+		}
+		
 	}
 	
 	
+	private void drawDebug() {
+		// TODO Auto-generated method stub
+		
+		Rectangle[] top = new Rectangle[walls.length];
+		Rectangle[] right = new Rectangle[walls.length];
+		Rectangle[] bottom = new Rectangle[walls.length];
+		Rectangle[] left = new Rectangle[walls.length];
+		
+		Rectangle player = labirin.getPlayer().getBounds();
+		
+		for(int i=0; i<walls.length; i++){
+			top[i] = walls[i].getBounds(0);
+			right[i] = walls[i].getBounds(1);
+			bottom[i] = walls[i].getBounds(2);
+			left[i] = walls[i].getBounds(3);
+		}
+		
+		debugRenderer.setProjectionMatrix(cam.combined);
+		debugRenderer.begin(ShapeType.Rectangle);
+			
+			for(int i=0; i<top.length; i++){	
+				debugRenderer.rect(top[i].x, top[i].y, top[i].width, top[i].height);
+				debugRenderer.rect(right[i].x, right[i].y, right[i].width, right[i].height);
+				debugRenderer.rect(left[i].x, left[i].y, left[i].width, left[i].height);
+				debugRenderer.rect(bottom[i].x, bottom[i].y, bottom[i].width, bottom[i].height);
+			}
+			
+			debugRenderer.rect(player.x, player.y, player.width, player.height);
+		
+		debugRenderer.end();
+	}
+
 	public Rectangle getPauseButtonBounds(){
 		return pauseButtonBounds;
 	}

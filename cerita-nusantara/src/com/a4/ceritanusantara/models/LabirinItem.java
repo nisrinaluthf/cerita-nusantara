@@ -28,7 +28,7 @@ public class LabirinItem {
 		found = b;
 	}
 	
-	public boolean getFound(){
+	public boolean isFound(){
 		return found;
 	}
 	

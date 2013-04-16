@@ -4,6 +4,7 @@ import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
+import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
@@ -95,7 +96,7 @@ public void processInput(){
 						app.setScreen(new TapGameScreen(app, (TapGame)(screen.getSubCerita())));
 					}
 					else if(type==SubCerita.LABIRIN){
-						//set screen ke labirin
+						app.setScreen(new LabirinScreen(app, (Labirin)(screen.getSubCerita())));
 					}
 					else if(type==SubCerita.KUIS){
 						app.setScreen(new KuisScreen(app, (Kuis)(screen.getSubCerita())));

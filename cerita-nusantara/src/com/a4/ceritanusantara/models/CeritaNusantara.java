@@ -38,7 +38,8 @@ public class CeritaNusantara {
 	
 	private void initCerita() throws IOException{
 		
-		FileHandle file = Gdx.files.local("datacerita");
+		
+		FileHandle file = Gdx.files.internal("data/datacerita");
 		String data = file.readString();
 		StringTokenizer st = new StringTokenizer(data,  " ");
 		
@@ -63,8 +64,6 @@ public class CeritaNusantara {
 		
 		InitSubCerita.initSumatera(cerita[SUMATERA]);
 		
-		System.out.println("init cerita 1 called");
-		
 		cerita[KALIMANTAN].setUnlocked(kalimantanUnlocked);
 		cerita[KALIMANTAN].setSubCerita(new SubCerita[]{
 				new Adegan("Adegan 1", SubCerita.ADEGAN),
@@ -80,9 +79,6 @@ public class CeritaNusantara {
 		});
 		
 		InitSubCerita.initKalimantan(cerita[KALIMANTAN]);
-		
-		
-		System.out.println("init cerita 2 called");
 		
 		
 	}

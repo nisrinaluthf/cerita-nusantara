@@ -15,6 +15,8 @@ public class Labirin extends SubCerita{
 	private Texture[] playerTexture;
 	private Texture itemTexture;
 	
+	private Rectangle finish;
+	
 	public float timeLeft;
 	private boolean gameOver;
 	
@@ -80,6 +82,10 @@ public class Labirin extends SubCerita{
 		return items;
 	}
 	
+	public LabirinItem getItem(int i){
+		return items[i];
+	}
+	
 	public Texture getWallTexture(){
 		return wallTexture;
 	}
@@ -112,7 +118,16 @@ public class Labirin extends SubCerita{
 	}
 	
 	public void gameOver(){
-		gameOver = false;
+		gameOver = true;
+	}
+
+	public void setFinishBounds(Rectangle r){
+		finish = r;
+	}
+	
+	public Rectangle getFinishBounds() {
+		// TODO Auto-generated method stub
+		return finish;
 	}
 	
 	

@@ -1,6 +1,6 @@
 XFFFXXXXXXXXXXXXXXXXXXXXXXXXXX
 X     X             X        X
-XXXX  X     XXX     X        X
+XXXX  X     XXX     X    O   X
 X  X  X       X     X        X
 X  X  XXXXXXXXXXXX  XXX   X  X
 X        X   X            XXXX
@@ -19,6 +19,6 @@ X  XXXXXXXXXXXX   X     X    X
 X             X   X     XXXXXX
 X             X   X          X
 XXXXX   XXX   XXXXXXXX       X
-X         X       X       XXXX
+X  O      X       X       XXXX
 X         X       X     P    X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

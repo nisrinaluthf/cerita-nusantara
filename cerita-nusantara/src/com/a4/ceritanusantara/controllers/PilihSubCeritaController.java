@@ -50,7 +50,7 @@ public class PilihSubCeritaController {
 		
 		
 		if (Gdx.input.isKeyPressed(Keys.BACK)){
-			
+			screen.playSoundFx("back");
 			app.setScreen(new PilihCeritaScreen(app));
 		}
 		
@@ -69,6 +69,7 @@ public class PilihSubCeritaController {
 			}
 			if(OverlapTester.pointInRectangle( backButtonBounds,pos.x, pos.y)){
 				screen.playSoundFx("back");
+				screen.stopMusic();
 				screen.setBackButtonPressed(true);
 				System.out.println("back to pilih cerita");
 			}
@@ -82,6 +83,7 @@ public class PilihSubCeritaController {
 			for(int i=0; i<subCeritaButtonBounds.length; i++){
 				if(screen.isSubCeritaButtonPressed(i)){
 					screen.setSubCeritaButtonPressed(i, false);
+					//screen.stopMusic();
 					if(OverlapTester.pointInRectangle(subCeritaButtonBounds[i], pos.x, pos.y)){
 						
 						app.getScreen().dispose();
@@ -104,7 +106,7 @@ public class PilihSubCeritaController {
 				screen.setBackButtonPressed(false);
 				if(OverlapTester.pointInRectangle( backButtonBounds, pos.x, pos.y)){
 					//app.setScreen(new SettingsScreen(app, screen.width, screen.height));
-					screen.stopMusic();
+					//screen.stopMusic();
 					app.getScreen().dispose();
 					app.setScreen(new PilihCeritaScreen(app));
 				}
@@ -112,7 +114,7 @@ public class PilihSubCeritaController {
 			}
 		}
 		if (Gdx.input.isKeyPressed(Keys.BACK)){
-			screen.stopMusic();
+			//screen.stopMusic();
 			app.getScreen().dispose();
 			
 			app.setScreen(new PilihCeritaScreen(app));
