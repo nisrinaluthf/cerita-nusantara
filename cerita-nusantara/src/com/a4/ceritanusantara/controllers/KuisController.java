@@ -75,6 +75,7 @@ public class KuisController {
 				else if(OverlapTester.pointInRectangle(nextBounds, 
 						pos.x, pos.y)&&kuis.getScore()>60){
 					screen.playSoundFx("default");
+					screen.stopMusic();
 					screen.setNextButtonPressed(true);
 					
 				}
@@ -116,7 +117,7 @@ public class KuisController {
 			if (Gdx.input.isKeyPressed(Keys.BACK)){
 				screen.pause();
 				screen.playSoundFx("default");
-				
+				screen.pauseMusic();
 				//app.getScreen().dispose();
 				app.setScreen(new PauseScreen(app, screen, kuis));
 			}
@@ -144,6 +145,7 @@ public class KuisController {
 				
 				if(OverlapTester.pointInRectangle( pauseButtonBounds, pos.x, pos.y)){
 					screen.playSoundFx("default");
+					screen.pauseMusic();
 					screen.setPauseButtonPressed(true);	
 				}
 				

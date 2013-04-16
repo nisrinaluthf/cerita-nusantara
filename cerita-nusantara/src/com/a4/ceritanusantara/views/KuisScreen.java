@@ -121,11 +121,13 @@ public class KuisScreen extends AbstractScreen{
 				System.out.println("play music");
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				kuisMusicBg.setLooping(true);
+				kuisMusicBg.setVolume(0.5f);
 				kuisMusicBg.play();
 			} else {
-				this.kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.mp3"));
+				this.kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.mp3"));
 				System.out.println("play music after null");
 				kuisMusicBg.setLooping(true);
+				kuisMusicBg.setVolume(0.5f);
 				kuisMusicBg.play();
 			}
 		} else if(this.kuisMusicBg != null && this.kuisMusicBg.isPlaying()) {
@@ -369,6 +371,43 @@ public class KuisScreen extends AbstractScreen{
 				this.kuisMusicBg = null;
 			}
 			this.kuisMusicBg = null;
+		}
+	}
+	public void pauseMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.kuisMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.kuisMusicBg != null) {
+			if (this.kuisMusicBg.isPlaying()) {
+				if (this.kuisMusicBg.isLooping()) {
+					this.kuisMusicBg.setLooping(false);
+				}
+				this.kuisMusicBg.pause();
+				//this.kuisMusicBg.dispose();
+				//this.kuisMusicBg = null;
+			}
+			//this.kuisMusicBg = null;
+		}
+	}
+	
+	public void resume() {
+		super.resume();
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.kuisMusicBg != null) {
+				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				kuisMusicBg.setLooping(true);
+				kuisMusicBg.setVolume(0.5f);
+				kuisMusicBg.play();
+			} else {
+				this.kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.mp3"));
+				System.out.println("play music after null");
+				kuisMusicBg.setLooping(true);
+				kuisMusicBg.setVolume(0.5f);
+				kuisMusicBg.play();
+			}
+		} else if(this.kuisMusicBg != null && this.kuisMusicBg.isPlaying()) {
+			this.stopMusic();
 		}
 	}
 	

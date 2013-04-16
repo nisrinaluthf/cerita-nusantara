@@ -124,7 +124,7 @@ public class PauseScreen extends AbstractScreen {
 		restartButtonPressed = false;
 		exitButtonPressed = false;
 		
-		pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+		pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.mp3"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
@@ -134,7 +134,7 @@ public class PauseScreen extends AbstractScreen {
 				pauseMusicBg.setLooping(true);
 				pauseMusicBg.play();
 			} else {
-				this.pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+				this.pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.mp3"));
 				System.out.println("play music after null");
 				pauseMusicBg.setLooping(true);
 				pauseMusicBg.play();
