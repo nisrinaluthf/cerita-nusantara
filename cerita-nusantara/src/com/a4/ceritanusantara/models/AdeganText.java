@@ -9,11 +9,10 @@ public class AdeganText {
 	private float end;
 	private int chara;
 	
-	public AdeganText(String text, int type, float end, int chara){
+	public AdeganText(String text, int type, float end){
 		this.text = text;
 		this.type = type;
 		this.end = end;
-		this.chara = chara;
 	}
 	
 	public String getText(){
@@ -26,6 +25,10 @@ public class AdeganText {
 	
 	public float getEnd(){
 		return end;
+	}
+	
+	public void setChara(int chara){
+		this.chara = chara;
 	}
 	
 	public int getChara(){

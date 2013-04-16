@@ -24,11 +24,29 @@ public class InitAdegan {
 		}
 		adegan.setCharaTexture(chara);
 		
-		AdeganText[] text = new AdeganText[Integer.parseInt(st.nextToken())];
+		AdeganText[] adeganText = new AdeganText[Integer.parseInt(st.nextToken())];
 		
-		for(int i=0; i<text.length; i++){
-			//float 
-			//text[i] = new AdeganText
+		for(int i=0; i<adeganText.length; i++){
+			StringTokenizer st2 = new StringTokenizer(st.nextToken(), ":");
+			float end = Float.parseFloat(st2.nextToken());
+			
+			int type=0;
+			
+			if(st2.nextToken().equals("DIA")){
+				type = 1;
+			}
+			
+			int charaType = 0;
+			if(type==1){
+				charaType = Integer.parseInt(st2.nextToken());
+			}
+			
+			String text = st2.nextToken();
+			
+			adeganText[i] = new AdeganText(text, type, end);
+			if(type==1){
+				adeganText[i].setChara(charaType);
+			}
 		}
 		
 		while(st.hasMoreTokens()){
