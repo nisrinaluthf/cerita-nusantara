@@ -1,11 +1,13 @@
 package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
+import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.utils.OverlapTester;
+import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.MainMenuScreen;
@@ -42,17 +44,16 @@ public void processInput(){
 		if(Gdx.input.justTouched()){
 			
 			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-			System.out.printf("%f %f %f %f%n", viewport.x, viewport.y, viewport.width, viewport.height);
 			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 			
-			if(OverlapTester.pointInRectangle( resumeButtonBounds, pos.x, pos.y)){
+			if(OverlapTester.pointInRectangle(resumeButtonBounds, pos.x, pos.y)){
 				screen.stopMusic();
 				screen.playSoundFx();
 				screen.setResumeButtonPressed(true);
 				
 			}
 			
-			else if(OverlapTester.pointInRectangle( restartButtonBounds, 
+			else if(OverlapTester.pointInRectangle(restartButtonBounds, 
 					pos.x, pos.y)){
 				screen.stopMusic();
 				screen.playSoundFx();
@@ -60,7 +61,7 @@ public void processInput(){
 				
 			}
 			
-			else if(OverlapTester.pointInRectangle( exitButtonBounds, 
+			else if(OverlapTester.pointInRectangle(exitButtonBounds, 
 					pos.x, pos.y)){
 				screen.stopMusic();
 				screen.playSoundFx();
@@ -90,7 +91,7 @@ public void processInput(){
 				if(OverlapTester.pointInRectangle( restartButtonBounds, pos.x, pos.y)){
 					int type = screen.getType();
 					if(type==SubCerita.ADEGAN){
-						//set screen ke adegan
+						app.setScreen(new AdeganScreen(app, (Adegan)(screen.getSubCerita())));
 					}
 					else if(type==SubCerita.TAP_GAME){
 						app.setScreen(new TapGameScreen(app, (TapGame)(screen.getSubCerita())));

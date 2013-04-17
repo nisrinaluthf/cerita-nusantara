@@ -1,0 +1,25 @@
+backgrounds/bg_kalimantan_old/scene5_bg_kalimantan.png
+2
+speaker_dialog/naga_left.png
+speaker_dialog/istri_nusa_sedih.png
+20
+3.0:nar:Keesokan harinya, Nusa benar-benar sudah berubah menjadi seekor ular naga. Tubuhnya semakin panjang dan besar.
+5.5:nar:Panjangnya sudah mencapai sekitar duapuluh lima depa, dan besarnya tiga kali pohon kelapa.
+8.1:nar:Menjelang siang, Nusa meminta kepada seluruh warga agar menggulingkan tubuhnya ke sungai.
+11.1:dia:0:Tolong bantu gulingkan tubuhku ke dalam sungai itu! Aku sudah tidak kuat lagi menahan terik matahari.
+14.2:nar:Warga pun beramai-ramai mendorong tubuhnya ke dalam sungai. Namun, baru beberapa saat berada di dalam air, tiba-tiba Nusa merasa sangat lapar.
+16.5:dia:0:Aduh..., aku lapar sekali. Tolong carikan aku ikan! Seru Nusa sambil menahan rasa lapar.
+18.9:nar:Warga pun segera berpencar mencari ikan di danau atau telaga yang berada di sekitar hutan.
+22.2:nar:Beberapa lama kemudian, warga kembali dengan membawa ikan yang banyak. Dalam sekejap, ikan-ikan itu pun habis dilahapnya.
+24.1:Menjelang senja, Nusa berpesan kepada istrinya.
+27.1:dia:0:Dik! Nanti malam akan turun hujan lebat diiringi guntur dan petir. Air sungai ini akan meluap.
+29.7:dia:0:Sampaikan hal ini kepada warga, agar segera meninggalkan tempat ini. 
+33.8:dia:0:Saat sungai banjir, Abang akan menuju ke Sungai Kahayan dan terus ke muara.
+36.1:dia:0:Abang akan tinggal beberapa waktu di sana, dan kemudian meneruskan perjalanan ke laut. Di sanalah Abang akan tinggal untuk selamanya.
+39.1:dia:1:Bang, jangan tinggalkan Adik! Adik tidak mau kehilangan Abang.
+41.1:dia:0:Sudahlah, Dik! Ini sudah takdir Tuhan. Setelah Abang pergi, pulanglah bersama warga itu!
+43.1:nar:Ketika malam sudah larut, hujan lebat yang diramalkan Nusa benar-benar terjadi. 
+45.1:nar:Suara guntur bergemuruh diiringi oleh petir yang menyambar-nyambar.
+48.1:nar:Kilat memancar sambung-menyambung.. Istri Nusa dan semua warga segera menjauh dari sungai.
+51.1:nar:Mereka dirundung perasaan cemas dan takut. Beberapa saat kemudian, air Sungai Rungan pun meluap.
+53.8:nar:Tubuh Nusa terbawa arus banjir menuju muara Sungai Kahayan.

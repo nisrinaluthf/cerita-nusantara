@@ -1,0 +1,7 @@
+backgrounds/bg_kalimantan_old/scene1_bg_kalimantan.png
+0
+4
+3.5:nar:Dahulu kala, hiduplah seorang laki-laki bernama Nusa. Ia tinggal bersama istri dan adik ipar laki-lakinya di sebuah kampung di pinggir Sungai Kahayan, Kalimantan Tengah.
+5.5:nar:Pekerjaan sehari-hari Nusa dan adik iparnya adalah bercocok tanam serta menangkap ikan di Sungai Kahayan.
+7.5:narPada suatu waktu, kemarau panjang melanda daerah tempat tinggal mereka. Kelaparan terjadi di mana-mana.
+9.8:nar:Semua tanaman penduduk tidak dapat tumbuh dengan baik. Air Sungai Kahayan surut dan ikan-ikannya pun semakin berkurang.

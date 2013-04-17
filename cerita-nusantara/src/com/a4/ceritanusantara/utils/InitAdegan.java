@@ -10,35 +10,36 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class InitAdegan {
 	
-	public static void InitAdegan(Adegan adegan, FileHandle file){
+	public static void initAdegan(Adegan adegan, FileHandle file){
 		String data = file.readString();
 		StringTokenizer st = new StringTokenizer(data, System.getProperty("line.separator"));
 		
-		Texture background = new Texture(Gdx.files.internal(st.nextToken()));
+		Texture background = new Texture(Gdx.files.internal((st.nextToken()).trim()));
 		adegan.setBackground(background);
 		
-		Texture[] chara = new Texture[Integer.parseInt(st.nextToken())];
+		Texture[] chara = new Texture[Integer.parseInt(st.nextToken().trim())];
 		
 		for(int i=0; i<chara.length; i++){
-			chara[i] = new Texture(Gdx.files.internal(st.nextToken()));
+			chara[i] = new Texture(Gdx.files.internal(st.nextToken().trim()));
 		}
+		
 		adegan.setCharaTexture(chara);
 		
-		AdeganText[] adeganText = new AdeganText[Integer.parseInt(st.nextToken())];
+		AdeganText[] adeganText = new AdeganText[Integer.parseInt(st.nextToken().trim())];
 		
 		for(int i=0; i<adeganText.length; i++){
 			StringTokenizer st2 = new StringTokenizer(st.nextToken(), ":");
-			float end = Float.parseFloat(st2.nextToken());
+			float end = Float.parseFloat(st2.nextToken().trim());
 			
 			int type=0;
 			
-			if(st2.nextToken().equals("DIA")){
+			if(st2.nextToken().equals("dia")){
 				type = 1;
 			}
 			
 			int charaType = 0;
 			if(type==1){
-				charaType = Integer.parseInt(st2.nextToken());
+				charaType = Integer.parseInt(st2.nextToken().trim());
 			}
 			
 			String text = st2.nextToken();
@@ -47,10 +48,10 @@ public class InitAdegan {
 			if(type==1){
 				adeganText[i].setChara(charaType);
 			}
-		}
-		
-		while(st.hasMoreTokens()){
 			
 		}
+		
+		adegan.setAdeganText(adeganText);
+		
 	}
 }

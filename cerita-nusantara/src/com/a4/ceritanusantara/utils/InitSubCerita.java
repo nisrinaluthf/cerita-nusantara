@@ -4,6 +4,7 @@ import java.util.StringTokenizer;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Cerita;
 import com.a4.ceritanusantara.models.Labirin; 
 import com.a4.ceritanusantara.models.LabirinWall;
@@ -23,12 +24,22 @@ public class InitSubCerita {
 	
 	public static void initSumatera(Cerita cerita){
 		
-		/*
-		((Labirin) cerita.getSubCerita(8)).setWallTexture(new 
-				Texture(Gdx.files.internal("backgrounds/sumatera_labirin_wall.png")));
-		((Labirin) cerita.getSubCerita(8)).setPlayerTexture(new 
-				Texture(Gdx.files.internal("backgrounds/sumatera_labirin_player.png")));
-		*/
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(0), 
+				Gdx.files.internal("dialog/sumatera/scene1_sumatera.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(1), 
+				Gdx.files.internal("dialog/sumatera/scene2_sumatera.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(2), 
+				Gdx.files.internal("dialog/sumatera/scene3_sumatera.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(4), 
+				Gdx.files.internal("dialog/sumatera/scene4_sumatera.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(5), 
+				Gdx.files.internal("dialog/sumatera/scene5_sumatera.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(6), 
+				Gdx.files.internal("dialog/sumatera/scene6_sumatera.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(7), 
+				Gdx.files.internal("dialog/sumatera/scene7_sumatera.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(9), 
+				Gdx.files.internal("dialog/sumatera/scene8_sumatera.txt"));
 		
 		FileHandle file = Gdx.files.internal("data/datasumatera");
 		String data = file.readString();

@@ -3,6 +3,7 @@ package com.a4.ceritanusantara.views;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.AdeganController;
 import com.a4.ceritanusantara.models.Adegan;
+import com.a4.ceritanusantara.models.AdeganText;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 
 public class AdeganScreen extends SubCeritaScreen {
+	private Adegan adegan;
+	
 	private Texture background;
 	private Texture textArea;
 	private Texture previousButtonTexture;
@@ -17,7 +20,10 @@ public class AdeganScreen extends SubCeritaScreen {
 	
 	private Texture previousButtonPressedTexture;
 	private Texture nextButtonPressedTexture;
-	private Texture character;
+	
+	private Texture[] character;
+	
+	private AdeganText[] adeganText;
 	
 	private Rectangle previousButtonBounds;
 	private Rectangle nextButtonBounds;
@@ -26,23 +32,12 @@ public class AdeganScreen extends SubCeritaScreen {
 	private boolean nextButtonPressed;
 	
 	private Texture pauseButtonTexture;
-
-	
 	private Texture pauseButtonPressedTexture;
-
 	private Rectangle pauseButtonBounds;
 
 	private boolean pauseButtonPressed;
 	
 	private BitmapFont font;
-	
-	private String narration;
-	
-	private final int DIALOG = 0;
-
-	private Adegan adegan;
-	
-	private int tipeAdegan;
 	
 	private AdeganController controller;
 	
@@ -51,56 +46,50 @@ public class AdeganScreen extends SubCeritaScreen {
 		super(app, adegan);
 		
 		this.adegan = adegan;
+		this.adegan.reinit();
 		
-		// TODO Auto-generated constructor stub
+		background = adegan.getBackground();
+		textArea = new Texture(Gdx.files.internal("backgrounds/dialog_box.png"));
+		character = adegan.getCharaTexture();
 		
-		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
-		textArea = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
-		character = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
+		adeganText = adegan.getAdeganText();
 
 		previousButtonTexture = new Texture(
-				Gdx.files.internal("backgrounds/dialog_back.png"));
+				Gdx.files.internal("buttons/dialog_prev.png"));
 		nextButtonTexture = new Texture(
-				Gdx.files.internal("backgrounds/dialog_next.png"));
+				Gdx.files.internal("buttons/dialog_next.png"));
 
 		previousButtonPressedTexture = new Texture(
-				Gdx.files.internal("backgrounds/dialog_back_pressed.png"));
+				Gdx.files.internal("buttons/dialog_prev.png"));
 		nextButtonPressedTexture = new Texture(
-				Gdx.files.internal("backgrounds/dialog_next_pressed.png"));
+				Gdx.files.internal("buttons/dialog_next.png"));
 
+		/*
 		previousButtonBounds = new Rectangle(0, previousButtonTexture.getHeight(),
 				previousButtonTexture.getWidth(),
 				previousButtonTexture.getHeight());
 		nextButtonBounds = new Rectangle(
 				(VIRTUAL_WIDTH - nextButtonTexture.getWidth()), previousButtonTexture.getHeight(),
 				nextButtonTexture.getWidth(), nextButtonTexture.getHeight());
-
+		
+		
 		previousButtonPressed = false;
 		nextButtonPressed = false;
-
+		*/
+		
 		pauseButtonTexture = new Texture(
-				Gdx.files.internal("backgrounds/pause.png"));
+				Gdx.files.internal("buttons/pause.png"));
 		pauseButtonPressedTexture = new Texture(
-				Gdx.files.internal("backgrounds/pause_pressed.png"));
-
-		pauseButtonBounds = new Rectangle(
-				(VIRTUAL_WIDTH - pauseButtonTexture.getWidth()),
-				VIRTUAL_HEIGHT, pauseButtonTexture.getWidth(),
+				Gdx.files.internal("buttons/pause_pressed.png"));
+		
+		pauseButtonBounds = new Rectangle( 950, 526, pauseButtonTexture.getWidth(),
 				pauseButtonTexture.getHeight());
-
+		
 		pauseButtonPressed = false;
 		
-		tipeAdegan = -1;
-		
-		narration = "";
-		
-		
-		
 		font = new BitmapFont(
-				Gdx.files
-						.internal("fonts/sf-cartoonist-hand-30-white-bold.fnt"),
-				Gdx.files
-						.internal("fonts/sf-cartoonist-hand-30-white-bold.png"),
+				Gdx.files.internal("fonts/sf-cartoonist-hand-30-white-bold.fnt"),
+				Gdx.files.internal("fonts/sf-cartoonist-hand-30-white-bold.png"),
 				false);
 		
 		controller = new AdeganController(this);
@@ -111,7 +100,6 @@ public class AdeganScreen extends SubCeritaScreen {
 
 		cam.update();
 
-		// set viewport
 		Gdx.gl.glViewport((int) viewport.x, (int) viewport.y,
 				(int) viewport.width, (int) viewport.height);
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
@@ -119,72 +107,50 @@ public class AdeganScreen extends SubCeritaScreen {
 
 		batcher.setProjectionMatrix(cam.combined);
 		batcher.begin();
+			
+			batcher.draw(background, 0, 0);
 
-		
-			batcher.draw(background, 0, VIRTUAL_HEIGHT);
-
-			batcher.draw(textArea, 0, (textArea.getHeight()));
-
-			if (previousButtonPressed) {
-				batcher.draw(previousButtonPressedTexture, 0, previousButtonTexture.getHeight());
-			} else {
-				batcher.draw(previousButtonTexture, 0, previousButtonTexture.getHeight());
+			batcher.draw(textArea, 0, 0);
+			
+			AdeganText text = adeganText[adegan.getCurrentText()];
+			
+			if(adegan.getCurrentText()==adegan.getLength()-1){
+				font.drawWrapped(batcher, text.getText(), 10, 125, 892);
 			}
-
-			if (nextButtonPressed) {
-				batcher.draw(nextButtonPressedTexture,
-						(VIRTUAL_WIDTH - nextButtonPressedTexture.getWidth()),
-						0);
-			} else {
-				batcher.draw(nextButtonTexture,
-						(VIRTUAL_WIDTH - nextButtonTexture.getWidth()), 0);
+			else if(text.getType()==AdeganText.NAR){
+				font.drawWrapped(batcher, text.getText(), 10, 125, 1004);
+			}
+			else if(text.getType()==AdeganText.DIA){
+				font.drawWrapped(batcher, text.getText(), 10, 125, 892);
+				batcher.draw(character[text.getChara()], 900, 15);
+			}
+			
+			if(adegan.isDone()){
+				if(nextButtonPressed){
+					batcher.draw(nextButtonPressedTexture, 940, 82);
+				}
+				else{
+					batcher.draw(nextButtonTexture, 940, 82);
+				}
+				
+				if(previousButtonPressed){
+					batcher.draw(previousButtonPressedTexture, 940, 19);
+				}
+				else{
+					batcher.draw(previousButtonTexture, 940, 19);
+				}
 			}
 			
 			if (pauseButtonPressed) {
-				batcher.draw(pauseButtonPressedTexture,
-						(VIRTUAL_WIDTH - pauseButtonPressedTexture.getWidth()),
-						VIRTUAL_HEIGHT);
+				batcher.draw(pauseButtonPressedTexture, 950, 526);
 			} else {
-				batcher.draw(pauseButtonTexture,
-						(VIRTUAL_WIDTH - pauseButtonTexture.getWidth()),
-						VIRTUAL_HEIGHT);
+				batcher.draw(pauseButtonTexture, 950, 526);
 			}
-			
-			//if(adegan.)
-			
-			if(this.tipeAdegan == DIALOG) {
-				font = new BitmapFont(
-						Gdx.files
-								.internal("fonts/sf-cartoonist-hand-30-white-bold-italic.fnt"),
-						Gdx.files
-								.internal("fonts/sf-cartoonist-hand-30-white-bold-italic.png"),
-						false);
-				font.drawWrapped(batcher, narration, previousButtonTexture.getWidth()+40, textArea.getHeight() - 15, VIRTUAL_WIDTH-previousButtonTexture.getWidth()-nextButtonTexture.getWidth() - 80);
-				batcher.draw(character, previousButtonTexture.getWidth()+ 10, previousButtonTexture.getHeight());
-			} else{
-				font.drawWrapped(batcher, narration, previousButtonTexture.getWidth()+10, textArea.getHeight() - 15, VIRTUAL_WIDTH-previousButtonTexture.getWidth()-nextButtonTexture.getWidth() - 20);
-				
-			}
-			
-			
-
-
-		// batcher.draw(soundOnTexture,
-		// (VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 440);
-
-		// batcher.draw(musicOnTexture,
-		// (VIRTUAL_WIDTH-musicOnTexture.getWidth())/2, 160);
 
 		batcher.end();
 
-		controller.processInput();
+		controller.processInput(delta);
 
-		// --kalo mau ada sfx atau musik nanti di sini aja--
-
-		// ----------------end of sfx/musik-----------------
-
-		// kalo udah bikin controllernya jangan lupa panggil
-		// controller.processInput()
 
 	}
 	
@@ -226,9 +192,6 @@ public class AdeganScreen extends SubCeritaScreen {
 	
 	public void setAdegan(Adegan adegan) {
 		this.adegan = adegan;
-		//this.narration = adegan.getNarration();
-		//this.tipeAdegan = adegan.getTipeAdegan();
-		//this.character = new Texture( Gdx.files.internal(adegan.getCharacter()));
 	}
 	
 	public Adegan getAdegan() {

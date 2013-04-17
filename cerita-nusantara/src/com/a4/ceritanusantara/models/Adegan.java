@@ -6,10 +6,19 @@ public class Adegan extends SubCerita {
 	
 	private Texture background;
 	private Texture[] charaTexture;
+	private AdeganText[] adeganText;
+	
+	public float time;
+	public int currentText;
+	
+	private boolean isDone;
 
 	public Adegan(String nama, int tipe) {
 		super(nama, tipe);
 		// TODO Auto-generated constructor stub
+		time = 0f;
+		isDone = false;
+		currentText = 0;
 	}
 
 	public void setBackground(Texture background) {
@@ -25,8 +34,50 @@ public class Adegan extends SubCerita {
 		this.charaTexture = charaTexture;
 	}
 	
+	public Texture[] getCharaTexture(){
+		return charaTexture;
+	}
+	
 	public Texture getCharaTexture(int i){
 		return charaTexture[i];
+	}
+	
+	public void setAdeganText(AdeganText[] adeganText){
+		this.adeganText = adeganText;
+	}
+	
+	public AdeganText[] getAdeganText(){
+		return adeganText;
+	}
+	
+	public AdeganText getAdeganText(int i){
+		return adeganText[i];
+	}
+	
+	public boolean isDone(){
+		return isDone;
+	}
+	
+	public void done(){
+		isDone = true;
+	}
+	
+	public void updateCurrentText(){
+		currentText++;
+	}
+	
+	public int getCurrentText(){
+		return currentText;
+	}
+	
+	public void reinit(){
+		time = 0f;
+		isDone = false;
+		currentText = 0;
+	}
+	
+	public int getLength(){
+		return adeganText.length;
 	}
 	
 }

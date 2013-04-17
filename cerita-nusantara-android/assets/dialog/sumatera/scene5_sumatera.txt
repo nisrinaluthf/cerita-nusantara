@@ -1,0 +1,13 @@
+backgrounds/bg_sumatera_old/scene5_bg_sumatera.png
+3
+speaker_dialog/raja.png
+speaker_dialog/pengawal.png
+speaker_dialog/raja_sedih.png
+7
+3.1:nar:Meskipun semuanya serba enak, namun si Parkit tetap tidak senang, karena ia merasa terpenjara.
+6.1:nar:Ia ingin kembali ke hutan belantara tempat tinggalnya dulu, agar ia bisa terbang bebas bersama rakyatnya.
+10.1:nar:Karena merasa sedih, si Parkit sudah beberapa hari tidak mau menyanyi untuk sang Raja. Mengetahui burung parakeetnya tidak mau menyanyi lagi, sang Raja mulai bimbang memikirkan burung parakeetnya.
+13.1:nar:Karena ingin tahu keadaan burung itu yang sebenarnya, maka sang Raja pun memanggil petugas istana.
+16.1:dia:0:Kenapa burung parakeetku tidak mau bernyanyi lagi beberapa hari ini? Dia sakit, ya?
+19.1:dia:1:Maaf, Tuanku. Hamba juga tidak tahu apa sebabnya. Saya telah memberinya makan seperti biasanya, tetapi tetap saja ia tidak mau bernyanyi.
+21.1:dia:2:Ada apa, ya?
