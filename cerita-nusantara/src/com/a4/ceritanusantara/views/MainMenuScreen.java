@@ -86,12 +86,7 @@ public class MainMenuScreen extends AbstractScreen {
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				mainMenuMusicBg.setLooping(true);
 				mainMenuMusicBg.play();
-			} else {
-				this.mainMenuMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
-				System.out.println("play music after null");
-				mainMenuMusicBg.setLooping(true);
-				mainMenuMusicBg.play();
-			}
+			} 
 		} else if(this.mainMenuMusicBg != null && this.mainMenuMusicBg.isPlaying()) {
 			this.stopMusic();
 		}

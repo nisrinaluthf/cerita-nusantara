@@ -7,6 +7,8 @@ import com.a4.ceritanusantara.models.LabirinItem;
 import com.a4.ceritanusantara.models.LabirinPlayer;
 import com.a4.ceritanusantara.models.LabirinWall;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -51,6 +53,13 @@ public class LabirinScreen extends AbstractScreen{
 	private boolean nextButtonPressed;
 	
 	private BitmapFont font44;
+	
+	
+	private Sound eggObtainedSfx;
+	
+	private Sound pauseClickSfx;
+	
+	private Music labirinMusicBg;
 	
 	public LabirinScreen(Aplikasi app, Labirin labirin) {
 		super(app);
@@ -105,6 +114,25 @@ public class LabirinScreen extends AbstractScreen{
 		
 		font44 = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
+		
+labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.mp3"));
+		
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.labirinMusicBg != null) {
+				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				labirinMusicBg.setLooping(true);
+				labirinMusicBg.setVolume(1.0f);
+				labirinMusicBg.play();
+			} 
+		} else if(this.labirinMusicBg != null && this.labirinMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+		
+		this.eggObtainedSfx = Gdx.audio.newSound(Gdx.files.internal("sound/labirin_eggobtained.mp3"));
+		this.pauseClickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
+		
 		
 		controller = new LabirinController(this);
 		
@@ -278,6 +306,66 @@ public class LabirinScreen extends AbstractScreen{
 	public Labirin getLabirin() {
 		// TODO Auto-generated method stub
 		return labirin;
+	}
+	
+	public void playSoundFx(String key) {
+		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
+			if (key.equals("default"))
+				this.pauseClickSfx.play();
+			else if (key.equals("true"))
+				this.eggObtainedSfx.play();
+	}
+	
+	
+	public void stopMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.labirinMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.labirinMusicBg != null) {
+			if (this.labirinMusicBg.isPlaying()) {
+				if (this.labirinMusicBg.isLooping()) {
+					this.labirinMusicBg.setLooping(false);
+				}
+				this.labirinMusicBg.stop();
+				this.labirinMusicBg.dispose();
+				this.labirinMusicBg = null;
+			}
+			this.labirinMusicBg = null;
+		}
+	}
+	public void pauseMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.labirinMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.labirinMusicBg != null) {
+			if (this.labirinMusicBg.isPlaying()) {
+				if (this.labirinMusicBg.isLooping()) {
+					this.labirinMusicBg.setLooping(false);
+				}
+				this.labirinMusicBg.pause();
+				//this.labirinMusicBg.dispose();
+				//this.labirinMusicBg = null;
+			}
+			//this.labirinMusicBg = null;
+		}
+	}
+	
+	public void resume() {
+		super.resume();
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.labirinMusicBg != null) {
+				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				labirinMusicBg.play();
+			} else {
+				this.labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.mp3"));
+				System.out.println("play music after null");
+				labirinMusicBg.setLooping(true);
+				labirinMusicBg.setVolume(1.0f);
+				labirinMusicBg.play();
+			}
+		} else if(this.labirinMusicBg != null && this.labirinMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
 	}
 
 }

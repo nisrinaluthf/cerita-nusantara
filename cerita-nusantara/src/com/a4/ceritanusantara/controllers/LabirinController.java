@@ -47,6 +47,8 @@ private Aplikasi app;
 	private Rectangle viewport;
 
 	private Rectangle finish;
+	
+	
 
 	public LabirinController(LabirinScreen screen) {
 		// TODO Auto-generated constructor stub
@@ -105,16 +107,22 @@ private Aplikasi app;
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
 				if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.stopMusic();
 					screen.setReplayButtonPressed(true);
 				}
 				
 				else if(OverlapTester.pointInRectangle(mainMenuBounds, 
 						pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.stopMusic();
 					screen.setMainMenuButtonPressed(true);
 				}
 				
 				else if(OverlapTester.pointInRectangle(nextBounds, 
 						pos.x, pos.y)&&labirin.getScore()>60){
+					screen.playSoundFx("default");
+					screen.stopMusic();
 					screen.setNextButtonPressed(true);
 					
 				}
@@ -126,6 +134,7 @@ private Aplikasi app;
 				if(screen.replayButtonIsPressed()){
 					screen.setReplayButtonPressed(false);
 					if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
+						app.getScreen().dispose();
 						app.setScreen(new LabirinScreen(app, labirin));
 					}
 				}
@@ -134,6 +143,7 @@ private Aplikasi app;
 					screen.setMainMenuButtonPressed(false);
 					if(OverlapTester.pointInRectangle(mainMenuBounds, 
 							pos.x, pos.y)){
+						app.getScreen().dispose();
 						app.setScreen(new MainMenuScreen(app));
 					}
 				}
@@ -143,6 +153,7 @@ private Aplikasi app;
 					screen.setNextButtonPressed(false);
 					if(OverlapTester.pointInRectangle(nextBounds, 
 							pos.x, pos.y)){
+						app.getScreen().dispose();
 						app.setScreen(new CongratulationsScreen(app));
 					}
 				}
@@ -150,6 +161,8 @@ private Aplikasi app;
 		}
 		else{
 			if (Gdx.input.isKeyPressed(Keys.BACK)){
+				screen.playSoundFx("default");
+				screen.pauseMusic();
 				screen.pause();
 				app.setScreen(new PauseScreen(app, screen, labirin));
 			}
@@ -165,6 +178,8 @@ private Aplikasi app;
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
 				if(OverlapTester.pointInRectangle( pauseButtonBounds, pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.pauseMusic();
 					screen.setPauseButtonPressed(true);	
 				}
 				
@@ -258,6 +273,7 @@ private Aplikasi app;
 						OverlapTester.pointInRectangle(itemsBounds[i], player.getX()+23, player.getY())||
 						OverlapTester.pointInRectangle(itemsBounds[i], player.getX(), player.getY())){
 					accelY=0;
+					screen.playSoundFx("true");
 					labirin.getItem(i).setFound(true);
 				}
 			}

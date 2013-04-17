@@ -115,7 +115,7 @@ public class TapGameScreen extends AbstractScreen{
 		
 		buttons = tapGame.getButtons();
 		
-		tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.mp3"));
+		tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.mp3"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
@@ -125,19 +125,13 @@ public class TapGameScreen extends AbstractScreen{
 				tapGameMusicBg.setLooping(true);
 				tapGameMusicBg.setVolume(1.0f);
 				tapGameMusicBg.play();
-			} else {
-				this.tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.mp3"));
-				System.out.println("play music after null");
-				tapGameMusicBg.setLooping(true);
-				tapGameMusicBg.setVolume(1.0f);
-				tapGameMusicBg.play();
-			}
+			} 
 		} else if(this.tapGameMusicBg != null && this.tapGameMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
 		
-		this.falseAnswerSfx = Gdx.audio.newSound(Gdx.files.internal("sound/miss.ogg"));
-		this.rightAnswerSfx = Gdx.audio.newSound(Gdx.files.internal("sound/answer_true.mp3"));
+		this.falseAnswerSfx = Gdx.audio.newSound(Gdx.files.internal("sound/tapgame_miss.ogg"));
+		this.rightAnswerSfx = Gdx.audio.newSound(Gdx.files.internal("sound/tapgame_hit.mp3"));
 		this.pauseClickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
 		
 		controller = new TapGameController(this, app, tapGame);
@@ -380,8 +374,6 @@ public class TapGameScreen extends AbstractScreen{
 			if (this.tapGameMusicBg != null) {
 				System.out.println("play music");
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
-				tapGameMusicBg.setLooping(true);
-				tapGameMusicBg.setVolume(1.0f);
 				tapGameMusicBg.play();
 			} else {
 				this.tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.mp3"));

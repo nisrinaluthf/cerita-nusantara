@@ -123,13 +123,7 @@ public class KuisScreen extends AbstractScreen{
 				kuisMusicBg.setLooping(true);
 				kuisMusicBg.setVolume(0.25f);
 				kuisMusicBg.play();
-			} else {
-				this.kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.mp3"));
-				System.out.println("play music after null");
-				kuisMusicBg.setLooping(true);
-				kuisMusicBg.setVolume(0.25f);
-				kuisMusicBg.play();
-			}
+			} 
 		} else if(this.kuisMusicBg != null && this.kuisMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
