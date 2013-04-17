@@ -70,18 +70,24 @@ public class TapGameController {
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
 				if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.stopMusic();
 					screen.setReplayButtonPressed(true);
 					System.out.println("replay");
 				}
 				
 				else if(OverlapTester.pointInRectangle(mainMenuBounds, 
 						pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.stopMusic();
 					screen.setMainMenuButtonPressed(true);
 					System.out.println("mainmenu");
 				}
 				
 				else if(OverlapTester.pointInRectangle(nextBounds, 
 						pos.x, pos.y)&&tapGame.getScore()>60){
+					screen.playSoundFx("default");
+					screen.stopMusic();
 					screen.setNextButtonPressed(true);
 					
 				}
@@ -93,6 +99,7 @@ public class TapGameController {
 				if(screen.replayButtonIsPressed()){
 					screen.setReplayButtonPressed(false);
 					if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
+						app.getScreen().dispose();
 						app.setScreen(new TapGameScreen(app, tapGame));
 					}
 				}
@@ -101,6 +108,7 @@ public class TapGameController {
 					screen.setMainMenuButtonPressed(false);
 					if(OverlapTester.pointInRectangle(mainMenuBounds, 
 							pos.x, pos.y)){
+						app.getScreen().dispose();
 						app.setScreen(new MainMenuScreen(app));
 					}
 				}
@@ -110,6 +118,7 @@ public class TapGameController {
 					screen.setNextButtonPressed(false);
 					if(OverlapTester.pointInRectangle(nextBounds, 
 							pos.x, pos.y)){
+						app.getScreen().dispose();
 						app.setScreen(new CongratulationsScreen(app));
 					}
 				}
@@ -117,6 +126,8 @@ public class TapGameController {
 		}
 		else{
 			if (Gdx.input.isKeyPressed(Keys.BACK)){
+				screen.playSoundFx("default");
+				screen.pauseMusic();
 				screen.pause();
 				app.setScreen(new PauseScreen(app, screen, tapGame));
 			}
@@ -138,6 +149,8 @@ public class TapGameController {
 				
 				System.out.println(pauseButtonBounds.x+" "+pauseButtonBounds.y);
 				if(OverlapTester.pointInRectangle(pauseButtonBounds, pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.pauseMusic();
 					screen.setPauseButtonPressed(true);	
 				}
 				
@@ -152,10 +165,12 @@ public class TapGameController {
 										&& target.getIndex()==i){
 									target.setPressed(true);
 									if(target.isBad()){
+										screen.playSoundFx("false");
 										tapGame.setHits(tapGame.getHits()-1);
 										tapGame.addBadHit();
 									}
 									else {
+										screen.playSoundFx("true");
 										tapGame.setHits(tapGame.getHits()+1);
 									}
 								}
