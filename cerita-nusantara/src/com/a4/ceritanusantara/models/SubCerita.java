@@ -11,6 +11,8 @@ public class SubCerita {
 	public static final int RUNNING_GAME = 4;
 	public static final int KUIS = 5;
 	
+	protected SubCerita next;
+	protected SubCerita prev;
 
 	protected String nama;
 	protected int tipe;
@@ -45,5 +47,21 @@ public class SubCerita {
 	
 	public boolean isUnlocked(){
 		return unlocked;
+	}
+	
+	public void setNext(SubCerita next){
+		this.next = next;
+	}
+	
+	public void setPrev(SubCerita prev){
+		this.prev = prev;
+	}
+	
+	public SubCerita getNext(){
+		return next;
+	}
+	
+	public SubCerita getPrev(){
+		return prev;
 	}
 }

@@ -24,6 +24,28 @@ public class InitSubCerita {
 	
 	public static void initSumatera(Cerita cerita){
 		
+		
+		
+		FileHandle file = Gdx.files.internal("data/datasumatera");
+		
+		FileHandle localFile = Gdx.files.local("datasumatera");
+		
+		String data = file.readString();
+		StringTokenizer st = new StringTokenizer(data,  ";");
+		int i=0;
+		while(st.hasMoreTokens()){
+			String token = st.nextToken();
+			StringTokenizer st2 = new StringTokenizer(token,  " ");
+			boolean unlocked = false;
+			if(st2.nextToken().equals("unlocked")) unlocked = true;
+			int score = Integer.parseInt(st2.nextToken());
+			
+			cerita.getSubCerita(i).setUnlocked(unlocked);
+			cerita.getSubCerita(i).setScore(score);
+			
+			i++;
+		}
+		
 		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(0), 
 				Gdx.files.internal("dialog/sumatera/scene1_sumatera.txt"));
 		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(1), 
@@ -40,23 +62,6 @@ public class InitSubCerita {
 				Gdx.files.internal("dialog/sumatera/scene7_sumatera.txt"));
 		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(9), 
 				Gdx.files.internal("dialog/sumatera/scene8_sumatera.txt"));
-		
-		FileHandle file = Gdx.files.internal("data/datasumatera");
-		String data = file.readString();
-		StringTokenizer st = new StringTokenizer(data,  ";");
-		int i=0;
-		while(st.hasMoreTokens()){
-			String token = st.nextToken();
-			StringTokenizer st2 = new StringTokenizer(token,  " ");
-			boolean unlocked = false;
-			if(st2.nextToken().equals("unlocked")) unlocked = true;
-			int score = Integer.parseInt(st2.nextToken());
-			
-			cerita.getSubCerita(i).setUnlocked(unlocked);
-			cerita.getSubCerita(i).setScore(score);
-			
-			i++;
-		}
 		
 		((TapGame) cerita.getSubCerita(3)).setBackground(new 
 				Texture(Gdx.files.internal("parkit-tapgame/bg.png")));
@@ -198,6 +203,22 @@ public class InitSubCerita {
 			
 			i++;
 		}
+		
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(0), 
+				Gdx.files.internal("dialog/kalimantan/scene1_kalimantan.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(1), 
+				Gdx.files.internal("dialog/kalimantan/scene2_kalimantan.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(3), 
+				Gdx.files.internal("dialog/kalimantan/scene3_kalimantan.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(4), 
+				Gdx.files.internal("dialog/kalimantan/scene4_kalimantan.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(5), 
+				Gdx.files.internal("dialog/kalimantan/scene5_kalimantan.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(6), 
+				Gdx.files.internal("dialog/kalimantan/scene6_kalimantan.txt"));
+		InitAdegan.initAdegan((Adegan)cerita.getSubCerita(8), 
+				Gdx.files.internal("dialog/kalimantan/scene7_kalimantan.txt"));
+		
 		
 		List<LabirinWall> walls = new ArrayList<LabirinWall>();
 		List<LabirinItem> items = new ArrayList<LabirinItem>();

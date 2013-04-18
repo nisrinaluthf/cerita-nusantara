@@ -106,8 +106,8 @@ public class KuisController {
 					screen.setNextButtonPressed(false);
 					if(OverlapTester.pointInRectangle(nextBounds, 
 							pos.x, pos.y)){
-						app.getScreen().dispose();
-						app.setScreen(new CongratulationsScreen(app));
+						//app.getScreen().dispose();
+						//app.setScreen(new CongratulationsScreen(app));
 					}
 				}
 			}

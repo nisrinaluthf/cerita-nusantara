@@ -2,9 +2,16 @@ package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Adegan;
+import com.a4.ceritanusantara.models.Kuis;
+import com.a4.ceritanusantara.models.Labirin;
+import com.a4.ceritanusantara.models.SubCerita;
+import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.AdeganScreen;
+import com.a4.ceritanusantara.views.KuisScreen;
+import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
+import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -65,13 +72,67 @@ public class AdeganController {
 				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
-				if(OverlapTester.pointInRectangle(nextButtonBounds,pos.x, pos.y)){
-					screen.setNextButtonPressed(true);	
+				if(adegan.getNext()!=null){
+					if(OverlapTester.pointInRectangle(nextButtonBounds,pos.x, pos.y)){
+						screen.setNextButtonPressed(true);	
+					}
 				}
-				else if(OverlapTester.pointInRectangle(previousButtonBounds,pos.x, pos.y)){
-					screen.setPreviousButtonPressed(true);	
+				if(adegan.getPrev()!=null){
+					if(OverlapTester.pointInRectangle(previousButtonBounds,pos.x, pos.y)){
+						screen.setPreviousButtonPressed(true);	
+					}
 				}
 				
+			}
+			
+			if(!Gdx.input.isTouched()){
+				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
+				
+				if(adegan.getNext()!=null){
+					if(screen.nextButtonIsPressed()){
+						screen.setNextButtonPressed(false);
+						if(OverlapTester.pointInRectangle(nextButtonBounds, pos.x, pos.y)){
+							SubCerita next = adegan.getNext();
+							int type = next.getTipe();
+							
+							if(type==SubCerita.ADEGAN){
+								app.setScreen(new AdeganScreen(app, (Adegan)next));
+							}
+							else if(type==SubCerita.TAP_GAME){
+								app.setScreen(new TapGameScreen(app, (TapGame)next));
+							}
+							else if(type==SubCerita.LABIRIN){
+								app.setScreen(new LabirinScreen(app, (Labirin)next));
+							}
+							else if(type==SubCerita.KUIS){
+								app.setScreen(new KuisScreen(app, (Kuis)next));
+							}
+						}
+					}
+				}
+				if(adegan.getPrev()!=null){
+					if(screen.previousButtonIsPressed()){
+						screen.setPreviousButtonPressed(false);
+						if(OverlapTester.pointInRectangle(previousButtonBounds, pos.x, pos.y)){
+							SubCerita prev = adegan.getPrev();
+							int type = prev.getTipe();
+							
+							if(type==SubCerita.ADEGAN){
+								app.setScreen(new AdeganScreen(app, (Adegan)prev));
+							}
+							else if(type==SubCerita.TAP_GAME){
+								app.setScreen(new TapGameScreen(app, (TapGame)prev));
+							}
+							else if(type==SubCerita.LABIRIN){
+								app.setScreen(new LabirinScreen(app, (Labirin)prev));
+							}
+							else if(type==SubCerita.KUIS){
+								app.setScreen(new KuisScreen(app, (Kuis)prev));
+							}
+						}
+					}
+				}
 			}
 		}
 		else{

@@ -62,7 +62,18 @@ public class CeritaNusantara {
 				new Kuis("Kuis", SubCerita.KUIS)
 		});
 		
+		
 		InitSubCerita.initSumatera(cerita[SUMATERA]);
+		
+		int len = cerita[SUMATERA].getSubCerita().length;
+		for(int i=0; i<len; i++){
+			if(i<len-1){
+				cerita[SUMATERA].getSubCerita(i).setNext(cerita[SUMATERA].getSubCerita(i+1));
+			}
+			if(i>0){
+				cerita[SUMATERA].getSubCerita(i).setPrev(cerita[SUMATERA].getSubCerita(i-1));
+			}
+		}
 		
 		cerita[KALIMANTAN].setUnlocked(kalimantanUnlocked);
 		cerita[KALIMANTAN].setSubCerita(new SubCerita[]{
@@ -80,6 +91,14 @@ public class CeritaNusantara {
 		
 		InitSubCerita.initKalimantan(cerita[KALIMANTAN]);
 		
-		
+		len = cerita[KALIMANTAN].getSubCerita().length;
+		for(int i=0; i<len; i++){
+			if(i<len-1){
+				cerita[KALIMANTAN].getSubCerita(i).setNext(cerita[KALIMANTAN].getSubCerita(i+1));
+			}
+			if(i>0){
+				cerita[KALIMANTAN].getSubCerita(i).setPrev(cerita[KALIMANTAN].getSubCerita(i-1));
+			}
+		}
 	}
 }

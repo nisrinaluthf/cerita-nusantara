@@ -5,8 +5,8 @@ speaker_dialog/saluang_kiri.png
 speaker_dialog/naga_left.png
 30
 3.1:nar:Nusa menetap sementara di sebuah teluk yang agak dalam tiba di muara Sungai Kahayan.
-7.1:Ia sangat senang, karena terdapat banyak jenis ikan yang hidup di sana untuk dimakan. Namun kehadirannya menjadi ancaman bagi kehidupan ikan-ikan tersebut.
-10.1:Oleh karena itu, ikan-ikan tersebut berusaha mencari cara untuk mengusirnya. Mereka pun berkumpul.
+7.1:nar:Ia sangat senang, karena terdapat banyak jenis ikan yang hidup di sana untuk dimakan. Namun kehadirannya menjadi ancaman bagi kehidupan ikan-ikan tersebut.
+10.1:nar:Oleh karena itu, ikan-ikan tersebut berusaha mencari cara untuk mengusirnya. Mereka pun berkumpul.
 12.1:dia:0:Apa yang harus kita lakukan untuk mengusir naga itu?
 15.1:dia:1:Aku punya akal. Aku akan bercerita kepada naga itu bahwa di lautan sana ada seekor naga besar yang ingin mengadu kekuatan dengannya.
 17.1:dia:0:Lalu, apa rencanamu selanjutnya?
@@ -33,4 +33,4 @@ speaker_dialog/naga_left.png
 73.1:nar:Ia mengira suara air itu adalah musuhnya. Tanpa berpikir panjang, ia pun menyerang dan menggigitnya. Namun, tanpa disadari, ia menggigit ekornya sendiri.
 75.1:dia:2:Aduuhhh....!
 78.1:nar:Pada saat itulah, Ikan Saluang segera memerintahkan semua teman-temannya untuk menggerogoti luka Naga Nusa.
-81.1:Bantulah ikan-ikan untuk menyerang naga dengan menekan tombol kuning dan hindari menekan tombol merah!
+81.1:nar:Bantulah ikan-ikan untuk menyerang naga dengan menekan tombol kuning dan hindari menekan tombol merah!

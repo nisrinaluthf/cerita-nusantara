@@ -13,4 +13,4 @@ speaker_dialog/nusa.png
 25.1:dia:0:Lihat tubuh dan kaki Abang! Sebentar lagi Abang akan menjadi seekor naga. Tapi, Adik tidak usah sedih, karena ini sudah takdir Tuhan.
 27.1:nar:Tidak lama kemudian, adik iparnya kembali bersama warga yang siap untuk membantunya.
 30.1:nar:Namun saat melihat tubuh Nusa, mereka tidak dapat berbuat apa-apa, karena mereka belum pernah melihat kejadian aneh seperti itu.
-34.1:nar;Akhirnya, hampir sehari semalam mereka hanya duduk mengelilingi tubuh Nusa yang tergeletak tidak berdaya di atas pasir sambil memerhatikan perkembangan selanjutnya.
+34.1:nar:Akhirnya, hampir sehari semalam mereka hanya duduk mengelilingi tubuh Nusa yang tergeletak tidak berdaya di atas pasir sambil memerhatikan perkembangan selanjutnya.

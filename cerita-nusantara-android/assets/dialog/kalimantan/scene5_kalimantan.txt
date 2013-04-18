@@ -11,7 +11,7 @@ speaker_dialog/istri_nusa_sedih.png
 16.5:dia:0:Aduh..., aku lapar sekali. Tolong carikan aku ikan! Seru Nusa sambil menahan rasa lapar.
 18.9:nar:Warga pun segera berpencar mencari ikan di danau atau telaga yang berada di sekitar hutan.
 22.2:nar:Beberapa lama kemudian, warga kembali dengan membawa ikan yang banyak. Dalam sekejap, ikan-ikan itu pun habis dilahapnya.
-24.1:Menjelang senja, Nusa berpesan kepada istrinya.
+24.1:nar:Menjelang senja, Nusa berpesan kepada istrinya.
 27.1:dia:0:Dik! Nanti malam akan turun hujan lebat diiringi guntur dan petir. Air sungai ini akan meluap.
 29.7:dia:0:Sampaikan hal ini kepada warga, agar segera meninggalkan tempat ini. 
 33.8:dia:0:Saat sungai banjir, Abang akan menuju ke Sungai Kahayan dan terus ke muara.

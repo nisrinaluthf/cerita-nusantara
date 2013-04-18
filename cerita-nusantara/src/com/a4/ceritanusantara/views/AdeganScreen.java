@@ -64,18 +64,16 @@ public class AdeganScreen extends SubCeritaScreen {
 		nextButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/dialog_next.png"));
 
-		/*
-		previousButtonBounds = new Rectangle(0, previousButtonTexture.getHeight(),
-				previousButtonTexture.getWidth(),
-				previousButtonTexture.getHeight());
-		nextButtonBounds = new Rectangle(
-				(VIRTUAL_WIDTH - nextButtonTexture.getWidth()), previousButtonTexture.getHeight(),
+		
+		previousButtonBounds = new Rectangle(940, 19,
+				previousButtonTexture.getWidth(), previousButtonTexture.getHeight());
+		nextButtonBounds = new Rectangle(940, 82,
 				nextButtonTexture.getWidth(), nextButtonTexture.getHeight());
 		
 		
 		previousButtonPressed = false;
 		nextButtonPressed = false;
-		*/
+		
 		
 		pauseButtonTexture = new Texture(
 				Gdx.files.internal("buttons/pause.png"));
@@ -122,22 +120,31 @@ public class AdeganScreen extends SubCeritaScreen {
 			}
 			else if(text.getType()==AdeganText.DIA){
 				font.drawWrapped(batcher, text.getText(), 10, 125, 892);
-				batcher.draw(character[text.getChara()], 900, 15);
+				
 			}
 			
 			if(adegan.isDone()){
-				if(nextButtonPressed){
-					batcher.draw(nextButtonPressedTexture, 940, 82);
-				}
-				else{
-					batcher.draw(nextButtonTexture, 940, 82);
-				}
 				
-				if(previousButtonPressed){
-					batcher.draw(previousButtonPressedTexture, 940, 19);
+				if(adegan.getNext()!=null){
+					if(nextButtonPressed){
+						batcher.draw(nextButtonPressedTexture, 940, 82);
+					}
+					else{
+						batcher.draw(nextButtonTexture, 940, 82);
+					}
 				}
-				else{
-					batcher.draw(previousButtonTexture, 940, 19);
+				if(adegan.getPrev()!=null){
+					if(previousButtonPressed){
+						batcher.draw(previousButtonPressedTexture, 940, 19);
+					}
+					else{
+						batcher.draw(previousButtonTexture, 940, 19);
+					}
+				}
+			}
+			else{
+				if(text.getType()==AdeganText.DIA){
+					batcher.draw(character[text.getChara()], 900, 15);
 				}
 			}
 			
@@ -150,7 +157,6 @@ public class AdeganScreen extends SubCeritaScreen {
 		batcher.end();
 
 		controller.processInput(delta);
-
 
 	}
 	

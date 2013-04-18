@@ -1,17 +1,22 @@
 package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
+import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.LabirinPlayer;
 import com.a4.ceritanusantara.models.LabirinWall;
+import com.a4.ceritanusantara.models.SubCerita;
+import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.utils.OverlapTester;
+import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.CongratulationsScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
+import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -153,8 +158,28 @@ private Aplikasi app;
 					screen.setNextButtonPressed(false);
 					if(OverlapTester.pointInRectangle(nextBounds, 
 							pos.x, pos.y)){
-						app.getScreen().dispose();
-						app.setScreen(new CongratulationsScreen(app));
+						screen.setNextButtonPressed(false);
+						if(OverlapTester.pointInRectangle(nextBounds, 
+								pos.x, pos.y)){
+							screen.setNextButtonPressed(false);
+							if(OverlapTester.pointInRectangle(nextBounds, pos.x, pos.y)){
+								SubCerita next = labirin.getNext();
+								int type = next.getTipe();
+								
+								if(type==SubCerita.ADEGAN){
+									app.setScreen(new AdeganScreen(app, (Adegan)next));
+								}
+								else if(type==SubCerita.TAP_GAME){
+									app.setScreen(new TapGameScreen(app, (TapGame)next));
+								}
+								else if(type==SubCerita.LABIRIN){
+									app.setScreen(new LabirinScreen(app, (Labirin)next));
+								}
+								else if(type==SubCerita.KUIS){
+									app.setScreen(new KuisScreen(app, (Kuis)next));
+								}
+							}
+						}
 					}
 				}
 			}
