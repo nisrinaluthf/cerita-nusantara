@@ -5,6 +5,8 @@ import com.a4.ceritanusantara.controllers.AdeganController;
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.AdeganText;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -40,6 +42,10 @@ public class AdeganScreen extends SubCeritaScreen {
 	private BitmapFont font;
 	
 	private AdeganController controller;
+	
+	private Music adeganMusicBg;
+	
+	private Sound pauseClickSfx;
 	
 	
 	public AdeganScreen(Aplikasi app, Adegan adegan) {
@@ -89,6 +95,22 @@ public class AdeganScreen extends SubCeritaScreen {
 				Gdx.files.internal("fonts/sf-cartoonist-hand-30-white-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-30-white-bold.png"),
 				false);
+		
+		adeganMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/adegan.ogg"));
+		
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.adeganMusicBg != null) {
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				adeganMusicBg.setLooping(true);
+				adeganMusicBg.setVolume(1.0f);
+				adeganMusicBg.play();
+			} 
+		} else if(this.adeganMusicBg != null && this.adeganMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+		
+		this.pauseClickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
 		
 		controller = new AdeganController(this);
 	}
@@ -204,4 +226,62 @@ public class AdeganScreen extends SubCeritaScreen {
 		return adegan;
 	}
 
+	public void playSoundFx(String key) {
+		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
+			if (key.equals("default"))
+				this.pauseClickSfx.play();
+	}
+	
+	
+	public void stopMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.adeganMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.adeganMusicBg != null) {
+			if (this.adeganMusicBg.isPlaying()) {
+				if (this.adeganMusicBg.isLooping()) {
+					this.adeganMusicBg.setLooping(false);
+				}
+				this.adeganMusicBg.stop();
+				this.adeganMusicBg.dispose();
+				this.adeganMusicBg = null;
+			}
+			this.adeganMusicBg = null;
+		}
+	}
+	public void pauseMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.adeganMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.adeganMusicBg != null) {
+			if (this.adeganMusicBg.isPlaying()) {
+				if (this.adeganMusicBg.isLooping()) {
+					this.adeganMusicBg.setLooping(false);
+				}
+				this.adeganMusicBg.pause();
+				//this.adeganMusicBg.dispose();
+				//this.adeganMusicBg = null;
+			}
+			//this.adeganMusicBg = null;
+		}
+	}
+	
+	public void resume() {
+		super.resume();
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.adeganMusicBg != null) {
+				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				adeganMusicBg.play();
+			} else {
+				this.adeganMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/adegan.mp3"));
+				System.out.println("play music after null");
+				adeganMusicBg.setLooping(true);
+				adeganMusicBg.setVolume(1.0f);
+				adeganMusicBg.play();
+			}
+		} else if(this.adeganMusicBg != null && this.adeganMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+	}
+	
 }

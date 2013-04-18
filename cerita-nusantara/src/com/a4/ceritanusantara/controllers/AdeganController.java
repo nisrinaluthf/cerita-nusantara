@@ -105,11 +105,13 @@ public class AdeganController {
 				
 				if(adegan.getNext()!=null){
 					if(OverlapTester.pointInRectangle(nextButtonBounds,pos.x, pos.y)){
+						screen.playSoundFx("default");
 						screen.setNextButtonPressed(true);	
 					}
 				}
 				if(adegan.getPrev()!=null){
 					if(OverlapTester.pointInRectangle(previousButtonBounds,pos.x, pos.y)){
+						screen.playSoundFx("default");
 						screen.setPreviousButtonPressed(true);	
 					}
 				}
@@ -128,16 +130,22 @@ public class AdeganController {
 							int type = next.getTipe();
 							
 							if(type==SubCerita.ADEGAN){
+								screen.stopMusic();
+								app.getScreen().dispose();
 								app.setScreen(new AdeganScreen(app, (Adegan)next));
 							}
 							else if(type==SubCerita.TAP_GAME){
+								screen.stopMusic();
+								app.getScreen().dispose();
 								app.setScreen(new TapGameScreen(app, (TapGame)next));
 							}
 							else if(type==SubCerita.LABIRIN){
-								app.setScreen(new LabirinScreen(app, (Labirin)next));
+								screen.stopMusic();
+								app.getScreen().dispose();app.setScreen(new LabirinScreen(app, (Labirin)next));
 							}
 							else if(type==SubCerita.KUIS){
-								app.setScreen(new KuisScreen(app, (Kuis)next));
+								screen.stopMusic();
+								app.getScreen().dispose();app.setScreen(new KuisScreen(app, (Kuis)next));
 							}
 						}
 					}
@@ -150,15 +158,23 @@ public class AdeganController {
 							int type = prev.getTipe();
 							
 							if(type==SubCerita.ADEGAN){
+								screen.stopMusic();
+								app.getScreen().dispose();
 								app.setScreen(new AdeganScreen(app, (Adegan)prev));
 							}
 							else if(type==SubCerita.TAP_GAME){
+								screen.stopMusic();
+								app.getScreen().dispose();
 								app.setScreen(new TapGameScreen(app, (TapGame)prev));
 							}
 							else if(type==SubCerita.LABIRIN){
+								screen.stopMusic();
+								app.getScreen().dispose();
 								app.setScreen(new LabirinScreen(app, (Labirin)prev));
 							}
 							else if(type==SubCerita.KUIS){
+								screen.stopMusic();
+								app.getScreen().dispose();
 								app.setScreen(new KuisScreen(app, (Kuis)prev));
 							}
 						}
@@ -172,6 +188,8 @@ public class AdeganController {
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
 				if(OverlapTester.pointInRectangle( pauseButtonBounds,pos.x, pos.y)){
+					screen.pauseMusic();
+					screen.playSoundFx("default");
 					screen.setPauseButtonPressed(true);	
 				}
 				
