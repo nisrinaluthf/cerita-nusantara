@@ -120,7 +120,6 @@ labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.mp3"));
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
 			if (this.labirinMusicBg != null) {
-				System.out.println("play music");
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				labirinMusicBg.setLooping(true);
 				labirinMusicBg.setVolume(1.0f);

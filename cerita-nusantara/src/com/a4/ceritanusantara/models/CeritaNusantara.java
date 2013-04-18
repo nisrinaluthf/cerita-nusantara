@@ -62,6 +62,11 @@ public class CeritaNusantara {
 				new Kuis("Kuis", SubCerita.KUIS)
 		});
 		
+		for(int i=0; i<cerita[SUMATERA].getSubCerita().length; i++){
+			cerita[SUMATERA].getSubCerita(i).setAsalCerita(SUMATERA);
+			cerita[SUMATERA].getSubCerita(i).setIndex(i);
+		}
+		
 		
 		InitSubCerita.initSumatera(cerita[SUMATERA]);
 		
@@ -88,6 +93,11 @@ public class CeritaNusantara {
 				new Adegan("Adegan 7", SubCerita.ADEGAN),
 				new Kuis("Kuis", SubCerita.KUIS)
 		});
+		
+		for(int i=0; i<cerita[KALIMANTAN].getSubCerita().length; i++){
+			cerita[KALIMANTAN].getSubCerita(i).setAsalCerita(KALIMANTAN);
+			cerita[KALIMANTAN].getSubCerita(i).setIndex(i);
+		}
 		
 		InitSubCerita.initKalimantan(cerita[KALIMANTAN]);
 		

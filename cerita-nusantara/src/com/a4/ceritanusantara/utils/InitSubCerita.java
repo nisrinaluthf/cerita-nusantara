@@ -30,7 +30,11 @@ public class InitSubCerita {
 		
 		FileHandle localFile = Gdx.files.local("datasumatera");
 		
-		String data = file.readString();
+		if(!localFile.exists()){
+			localFile.writeString(file.readString(), false);
+		}
+		
+		String data = localFile.readString();
 		StringTokenizer st = new StringTokenizer(data,  ";");
 		int i=0;
 		while(st.hasMoreTokens()){
@@ -188,12 +192,22 @@ public class InitSubCerita {
 	public static void initKalimantan(Cerita cerita){
 		
 		FileHandle file = Gdx.files.internal("data/datakalimantan");
-		String data = file.readString();
+		FileHandle localFile = Gdx.files.local("datakalimantan");
+		
+		if(!localFile.exists()){
+			localFile.writeString(file.readString(), false);
+		}
+		
+		String data = localFile.readString();
+		
 		StringTokenizer st = new StringTokenizer(data,  ";");
+		
 		int i=0;
 		while(st.hasMoreTokens()){
 			String token = st.nextToken();
+			
 			StringTokenizer st2 = new StringTokenizer(token,  " ");
+			
 			boolean unlocked = false;
 			if(st2.nextToken().equals("unlocked")) unlocked = true;
 			int score = Integer.parseInt(st2.nextToken());

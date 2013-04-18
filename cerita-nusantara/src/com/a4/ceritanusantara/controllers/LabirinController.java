@@ -298,7 +298,9 @@ private Aplikasi app;
 						OverlapTester.pointInRectangle(itemsBounds[i], player.getX()+23, player.getY())||
 						OverlapTester.pointInRectangle(itemsBounds[i], player.getX(), player.getY())){
 					accelY=0;
-					screen.playSoundFx("true");
+					if(!labirin.getItem(i).isFound()){
+						screen.playSoundFx("true");
+					}
 					labirin.getItem(i).setFound(true);
 				}
 			}

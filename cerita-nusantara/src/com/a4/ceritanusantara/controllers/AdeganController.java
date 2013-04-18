@@ -1,7 +1,10 @@
 package com.a4.ceritanusantara.controllers;
 
+import java.util.StringTokenizer;
+
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Adegan;
+import com.a4.ceritanusantara.models.CeritaNusantara;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.SubCerita;
@@ -14,6 +17,7 @@ import com.a4.ceritanusantara.views.PauseScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -62,6 +66,33 @@ public class AdeganController {
 				adegan.updateCurrentText();
 			}
 			else{
+				FileHandle localFile = null;
+				
+				if(adegan.getAsalCerita()==CeritaNusantara.SUMATERA){
+					localFile = Gdx.files.local("datasumatera");
+				}
+				else if(adegan.getAsalCerita()==CeritaNusantara.KALIMANTAN){
+					localFile = Gdx.files.local("datakalimantan");
+				}
+				
+				
+				String data = localFile.readString();
+				StringTokenizer st = new StringTokenizer(data,  ";");
+				int i=0;
+				String tmp = "";
+				while(st.hasMoreTokens()){
+					String token = st.nextToken();
+					StringTokenizer st2 = new StringTokenizer(token,  " ");
+					
+					if(adegan.getIndex()==i){
+						
+					}
+					else{
+						
+					}
+					
+					i++;
+				}
 				adegan.done();
 			}
 			

@@ -19,6 +19,9 @@ public class SubCerita {
 	protected boolean unlocked;
 	protected int score;
 	
+	protected int asalCerita;
+	protected int index;
+	
 	public SubCerita(String nama, int tipe){
 		this.nama = nama;
 		this.tipe = tipe;
@@ -63,5 +66,21 @@ public class SubCerita {
 	
 	public SubCerita getPrev(){
 		return prev;
+	}
+	
+	public void setAsalCerita(int i){
+		asalCerita = i;
+	}
+	
+	public int getAsalCerita(){
+		return asalCerita;
+	}
+	
+	public void setIndex(int i){
+		index = i;
+	}
+	
+	public int getIndex(){
+		return index;
 	}
 }
