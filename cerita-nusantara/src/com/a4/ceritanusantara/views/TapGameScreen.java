@@ -8,6 +8,8 @@ import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.models.TapGameButton;
 import com.a4.ceritanusantara.models.TapGameTarget;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -52,6 +54,14 @@ public class TapGameScreen extends AbstractScreen{
 	private boolean mainMenuButtonPressed;
 	private boolean nextButtonPressed;
 	private BitmapFont font;
+	
+	private Sound falseAnswerSfx;
+	
+	private Sound rightAnswerSfx;
+	
+	private Sound pauseClickSfx;
+	
+	private Music tapGameMusicBg;
 		
 	public TapGameScreen(Aplikasi app, TapGame tapGame){
 		super(app);
@@ -104,6 +114,25 @@ public class TapGameScreen extends AbstractScreen{
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		
 		buttons = tapGame.getButtons();
+		
+		tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.mp3"));
+		
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.tapGameMusicBg != null) {
+				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				tapGameMusicBg.setLooping(true);
+				tapGameMusicBg.setVolume(1.0f);
+				tapGameMusicBg.play();
+			} 
+		} else if(this.tapGameMusicBg != null && this.tapGameMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
+		
+		this.falseAnswerSfx = Gdx.audio.newSound(Gdx.files.internal("sound/tapgame_miss.ogg"));
+		this.rightAnswerSfx = Gdx.audio.newSound(Gdx.files.internal("sound/tapgame_hit.mp3"));
+		this.pauseClickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
 		
 		controller = new TapGameController(this, app, tapGame);
 	}
@@ -294,5 +323,67 @@ public class TapGameScreen extends AbstractScreen{
 	
 	public boolean nextButtonIsPressed(){
 		return nextButtonPressed;
+	}
+	
+	public void playSoundFx(String key) {
+		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
+			if (key.equals("default"))
+				this.pauseClickSfx.play();
+			else if (key.equals("false"))
+				this.falseAnswerSfx.play();
+			else if (key.equals("true"))
+				this.rightAnswerSfx.play();
+	}
+	
+	
+	public void stopMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.tapGameMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.tapGameMusicBg != null) {
+			if (this.tapGameMusicBg.isPlaying()) {
+				if (this.tapGameMusicBg.isLooping()) {
+					this.tapGameMusicBg.setLooping(false);
+				}
+				this.tapGameMusicBg.stop();
+				this.tapGameMusicBg.dispose();
+				this.tapGameMusicBg = null;
+			}
+			this.tapGameMusicBg = null;
+		}
+	}
+	public void pauseMusic() {
+		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.tapGameMusicBg.getPosition());
+		System.out.println("stop");
+		if(this.tapGameMusicBg != null) {
+			if (this.tapGameMusicBg.isPlaying()) {
+				if (this.tapGameMusicBg.isLooping()) {
+					this.tapGameMusicBg.setLooping(false);
+				}
+				this.tapGameMusicBg.pause();
+				//this.tapGameMusicBg.dispose();
+				//this.tapGameMusicBg = null;
+			}
+			//this.tapGameMusicBg = null;
+		}
+	}
+	
+	public void resume() {
+		super.resume();
+		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
+			//System.out.println("play music");
+			if (this.tapGameMusicBg != null) {
+				System.out.println("play music");
+				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
+				tapGameMusicBg.play();
+			} else {
+				this.tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.mp3"));
+				System.out.println("play music after null");
+				tapGameMusicBg.setLooping(true);
+				tapGameMusicBg.setVolume(1.0f);
+				tapGameMusicBg.play();
+			}
+		} else if(this.tapGameMusicBg != null && this.tapGameMusicBg.isPlaying()) {
+			this.stopMusic();
+		}
 	}
 }

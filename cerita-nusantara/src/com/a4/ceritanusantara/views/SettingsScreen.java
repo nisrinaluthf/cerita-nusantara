@@ -97,12 +97,7 @@ public class SettingsScreen extends AbstractScreen {
 				System.out.println("play music");
 				settingsMusicBg.setLooping(true);
 				settingsMusicBg.play();
-			} else {
-			this.settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
-			System.out.println("play music after null");
-				settingsMusicBg.setLooping(true);
-				settingsMusicBg.play();
-			}
+			} 
 		} else if(this.settingsMusicBg != null && this.settingsMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
