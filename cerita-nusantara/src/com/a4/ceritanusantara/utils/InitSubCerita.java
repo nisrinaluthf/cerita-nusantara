@@ -158,7 +158,7 @@ public class InitSubCerita {
 		((Labirin) cerita.getSubCerita(8)).setWallTexture(new
 				Texture(Gdx.files.internal("parkit-labirin/wall.png")));
 		((Labirin) cerita.getSubCerita(8)).setItemTexture(new
-				Texture(Gdx.files.internal("nusa-labirin/item.png")));
+				Texture(Gdx.files.internal("parkit-labirin/item.png")));
 		
 		
 		((Kuis) cerita.getSubCerita(10)).setQuestions(new KuisQuestion[]{

@@ -12,4 +12,4 @@ speaker_dialog/siparkit_kiri.png
 18.1:nar:Ketika ia melihat semua orang sibuk, dengan cepatnya ia terbang setinggi-tingginya. Di udara ia berteriak dengan riang gembira.
 21.1:dia:2:Aku bebaasss...!!! Aku bebaasss....!!!
 24.1:nar:Orang-orang hanya terheran-heran melihat si Parkit yang dikira sudah mati itu bisa terbang tinggi.
-25.1:nar:Bantulah Si Parkit untuk keluar dari istana kerajaan dengan mencari jalan keluar dari labirin istana ini!
+25.1:nar:Bantulah Si Parkit untuk keluar dari istana kerajaan dengan mencari jalan keluar dari labirin istana ini! Sebelumnya kumpulkan semua kunci yang tersebar!

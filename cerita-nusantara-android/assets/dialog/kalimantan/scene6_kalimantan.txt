@@ -33,4 +33,4 @@ speaker_dialog/naga_left.png
 73.1:nar:Ia mengira suara air itu adalah musuhnya. Tanpa berpikir panjang, ia pun menyerang dan menggigitnya. Namun, tanpa disadari, ia menggigit ekornya sendiri.
 75.1:dia:2:Aduuhhh....!
 78.1:nar:Pada saat itulah, Ikan Saluang segera memerintahkan semua teman-temannya untuk menggerogoti luka Naga Nusa.
-81.1:nar:Bantulah ikan-ikan untuk menyerang naga dengan menekan tombol kuning dan hindari menekan tombol merah!
+81.1:nar:Bantulah ikan-ikan untuk menyerang naga dengan menekan tombol putih dan hindari menekan tombol hitam!
