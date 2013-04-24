@@ -13,6 +13,7 @@ public class TapGame extends SubCerita {
 	private TapGameButton[] buttons;
 	private List<TapGameTarget> targets;
 	private Texture[] targetsTexture;
+	private Texture[] targetsPressedTexture;
 	private Texture[] indicatorsTexture;
 	private int hit;
 	private int badHit;
@@ -49,6 +50,10 @@ public class TapGame extends SubCerita {
 		this.targetsTexture = targetsTexture;
 	}
 	
+	public void setTargetsPressedTexture(Texture[] targetsPressedTexture){
+		this.targetsPressedTexture = targetsPressedTexture;
+	}
+	
 	public void setIndicators(Texture[] indicatorsTexture){
 		this.indicatorsTexture = indicatorsTexture;
 	}
@@ -75,6 +80,10 @@ public class TapGame extends SubCerita {
 	
 	public Texture[] getTargetsTexture(){
 		return targetsTexture;
+	}
+	
+	public Texture[] getTargetsPressedTexture(){
+		return targetsPressedTexture;
 	}
 	
 	public Texture[] getIndicators(){

@@ -25,6 +25,7 @@ public class TapGameScreen extends AbstractScreen{
 	private Texture background;
 	private Texture panelBgTexture;
 	private Texture[] targetsTexture;
+	private Texture[] targetsPressedTexture;
 	private Texture[] indicatorsTexture;
 	private Texture scoreBgTexture;
 	private Texture scoreFrameTexture;
@@ -48,7 +49,7 @@ public class TapGameScreen extends AbstractScreen{
 	
 	private TapGameButton[] buttons;
 	
-	private boolean debug = false;
+	private boolean debug = true;
 	
 	private boolean replayButtonPressed;
 	private boolean mainMenuButtonPressed;
@@ -62,6 +63,7 @@ public class TapGameScreen extends AbstractScreen{
 	private Sound pauseClickSfx;
 	
 	private Music tapGameMusicBg;
+	
 		
 	public TapGameScreen(Aplikasi app, TapGame tapGame){
 		super(app);
@@ -72,6 +74,7 @@ public class TapGameScreen extends AbstractScreen{
 		background = tapGame.getBackground();
 		panelBgTexture = tapGame.getPanelBackground();
 		targetsTexture = tapGame.getTargetsTexture();
+		targetsPressedTexture = tapGame.getTargetsPressedTexture();
 		indicatorsTexture = tapGame.getIndicators();
 		
 		gameOverBg = new
@@ -232,9 +235,17 @@ public class TapGameScreen extends AbstractScreen{
 				Iterator<TapGameTarget> itr = tapGame.getTargets().iterator();
 				while(itr.hasNext()){
 					TapGameTarget target = itr.next();
-					batcher.draw(targetsTexture[target.getType()], 
-							target.getIndex() == 0 ? 274 : target.getIndex() == 1 ? 449 : 634,
-							target.getPos());
+					if(target.isHit()){
+						batcher.draw(targetsPressedTexture[target.getType()], 
+								target.getIndex() == 0 ? 274 : target.getIndex() == 1 ? 449 : 634,
+								target.getPos());
+					}
+					else{
+						batcher.draw(targetsTexture[target.getType()], 
+								target.getIndex() == 0 ? 274 : target.getIndex() == 1 ? 449 : 634,
+								target.getPos());
+					}
+							
 				}
 				
 				

@@ -338,7 +338,6 @@ private Aplikasi app;
 			labirin.getPlayer().setVelocityX(accelX);
 			labirin.getPlayer().setVelocityY(accelY);
 			
-			System.out.println("X = "+accelX+", Y = "+accelY);
 		}
 		
 	}

@@ -79,6 +79,14 @@ public class InitSubCerita {
 				new Texture(Gdx.files.internal("parkit-tapgame/target2_bad.png")),
 				new Texture(Gdx.files.internal("parkit-tapgame/target3_bad.png")),
 		});
+		((TapGame) cerita.getSubCerita(3)).setTargetsPressedTexture(new Texture[]{
+				new Texture(Gdx.files.internal("parkit-tapgame/target1_hit.png")),
+				new Texture(Gdx.files.internal("parkit-tapgame/target2_hit.png")),
+				new Texture(Gdx.files.internal("parkit-tapgame/target3_hit.png")),
+				new Texture(Gdx.files.internal("parkit-tapgame/target1_bad_hit.png")),
+				new Texture(Gdx.files.internal("parkit-tapgame/target2_bad_hit.png")),
+				new Texture(Gdx.files.internal("parkit-tapgame/target3_bad_hit.png")),
+		});
 		((TapGame) cerita.getSubCerita(3)).setIndicators(new Texture[]{
 				new Texture(Gdx.files.internal("parkit-tapgame/pemburu_senang.png")),
 				new Texture(Gdx.files.internal("parkit-tapgame/pemburu_sedih.png")),
@@ -299,6 +307,14 @@ public class InitSubCerita {
 				new Texture(Gdx.files.internal("nusa-tapgame/target1_bad.png")),
 				new Texture(Gdx.files.internal("nusa-tapgame/target1_bad.png")),
 				new Texture(Gdx.files.internal("nusa-tapgame/target1_bad.png")),
+		});
+		((TapGame) cerita.getSubCerita(7)).setTargetsPressedTexture(new Texture[]{
+				new Texture(Gdx.files.internal("nusa-tapgame/target1_hit.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1_hit.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1_hit.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1_bad_hit.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1_bad_hit.png")),
+				new Texture(Gdx.files.internal("nusa-tapgame/target1_bad_hit.png")),
 		});
 		((TapGame) cerita.getSubCerita(7)).setIndicators(new Texture[]{
 				new Texture(Gdx.files.internal("nusa-tapgame/nusa_senang.png")),

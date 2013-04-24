@@ -23,6 +23,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 public class TapGameController {
@@ -181,20 +182,24 @@ public class TapGameController {
 				for(int i=0; i<buttonsBounds.length; i++){
 					if(OverlapTester.pointInRectangle(buttonsBounds[i], pos.x, pos.y)){
 						buttons[i].setPressed(true);
+						Vector2 midPoint = new Vector2(buttonsBounds[i].x+(buttonsBounds[i].width/2), 
+								buttonsBounds[i].y+(buttonsBounds[i].height/2));
 						Iterator<TapGameTarget> itr = tapGame.getTargets().iterator();
 						try{
 							while(itr.hasNext()){
 								TapGameTarget target = itr.next();
-								if(OverlapTester.pointInRectangle(target.getBounds(), pos.x, pos.y) 
-										&& target.getIndex()==i){
+								if(OverlapTester.pointInRectangle(target.getBounds(), midPoint.x, 
+										midPoint.y) && target.getIndex()==i && !target.isHit()){
 									target.setPressed(true);
 									if(target.isBad()){
 										screen.playSoundFx("false");
+										target.setHit(true);
 										tapGame.setHits(tapGame.getHits()-1);
 										tapGame.addBadHit();
 									}
 									else {
 										screen.playSoundFx("true");
+										target.setHit(true);
 										tapGame.setHits(tapGame.getHits()+1);
 									}
 								}

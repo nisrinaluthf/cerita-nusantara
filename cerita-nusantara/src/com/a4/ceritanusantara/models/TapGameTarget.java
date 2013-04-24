@@ -13,6 +13,7 @@ public class TapGameTarget {
 	private int type;
 	private boolean bad;
 	private boolean pressed;
+	private boolean hit;
 	
 	public TapGameTarget(int index, int type, boolean bad){
 		this.index = index;
@@ -32,13 +33,17 @@ public class TapGameTarget {
 			xBounds = 634;
 		}
 		
-		bounds = new Rectangle(xBounds, INIT_POS+51, 124, 40);
+		bounds = new Rectangle(xBounds, INIT_POS+31, 124, 80);
 		
 		pressed = false;
 	}
 	
 	public void setPressed(boolean pressed){
 		this.pressed = pressed;
+	}
+	
+	public void setHit(boolean hit){
+		this.hit = hit;
 	}
 	
 	public int getIndex(){
@@ -63,6 +68,10 @@ public class TapGameTarget {
 	
 	public boolean isPressed(){
 		return pressed;
+	}
+	
+	public boolean isHit(){
+		return hit;
 	}
 	
 	public void update(){
