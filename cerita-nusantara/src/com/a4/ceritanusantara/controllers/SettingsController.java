@@ -48,33 +48,33 @@ public class SettingsController {
 
 	}
 	
-public void processInput(){
-	//System.out.println("masuk setting controller process input");
-	if(Gdx.input.justTouched()){
-		Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-		cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
-		
-		//System.out.println(soundButtonBounds+" x: "+Gdx.input.getX()/screen.ppuX+" y: "+(screen.height-Gdx.input.getY())/screen.ppuY);
-		if(OverlapTester.pointInRectangle( soundButtonBounds,pos.x, pos.y)){
+	public void processInput(){
+		//System.out.println("masuk setting controller process input");
+		if(Gdx.input.justTouched()){
+			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 			
-			screen.setSoundButtonPressed(true);
-			System.out.println("toggle sound button");
-
+			//System.out.println(soundButtonBounds+" x: "+Gdx.input.getX()/screen.ppuX+" y: "+(screen.height-Gdx.input.getY())/screen.ppuY);
+			if(OverlapTester.pointInRectangle( soundButtonBounds,pos.x, pos.y)){
+				
+				screen.setSoundButtonPressed(true);
+				System.out.println("toggle sound button");
+	
+			}
+			
+			else if(OverlapTester.pointInRectangle( musicButtonBounds,pos.x, pos.y)){
+				//screen.playSoundFx();
+				screen.setMusicButtonPressed(true);
+				System.out.println("toggle music button");
+			}
+			
+			else if(OverlapTester.pointInRectangle( backButtonBounds,pos.x, pos.y)){
+				screen.stopMusic();
+				screen.playSoundFx();
+				screen.setBackButtonPressed(true);
+				System.out.println("back to home");
+			}
 		}
-		
-		else if(OverlapTester.pointInRectangle( musicButtonBounds,pos.x, pos.y)){
-			//screen.playSoundFx();
-			screen.setMusicButtonPressed(true);
-			System.out.println("toggle music button");
-		}
-		
-		else if(OverlapTester.pointInRectangle( backButtonBounds,pos.x, pos.y)){
-			screen.stopMusic();
-			screen.playSoundFx();
-			screen.setBackButtonPressed(true);
-			System.out.println("back to home");
-		}
-	}
 		
 		if(Gdx.input.isTouched()){
 			//kosongin dulu deh~

@@ -21,7 +21,7 @@ public class CeritaNusantara {
 		cerita = new Cerita[]{
 				new Cerita("Sumatera", "Parkit Si Raja Parakeet"),
 				new Cerita("Kalimantan", "Asal Mula Pulau Nusa"),
-				null,
+				new Cerita("Jawa", "Aji Saka, Asal Mula Huruf Jawa"),
 				null
 		};
 		try{
@@ -38,14 +38,15 @@ public class CeritaNusantara {
 	
 	private void initCerita() throws IOException{
 		
-		
 		FileHandle file = Gdx.files.internal("data/datacerita");
 		String data = file.readString();
 		StringTokenizer st = new StringTokenizer(data,  " ");
 		
-		boolean sumateraUnlocked = false, kalimantanUnlocked = false;
+		boolean sumateraUnlocked = false, kalimantanUnlocked = false, 
+				jawaUnlocked = false;
 		if(st.nextToken().equals("unlocked")) sumateraUnlocked = true;
 		if(st.nextToken().equals("unlocked")) kalimantanUnlocked = true;
+		if(st.nextToken().equals("unlocked")) jawaUnlocked = true;
 		
 		cerita[SUMATERA].setUnlocked(sumateraUnlocked);
 		cerita[SUMATERA].setSubCerita(new SubCerita[]{
@@ -110,5 +111,37 @@ public class CeritaNusantara {
 				cerita[KALIMANTAN].getSubCerita(i).setPrev(cerita[KALIMANTAN].getSubCerita(i-1));
 			}
 		}
+		
+		cerita[JAWA].setUnlocked(jawaUnlocked);
+		cerita[JAWA].setSubCerita(new SubCerita[]{
+				new Adegan("Adegan 1", SubCerita.ADEGAN),
+				new Adegan("Adegan 2", SubCerita.ADEGAN),
+				new Puzzle("Permainan 1", SubCerita.PUZZLE),
+				new Adegan("Adegan 3", SubCerita.ADEGAN),
+				new Adegan("Adegan 4", SubCerita.ADEGAN),
+				new Adegan("Adegan 5", SubCerita.ADEGAN),
+				new Adegan("Adegan 6", SubCerita.ADEGAN),
+				new TapGame("Permainan 2", SubCerita.TAP_GAME),
+				new Adegan("Adegan 7", SubCerita.ADEGAN),
+				new Kuis("Kuis", SubCerita.KUIS)
+		});
+		
+		for(int i=0; i<cerita[JAWA].getSubCerita().length; i++){
+			cerita[JAWA].getSubCerita(i).setAsalCerita(JAWA);
+			cerita[JAWA].getSubCerita(i).setIndex(i);
+		}
+		
+		InitSubCerita.initJawa(cerita[JAWA]);
+		
+		len = cerita[JAWA].getSubCerita().length;
+		for(int i=0; i<len; i++){
+			if(i<len-1){
+				cerita[JAWA].getSubCerita(i).setNext(cerita[JAWA].getSubCerita(i+1));
+			}
+			if(i>0){
+				cerita[JAWA].getSubCerita(i).setPrev(cerita[JAWA].getSubCerita(i-1));
+			}
+		}
+		
 	}
 }

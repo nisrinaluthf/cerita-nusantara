@@ -1,3 +1,10 @@
+siparkit_labirin/background.png
+siparkit_labirin/siparkit_up.png
+siparkit_labirin/siparkit_right.png
+siparkit_labirin/siparkit_down.png
+siparkit_labirin/siparkit_left.png
+siparkit_labirin/wall.png
+siparkit_labirin/item.png
 XFFFXXXXXXXXXXXXXXXXXXXXXXXXXX
 X     X             X        X
 XXXX  X     XXX     X    O   X

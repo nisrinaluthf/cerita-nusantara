@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 
-public class AdeganScreen extends SubCeritaScreen {
+public class AdeganScreen extends AbstractScreen {
 	private Adegan adegan;
 	
 	private Texture background;
@@ -49,7 +49,7 @@ public class AdeganScreen extends SubCeritaScreen {
 	
 	
 	public AdeganScreen(Aplikasi app, Adegan adegan) {
-		super(app, adegan);
+		super(app);
 		
 		this.adegan = adegan;
 		this.adegan.reinit();

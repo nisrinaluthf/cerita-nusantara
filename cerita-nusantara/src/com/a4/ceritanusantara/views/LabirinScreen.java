@@ -115,7 +115,7 @@ public class LabirinScreen extends AbstractScreen{
 		font44 = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		
-labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.mp3"));
+		labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.mp3"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");

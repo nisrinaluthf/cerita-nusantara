@@ -60,8 +60,6 @@ public abstract class AbstractScreen implements Screen{
 		return height;
 	}
 	
-	
-	
 	public Rectangle getViewport(){
 		return viewport;
 	}

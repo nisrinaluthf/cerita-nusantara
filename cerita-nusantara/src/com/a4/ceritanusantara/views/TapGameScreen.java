@@ -49,7 +49,7 @@ public class TapGameScreen extends AbstractScreen{
 	
 	private TapGameButton[] buttons;
 	
-	private boolean debug = true;
+	private boolean debug = false;
 	
 	private boolean replayButtonPressed;
 	private boolean mainMenuButtonPressed;
@@ -110,8 +110,8 @@ public class TapGameScreen extends AbstractScreen{
 		
 		pauseButtonPressed = false;
 		
-		scoreBgTexture = new Texture(Gdx.files.internal("parkit-tapgame/score_bg.png"));
-		scoreFrameTexture = new Texture(Gdx.files.internal("parkit-tapgame/score_frame.png"));
+		scoreBgTexture = new Texture(Gdx.files.internal("siparkit_tapgame/score_bg.png"));
+		scoreFrameTexture = new Texture(Gdx.files.internal("siparkit_tapgame/score_frame.png"));
 		
 		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
@@ -247,7 +247,6 @@ public class TapGameScreen extends AbstractScreen{
 					}
 							
 				}
-				
 				
 				for(int i=0; i<buttons.length; i++){
 					if(buttons[i].isPressed()){

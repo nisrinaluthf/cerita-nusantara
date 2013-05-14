@@ -38,7 +38,7 @@ public class PauseController {
 		
 	}
 	
-public void processInput(){
+	public void processInput(){
 		
 		
 		if(Gdx.input.justTouched()){
@@ -114,7 +114,6 @@ public void processInput(){
 				}
 			}
 		}
-	}
-	
+	}	
 	
 }

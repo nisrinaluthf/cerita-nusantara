@@ -66,6 +66,10 @@ public class AdeganController {
 				adegan.updateCurrentText();
 			}
 			else{
+				/*
+				 * Buat ngesave kalo adegannya udah selesai dimainin.
+				 * Unlock next adegan.
+				 */
 				FileHandle localFile = null;
 				
 				if(adegan.getAsalCerita()==CeritaNusantara.SUMATERA){

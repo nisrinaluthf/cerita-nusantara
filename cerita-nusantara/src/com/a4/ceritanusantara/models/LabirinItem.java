@@ -35,7 +35,5 @@ public class LabirinItem {
 	public Rectangle getBounds(){
 		return bounds;
 	}
-	
-	
 
 }
