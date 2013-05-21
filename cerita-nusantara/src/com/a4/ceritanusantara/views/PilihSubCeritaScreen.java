@@ -23,7 +23,6 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 	
 	PilihSubCeritaController controller;
 	
-	private Cerita cerita;
 	private SubCerita[] subcerita;
 	
 	private Vector2[] buttonPos;

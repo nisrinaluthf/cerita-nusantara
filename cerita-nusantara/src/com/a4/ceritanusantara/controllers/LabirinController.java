@@ -3,7 +3,6 @@ package com.a4.ceritanusantara.controllers;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Kuis;
-import com.a4.ceritanusantara.models.KuisQuestion;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.LabirinPlayer;
 import com.a4.ceritanusantara.models.LabirinWall;

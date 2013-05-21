@@ -8,7 +8,7 @@ public class Puzzle extends SubCerita{
 	
 	private static final float TIME = 91f;
 	
-	private PuzzlePiece[] pieces;
+	private PuzzlePiece[][] pieces;
 	
 	private Texture background;
 	public float timeLeft;
@@ -23,7 +23,7 @@ public class Puzzle extends SubCerita{
 		gameOver = false;
 	}
 	
-	public void setPieces(PuzzlePiece[] pieces){
+	public void setPieces(PuzzlePiece[][] pieces){
 		this.pieces = pieces;
 	}
 	
@@ -39,12 +39,12 @@ public class Puzzle extends SubCerita{
 		gameOver = true;
 	}
 	
-	public PuzzlePiece[] getPieces(){
+	public PuzzlePiece[][] getPieces(){
 		return pieces;
 	}
 	
-	public PuzzlePiece getPiece(int i){
-		return pieces[i];
+	public PuzzlePiece getPiece(int i, int j){
+		return pieces[i][j];
 	}
 	
 	public Texture getBackground(){
@@ -60,20 +60,27 @@ public class Puzzle extends SubCerita{
 	}
 	
 	public void reinit(){
-		/*
 		for (int i=0; i<pieces.length; i++){
-			pieces[i].reinit();
+			for (int j=0; j<pieces[i].length; j++){
+				pieces[i][j].reinit();
+			}
 		}
-		*/
-		/*randomize();*/
+		randomize();
 		timeLeft = TIME;
 		gameOver = false;
 	}
 
-	private void randomize() {
+	public void randomize() {
+		
+		float x_offset = 600;
+		float y_offset = 10;
 		for (int i=0; i<pieces.length; i++){
-			float x = rand.nextFloat();
-			//tbc
+			for (int j=0; j<pieces[i].length; j++){
+				float x = 180*rand.nextFloat();
+				float y = 280*rand.nextFloat();
+				pieces[i][j].setX(x_offset+x);
+				pieces[i][j].setY(y_offset+y);
+			}
 		}
 		
 	}

@@ -145,7 +145,6 @@ public class KuisScreen extends AbstractScreen{
 		// TODO Auto-generated method stub
         cam.update();
 
-      
         Gdx.gl.glViewport((int) viewport.x, (int) viewport.y,
                           (int) viewport.width, (int) viewport.height);
  

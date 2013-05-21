@@ -11,6 +11,7 @@ import com.a4.ceritanusantara.models.LabirinWall;
 import com.a4.ceritanusantara.models.LabirinPlayer;
 import com.a4.ceritanusantara.models.LabirinItem; 
 import com.a4.ceritanusantara.models.PuzzlePiece;
+import com.a4.ceritanusantara.models.PuzzleTarget;
 import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
@@ -231,11 +232,23 @@ public class InitSubCerita {
 		((Puzzle) cerita.getSubCerita(2)).setBackground(
 				new Texture(Gdx.files.internal("ajisaka_puzzle/bg.png")));
 		
-		PuzzlePiece[] pieces = new PuzzlePiece[20];
+		PuzzlePiece[][] pieces = new PuzzlePiece[4][4];
 		
-		for (int j=0; j<pieces.length; j++){
-			pieces[j] = new PuzzlePiece(new Texture(Gdx.files.internal("")));
+		float offset = 50;
+		float dimension = 50;
+		
+		for(int j=0; j<pieces.length; j++){
+			for(int k=0; k<pieces[j].length; k++){
+				Rectangle bounds = new Rectangle(j*offset, 600-(k*offset), 
+						dimension, dimension);
+				pieces[j][k] = new PuzzlePiece(new PuzzleTarget(bounds), 
+						new Texture(Gdx.files.internal
+								("ajisaka_puzzle/"+(j+1)+"_"+(k+1)+".png")));
+			}
 		}
+		
+		((Puzzle) cerita.getSubCerita(2)).setPieces(pieces);
+		((Puzzle) cerita.getSubCerita(2)).randomize();
 	}
 	
 }

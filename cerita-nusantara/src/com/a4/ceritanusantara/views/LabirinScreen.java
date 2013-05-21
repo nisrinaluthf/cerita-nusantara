@@ -4,7 +4,6 @@ import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.LabirinController;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.LabirinItem;
-import com.a4.ceritanusantara.models.LabirinPlayer;
 import com.a4.ceritanusantara.models.LabirinWall;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -14,7 +13,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 
 public class LabirinScreen extends AbstractScreen{
 	
