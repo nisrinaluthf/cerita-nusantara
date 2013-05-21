@@ -117,11 +117,11 @@ public class PauseScreen extends AbstractScreen {
 				resumeButtonTexture.getHeight());
 		
 		restartButtonBounds = new Rectangle((VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2,
-				300, restartButtonTexture.getWidth(),
+				340, restartButtonTexture.getWidth(),
 				restartButtonTexture.getHeight());
 		
 		exitButtonBounds = new Rectangle((VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2,
-				200, exitButtonTexture.getWidth(),
+				280, exitButtonTexture.getWidth(),
 				exitButtonTexture.getHeight());
 				
 		settingButtonTexture = 
@@ -130,6 +130,9 @@ public class PauseScreen extends AbstractScreen {
 		settingButtonPressedTexture = 
 				new Texture(Gdx.files.internal("buttons/settings_pressed.png"));
 
+		settingButtonBounds = new Rectangle((VIRTUAL_WIDTH-settingButtonTexture.getWidth())/2,
+				220, settingButtonTexture.getWidth(),
+				settingButtonTexture.getHeight());
 		
 		resumeButtonPressed = false;
 		restartButtonPressed = false;
@@ -212,20 +215,20 @@ public class PauseScreen extends AbstractScreen {
 			
 			if (restartButtonPressed) {
 				batcher.draw(restartButtonPressedTexture, 
-						(VIRTUAL_WIDTH-restartButtonPressedTexture.getWidth())/2, 300);
+						(VIRTUAL_WIDTH-restartButtonPressedTexture.getWidth())/2, 340);
 			}
 			else{
 				batcher.draw(restartButtonTexture, 
-						(VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2, 300);
+						(VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2, 340);
 			}
 			
 			if (exitButtonPressed) {
 				batcher.draw(exitButtonPressedTexture, 
-						(VIRTUAL_WIDTH-exitButtonPressedTexture.getWidth())/2, 200);
+						(VIRTUAL_WIDTH-exitButtonPressedTexture.getWidth())/2, 280);
 			}
 			else{
 				batcher.draw(exitButtonTexture, 
-						(VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2, 200);
+						(VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2, 280);
 			}
 			
 			if (settingButtonPressed) {

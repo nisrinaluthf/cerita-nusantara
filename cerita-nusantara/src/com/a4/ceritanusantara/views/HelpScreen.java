@@ -2,8 +2,6 @@ package com.a4.ceritanusantara.views;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.HelpController;
-import com.a4.ceritanusantara.models.Adegan;
-import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
@@ -150,7 +148,7 @@ public class HelpScreen extends AbstractScreen {
 			 * nge-glow atau kayak masuk gitu buttonnya
 			 * atau gimana.
 			 */
-			font44.drawWrapped(batcher, helpText, (VIRTUAL_WIDTH/2)-135, 380, 300);
+			font44.drawWrapped(batcher, helpText, (VIRTUAL_WIDTH/2)-135, 380, 300, BitmapFont.HAlignment.CENTER);
 			
 			if (resumeButtonPressed) {
 				batcher.draw(resumeButtonPressedTexture, 
