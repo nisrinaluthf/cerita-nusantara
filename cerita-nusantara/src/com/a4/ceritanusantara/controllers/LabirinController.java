@@ -11,6 +11,7 @@ import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.CongratulationsScreen;
+import com.a4.ceritanusantara.views.HelpScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.MainMenuScreen;
@@ -31,6 +32,7 @@ private Aplikasi app;
 	private Labirin labirin;
 	
 	private Rectangle pauseButtonBounds;
+	private Rectangle helpButtonBounds;
 	
 	private LabirinWall[] walls;
 	private Vector2[] wallsPos;
@@ -65,6 +67,7 @@ private Aplikasi app;
 		player = labirin.getPlayer();
 		
 		pauseButtonBounds = screen.getPauseButtonBounds();
+		helpButtonBounds = screen.getHelpButtonBounds();
 		walls = labirin.getWalls();
 		
 		wallsPos = new Vector2[walls.length];
@@ -206,6 +209,11 @@ private Aplikasi app;
 					screen.pauseMusic();
 					screen.setPauseButtonPressed(true);	
 				}
+				else if(OverlapTester.pointInRectangle( helpButtonBounds, pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.pauseMusic();
+					screen.setHelpButtonPressed(true);	
+				}
 				
 			}
 			
@@ -218,6 +226,14 @@ private Aplikasi app;
 					if(OverlapTester.pointInRectangle( pauseButtonBounds, pos.x, pos.y)){
 						screen.pause();
 						app.setScreen(new PauseScreen(app, screen, labirin));
+						
+					}
+				}
+				else if(screen.helpButtonIsPressed()){
+					screen.setHelpButtonPressed(false);
+					if(OverlapTester.pointInRectangle( helpButtonBounds, pos.x, pos.y)){
+						screen.pause();
+						app.setScreen(new HelpScreen(app, screen, labirin));
 						
 					}
 				}

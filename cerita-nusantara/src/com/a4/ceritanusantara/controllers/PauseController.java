@@ -19,11 +19,12 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class PauseController {
-  private Aplikasi app;
+	private Aplikasi app;
 	private PauseScreen screen;
 	private Rectangle resumeButtonBounds;
 	private Rectangle restartButtonBounds;
 	private Rectangle exitButtonBounds;
+	private Rectangle settingButtonBounds;
 	private OrthographicCamera cam;
 	private Rectangle viewport;
 	
@@ -33,6 +34,7 @@ public class PauseController {
 		resumeButtonBounds = screen.getResumeButtonBounds();
 		restartButtonBounds = screen.getRestartButtonBounds();
 		exitButtonBounds = screen.getExitButtonBounds();
+		settingButtonBounds = screen.getSettingButtonBounds();
 		cam = screen.getCam();
 		viewport = screen.getViewport();
 		
@@ -66,6 +68,14 @@ public class PauseController {
 				screen.stopMusic();
 				screen.playSoundFx();
 				screen.setExitButtonPressed(true);
+				
+			}
+			
+			else if(OverlapTester.pointInRectangle(settingButtonBounds, 
+					pos.x, pos.y)){
+				screen.playSoundFx();
+				screen.pauseMusic();
+				screen.setSettingButtonPressed(true);
 				
 			}
 		}
@@ -110,6 +120,15 @@ public class PauseController {
 				screen.setExitButtonPressed(false);
 				if(OverlapTester.pointInRectangle( exitButtonBounds, pos.x, pos.y)){
 					app.setScreen(new MainMenuScreen(app));
+					
+				}
+			}
+			
+			else if(screen.settingButtonIsPressed()){
+				screen.setExitButtonPressed(false);
+				if(OverlapTester.pointInRectangle( settingButtonBounds, pos.x, pos.y)){
+					screen.pause();
+					app.setScreen(new SettingsScreen(app, screen));
 					
 				}
 			}

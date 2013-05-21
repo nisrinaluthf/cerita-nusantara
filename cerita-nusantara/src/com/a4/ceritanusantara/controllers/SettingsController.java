@@ -112,7 +112,13 @@ public class SettingsController {
 				if(OverlapTester.pointInRectangle( backButtonBounds, pos.x, pos.y)){
 					//app.setScreen(new SettingsScreen(app, screen.width, screen.height));
 					app.getScreen().dispose();
-					app.setScreen(new MainMenuScreen(app));
+					Screen ori = screen.getOriginScreen();
+					if(((AbstractScreen) ori).getScreenType() == 0) {
+						app.setScreen(new MainMenuScreen(app));
+					} else {
+						screen.getOriginScreen().resume();
+						app.setScreen(screen.getOriginScreen());
+					
 				}
 				System.out.println("back diklik");
 			}
@@ -120,7 +126,13 @@ public class SettingsController {
 		prefs.flush();
 		
 		if (Gdx.input.isKeyPressed(Keys.BACK)){
-			app.setScreen(new MainMenuScreen(app));
+			Screen ori = screen.getOriginScreen();
+					if(((AbstractScreen) ori).getScreenType() == 0) {
+						app.setScreen(new MainMenuScreen(app));
+					} else {
+						screen.getOriginScreen().resume();
+						app.setScreen(screen.getOriginScreen());
+					
 		}
 
 	}

@@ -13,6 +13,7 @@ import com.a4.ceritanusantara.models.TapGameTarget;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.CongratulationsScreen;
+import com.a4.ceritanusantara.views.HelpScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.MainMenuScreen;
@@ -38,6 +39,7 @@ public class TapGameController {
 	private TapGameButton[] buttons;
 	private Rectangle[] buttonsBounds;
 	private Rectangle pauseButtonBounds;
+	private Rectangle helpButtonBounds;
 	
 	private Rectangle replayBounds;
 	private Rectangle mainMenuBounds;
@@ -63,6 +65,7 @@ public class TapGameController {
 		}
 		
 		pauseButtonBounds = screen.getPauseButtonBounds();
+		helpButtonBounds = screen.getHelpButtonBounds();
 				
 	}
 
@@ -178,6 +181,12 @@ public class TapGameController {
 					screen.pauseMusic();
 					screen.setPauseButtonPressed(true);	
 				}
+				else if(OverlapTester.pointInRectangle( helpButtonBounds, pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.pauseMusic();
+					screen.setHelpButtonPressed(true);	
+				}
+				
 				
 				for(int i=0; i<buttonsBounds.length; i++){
 					if(OverlapTester.pointInRectangle(buttonsBounds[i], pos.x, pos.y)){
@@ -225,6 +234,15 @@ public class TapGameController {
 					if(OverlapTester.pointInRectangle( pauseButtonBounds, pos.x, pos.y)){
 						screen.pause();
 						app.setScreen(new PauseScreen(app, screen, tapGame));
+						
+					}
+				}
+				
+				else if(screen.helpButtonIsPressed()){
+					screen.setHelpButtonPressed(false);
+					if(OverlapTester.pointInRectangle( helpButtonBounds, pos.x, pos.y)){
+						screen.pause();
+						app.setScreen(new HelpScreen(app, screen, labirin));
 						
 					}
 				}
