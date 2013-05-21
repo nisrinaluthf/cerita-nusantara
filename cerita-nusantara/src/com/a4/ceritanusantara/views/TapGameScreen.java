@@ -36,6 +36,12 @@ public class TapGameScreen extends AbstractScreen{
 	
 	private boolean pauseButtonPressed;
 	
+		private Texture helpButtonTexture;
+	private Texture helpButtonPressedTexture;
+	private Rectangle helpButtonBounds;
+	
+	private boolean helpButtonPressed;
+	
 	private Texture gameOverBg;
 	private Texture replayTexture;
 	private Texture replayPressedTexture;
@@ -109,6 +115,15 @@ public class TapGameScreen extends AbstractScreen{
 		pauseButtonBounds = new Rectangle(950, 526, 60, 60);
 		
 		pauseButtonPressed = false;
+		
+		helpButtonTexture = new Texture(
+				Gdx.files.internal("buttons/pause.png"));
+		helpButtonPressedTexture = new Texture(
+				Gdx.files.internal("buttons/pause_pressed.png"));
+
+		helpButtonBounds = new Rectangle(0, 526, 60, 60);
+		
+		helpButtonPressed = false;
 		
 		scoreBgTexture = new Texture(Gdx.files.internal("siparkit_tapgame/score_bg.png"));
 		scoreFrameTexture = new Texture(Gdx.files.internal("siparkit_tapgame/score_frame.png"));
@@ -205,6 +220,12 @@ public class TapGameScreen extends AbstractScreen{
 					batcher.draw(pauseButtonPressedTexture,950, 526);
 				} else {
 					batcher.draw(pauseButtonTexture, 950, 526);
+				}
+				
+				if (helpButtonPressed) {
+					batcher.draw(helpButtonPressedTexture,0, 526);
+				} else {
+					batcher.draw(helpButtonTexture, 0, 526);
 				}
 				
 			batcher.end();
@@ -333,6 +354,19 @@ public class TapGameScreen extends AbstractScreen{
 	
 	public boolean nextButtonIsPressed(){
 		return nextButtonPressed;
+	}
+	
+	public Rectangle getHelpButtonBounds(){
+		return helpButtonBounds;
+	}
+
+	public void setHelpButtonPressed(boolean b) {
+		helpButtonPressed = b;
+		
+	}
+	
+	public boolean helpButtonIsPressed(){
+		return helpButtonPressed;
 	}
 	
 	public void playSoundFx(String key) {

@@ -29,6 +29,12 @@ public class LabirinScreen extends AbstractScreen{
 	
 	private boolean pauseButtonPressed;
 	
+	private Texture helpButtonTexture;
+	private Texture helpButtonPressedTexture;
+	private Rectangle helpButtonBounds;
+	
+	private boolean helpButtonPressed;
+	
 	private LabirinWall[] walls;
 	private LabirinItem[] items;
 	
@@ -85,6 +91,15 @@ public class LabirinScreen extends AbstractScreen{
 		pauseButtonBounds = new Rectangle(950, 526, 60, 60);
 		
 		pauseButtonPressed = false;
+		
+		helpButtonTexture = new Texture(
+				Gdx.files.internal("buttons/pause.png"));
+		helpButtonPressedTexture = new Texture(
+				Gdx.files.internal("buttons/pause_pressed.png"));
+
+		helpButtonBounds = new Rectangle(0, 526, 60, 60);
+		
+		helpButtonPressed = false;
 		
 		gameOverBg = new
 				Texture(Gdx.files.internal("backgrounds/gameover_bg.png"));
@@ -203,6 +218,12 @@ public class LabirinScreen extends AbstractScreen{
 					batcher.draw(pauseButtonTexture, 950, 526);
 				}
 				
+				if (helpButtonPressed) {
+					batcher.draw(helpButtonPressedTexture,0, 526);
+				} else {
+					batcher.draw(helpButtonTexture, 0, 526);
+				}
+				
 				int time = (int)labirin.timeLeft;
 				
 				font44.draw(batcher, (time/60)+":"+((time%60)/10)+(((time%60)%10)), 23, 580);
@@ -298,6 +319,19 @@ public class LabirinScreen extends AbstractScreen{
 	
 	public boolean nextButtonIsPressed(){
 		return nextButtonPressed;
+	}
+	
+	public Rectangle getHelpButtonBounds(){
+		return helpButtonBounds;
+	}
+
+	public void setHelpButtonPressed(boolean b) {
+		helpButtonPressed = b;
+		
+	}
+	
+	public boolean helpButtonIsPressed(){
+		return helpButtonPressed;
 	}
 
 	public Labirin getLabirin() {

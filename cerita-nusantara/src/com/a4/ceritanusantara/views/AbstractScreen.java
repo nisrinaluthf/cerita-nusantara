@@ -25,6 +25,7 @@ public abstract class AbstractScreen implements Screen{
 	
 	protected OrthographicCamera cam;
 	protected SpriteBatch batcher;
+	private int screenType;
 	
 	//buat ngerender rectangle bounds kalo mau liat boundsnya
 	protected ShapeRenderer debugRenderer = new ShapeRenderer();
@@ -42,6 +43,14 @@ public abstract class AbstractScreen implements Screen{
 		batcher = new SpriteBatch();
 		
 		viewport = new Rectangle(0f, 0f, (float)width, (float)height);
+	}
+	
+		public int getScreenType() {
+		return screenType;
+	}
+	
+	public void setScreenType(int type) {
+		screenType = type;
 	}
 	
 	public Aplikasi getAplikasi(){

@@ -50,6 +50,7 @@ public class MainMenuScreen extends AbstractScreen {
 	//awalnya samain aja sama supernya
 	public MainMenuScreen(Aplikasi app){
 		super(app);
+		setScreenType(0);
 		
 		//inisialisasi semuanya
 		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
