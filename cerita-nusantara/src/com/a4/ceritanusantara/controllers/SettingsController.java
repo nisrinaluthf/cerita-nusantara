@@ -2,11 +2,13 @@ package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.utils.OverlapTester;
+import com.a4.ceritanusantara.views.AbstractScreen;
 import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.SettingsScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -118,7 +120,7 @@ public class SettingsController {
 					} else {
 						screen.getOriginScreen().resume();
 						app.setScreen(screen.getOriginScreen());
-					
+					}
 				}
 				System.out.println("back diklik");
 			}
@@ -132,6 +134,7 @@ public class SettingsController {
 					} else {
 						screen.getOriginScreen().resume();
 						app.setScreen(screen.getOriginScreen());
+					}
 					
 		}
 

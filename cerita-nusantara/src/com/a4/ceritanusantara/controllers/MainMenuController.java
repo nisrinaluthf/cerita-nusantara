@@ -91,7 +91,7 @@ public class MainMenuController {
 				screen.setSettingsButtonPressed(false);
 				if(OverlapTester.pointInRectangle( settingsButtonBounds, pos.x, pos.y)){
 					app.getScreen().dispose();
-					app.setScreen(new SettingsScreen(app));
+					app.setScreen(new SettingsScreen(app, screen));
 					
 				}
 			}

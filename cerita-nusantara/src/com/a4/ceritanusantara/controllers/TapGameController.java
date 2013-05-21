@@ -242,7 +242,7 @@ public class TapGameController {
 					screen.setHelpButtonPressed(false);
 					if(OverlapTester.pointInRectangle( helpButtonBounds, pos.x, pos.y)){
 						screen.pause();
-						app.setScreen(new HelpScreen(app, screen, labirin));
+						app.setScreen(new HelpScreen(app, screen, this.tapGame));
 						
 					}
 				}

@@ -3,6 +3,7 @@ package com.a4.ceritanusantara.views;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.SettingsController;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -42,8 +43,11 @@ public class SettingsScreen extends AbstractScreen {
 	
 	private Sound clickSfx;
 	
-	public SettingsScreen(Aplikasi app) {
+	private Screen originalScreen;
+	
+	public SettingsScreen(Aplikasi app, Screen origin) {
 		super(app);
+		originalScreen = origin;
 		// TODO Auto-generated constructor stub
 
 		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
@@ -181,6 +185,10 @@ public class SettingsScreen extends AbstractScreen {
 		
 		//kalo udah bikin controllernya jangan lupa panggil controller.processInput()
 		
+	}
+	
+	public Screen getOriginScreen () {
+		return originalScreen;
 	}
 	
 	public Rectangle getSoundButtonBounds(){
