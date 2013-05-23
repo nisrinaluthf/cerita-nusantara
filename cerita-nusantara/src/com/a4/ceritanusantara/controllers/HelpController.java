@@ -1,18 +1,8 @@
 package com.a4.ceritanusantara.controllers;
 
 import com.a4.ceritanusantara.Aplikasi;
-import com.a4.ceritanusantara.models.Adegan;
-import com.a4.ceritanusantara.models.Kuis;
-import com.a4.ceritanusantara.models.SubCerita;
-import com.a4.ceritanusantara.models.TapGame;
-import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.utils.OverlapTester;
-import com.a4.ceritanusantara.views.AdeganScreen;
-import com.a4.ceritanusantara.views.KuisScreen;
-import com.a4.ceritanusantara.views.LabirinScreen;
-import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.HelpScreen;
-import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;

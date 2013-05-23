@@ -22,6 +22,7 @@ public class CeritaNusantara {
 				new Cerita("Sumatera", "Parkit Si Raja Parakeet"),
 				new Cerita("Kalimantan", "Asal Mula Pulau Nusa"),
 				new Cerita("Jawa", "Aji Saka, Asal Mula Huruf Jawa"),
+				new Cerita("Bali", "Asal Mula Selat Bali"),
 				null
 		};
 		try{
@@ -43,10 +44,11 @@ public class CeritaNusantara {
 		StringTokenizer st = new StringTokenizer(data,  " ");
 		
 		boolean sumateraUnlocked = false, kalimantanUnlocked = false, 
-				jawaUnlocked = false;
+				jawaUnlocked = false, baliUnlocked = false;
 		if(st.nextToken().equals("unlocked")) sumateraUnlocked = true;
 		if(st.nextToken().equals("unlocked")) kalimantanUnlocked = true;
 		if(st.nextToken().equals("unlocked")) jawaUnlocked = true;
+		if(st.nextToken().equals("unlocked")) baliUnlocked = true;
 		
 		cerita[SUMATERA].setUnlocked(sumateraUnlocked);
 		cerita[SUMATERA].setSubCerita(new SubCerita[]{
@@ -140,6 +142,36 @@ public class CeritaNusantara {
 			}
 			if(i>0){
 				cerita[JAWA].getSubCerita(i).setPrev(cerita[JAWA].getSubCerita(i-1));
+			}
+		}
+		
+		cerita[BALI].setUnlocked(baliUnlocked);
+		cerita[BALI].setSubCerita(new SubCerita[]{
+				new Adegan("Adegan 1", SubCerita.ADEGAN),
+				new RunningGame("Permainan 1", SubCerita.RUNNING_GAME),
+				new Adegan("Adegan 2", SubCerita.ADEGAN),
+				new Adegan("Adegan 3", SubCerita.ADEGAN),
+				new Adegan("Adegan 4", SubCerita.ADEGAN),
+				new Adegan("Adegan 5", SubCerita.ADEGAN),
+				new TapGame("Permainan 2", SubCerita.TAP_GAME),
+				new Adegan("Adegan 6", SubCerita.ADEGAN),
+				new Kuis("Kuis", SubCerita.KUIS)
+		});
+		int i;
+		for(i=0; i<cerita[BALI].getSubCerita().length; i++){
+			cerita[BALI].getSubCerita(i).setAsalCerita(BALI);
+			cerita[BALI].getSubCerita(i).setIndex(i);
+		}
+		//System.out.println(i+"");
+		InitSubCerita.initBali(cerita[BALI]);
+		System.out.println("sebelum init cerita bali");
+		len = cerita[BALI].getSubCerita().length;
+		for(i=0; i<len; i++){
+			if(i<len-1){
+				cerita[BALI].getSubCerita(i).setNext(cerita[BALI].getSubCerita(i+1));
+			}
+			if(i>0){
+				cerita[BALI].getSubCerita(i).setPrev(cerita[BALI].getSubCerita(i-1));
 			}
 		}
 		

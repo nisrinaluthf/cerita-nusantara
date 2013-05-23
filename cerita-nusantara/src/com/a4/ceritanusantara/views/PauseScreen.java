@@ -5,6 +5,7 @@ import com.a4.ceritanusantara.controllers.PauseController;
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.Labirin;
+import com.a4.ceritanusantara.models.RunningGame;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
 import com.badlogic.gdx.Gdx;
@@ -90,6 +91,16 @@ public class PauseScreen extends AbstractScreen {
 		init();
 	}
 	
+	public PauseScreen(Aplikasi app, Screen originScreen,
+			RunningGame runningGame) {
+		super(app);
+		this.originScreen = originScreen;
+		type = SubCerita.TAP_GAME;
+		subcerita = runningGame;
+		init();
+		// TODO Auto-generated constructor stub
+	}
+
 	private void init(){
 	setScreenType(1);
 		background = new Texture(Gdx.files.internal("backgrounds/pause_bg.png"));

@@ -10,7 +10,6 @@ import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
-import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PilihCeritaScreen;
 import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
@@ -115,7 +114,7 @@ public class PilihSubCeritaController {
 					app.getScreen().dispose();
 					app.setScreen(new PilihCeritaScreen(app));
 				}
-				System.out.println("back diklik");
+				//System.out.println("back diklik");
 			}
 		}
 		if (Gdx.input.isKeyPressed(Keys.BACK)){

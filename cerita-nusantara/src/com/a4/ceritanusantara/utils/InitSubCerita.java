@@ -1,22 +1,16 @@
 package com.a4.ceritanusantara.utils;
 
 import java.util.StringTokenizer;
-import java.util.List;
-import java.util.ArrayList;
-
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Cerita;
-import com.a4.ceritanusantara.models.Labirin; 
-import com.a4.ceritanusantara.models.LabirinWall;
-import com.a4.ceritanusantara.models.LabirinPlayer;
-import com.a4.ceritanusantara.models.LabirinItem; 
+import com.a4.ceritanusantara.models.Kuis;
+import com.a4.ceritanusantara.models.Labirin;
+import com.a4.ceritanusantara.models.Puzzle;
 import com.a4.ceritanusantara.models.PuzzlePiece;
 import com.a4.ceritanusantara.models.PuzzleTarget;
+import com.a4.ceritanusantara.models.RunningGame;
 import com.a4.ceritanusantara.models.TapGame;
-import com.a4.ceritanusantara.models.Kuis;
-import com.a4.ceritanusantara.models.KuisQuestion;
 import com.a4.ceritanusantara.models.TapGameButton;
-import com.a4.ceritanusantara.models.Puzzle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -249,6 +243,59 @@ public class InitSubCerita {
 		
 		((Puzzle) cerita.getSubCerita(2)).setPieces(pieces);
 		((Puzzle) cerita.getSubCerita(2)).randomize();
+	}
+	
+	public static void initBali(Cerita cerita) {
+		FileHandle file = Gdx.files.internal("data/databali");
+		
+		FileHandle localFile = Gdx.files.local("databali");
+		
+		if(!localFile.exists()){
+			localFile.writeString(file.readString(), false);
+		}
+		
+		String data = localFile.readString();
+		StringTokenizer st = new StringTokenizer(data,  ";");
+		int i=0;
+		while(st.hasMoreTokens() && i < cerita.getSubCerita().length){
+			String token = st.nextToken();
+			StringTokenizer st2 = new StringTokenizer(token,  " ");
+			boolean unlocked = false;
+			if(st2.nextToken().equals("unlocked")) unlocked = true;
+			int score = Integer.parseInt(st2.nextToken());
+			
+			cerita.getSubCerita(i).setUnlocked(unlocked);
+			cerita.getSubCerita(i).setScore(score);
+			
+			i++;
+		}
+		
+		((RunningGame) cerita.getSubCerita(1)).setBackground(
+				new Texture(Gdx.files.internal("selatbali_running/bg.png")));
+		((RunningGame) cerita.getSubCerita(1)).setPanelBackground(new 
+				Texture(Gdx.files.internal("selatbali_running/panel_bg.png")));
+		((RunningGame) cerita.getSubCerita(1)).setPlayer(new 
+				Texture(Gdx.files.internal("selatbali_running/player.png")));
+		//((RunningGame) cerita.getSubCerita(1)).setPlayerXPosition(512.0f);
+		System.out.println("ini cerita bali");
+		//PuzzlePiece[][] pieces = new PuzzlePiece[4][4];
+		/*
+		float offset = 50;
+		float dimension = 50;
+		
+		for(int j=0; j<pieces.length; j++){
+			for(int k=0; k<pieces[j].length; k++){
+				Rectangle bounds = new Rectangle(j*offset, 600-(k*offset), 
+						dimension, dimension);
+				pieces[j][k] = new PuzzlePiece(new PuzzleTarget(bounds), 
+						new Texture(Gdx.files.internal
+								("ajisaka_puzzle/"+(j+1)+"_"+(k+1)+".png")));
+			}
+		}
+		
+		((Puzzle) cerita.getSubCerita(2)).setPieces(pieces);
+		((Puzzle) cerita.getSubCerita(2)).randomize();
+		*/
 	}
 	
 }

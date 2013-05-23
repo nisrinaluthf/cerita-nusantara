@@ -1,7 +1,5 @@
 package com.a4.ceritanusantara.models;
 
-import com.badlogic.gdx.utils.Json;
-
 public class SubCerita {
 	
 	public static final int ADEGAN = 0;
