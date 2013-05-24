@@ -169,9 +169,9 @@ public class RunningGameScreen extends AbstractScreen{
 		pauseButtonPressed = false;
 		
 		helpButtonTexture = new Texture(
-				Gdx.files.internal("buttons/pause.png"));
+				Gdx.files.internal("buttons/help.png"));
 		helpButtonPressedTexture = new Texture(
-				Gdx.files.internal("buttons/pause_pressed.png"));
+				Gdx.files.internal("buttons/help_pressed.png"));
 
 		helpButtonBounds = new Rectangle(0, 526, 60, 60);
 		
@@ -344,10 +344,22 @@ public class RunningGameScreen extends AbstractScreen{
 					//if(obs.isHit()){
 						//Texture obsTexture;
 						//float position;
-						
+					float xPosition;
+					float panelWidth = this.panelBgTexture.getWidth();
+					float obstacleWidth = obs.getObstacleTexture().getWidth();
+						if (obs.getIndex() == 0) {
+							xPosition = ((3*VIRTUAL_WIDTH-panelWidth-(3*obstacleWidth))/6);
+						} else if (obs.getIndex() == 1) {
+							xPosition = ((VIRTUAL_WIDTH-obstacleWidth)/2);
+						} else {
+							xPosition = ((3*VIRTUAL_WIDTH+panelWidth-(3*obstacleWidth))/6);
+						}
 						batcher.draw(obs.getObstacleTexture(), 
-								obs.getIndex() == 0 ? 230 : obs.getIndex() == 1 ? ((VIRTUAL_WIDTH-obs.getObstacleTexture().getWidth())/2) : ((3*VIRTUAL_WIDTH+this.panelBgTexture.getWidth()+(2*obs.getObstacleTexture().getWidth()))/6),
+								xPosition,
 								obs.getPos());
+						float diffX = obstacleWidth / 10;
+						float diffY = obs.getObstacleTexture().getHeight()/10;
+						obs.setBounds(new Rectangle(xPosition+diffX, obs.getPos()+(diffY*2), obstacleWidth-(diffX*2), obs.getObstacleTexture().getHeight()-(diffY*2)));
 				}
 				
 				runningGame.setPlayerBounds(runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2));
@@ -396,13 +408,13 @@ public class RunningGameScreen extends AbstractScreen{
 						buttons[i].getBounds().getWidth(), buttons[i].getBounds().getHeight());
 			}
 			
-
-			Iterator<runningGameTarget> itr = runningGame.getTargets().iterator();
+*/
+			Iterator<RunningGameObstacle> itr = runningGame.getObstacles().iterator();
 			while(itr.hasNext()){
 				Rectangle rect = itr.next().getBounds();
 				debugRenderer.rect(rect.x, rect.y, rect.width, rect.height);
 			}	
-			*/
+			
 		debugRenderer.end();
 	}
 

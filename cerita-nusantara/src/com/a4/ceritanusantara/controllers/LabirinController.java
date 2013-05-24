@@ -10,7 +10,6 @@ import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.AdeganScreen;
-import com.a4.ceritanusantara.views.CongratulationsScreen;
 import com.a4.ceritanusantara.views.HelpScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;

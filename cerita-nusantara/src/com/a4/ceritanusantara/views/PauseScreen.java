@@ -95,7 +95,7 @@ public class PauseScreen extends AbstractScreen {
 			RunningGame runningGame) {
 		super(app);
 		this.originScreen = originScreen;
-		type = SubCerita.TAP_GAME;
+		type = SubCerita.RUNNING_GAME;
 		subcerita = runningGame;
 		init();
 		// TODO Auto-generated constructor stub

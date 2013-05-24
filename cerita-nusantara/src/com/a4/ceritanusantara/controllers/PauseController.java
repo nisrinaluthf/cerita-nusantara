@@ -3,6 +3,7 @@ package com.a4.ceritanusantara.controllers;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Kuis;
+import com.a4.ceritanusantara.models.RunningGame;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.models.Labirin;
@@ -12,6 +13,7 @@ import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
+import com.a4.ceritanusantara.views.RunningGameScreen;
 import com.a4.ceritanusantara.views.SettingsScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
@@ -112,6 +114,9 @@ public class PauseController {
 					}
 					else if(type==SubCerita.KUIS){
 						app.setScreen(new KuisScreen(app, (Kuis)(screen.getSubCerita())));
+					}
+					else if(type==SubCerita.RUNNING_GAME){
+						app.setScreen(new RunningGameScreen(app, (RunningGame)(screen.getSubCerita())));
 					}
 					
 				}

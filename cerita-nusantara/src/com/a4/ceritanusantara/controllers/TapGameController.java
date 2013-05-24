@@ -175,7 +175,7 @@ public class TapGameController {
 				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
-				System.out.println(pauseButtonBounds.x+" "+pauseButtonBounds.y);
+				//System.out.println(pauseButtonBounds.x+" "+pauseButtonBounds.y);
 				if(OverlapTester.pointInRectangle(pauseButtonBounds, pos.x, pos.y)){
 					screen.playSoundFx("default");
 					screen.pauseMusic();
@@ -243,7 +243,6 @@ public class TapGameController {
 					if(OverlapTester.pointInRectangle( helpButtonBounds, pos.x, pos.y)){
 						screen.pause();
 						app.setScreen(new HelpScreen(app, screen, this.tapGame));
-						
 					}
 				}
 				

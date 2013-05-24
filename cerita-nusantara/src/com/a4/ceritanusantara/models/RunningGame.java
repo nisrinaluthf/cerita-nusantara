@@ -17,8 +17,8 @@ public class RunningGame extends SubCerita {
 	private Texture progressIcon;
 	private int health;
 	private float distance;
-	private final float finishLine = 3000.0f;
-	private final float leftLimit = 250f;
+	private final float finishLine = 5000.0f;
+	private final float leftLimit = 230f;
 	private final float rightLimit = 800f;
 	private float VELOCITY;
 	private float time;
@@ -37,10 +37,11 @@ public class RunningGame extends SubCerita {
 		backgroundYPosition = 0.0f;
 		distance = 0.0f;
 		score = 100;
-		health = 3;
+		health = 5;
 		time =0;
 		lastObstacles = -1.5f;
 		obstacles = new ArrayList<RunningGameObstacle>();
+		gameOver = false;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -57,10 +58,11 @@ public class RunningGame extends SubCerita {
 		backgroundYPosition = 0.0f;
 		distance = 0.0f;
 		score = 100;
-		health = 3;
+		health = 5;
 		time =0;
 		lastObstacles = -1.5f;
 		obstacles = new ArrayList<RunningGameObstacle>();
+		gameOver = false;
 	}
 	
 	public void generateObstacles(float delta){
@@ -69,12 +71,12 @@ public class RunningGame extends SubCerita {
 		float temp = rand.nextFloat();
 		//System.out.println("time "+time);
 		if(temp > 0.7) {
-			int index = rand.nextInt(10);
+			int index = rand.nextInt(6);
 			if(index < 3)
-			if(time>(lastObstacles+1.5)){
+			if(time>(lastObstacles+2.5)){
 				//System.out.println("temp "+temp);
 				lastObstacles = time;
-				int type = rand.nextInt(3);
+				int type = rand.nextInt(4);
 				/*
 				int obsType = 0;
 				if(rand.nextFloat()>0.7){
@@ -96,7 +98,7 @@ public class RunningGame extends SubCerita {
 		while(itr.hasNext()){
 			RunningGameObstacle obs = itr.next();
 			obs.setPos(obs.getPos() - this.VELOCITY);
-			System.out.println("posisi obstacle "+(obs.getPos() - this.VELOCITY));
+			//System.out.println("posisi obstacle "+(obs.getPos() - this.VELOCITY));
 			/*
 			if(obs.getPos()<-126){
 				itr.remove();

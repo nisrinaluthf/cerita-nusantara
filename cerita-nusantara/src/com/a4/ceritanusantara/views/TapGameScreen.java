@@ -117,9 +117,9 @@ public class TapGameScreen extends AbstractScreen{
 		pauseButtonPressed = false;
 		
 		helpButtonTexture = new Texture(
-				Gdx.files.internal("buttons/pause.png"));
+				Gdx.files.internal("buttons/help.png"));
 		helpButtonPressedTexture = new Texture(
-				Gdx.files.internal("buttons/pause_pressed.png"));
+				Gdx.files.internal("buttons/help_pressed.png"));
 
 		helpButtonBounds = new Rectangle(0, 526, 60, 60);
 		

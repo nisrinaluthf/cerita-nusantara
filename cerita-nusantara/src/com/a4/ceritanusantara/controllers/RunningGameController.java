@@ -7,6 +7,7 @@ import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.RunningGame;
+import com.a4.ceritanusantara.models.RunningGameObstacle;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.models.TapGameTarget;
@@ -147,6 +148,29 @@ public class RunningGameController {
 			}
 		}
 		else{
+			//Vector2 player = new Vector2();
+			Iterator<RunningGameObstacle> itr = runningGame.getObstacles().iterator();
+			try{
+				while(itr.hasNext()){
+					RunningGameObstacle obs = itr.next();
+					if(OverlapTester.overlapRectangles(obs.getBounds(), this.runningGame.getPlayerBounds()) && !obs.isHit()){
+						obs.setHit(true);
+						//if(target.isBad()){
+							screen.playSoundFx("false");
+							//target.setHit(true);
+							runningGame.setHealth(runningGame.getHealth()-1);
+							runningGame.setScore(runningGame.getScore() - 10);
+							//tapGame.setHits(tapGame.getHits()-1);
+							//tapGame.addBadHit();
+						//}
+					}
+				}
+			}
+			catch(Exception exc){
+				System.out.println("error dari tapgamecontroller");	
+			}
+			
+			
 			if (Gdx.input.isKeyPressed(Keys.BACK)){
 				screen.playSoundFx("default");
 				screen.pauseMusic();
@@ -154,12 +178,14 @@ public class RunningGameController {
 				app.setScreen(new PauseScreen(app, screen, runningGame));
 			}
 			
-			if(runningGame.getHealth()<=0){
+			//if(runningGame.getHealth()<=0){
+				//runningGame.setGameOver();
+			//}
+			if (runningGame.getHealth()<=0 || runningGame.getDistance() >=runningGame.getFinishLine()) {
 				runningGame.setGameOver();
 			}
-			if (runningGame.getDistance() >=runningGame.getFinishLine()) {
-				runningGame.setGameOver();
-			}
+			
+			
 			
 			/*
 			if(tapGame.getHits()>=25){
@@ -191,6 +217,7 @@ public class RunningGameController {
 				else if(OverlapTester.pointInRectangle( rightButtonBounds, pos.x, pos.y)){
 					screen.setRightButtonPressed(true);
 				}
+				
 				
 				/*
 				for(int i=0; i<buttonsBounds.length; i++){
@@ -257,7 +284,7 @@ public class RunningGameController {
 					}
 				}
 			}
-			else{
+			else {
 				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				

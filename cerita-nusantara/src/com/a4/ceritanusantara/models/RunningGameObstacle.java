@@ -20,7 +20,8 @@ public static final float INIT_POS = 660;
 		this.setIndex(index);
 		this.setType(type);
 		setPos(INIT_POS);
-		
+		hit = false;
+		/*
 		float xBounds = -100;
 		if(index==0){
 			xBounds = 250;
@@ -31,7 +32,7 @@ public static final float INIT_POS = 660;
 		else if(index==2){
 			xBounds = 774;
 		}
-		
+		*/
 		if(type==0){
 			this.obstacle = new Texture(
 					Gdx.files.internal("selatbali_running/obstacle_1.png"));
@@ -44,8 +45,12 @@ public static final float INIT_POS = 660;
 			this.obstacle = new Texture(
 					Gdx.files.internal("selatbali_running/obstacle_3.png"));
 		}
+		else if(type==3){
+			this.obstacle = new Texture(
+					Gdx.files.internal("selatbali_running/obstacle_4.png"));
+		}
 		
-		setBounds(new Rectangle(xBounds, INIT_POS+31, obstacle.getWidth(), obstacle.getHeight()));
+		//setBounds(new Rectangle(xBounds, INIT_POS+31, obstacle.getWidth(), obstacle.getHeight()));
 		
 		
 	}
