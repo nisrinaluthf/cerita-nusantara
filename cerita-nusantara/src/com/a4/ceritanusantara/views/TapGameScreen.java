@@ -112,7 +112,7 @@ public class TapGameScreen extends AbstractScreen{
 		pauseButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/pause_pressed.png"));
 
-		pauseButtonBounds = new Rectangle(950, 526, 60, 60);
+		pauseButtonBounds = new Rectangle(920, 490, pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
 		
 		pauseButtonPressed = false;
 		
@@ -121,7 +121,7 @@ public class TapGameScreen extends AbstractScreen{
 		helpButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/help_pressed.png"));
 
-		helpButtonBounds = new Rectangle(0, 526, 60, 60);
+		helpButtonBounds = new Rectangle(0, 490, helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
 		
 		helpButtonPressed = false;
 		
@@ -217,15 +217,15 @@ public class TapGameScreen extends AbstractScreen{
 						(VIRTUAL_WIDTH-panelBgTexture.getWidth())/2, 0);
 				batcher.draw(scoreBgTexture, 900, 80);
 				if (pauseButtonPressed) {
-					batcher.draw(pauseButtonPressedTexture,950, 526);
+					batcher.draw(pauseButtonPressedTexture,920, 490);
 				} else {
-					batcher.draw(pauseButtonTexture, 950, 526);
+					batcher.draw(pauseButtonTexture, 920, 490);
 				}
 				
 				if (helpButtonPressed) {
-					batcher.draw(helpButtonPressedTexture,0, 526);
+					batcher.draw(helpButtonPressedTexture,0, 490);
 				} else {
-					batcher.draw(helpButtonTexture, 0, 526);
+					batcher.draw(helpButtonTexture, 0, 490);
 				}
 				
 			batcher.end();

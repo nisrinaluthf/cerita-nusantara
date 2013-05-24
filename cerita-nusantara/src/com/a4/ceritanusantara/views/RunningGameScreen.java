@@ -164,7 +164,7 @@ public class RunningGameScreen extends AbstractScreen{
 		pauseButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/pause_pressed.png"));
 
-		pauseButtonBounds = new Rectangle(950, 526, 60, 60);
+		pauseButtonBounds = new Rectangle(920, 490, pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
 		
 		pauseButtonPressed = false;
 		
@@ -173,7 +173,7 @@ public class RunningGameScreen extends AbstractScreen{
 		helpButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/help_pressed.png"));
 
-		helpButtonBounds = new Rectangle(0, 526, 60, 60);
+		helpButtonBounds = new Rectangle(0, 490, helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
 		
 		helpButtonPressed = false;
 		
@@ -251,7 +251,7 @@ public class RunningGameScreen extends AbstractScreen{
 				//}
 				
 				
-				if(runningGame.getScore()>=60){
+				if(runningGame.getScore()>=50){
 					batcher.draw(nextTexture, 950, 30);
 					font.draw(batcher, "Skor kamu: "+runningGame.getScore(), 380, 400);
 				}
@@ -281,21 +281,21 @@ public class RunningGameScreen extends AbstractScreen{
 				batcher.draw(finishLine, (VIRTUAL_WIDTH-finishLine.getWidth())/2, 10+(runningGame.getFinishLine()-runningGame.getDistance()));
 				
 				batcher.draw(progressBar, 870, 80);
-				batcher.draw(progressIcon, 880, 70 + (runningGame.getDistance()/runningGame.getFinishLine()*481));
+				batcher.draw(progressIcon, 870, 60 + (runningGame.getDistance()/runningGame.getFinishLine()*this.progressBar.getHeight()));
 				
 				
 				
 				//batcher.draw(scoreBgTexture, 900, 80);
 				if (pauseButtonPressed) {
-					batcher.draw(pauseButtonPressedTexture,950, 526);
+					batcher.draw(pauseButtonPressedTexture,920, 490);
 				} else {
-					batcher.draw(pauseButtonTexture, 950, 526);
+					batcher.draw(pauseButtonTexture, 920, 490);
 				}
 				
 				if (helpButtonPressed) {
-					batcher.draw(helpButtonPressedTexture,0, 526);
+					batcher.draw(helpButtonPressedTexture,0, 490);
 				} else {
-					batcher.draw(helpButtonTexture, 0, 526);
+					batcher.draw(helpButtonTexture, 0, 490);
 				}
 				
 				if (leftButtonPressed) {
