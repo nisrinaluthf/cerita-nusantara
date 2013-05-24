@@ -5,10 +5,10 @@ import java.util.Iterator;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.RunningGameController;
 import com.a4.ceritanusantara.models.RunningGame;
+import com.a4.ceritanusantara.models.RunningGameObstacle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -66,7 +66,7 @@ public class RunningGameScreen extends AbstractScreen{
 	private Rectangle leftButtonBounds;
 	private Rectangle rightButtonBounds;
 	
-	private Rectangle playerBounds;
+	//private Rectangle playerBounds;
 	
 	//private runningGameButton[] buttons;
 	
@@ -211,7 +211,8 @@ public class RunningGameScreen extends AbstractScreen{
 		
 		//runningGame.generateTargets(delta);
 		//runningGame.updateTargets(delta);
-		
+		runningGame.generateObstacles(delta);
+		//runningGame.updatePosition();
 		cam.update();
 
         Gdx.gl.glViewport((int) viewport.x, (int) viewport.y,
@@ -309,10 +310,8 @@ public class RunningGameScreen extends AbstractScreen{
 					batcher.draw(rightButtonTexture, VIRTUAL_WIDTH-20-rightButtonTexture.getWidth(), (VIRTUAL_HEIGHT-rightButtonTexture.getHeight())/2);
 				}
 				
-				runningGame.setPlayerBounds(runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2));
-				batcher.draw(playerTexture, runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2), 10);
 				
-			batcher.end();
+			//batcher.end();
 			/*
 			debugRenderer.begin(ShapeType.FilledRectangle);
 				int hits = runningGame.getHits();
@@ -327,8 +326,9 @@ public class RunningGameScreen extends AbstractScreen{
 				}
 				debugRenderer.filledRect(904, 84, 35, (hits/25.0f)*480);
 			debugRenderer.end();
-			
-			batcher.begin();
+			*/
+		//	batcher.begin();
+			/*
 				batcher.draw(scoreFrameTexture, 900, 80);
 				if(runningGame.getHits()>10){
 					batcher.draw(indicatorsTexture[0], 865, 10);
@@ -336,20 +336,32 @@ public class RunningGameScreen extends AbstractScreen{
 				else{
 					batcher.draw(indicatorsTexture[1], 865, 0);
 				}
+			*/
 			
-				Iterator<runningGameTarget> itr = runningGame.getTargets().iterator();
+				Iterator<RunningGameObstacle> itr = runningGame.getObstacles().iterator();
 				while(itr.hasNext()){
-					runningGameTarget target = itr.next();
-					if(target.isHit()){
-						batcher.draw(targetsPressedTexture[target.getType()], 
-								target.getIndex() == 0 ? 274 : target.getIndex() == 1 ? 449 : 634,
-								target.getPos());
-					}
+					RunningGameObstacle obs = itr.next();
+					//if(obs.isHit()){
+						//Texture obsTexture;
+						//float position;
+						
+						batcher.draw(obs.getObstacleTexture(), 
+								obs.getIndex() == 0 ? 230 : obs.getIndex() == 1 ? ((VIRTUAL_WIDTH-obs.getObstacleTexture().getWidth())/2) : ((3*VIRTUAL_WIDTH+this.panelBgTexture.getWidth()+(2*obs.getObstacleTexture().getWidth()))/6),
+								obs.getPos());
+				}
+				
+				runningGame.setPlayerBounds(runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2));
+				batcher.draw(playerTexture, runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2), 10);
+				
+					/*
+					 
+					 
 					else{
 						batcher.draw(targetsTexture[target.getType()], 
 								target.getIndex() == 0 ? 274 : target.getIndex() == 1 ? 449 : 634,
 								target.getPos());
 					}
+					
 							
 				}
 				
@@ -363,8 +375,9 @@ public class RunningGameScreen extends AbstractScreen{
 								buttons[i].getX(), buttons[i].getY());
 					}
 				}
+				*/
 			batcher.end();
-			*/
+			
         }	
 		
 		if(debug){

@@ -1,5 +1,6 @@
 package com.a4.ceritanusantara.models;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -22,7 +23,7 @@ public class RunningGame extends SubCerita {
 	private float VELOCITY;
 	private float time;
 	private Random rand;
-	private float[] lastObstacles;
+	private float lastObstacles;
 	private List<RunningGameObstacle> obstacles;
 	private float backgroundYPosition;
 	private int score;
@@ -37,6 +38,9 @@ public class RunningGame extends SubCerita {
 		distance = 0.0f;
 		score = 100;
 		health = 3;
+		time =0;
+		lastObstacles = -1.5f;
+		obstacles = new ArrayList<RunningGameObstacle>();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -54,37 +58,56 @@ public class RunningGame extends SubCerita {
 		distance = 0.0f;
 		score = 100;
 		health = 3;
+		time =0;
+		lastObstacles = -1.5f;
+		obstacles = new ArrayList<RunningGameObstacle>();
 	}
 	
 	public void generateObstacles(float delta){
 		if(gameOver) return;
-		
 		time += delta;
-		if(rand.nextFloat()>0.97){
-			int index = rand.nextInt(3);
-			if(time>(lastObstacles[index]+1.0)){
-				lastObstacles[index] = time;
-				obstacles.add(new RunningGameObstacle(index));
+		float temp = rand.nextFloat();
+		//System.out.println("time "+time);
+		if(temp > 0.7) {
+			int index = rand.nextInt(10);
+			if(index < 3)
+			if(time>(lastObstacles+1.5)){
+				//System.out.println("temp "+temp);
+				lastObstacles = time;
+				int type = rand.nextInt(3);
+				/*
+				int obsType = 0;
+				if(rand.nextFloat()>0.7){
+					type +=3;
+				} else if(rand.nextFloat() > 0.4) {
+					obsType = 2;
+					//type +=2;
+				} 
+				*/
+				obstacles.add(new RunningGameObstacle(index, type));
 			}
 		}
 	}
 	
 	public void updatePosition (){
 		if (gameOver) return;
-		/*
+		
 		Iterator<RunningGameObstacle> itr = obstacles.iterator();
 		while(itr.hasNext()){
 			RunningGameObstacle obs = itr.next();
-			obs.setPos(obs.getPos() + this.VELOCITY);
-			
+			obs.setPos(obs.getPos() - this.VELOCITY);
+			System.out.println("posisi obstacle "+(obs.getPos() - this.VELOCITY));
+			/*
 			if(obs.getPos()<-126){
 				itr.remove();
 			}
+			*/
 		}
-		*/
+		
 		if(backgroundYPosition > -604 )
 			this.backgroundYPosition -=VELOCITY;
 		else backgroundYPosition = 0.0f;
+		
 		this.distance +=VELOCITY;
 	}
 	
@@ -175,6 +198,11 @@ public class RunningGame extends SubCerita {
 
 	public void setPlayerBounds(float xPosition) {
 		this.playerBounds = new Rectangle(xPosition, 10, player.getWidth(), player.getHeight());
+	}
+
+	public List<RunningGameObstacle> getObstacles() {
+		// TODO Auto-generated method stub
+		return this.obstacles;
 	}
 
 }
