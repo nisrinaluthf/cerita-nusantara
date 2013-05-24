@@ -33,6 +33,7 @@ public class RunningGameScreen extends AbstractScreen{
 	private Texture progressBar;
 	private Texture progressIcon;
 	private Texture healthIcon;
+	private Texture finishLine;
 	
 	private Texture pauseButtonTexture;
 	private Texture pauseButtonPressedTexture;
@@ -65,6 +66,8 @@ public class RunningGameScreen extends AbstractScreen{
 	private Rectangle leftButtonBounds;
 	private Rectangle rightButtonBounds;
 	
+	private Rectangle playerBounds;
+	
 	//private runningGameButton[] buttons;
 	
 	private boolean debug = true;
@@ -75,6 +78,7 @@ public class RunningGameScreen extends AbstractScreen{
 	
 	private boolean leftButtonPressed;
 	private boolean rightButtonPressed;
+	
 	private BitmapFont font;
 	
 	private Sound hitObstacleSfx;
@@ -114,14 +118,17 @@ public class RunningGameScreen extends AbstractScreen{
 				Texture(Gdx.files.internal("buttons/dialog_next.png"));
 		
 		playerTexture = runningGame.getPlayer();
-		/*
+		
 		progressIcon = runningGame.getProgressIcon();
 		
 		progressBar = new
 				Texture(Gdx.files.internal("selatbali_running/progress_bar.png"));
 		healthIcon = new
 				Texture(Gdx.files.internal("selatbali_running/health.png"));
-		*/
+		
+		finishLine = new
+				Texture(Gdx.files.internal("selatbali_running/finish_line.png"));
+		
 		leftButtonTexture = new
 				Texture(Gdx.files.internal("buttons/left.png"));
 		rightButtonTexture = new
@@ -263,7 +270,20 @@ public class RunningGameScreen extends AbstractScreen{
 				batcher.draw(background2, 0, runningGame.getBackgroundYPosition() + background2.getHeight());
 				batcher.draw(panelBgTexture2, 
 						(VIRTUAL_WIDTH-panelBgTexture2.getWidth())/2, runningGame.getBackgroundYPosition() + panelBgTexture2.getHeight());
-				System.out.println(runningGame.getBackgroundYPosition()+"");
+				//System.out.println(runningGame.getBackgroundYPosition()+"");
+				int healthPosition = 850;
+				for(int ii = 0; ii < runningGame.getHealth(); ii++) {
+					batcher.draw(healthIcon, healthPosition, 20);
+					healthPosition += healthIcon.getWidth()+7;
+				}
+				
+				batcher.draw(finishLine, (VIRTUAL_WIDTH-finishLine.getWidth())/2, 10+(runningGame.getFinishLine()-runningGame.getDistance()));
+				
+				batcher.draw(progressBar, 870, 80);
+				batcher.draw(progressIcon, 880, 70 + (runningGame.getDistance()/runningGame.getFinishLine()*481));
+				
+				
+				
 				//batcher.draw(scoreBgTexture, 900, 80);
 				if (pauseButtonPressed) {
 					batcher.draw(pauseButtonPressedTexture,950, 526);
@@ -289,6 +309,7 @@ public class RunningGameScreen extends AbstractScreen{
 					batcher.draw(rightButtonTexture, VIRTUAL_WIDTH-20-rightButtonTexture.getWidth(), (VIRTUAL_HEIGHT-rightButtonTexture.getHeight())/2);
 				}
 				
+				runningGame.setPlayerBounds(runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2));
 				batcher.draw(playerTexture, runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2), 10);
 				
 			batcher.end();

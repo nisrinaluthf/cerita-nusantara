@@ -16,6 +16,7 @@ import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
+import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
 import com.a4.ceritanusantara.views.RunningGameScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
@@ -73,7 +74,7 @@ public class RunningGameController {
 					screen.playSoundFx("default");
 					screen.stopMusic();
 					screen.setReplayButtonPressed(true);
-					System.out.println("replay");
+					
 				}
 				
 				else if(OverlapTester.pointInRectangle(mainMenuBounds, 
@@ -81,7 +82,7 @@ public class RunningGameController {
 					screen.playSoundFx("default");
 					screen.stopMusic();
 					screen.setMainMenuButtonPressed(true);
-					System.out.println("mainmenu");
+					//System.out.println("mainmenu");
 				}
 				
 				else if(OverlapTester.pointInRectangle(nextBounds, 
@@ -100,6 +101,7 @@ public class RunningGameController {
 					screen.setReplayButtonPressed(false);
 					if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
 						app.getScreen().dispose();
+						System.out.println("replay");
 						app.setScreen(new RunningGameScreen(app, runningGame));
 					}
 				}
@@ -109,7 +111,7 @@ public class RunningGameController {
 					if(OverlapTester.pointInRectangle(mainMenuBounds, 
 							pos.x, pos.y)){
 						app.getScreen().dispose();
-						app.setScreen(new MainMenuScreen(app));
+						app.setScreen(new PilihSubCeritaScreen(app, app.getCeritaNusantara().getCerita(3)));
 					}
 				}
 				
@@ -152,12 +154,13 @@ public class RunningGameController {
 				app.setScreen(new PauseScreen(app, screen, runningGame));
 			}
 			
-			if(runningGame.getHealth()<0){
+			if(runningGame.getHealth()<=0){
 				runningGame.setGameOver();
 			}
 			if (runningGame.getDistance() >=runningGame.getFinishLine()) {
 				runningGame.setGameOver();
 			}
+			
 			/*
 			if(tapGame.getHits()>=25){
 				int score = 50;
@@ -184,19 +187,9 @@ public class RunningGameController {
 				}
 				else if(OverlapTester.pointInRectangle( leftButtonBounds, pos.x, pos.y)){
 					screen.setLeftButtonPressed(true);
-					//float currentPosition = runningGame.getPlayerXPosition();
-					//if(currentPosition > runningGame.getLeftLimit()) {
-						//runningGame.setPlayerXPosition(--currentPosition);
-						//System.out.println("gerak ke kiri " + runningGame.getPlayerXPosition());
-					//}
 				}
 				else if(OverlapTester.pointInRectangle( rightButtonBounds, pos.x, pos.y)){
 					screen.setRightButtonPressed(true);
-					//float currentPosition = runningGame.getPlayerXPosition();
-					//if(currentPosition < runningGame.getRightLimit()) {
-						//runningGame.setPlayerXPosition(++currentPosition);
-						//System.out.println("gerak ke kanan " + runningGame.getPlayerXPosition());
-					//}
 				}
 				
 				/*

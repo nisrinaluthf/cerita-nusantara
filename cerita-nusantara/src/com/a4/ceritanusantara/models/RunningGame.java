@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 
 public class RunningGame extends SubCerita {
 	private Texture background;
@@ -15,7 +16,7 @@ public class RunningGame extends SubCerita {
 	private Texture progressIcon;
 	private int health;
 	private float distance;
-	private final float finishLine = 5000.0f;
+	private final float finishLine = 3000.0f;
 	private final float leftLimit = 250f;
 	private final float rightLimit = 800f;
 	private float VELOCITY;
@@ -24,6 +25,8 @@ public class RunningGame extends SubCerita {
 	private float[] lastObstacles;
 	private List<RunningGameObstacle> obstacles;
 	private float backgroundYPosition;
+	private int score;
+	private Rectangle playerBounds;
 
 	public RunningGame(String nama, int tipe) {
 		super(nama, tipe);
@@ -32,6 +35,8 @@ public class RunningGame extends SubCerita {
 		rand = new Random();
 		backgroundYPosition = 0.0f;
 		distance = 0.0f;
+		score = 100;
+		health = 3;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -47,9 +52,11 @@ public class RunningGame extends SubCerita {
 		rand = new Random();
 		backgroundYPosition = 0.0f;
 		distance = 0.0f;
+		score = 100;
+		health = 3;
 	}
-	/*
-	public void generateTargets(float delta){
+	
+	public void generateObstacles(float delta){
 		if(gameOver) return;
 		
 		time += delta;
@@ -61,7 +68,7 @@ public class RunningGame extends SubCerita {
 			}
 		}
 	}
-	*/
+	
 	public void updatePosition (){
 		if (gameOver) return;
 		/*
@@ -150,6 +157,24 @@ public class RunningGame extends SubCerita {
 
 	public void setBackgroundYPosition(float backgroundPosition) {
 		this.backgroundYPosition = backgroundPosition;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public Rectangle getPlayerBounds() {
+		return playerBounds;
+	}
+	
+	public void setPlayerBounds(Rectangle r) {
+		this.playerBounds = r;
+	}
+
+	public void setPlayerBounds(float xPosition) {
+		this.playerBounds = new Rectangle(xPosition, 10, player.getWidth(), player.getHeight());
 	}
 
 }

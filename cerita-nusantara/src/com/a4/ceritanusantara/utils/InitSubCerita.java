@@ -269,15 +269,19 @@ public class InitSubCerita {
 			
 			i++;
 		}
-		
+		 
 		((RunningGame) cerita.getSubCerita(1)).setBackground(
 				new Texture(Gdx.files.internal("selatbali_running/bg.png")));
 		((RunningGame) cerita.getSubCerita(1)).setPanelBackground(new 
 				Texture(Gdx.files.internal("selatbali_running/panel_bg.png")));
 		((RunningGame) cerita.getSubCerita(1)).setPlayer(new 
 				Texture(Gdx.files.internal("selatbali_running/player.png")));
+		((RunningGame) cerita.getSubCerita(1)).setProgressIcon(new 
+				Texture(Gdx.files.internal("selatbali_running/progress_icon.png")));
+		((RunningGame) cerita.getSubCerita(1)).setPlayerBounds(new Rectangle(((RunningGame) cerita.getSubCerita(1)).getPlayerXPosition()-(((RunningGame) cerita.getSubCerita(1)).getPlayer().getWidth()/2), 10,
+				((RunningGame) cerita.getSubCerita(1)).getPlayer().getWidth(), ((RunningGame) cerita.getSubCerita(1)).getPlayer().getHeight()));
 		//((RunningGame) cerita.getSubCerita(1)).setPlayerXPosition(512.0f);
-		System.out.println("ini cerita bali");
+		//System.out.println("ini cerita bali");
 		//PuzzlePiece[][] pieces = new PuzzlePiece[4][4];
 		/*
 		float offset = 50;
