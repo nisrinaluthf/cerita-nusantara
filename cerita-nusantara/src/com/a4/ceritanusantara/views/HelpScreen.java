@@ -3,6 +3,7 @@ package com.a4.ceritanusantara.views;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.controllers.HelpController;
 import com.a4.ceritanusantara.models.Labirin;
+import com.a4.ceritanusantara.models.RunningGame;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
 import com.badlogic.gdx.Gdx;
@@ -66,6 +67,17 @@ public class HelpScreen extends AbstractScreen {
 		init();
 	}
 	
+	public HelpScreen(Aplikasi app, Screen originScreen,
+			RunningGame runningGame) {
+		super(app);
+		this.originScreen = originScreen;
+		type = SubCerita.RUNNING_GAME;
+		subcerita = runningGame;
+		helpText = "runninggame...............................................................";
+		init();
+		// TODO Auto-generated constructor stub
+	}
+
 	private void init(){
 		background = new Texture(Gdx.files.internal("backgrounds/pause_bg.png"));
 		

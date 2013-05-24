@@ -88,7 +88,7 @@ public class LabirinScreen extends AbstractScreen{
 		pauseButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/pause_pressed.png"));
 
-		pauseButtonBounds = new Rectangle(920, 490, pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
+		pauseButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight(), pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
 		
 		pauseButtonPressed = false;
 		
@@ -97,7 +97,7 @@ public class LabirinScreen extends AbstractScreen{
 		helpButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/help_pressed.png"));
 
-		helpButtonBounds = new Rectangle(0, 490, helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
+		helpButtonBounds = new Rectangle(0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight(), helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
 		
 		helpButtonPressed = false;
 		
@@ -213,16 +213,17 @@ public class LabirinScreen extends AbstractScreen{
 						labirin.getPlayer().getY());
 				
 				if (pauseButtonPressed) {
-					batcher.draw(pauseButtonPressedTexture,920, 490);
+					batcher.draw(pauseButtonPressedTexture,VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
 				} else {
-					batcher.draw(pauseButtonTexture, 920, 490);
+					batcher.draw(pauseButtonTexture, VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
 				}
 				
 				if (helpButtonPressed) {
-					batcher.draw(helpButtonPressedTexture,0, 490);
+					batcher.draw(helpButtonPressedTexture,0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
 				} else {
-					batcher.draw(helpButtonTexture, 0, 490);
+					batcher.draw(helpButtonTexture, 0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
 				}
+				
 				
 				int time = (int)labirin.timeLeft;
 				

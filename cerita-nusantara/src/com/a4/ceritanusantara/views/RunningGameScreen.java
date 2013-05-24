@@ -11,7 +11,9 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -23,11 +25,6 @@ public class RunningGameScreen extends AbstractScreen{
 	private Texture panelBgTexture;
 	private Texture background2;
 	private Texture panelBgTexture2;
-	//private Texture[] targetsTexture;
-	//private Texture[] targetsPressedTexture;
-	//private Texture[] indicatorsTexture;
-	//private Texture scoreBgTexture;
-	//private Texture scoreFrameTexture;
 	
 	private Texture playerTexture;
 	private Texture progressBar;
@@ -70,7 +67,7 @@ public class RunningGameScreen extends AbstractScreen{
 	
 	//private runningGameButton[] buttons;
 	
-	private boolean debug = true;
+	private boolean debug = false;
 	
 	private boolean replayButtonPressed;
 	private boolean mainMenuButtonPressed;
@@ -88,6 +85,13 @@ public class RunningGameScreen extends AbstractScreen{
 	private Sound pauseClickSfx;
 	
 	private Music runningGameMusicBg;
+
+	private Animation runner;
+	private TextureRegion[] runFrames;
+	private TextureRegion currentFrame;
+	private final int FRAME_COLS = 2;
+	private final int FRAME_ROWS = 1;
+	private float stateTime;
 	
 	public RunningGameScreen(Aplikasi app, RunningGame runningGame) {
 		super(app);
@@ -118,6 +122,16 @@ public class RunningGameScreen extends AbstractScreen{
 				Texture(Gdx.files.internal("buttons/dialog_next.png"));
 		
 		playerTexture = runningGame.getPlayer();
+		TextureRegion[][] temp = TextureRegion.split(playerTexture, playerTexture.getWidth()/FRAME_COLS, playerTexture.getHeight()/FRAME_ROWS);
+		this.runFrames = new TextureRegion[FRAME_COLS*FRAME_ROWS];
+		int index= 0;
+		for(int ii = 0; ii < FRAME_ROWS; ii++) {
+			for(int jj = 0; jj < FRAME_COLS; jj++) {
+				runFrames[index++] = temp[ii][jj];
+			}
+		}
+		runner = new Animation(0.5f, runFrames);
+		stateTime = 0f;
 		
 		progressIcon = runningGame.getProgressIcon();
 		
@@ -164,7 +178,7 @@ public class RunningGameScreen extends AbstractScreen{
 		pauseButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/pause_pressed.png"));
 
-		pauseButtonBounds = new Rectangle(920, 490, pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
+		pauseButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight(), pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
 		
 		pauseButtonPressed = false;
 		
@@ -173,7 +187,7 @@ public class RunningGameScreen extends AbstractScreen{
 		helpButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/help_pressed.png"));
 
-		helpButtonBounds = new Rectangle(0, 490, helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
+		helpButtonBounds = new Rectangle(0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight(), helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
 		
 		helpButtonPressed = false;
 		
@@ -263,6 +277,7 @@ public class RunningGameScreen extends AbstractScreen{
 			batcher.end();
 		}
         else{
+        	playerTexture = runningGame.getProgressIcon();
 			batcher.begin();
 				
 				batcher.draw(background, 0, runningGame.getBackgroundYPosition());
@@ -272,7 +287,7 @@ public class RunningGameScreen extends AbstractScreen{
 				batcher.draw(panelBgTexture2, 
 						(VIRTUAL_WIDTH-panelBgTexture2.getWidth())/2, runningGame.getBackgroundYPosition() + panelBgTexture2.getHeight());
 				//System.out.println(runningGame.getBackgroundYPosition()+"");
-				int healthPosition = 850;
+				int healthPosition = 800;
 				for(int ii = 0; ii < runningGame.getHealth(); ii++) {
 					batcher.draw(healthIcon, healthPosition, 20);
 					healthPosition += healthIcon.getWidth()+7;
@@ -281,21 +296,21 @@ public class RunningGameScreen extends AbstractScreen{
 				batcher.draw(finishLine, (VIRTUAL_WIDTH-finishLine.getWidth())/2, 10+(runningGame.getFinishLine()-runningGame.getDistance()));
 				
 				batcher.draw(progressBar, 870, 80);
-				batcher.draw(progressIcon, 870, 60 + (runningGame.getDistance()/runningGame.getFinishLine()*this.progressBar.getHeight()));
+				batcher.draw(progressIcon, 870, 60 + (runningGame.getDistance()/runningGame.getFinishLine()*(this.progressBar.getHeight()-40)));
 				
 				
 				
 				//batcher.draw(scoreBgTexture, 900, 80);
 				if (pauseButtonPressed) {
-					batcher.draw(pauseButtonPressedTexture,920, 490);
+					batcher.draw(pauseButtonPressedTexture,VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
 				} else {
-					batcher.draw(pauseButtonTexture, 920, 490);
+					batcher.draw(pauseButtonTexture, VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
 				}
 				
 				if (helpButtonPressed) {
-					batcher.draw(helpButtonPressedTexture,0, 490);
+					batcher.draw(helpButtonPressedTexture,0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
 				} else {
-					batcher.draw(helpButtonTexture, 0, 490);
+					batcher.draw(helpButtonTexture, 0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
 				}
 				
 				if (leftButtonPressed) {
@@ -363,7 +378,9 @@ public class RunningGameScreen extends AbstractScreen{
 				}
 				
 				runningGame.setPlayerBounds(runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2));
-				batcher.draw(playerTexture, runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2), 10);
+				stateTime += Gdx.graphics.getDeltaTime();
+				currentFrame = runner.getKeyFrame(stateTime, true);
+				batcher.draw(currentFrame, runningGame.getPlayerXPosition()-(this.playerTexture.getWidth()/2), 10);
 				
 					/*
 					 
@@ -414,7 +431,8 @@ public class RunningGameScreen extends AbstractScreen{
 				Rectangle rect = itr.next().getBounds();
 				debugRenderer.rect(rect.x, rect.y, rect.width, rect.height);
 			}	
-			
+			Rectangle playerBound = runningGame.getPlayerBounds();
+			debugRenderer.rect(playerBound.x, playerBound.y, playerBound.width, playerBound.height);
 		debugRenderer.end();
 	}
 

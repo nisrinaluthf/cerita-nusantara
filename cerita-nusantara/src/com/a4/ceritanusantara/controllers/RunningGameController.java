@@ -13,6 +13,7 @@ import com.a4.ceritanusantara.models.TapGame;
 import com.a4.ceritanusantara.models.TapGameTarget;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.AdeganScreen;
+import com.a4.ceritanusantara.views.HelpScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.MainMenuScreen;
@@ -24,6 +25,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -150,7 +152,7 @@ public class RunningGameController {
 		else{
 			//Vector2 player = new Vector2();
 			Iterator<RunningGameObstacle> itr = runningGame.getObstacles().iterator();
-			try{
+			
 				while(itr.hasNext()){
 					RunningGameObstacle obs = itr.next();
 					if(OverlapTester.overlapRectangles(obs.getBounds(), this.runningGame.getPlayerBounds()) && !obs.isHit()){
@@ -165,11 +167,10 @@ public class RunningGameController {
 						//}
 					}
 				}
-			}
-			catch(Exception exc){
-				System.out.println("error dari tapgamecontroller");	
-			}
 			
+			if((runningGame.getDistance()/runningGame.getFinishLine()) >= (3/5)) {
+				runningGame.setProgressIcon(new Texture(Gdx.files.internal("selatbali_running/progress_icon_2.png")));
+			}
 			
 			if (Gdx.input.isKeyPressed(Keys.BACK)){
 				screen.playSoundFx("default");
@@ -301,7 +302,7 @@ public class RunningGameController {
 					screen.setHelpButtonPressed(false);
 					if(OverlapTester.pointInRectangle( helpButtonBounds, pos.x, pos.y)){
 						screen.pause();
-						
+						app.setScreen(new HelpScreen(app, screen, runningGame));
 					}
 				}
 				else if(screen.leftButtonIsPressed()){

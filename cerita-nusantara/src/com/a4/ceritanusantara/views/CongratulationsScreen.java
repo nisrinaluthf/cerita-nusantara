@@ -1,7 +1,6 @@
 package com.a4.ceritanusantara.views;
 
 import com.a4.ceritanusantara.Aplikasi;
-import com.badlogic.gdx.Screen;
 
 public class CongratulationsScreen extends AbstractScreen {
 

@@ -199,7 +199,7 @@ public class RunningGame extends SubCerita {
 	}
 
 	public void setPlayerBounds(float xPosition) {
-		this.playerBounds = new Rectangle(xPosition, 10, player.getWidth(), player.getHeight());
+		this.playerBounds = new Rectangle(xPosition+(player.getWidth()/7), 20, player.getWidth()/4, player.getHeight());
 	}
 
 	public List<RunningGameObstacle> getObstacles() {
