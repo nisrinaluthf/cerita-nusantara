@@ -1,0 +1,6 @@
+backgrounds/bg_bali_old/scene9_bg_jawa.jpg
+music/jawa/mjw_9.ogg
+0
+2
+3.0:nar:Selamat, kamu telah berhasil menyusun Aksara Jawa!
+9.0:nar:Aksara Jawa juga dikenal dengan istilah dhentawyanjana, dan mengisahkan pertarungan antara dua abdinya yang memiliki kesaktiaan yang sama dan tewas bersama. 

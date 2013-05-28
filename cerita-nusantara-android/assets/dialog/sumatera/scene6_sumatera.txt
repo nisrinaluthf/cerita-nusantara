@@ -1,4 +1,5 @@
-backgrounds/bg_sumatera_old/scene6_bg_sumatera.png
+backgrounds/bg_sumatera_old/scene6_bg_sumatera.jpg
+music/sumatera/mst_4_7.ogg
 2
 speaker_dialog/siparkit_kiri.png
 speaker_dialog/pengawal_sedih.png

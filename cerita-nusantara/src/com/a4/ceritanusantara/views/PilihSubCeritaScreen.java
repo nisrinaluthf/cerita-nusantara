@@ -30,66 +30,56 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 	private Rectangle backButtonBounds;
 	
 	private Texture background;
-	private Texture timelineTexture;
-	private Texture timelinePressedTexture;
-	
+	private Texture circle;
+	private Texture circlePressed;
+	private Texture[] icons;
 	private Texture backButtonTexture;
 	private Texture backButtonPressedTexture;
-	
 	private Texture lockTexture;
 	
 	private boolean[] subCeritaButtonPressed;
 	private boolean backButtonPressed;
-	
 	private boolean debug = false;
 	
 	private Sound clickSfx;
-	
 	private Sound backClickSfx;
-	
 	private Music pilihSubCeritaMusicBg;
 	
 	public PilihSubCeritaScreen(Aplikasi app, Cerita cerita) {
 		super(app);
-		// TODO Auto-generated constructor stub
-		
-		
 		subcerita = cerita.getSubCerita();
-
-		background = new Texture(Gdx.files.internal("backgrounds/pilihsubcerita_bg.png"));
-		
-		//System.out.println("leeeeeeeeeeength "+subcerita.length);
-		
-		timelineTexture = new Texture(Gdx.files.internal(
-				"backgrounds/timeline_"+subcerita.length+".png"));
-		
-		timelinePressedTexture = new Texture(Gdx.files.internal(
-				"buttons/timeline_pressed.png"));
-		
-		lockTexture = new Texture(Gdx.files.internal("buttons/lock.png"));
+		background = new Texture(Gdx.files.internal("select_scene/bg_"
+				+subcerita.length+".png"));
+	
+		circle = new Texture(Gdx.files.internal("select_scene/circle.png"));	
+		circlePressed = new Texture(
+				Gdx.files.internal("select_scene/circle_clicked.png"));
+		icons = cerita.getSubCeritaIcons();
+		lockTexture = new Texture(Gdx.files.internal("select_scene/lock.png"));
 		
 		buttonPos = new Vector2[]{
-				new Vector2(644, 465),
-				new Vector2(497, 465),
-				new Vector2(347, 465),
+				new Vector2(740, 451),
+				new Vector2(540, 451),
+				new Vector2(340, 451),
+				new Vector2(150, 451),
 				
-				new Vector2(261, 379),
+				new Vector2(30, 348),
 				
-				new Vector2(347, 281),
-				new Vector2(497, 281),
-				new Vector2(644, 281),
+				new Vector2(160, 235),
+				new Vector2(360, 235),
+				new Vector2(560, 235),
+				new Vector2(755, 235),
 				
-				new Vector2(733, 207),
+				new Vector2(870, 128),
 				
-				new Vector2(644, 126),
-				new Vector2(497, 126),
-				new Vector2(347, 126)
+				new Vector2(740, 35),
+				new Vector2(540, 35)
 		};
 		
 		subCeritaButtonBounds = new Rectangle[buttonPos.length];
 		for(int i=0; i<subCeritaButtonBounds.length; i++){
 			subCeritaButtonBounds[i] = new Rectangle(buttonPos[i].x, buttonPos[i].y,
-					lockTexture.getWidth(), lockTexture.getHeight());
+					circle.getWidth(), circle.getHeight());
 		}
 		
 		subCeritaButtonPressed = new boolean[buttonPos.length];
@@ -99,28 +89,25 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 		
 		backButtonTexture = new Texture(Gdx.files.internal("buttons/back.png"));
 		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/back_pressed.png"));
-		
 		backButtonBounds = new Rectangle(0, 0, backButtonTexture.getWidth(),
 				backButtonTexture.getHeight());
-		
 		backButtonPressed = false;
 		
 		pilihSubCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.pilihSubCeritaMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				pilihSubCeritaMusicBg.setLooping(true);
 				pilihSubCeritaMusicBg.play();
 			} else {
-				this.pilihSubCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.mp3"));
-				System.out.println("play music after null");
+				this.pilihSubCeritaMusicBg = 
+						Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.ogg"));
 				pilihSubCeritaMusicBg.setLooping(true);
 				pilihSubCeritaMusicBg.play();
 			}
-		} else if(this.pilihSubCeritaMusicBg != null && this.pilihSubCeritaMusicBg.isPlaying()) {
+		} 
+		
+		else if(this.pilihSubCeritaMusicBg != null && this.pilihSubCeritaMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
 		
@@ -144,27 +131,31 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 		batcher.begin();
 			batcher.draw(background, 0, 0);
 			
-			batcher.draw(timelineTexture, 
-					(VIRTUAL_WIDTH-timelineTexture.getWidth())/2, 80);
+			for (int i=0; i<subcerita.length; i++){
+				
+			}
 			
-			for(int i=0; i<subcerita.length; i++){
-				if(!subcerita[i].isUnlocked()){
+			for (int i=0; i<subcerita.length; i++){
+				if(subCeritaButtonPressed[i]){
+					batcher.draw(circlePressed, buttonPos[i].x, buttonPos[i].y);
+				}
+				else{
+					batcher.draw(circle, buttonPos[i].x, buttonPos[i].y);
+				}
+				
+				if(subcerita[i].isUnlocked()){
+					batcher.draw(icons[i], buttonPos[i].x, buttonPos[i].y);
+				}
+				else{
 					batcher.draw(lockTexture, buttonPos[i].x, buttonPos[i].y);
 				}
 			}
 			
-			for(int i=0; i<subcerita.length; i++){
-				if(subCeritaButtonPressed[i]){
-					batcher.draw(timelinePressedTexture, buttonPos[i].x-21, buttonPos[i].y-14);
-				}
-				
-			}
-			
 			if (backButtonPressed) {
-				batcher.draw(backButtonPressedTexture, 0, 0);
+				batcher.draw(backButtonPressedTexture, 20, 10);
 			}
 			else{
-				batcher.draw(backButtonTexture, 0, 0);
+				batcher.draw(backButtonTexture, 20, 10);
 			}
 				
 		batcher.end();
@@ -210,10 +201,7 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 			this.clickSfx.play();
 	}
 	
-	
 	public void stopMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.pilihSubCeritaMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.pilihSubCeritaMusicBg != null) {
 			if (this.pilihSubCeritaMusicBg.isPlaying()) {
 				if (this.pilihSubCeritaMusicBg.isLooping()) {
@@ -237,6 +225,5 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 	
 	public void setBackButtonPressed(boolean b) {
 		this.backButtonPressed = b;
-	}
-	
+	}	
 }

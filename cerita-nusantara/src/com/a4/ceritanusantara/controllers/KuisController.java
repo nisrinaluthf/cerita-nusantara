@@ -1,15 +1,19 @@
 package com.a4.ceritanusantara.controllers;
 
+import java.util.StringTokenizer;
+
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.CongratulationsScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
-import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
+import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
+import com.a4.ceritanusantara.models.CeritaNusantara;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.KuisQuestion;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -97,7 +101,8 @@ public class KuisController {
 					if(OverlapTester.pointInRectangle(mainMenuBounds, 
 							pos.x, pos.y)){
 						app.getScreen().dispose();
-						app.setScreen(new MainMenuScreen(app));
+						app.setScreen(new PilihSubCeritaScreen(app,
+								app.getCeritaNusantara().getCerita(kuis.getAsalCerita())));
 					}
 				}
 				
@@ -106,8 +111,10 @@ public class KuisController {
 					screen.setNextButtonPressed(false);
 					if(OverlapTester.pointInRectangle(nextBounds, 
 							pos.x, pos.y)){
-						//app.getScreen().dispose();
-						//app.setScreen(new CongratulationsScreen(app));
+						app.getScreen().dispose();
+						app.setScreen(
+								new CongratulationsScreen(app, app.
+										getCeritaNusantara().getCerita(kuis.getAsalCerita())));
 					}
 				}
 			}
@@ -130,7 +137,7 @@ public class KuisController {
 					kuis.setCurrentNo(kuis.getCurrentNo()+1);
 				}
 				else{
-					//kuis.setScore()
+					save();
 					kuis.gameOver();
 				}
 			}
@@ -188,14 +195,61 @@ public class KuisController {
 								kuis.setCurrentNo(kuis.getCurrentNo()+1);
 							}
 							else{
+								save();
 								kuis.gameOver();
-								//app.setScreen(new WinLoseScreen(app, true, kuis.getScore()));
 							}
 						}
 					}
 				}
 			}
 		}
+	}
+
+	private void save() {
+		// TODO Auto-generated method stub
+		FileHandle localFile = null;
+		
+		if(kuis.getAsalCerita()==CeritaNusantara.SUMATERA){
+			localFile = Gdx.files.local("datasumatera");
+		}
+		else if(kuis.getAsalCerita()==CeritaNusantara.KALIMANTAN){
+			localFile = Gdx.files.local("datakalimantan");
+		}
+		else if(kuis.getAsalCerita()==CeritaNusantara.JAWA){
+			localFile = Gdx.files.local("datajawa");
+		}
+		else if(kuis.getAsalCerita()==CeritaNusantara.BALI){
+			localFile = Gdx.files.local("databali");
+		}
+		
+		
+		String data = localFile.readString();
+		StringTokenizer st = new StringTokenizer(data,  ";");
+		int i=0;
+		String tmp = "";
+		while(st.hasMoreTokens()){
+			if(kuis.getIndex() == i){
+				StringTokenizer st2 = new StringTokenizer(st.nextToken(), " ");
+				st2.nextToken();
+				
+				int currentScore = Integer.parseInt(st2.nextToken());
+				if (currentScore < kuis.getScore()) {
+					currentScore = kuis.getScore();
+				}
+				tmp += "unlocked "+ currentScore+";";
+			}
+			else{
+				tmp += st.nextToken()+";";
+			}
+			i++;
+		}
+		
+		if(tmp.charAt(tmp.length()-1)==';'){
+			tmp = tmp.substring(0, tmp.length()-1);
+		}
+		
+		localFile.writeString(tmp, false);
+		
 	}
 	
 }

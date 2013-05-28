@@ -3,6 +3,8 @@ package com.a4.ceritanusantara.controllers;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Labirin;
+import com.a4.ceritanusantara.models.Puzzle;
+import com.a4.ceritanusantara.models.RunningGame;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.TapGame;
@@ -12,6 +14,8 @@ import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
 import com.a4.ceritanusantara.views.PilihCeritaScreen;
 import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
+import com.a4.ceritanusantara.views.PuzzleScreen;
+import com.a4.ceritanusantara.views.RunningGameScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -101,6 +105,13 @@ public class PilihSubCeritaController {
 						if(screen.getSubCerita(i).getTipe()==SubCerita.TAP_GAME){
 							app.setScreen(new TapGameScreen(app, (TapGame)(screen.getSubCerita(i))));
 						}
+						if(screen.getSubCerita(i).getTipe()==SubCerita.PUZZLE){
+							app.setScreen(new PuzzleScreen(app, (Puzzle)(screen.getSubCerita(i))));
+						}
+						if(screen.getSubCerita(i).getTipe()==SubCerita.RUNNING_GAME){
+							app.setScreen(new RunningGameScreen(app, 
+									(RunningGame)(screen.getSubCerita(i))));
+						}
 						
 						
 					}
@@ -114,7 +125,7 @@ public class PilihSubCeritaController {
 					app.getScreen().dispose();
 					app.setScreen(new PilihCeritaScreen(app));
 				}
-				//System.out.println("back diklik");
+				System.out.println("back diklik");
 			}
 		}
 		if (Gdx.input.isKeyPressed(Keys.BACK)){

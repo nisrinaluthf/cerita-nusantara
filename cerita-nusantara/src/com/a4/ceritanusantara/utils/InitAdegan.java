@@ -5,6 +5,7 @@ import java.util.StringTokenizer;
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.AdeganText;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -15,7 +16,11 @@ public class InitAdegan {
 		StringTokenizer st = new StringTokenizer(data, System.getProperty("line.separator"));
 		
 		Texture background = new Texture(Gdx.files.internal((st.nextToken()).trim()));
+		
 		adegan.setBackground(background);
+		
+		Music music = Gdx.audio.newMusic(Gdx.files.internal(st.nextToken().trim()));
+		adegan.setMusic(music);
 		
 		Texture[] chara = new Texture[Integer.parseInt(st.nextToken().trim())];
 		

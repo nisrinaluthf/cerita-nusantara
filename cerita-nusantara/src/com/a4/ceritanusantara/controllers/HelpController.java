@@ -56,11 +56,7 @@ public void processInput(){
 					app.setScreen(screen.getOriginScreen());
 					// ganti state game jadi main lagi
 				}
-			}
-			
-			
+			}		
 		}
-	}
-	
-	
+	}	
 }

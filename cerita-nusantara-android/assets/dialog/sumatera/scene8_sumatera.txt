@@ -1,4 +1,5 @@
-backgrounds/bg_sumatera_old/scene8_bg_sumatera.png
+backgrounds/bg_sumatera_old/scene8_bg_sumatera.jpg
+music/sumatera/mst_8.ogg
 0
 3
 2.1:nar:Selamat! Si Parkit telah keluar dari istana!

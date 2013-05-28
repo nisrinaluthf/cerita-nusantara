@@ -61,6 +61,8 @@ public class KuisScreen extends AbstractScreen{
 
 	private BitmapFont font36;
 
+	private Texture panel;
+
 	public KuisScreen(Aplikasi app, Kuis kuis) {
 		super(app);
 		// TODO Auto-generated constructor stub
@@ -71,7 +73,7 @@ public class KuisScreen extends AbstractScreen{
 		
 		currentNo = 0;
 		
-		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
+		background = new Texture(Gdx.files.internal("backgrounds/bg.png"));
 		soalBackgroundTexture = new 
 				Texture(Gdx.files.internal("backgrounds/soal_kuis_bg.png"));
 		opsiBackgroundTexture = new 
@@ -79,23 +81,25 @@ public class KuisScreen extends AbstractScreen{
 		opsiBackgroundPressedTexture = new 
 				Texture(Gdx.files.internal("backgrounds/opsi_kuis_bg_pressed.png"));
 		
-		gameOverBg = new
-				Texture(Gdx.files.internal("backgrounds/gameover_bg.png"));
+		gameOverBg = 
+				new Texture(Gdx.files.internal("backgrounds/bg.png"));
+		panel = 
+				new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
 		replayTexture = new
-				Texture(Gdx.files.internal("buttons/restart.png"));
+				Texture(Gdx.files.internal("buttons/restart_80.png"));
 		replayPressedTexture = new
-				Texture(Gdx.files.internal("buttons/restart_pressed.png"));
+				Texture(Gdx.files.internal("buttons/restart_pressed_80.png"));
 		mainMenuTexture = new
-				Texture(Gdx.files.internal("buttons/mainmenu.png"));
+				Texture(Gdx.files.internal("buttons/mainmenu_80.png"));
 		mainMenuPressedTexture = new
-				Texture(Gdx.files.internal("buttons/mainmenu_pressed.png"));
+				Texture(Gdx.files.internal("buttons/mainmenu_pressed_80.png"));
 		nextTexture = new
 				Texture(Gdx.files.internal("buttons/dialog_next.png"));
 		
 		//inisialisasi bounds buat game over screen here
-		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240,
+		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2+50, 200,
 				replayTexture.getWidth(), replayTexture.getHeight());
-		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180,
+		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2-50, 200,
 				mainMenuTexture.getWidth(), mainMenuTexture.getHeight());
 		nextBounds = new Rectangle(950, 30, nextTexture.getWidth(), nextTexture.getHeight());
 		
@@ -108,7 +112,9 @@ public class KuisScreen extends AbstractScreen{
 		pauseButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/pause_pressed.png"));
 
-		pauseButtonBounds = new Rectangle( 950, 526, 60, 60);
+		pauseButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth()-7, 
+				VIRTUAL_HEIGHT-pauseButtonTexture.getHeight()-7, 
+				pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
 		
 		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
@@ -120,10 +126,7 @@ public class KuisScreen extends AbstractScreen{
 		kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.kuisMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				kuisMusicBg.setLooping(true);
 				kuisMusicBg.setVolume(0.25f);
 				kuisMusicBg.play();
@@ -164,23 +167,25 @@ public class KuisScreen extends AbstractScreen{
 			if(kuis.isGameOver()){
 				
 				batcher.draw(gameOverBg, 0, 0);
+				batcher.draw(panel, (VIRTUAL_WIDTH-panel.getWidth())/2, 
+						(VIRTUAL_HEIGHT-panel.getHeight())/2);
+				
 				if(replayButtonPressed){
 					batcher.draw(replayPressedTexture, 
-							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
+							replayBounds.x, replayBounds.y);
 				}
 				else{
 					batcher.draw(replayTexture, 
-							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
+							replayBounds.x, replayBounds.y);
 				}
 				
 				if(mainMenuButtonPressed){
-					System.out.println("mainmenu pressed drawed");
 					batcher.draw(mainMenuPressedTexture, 
-							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
+							mainMenuBounds.x, mainMenuBounds.y);
 				}
 				else{
 					batcher.draw(mainMenuTexture, 
-							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
+							mainMenuBounds.x, mainMenuBounds.y);
 				}
 				
 				if(kuis.getScore()>=60){
@@ -241,9 +246,11 @@ public class KuisScreen extends AbstractScreen{
 				}
 				
 				if (pauseButtonPressed) {
-					batcher.draw(pauseButtonPressedTexture,950, 526);
+					batcher.draw(pauseButtonPressedTexture, pauseButtonBounds.getX(), 
+							pauseButtonBounds.getY());
 				} else {
-					batcher.draw(pauseButtonTexture, 950, 526);
+					batcher.draw(pauseButtonTexture, pauseButtonBounds.getX(), 
+							pauseButtonBounds.getY());
 				}
 				
 				KuisQuestion question = kuis.getKuisQuestion(currentNo);
@@ -361,8 +368,6 @@ public class KuisScreen extends AbstractScreen{
 	
 	
 	public void stopMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.kuisMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.kuisMusicBg != null) {
 			if (this.kuisMusicBg.isPlaying()) {
 				if (this.kuisMusicBg.isLooping()) {
@@ -376,8 +381,6 @@ public class KuisScreen extends AbstractScreen{
 		}
 	}
 	public void pauseMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.kuisMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.kuisMusicBg != null) {
 			if (this.kuisMusicBg.isPlaying()) {
 				if (this.kuisMusicBg.isLooping()) {
@@ -394,16 +397,12 @@ public class KuisScreen extends AbstractScreen{
 	public void resume() {
 		super.resume();
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.kuisMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				kuisMusicBg.setLooping(true);
 				kuisMusicBg.setVolume(0.25f);
 				kuisMusicBg.play();
 			} else {
 				this.kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.ogg"));
-				System.out.println("play music after null");
 				kuisMusicBg.setLooping(true);
 				kuisMusicBg.setVolume(0.25f);
 				kuisMusicBg.play();
@@ -412,5 +411,7 @@ public class KuisScreen extends AbstractScreen{
 			this.stopMusic();
 		}
 	}
+	
+	
 	
 }

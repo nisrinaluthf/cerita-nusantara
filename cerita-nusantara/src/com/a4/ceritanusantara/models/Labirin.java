@@ -2,7 +2,6 @@ package com.a4.ceritanusantara.models;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 
 public class Labirin extends SubCerita{
 	
@@ -20,7 +19,7 @@ public class Labirin extends SubCerita{
 	public float timeLeft;
 	private boolean gameOver;
 	
-	private final float time = 91f;
+	private final float TIME = 91f;
 	
 	/*
 	private Vector2[] wallsPos;
@@ -34,7 +33,7 @@ public class Labirin extends SubCerita{
 	public Labirin(String nama, int tipe){
 		super(nama, tipe);
 		
-		timeLeft = time;
+		timeLeft = TIME;
 		gameOver = false;
 	}
 	
@@ -101,7 +100,7 @@ public class Labirin extends SubCerita{
 
 	public void reinit() {
 		player.reinit();
-		timeLeft = time;
+		timeLeft = TIME;
 		for(int i=0; i<items.length; i++){
 			items[i].setFound(false);
 		}
@@ -113,7 +112,6 @@ public class Labirin extends SubCerita{
 	}
 
 	public boolean isGameOver() {
-		// TODO Auto-generated method stub
 		return gameOver;
 	}
 	
@@ -126,10 +124,7 @@ public class Labirin extends SubCerita{
 	}
 	
 	public Rectangle getFinishBounds() {
-		// TODO Auto-generated method stub
 		return finish;
 	}
-	
-	
 	
 }

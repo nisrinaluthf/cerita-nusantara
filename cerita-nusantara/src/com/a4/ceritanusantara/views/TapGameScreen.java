@@ -34,15 +34,16 @@ public class TapGameScreen extends AbstractScreen{
 	private Texture pauseButtonPressedTexture;
 	private Rectangle pauseButtonBounds;
 	
-	private boolean pauseButtonPressed;
-	
-		private Texture helpButtonTexture;
+	private Texture helpButtonTexture;
 	private Texture helpButtonPressedTexture;
 	private Rectangle helpButtonBounds;
 	
 	private boolean helpButtonPressed;
 	
+	private boolean pauseButtonPressed;
+	
 	private Texture gameOverBg;
+	private Texture panel;
 	private Texture replayTexture;
 	private Texture replayPressedTexture;
 	private Texture mainMenuTexture;
@@ -69,7 +70,6 @@ public class TapGameScreen extends AbstractScreen{
 	private Sound pauseClickSfx;
 	
 	private Music tapGameMusicBg;
-	
 		
 	public TapGameScreen(Aplikasi app, TapGame tapGame){
 		super(app);
@@ -83,23 +83,25 @@ public class TapGameScreen extends AbstractScreen{
 		targetsPressedTexture = tapGame.getTargetsPressedTexture();
 		indicatorsTexture = tapGame.getIndicators();
 		
-		gameOverBg = new
-				Texture(Gdx.files.internal("backgrounds/gameover_bg.png"));
+		gameOverBg = 
+				new Texture(Gdx.files.internal("backgrounds/bg.png"));
+		panel = 
+				new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
 		replayTexture = new
-				Texture(Gdx.files.internal("buttons/restart.png"));
+				Texture(Gdx.files.internal("buttons/restart_80.png"));
 		replayPressedTexture = new
-				Texture(Gdx.files.internal("buttons/restart_pressed.png"));
+				Texture(Gdx.files.internal("buttons/restart_pressed_80.png"));
 		mainMenuTexture = new
-				Texture(Gdx.files.internal("buttons/mainmenu.png"));
+				Texture(Gdx.files.internal("buttons/mainmenu_80.png"));
 		mainMenuPressedTexture = new
-				Texture(Gdx.files.internal("buttons/mainmenu_pressed.png"));
+				Texture(Gdx.files.internal("buttons/mainmenu_pressed_80.png"));
 		nextTexture = new
 				Texture(Gdx.files.internal("buttons/dialog_next.png"));
 		
 		//inisialisasi bounds buat game over screen here
-		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240,
+		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2+50, 200,
 				replayTexture.getWidth(), replayTexture.getHeight());
-		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180,
+		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2-50, 200,
 				mainMenuTexture.getWidth(), mainMenuTexture.getHeight());
 		nextBounds = new Rectangle(950, 30, nextTexture.getWidth(), nextTexture.getHeight());
 		
@@ -112,8 +114,10 @@ public class TapGameScreen extends AbstractScreen{
 		pauseButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/pause_pressed.png"));
 
-		pauseButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight(), pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
-		
+		pauseButtonBounds = new Rectangle(97, 
+				VIRTUAL_HEIGHT-pauseButtonTexture.getHeight()-7, 
+				pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
+
 		pauseButtonPressed = false;
 		
 		helpButtonTexture = new Texture(
@@ -121,7 +125,9 @@ public class TapGameScreen extends AbstractScreen{
 		helpButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/help_pressed.png"));
 
-		helpButtonBounds = new Rectangle(0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight(), helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
+		helpButtonBounds = new Rectangle(7, 
+				VIRTUAL_HEIGHT-pauseButtonTexture.getHeight()-7, 
+				helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
 		
 		helpButtonPressed = false;
 		
@@ -136,10 +142,7 @@ public class TapGameScreen extends AbstractScreen{
 		tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.tapGameMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				tapGameMusicBg.setLooping(true);
 				tapGameMusicBg.setVolume(1.0f);
 				tapGameMusicBg.play();
@@ -174,29 +177,26 @@ public class TapGameScreen extends AbstractScreen{
         if(tapGame.isGameOver()){
 			batcher.begin();
 				batcher.draw(gameOverBg, 0, 0);
+				batcher.draw(panel, (VIRTUAL_WIDTH-panel.getWidth())/2, 
+						(VIRTUAL_HEIGHT-panel.getHeight())/2);
+				
 				if(replayButtonPressed){
 					batcher.draw(replayPressedTexture, 
-							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
+							replayBounds.x, replayBounds.y);
 				}
 				else{
 					batcher.draw(replayTexture, 
-							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
+							replayBounds.x, replayBounds.y);
 				}
 				
 				if(mainMenuButtonPressed){
 					batcher.draw(mainMenuPressedTexture, 
-							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
+							mainMenuBounds.x, mainMenuBounds.y);
 				}
 				else{
 					batcher.draw(mainMenuTexture, 
-							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
+							mainMenuBounds.x, mainMenuBounds.y);
 				}
-				
-				if(tapGame.getBadHits()>10) tapGame.setScore(50);
-				else{
-					tapGame.setScore(100-(tapGame.getBadHits()*5));
-				}
-				
 				
 				if(tapGame.getScore()>=60){
 					batcher.draw(nextTexture, 950, 30);
@@ -216,18 +216,22 @@ public class TapGameScreen extends AbstractScreen{
 				batcher.draw(panelBgTexture, 
 						(VIRTUAL_WIDTH-panelBgTexture.getWidth())/2, 0);
 				batcher.draw(scoreBgTexture, 900, 80);
+				
 				if (pauseButtonPressed) {
-					batcher.draw(pauseButtonPressedTexture,VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
+					batcher.draw(pauseButtonPressedTexture, pauseButtonBounds.getX(), 
+							pauseButtonBounds.getY());
 				} else {
-					batcher.draw(pauseButtonTexture, VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
+					batcher.draw(pauseButtonTexture, pauseButtonBounds.getX(), 
+							pauseButtonBounds.getY());
 				}
 				
 				if (helpButtonPressed) {
-					batcher.draw(helpButtonPressedTexture,0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
+					batcher.draw(helpButtonPressedTexture, helpButtonBounds.getX(), 
+							helpButtonBounds.getY());
 				} else {
-					batcher.draw(helpButtonTexture, 0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
+					batcher.draw(helpButtonTexture, helpButtonBounds.getX(), 
+							helpButtonBounds.getY());
 				}
-				
 				
 			batcher.end();
 			
@@ -298,7 +302,6 @@ public class TapGameScreen extends AbstractScreen{
 						buttons[i].getBounds().getWidth(), buttons[i].getBounds().getHeight());
 			}
 			
-
 			Iterator<TapGameTarget> itr = tapGame.getTargets().iterator();
 			while(itr.hasNext()){
 				Rectangle rect = itr.next().getBounds();
@@ -357,19 +360,6 @@ public class TapGameScreen extends AbstractScreen{
 		return nextButtonPressed;
 	}
 	
-	public Rectangle getHelpButtonBounds(){
-		return helpButtonBounds;
-	}
-
-	public void setHelpButtonPressed(boolean b) {
-		helpButtonPressed = b;
-		
-	}
-	
-	public boolean helpButtonIsPressed(){
-		return helpButtonPressed;
-	}
-	
 	public void playSoundFx(String key) {
 		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
 			if (key.equals("default"))
@@ -382,8 +372,6 @@ public class TapGameScreen extends AbstractScreen{
 	
 	
 	public void stopMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.tapGameMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.tapGameMusicBg != null) {
 			if (this.tapGameMusicBg.isPlaying()) {
 				if (this.tapGameMusicBg.isLooping()) {
@@ -397,8 +385,6 @@ public class TapGameScreen extends AbstractScreen{
 		}
 	}
 	public void pauseMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.tapGameMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.tapGameMusicBg != null) {
 			if (this.tapGameMusicBg.isPlaying()) {
 				if (this.tapGameMusicBg.isLooping()) {
@@ -415,14 +401,12 @@ public class TapGameScreen extends AbstractScreen{
 	public void resume() {
 		super.resume();
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.tapGameMusicBg != null) {
 				System.out.println("play music");
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				tapGameMusicBg.play();
 			} else {
 				this.tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.ogg"));
-				System.out.println("play music after null");
 				tapGameMusicBg.setLooping(true);
 				tapGameMusicBg.setVolume(1.0f);
 				tapGameMusicBg.play();
@@ -430,5 +414,17 @@ public class TapGameScreen extends AbstractScreen{
 		} else if(this.tapGameMusicBg != null && this.tapGameMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
+	}
+
+	public Rectangle getHelpButtonBounds() {
+		return helpButtonBounds;
+	}
+
+	public void setHelpButtonPressed(boolean b) {
+		helpButtonPressed = b;
+	}
+
+	public boolean helpButtonIsPressed() {
+		return helpButtonPressed;
 	}
 }

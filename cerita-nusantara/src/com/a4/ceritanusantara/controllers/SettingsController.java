@@ -60,21 +60,18 @@ public class SettingsController {
 			if(OverlapTester.pointInRectangle( soundButtonBounds,pos.x, pos.y)){
 				
 				screen.setSoundButtonPressed(true);
-				System.out.println("toggle sound button");
 	
 			}
 			
 			else if(OverlapTester.pointInRectangle( musicButtonBounds,pos.x, pos.y)){
 				//screen.playSoundFx();
 				screen.setMusicButtonPressed(true);
-				System.out.println("toggle music button");
 			}
 			
 			else if(OverlapTester.pointInRectangle( backButtonBounds,pos.x, pos.y)){
 				screen.stopMusic();
 				screen.playSoundFx();
 				screen.setBackButtonPressed(true);
-				System.out.println("back to home");
 			}
 		}
 		
@@ -94,7 +91,6 @@ public class SettingsController {
 					prefs.putBoolean("soundOn", !prefs.getBoolean("soundOn"));
 					screen.playSoundFx();
 				}
-				System.out.println("sound diklik");
 			}
 			
 			else if(screen.musicButtonIsPressed()){
@@ -106,7 +102,6 @@ public class SettingsController {
 					prefs.putBoolean("musicOn", !prefs.getBoolean("musicOn"));
 					screen.playSoundFx();
 				}
-				System.out.println("music diklik");
 			}
 			
 			else if(screen.backButtonIsPressed()){
@@ -116,13 +111,15 @@ public class SettingsController {
 					app.getScreen().dispose();
 					Screen ori = screen.getOriginScreen();
 					if(((AbstractScreen) ori).getScreenType() == 0) {
+						app.getScreen().dispose();
 						app.setScreen(new MainMenuScreen(app));
 					} else {
 						screen.getOriginScreen().resume();
+						app.getScreen().dispose();
 						app.setScreen(screen.getOriginScreen());
 					}
+
 				}
-				System.out.println("back diklik");
 			}
 		}
 		prefs.flush();
@@ -130,12 +127,14 @@ public class SettingsController {
 		if (Gdx.input.isKeyPressed(Keys.BACK)){
 			Screen ori = screen.getOriginScreen();
 					if(((AbstractScreen) ori).getScreenType() == 0) {
+						app.getScreen().dispose();
 						app.setScreen(new MainMenuScreen(app));
 					} else {
 						screen.getOriginScreen().resume();
+						app.getScreen().dispose();
 						app.setScreen(screen.getOriginScreen());
 					}
-					
+
 		}
 
 	}

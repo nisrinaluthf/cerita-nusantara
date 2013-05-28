@@ -92,6 +92,7 @@ public class RunningGameScreen extends AbstractScreen{
 	private final int FRAME_COLS = 2;
 	private final int FRAME_ROWS = 1;
 	private float stateTime;
+	private Texture panel;
 	
 	public RunningGameScreen(Aplikasi app, RunningGame runningGame) {
 		super(app);
@@ -108,16 +109,18 @@ public class RunningGameScreen extends AbstractScreen{
 		//targetsPressedTexture = runningGame.getTargetsPressedTexture();
 		//indicatorsTexture = runningGame.getIndicators();
 		
-		gameOverBg = new
-				Texture(Gdx.files.internal("backgrounds/gameover_bg.jpg"));
+		gameOverBg = 
+				new Texture(Gdx.files.internal("backgrounds/bg.png"));
+		panel = 
+				new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
 		replayTexture = new
-				Texture(Gdx.files.internal("buttons/restart.png"));
+				Texture(Gdx.files.internal("buttons/restart_80.png"));
 		replayPressedTexture = new
-				Texture(Gdx.files.internal("buttons/restart_pressed.png"));
+				Texture(Gdx.files.internal("buttons/restart_pressed_80.png"));
 		mainMenuTexture = new
-				Texture(Gdx.files.internal("buttons/mainmenu.png"));
+				Texture(Gdx.files.internal("buttons/mainmenu_80.png"));
 		mainMenuPressedTexture = new
-				Texture(Gdx.files.internal("buttons/mainmenu_pressed.png"));
+				Texture(Gdx.files.internal("buttons/mainmenu_pressed_80.png"));
 		nextTexture = new
 				Texture(Gdx.files.internal("buttons/dialog_next.png"));
 		
@@ -155,9 +158,9 @@ public class RunningGameScreen extends AbstractScreen{
 		
 		
 		//inisialisasi bounds buat game over screen here
-		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240,
+		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2+50, 200,
 				replayTexture.getWidth(), replayTexture.getHeight());
-		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180,
+		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2-50, 200,
 				mainMenuTexture.getWidth(), mainMenuTexture.getHeight());
 		nextBounds = new Rectangle(950, 30, nextTexture.getWidth(), nextTexture.getHeight());
 		
@@ -178,7 +181,9 @@ public class RunningGameScreen extends AbstractScreen{
 		pauseButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/pause_pressed.png"));
 
-		pauseButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight(), pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
+		pauseButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth()-7, 
+				VIRTUAL_HEIGHT-pauseButtonTexture.getHeight()-7, 
+				pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
 		
 		pauseButtonPressed = false;
 		
@@ -187,11 +192,12 @@ public class RunningGameScreen extends AbstractScreen{
 		helpButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/help_pressed.png"));
 
-		helpButtonBounds = new Rectangle(0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight(), helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
+		helpButtonBounds = new Rectangle(7, VIRTUAL_HEIGHT-helpButtonTexture.getHeight()-7, 
+				helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
 		
 		helpButtonPressed = false;
 		
-		//scoreBgTexture = new Texture(Gdx.files.internal("selatbali_running/score_bg.jpg"));
+		//scoreBgTexture = new Texture(Gdx.files.internal("selatbali_running/score_bg.png"));
 		//scoreFrameTexture = new Texture(Gdx.files.internal("selatbali_running/score_frame.png"));
 		
 		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
@@ -202,10 +208,7 @@ public class RunningGameScreen extends AbstractScreen{
 		runningGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/runningGame.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.runningGameMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				runningGameMusicBg.setLooping(true);
 				runningGameMusicBg.setVolume(1.0f);
 				runningGameMusicBg.play();
@@ -241,29 +244,26 @@ public class RunningGameScreen extends AbstractScreen{
         if(runningGame.isGameOver()){
 			batcher.begin();
 				batcher.draw(gameOverBg, 0, 0);
+				batcher.draw(panel, (VIRTUAL_WIDTH-panel.getWidth())/2, 
+						(VIRTUAL_HEIGHT-panel.getHeight())/2);
+				
 				if(replayButtonPressed){
 					batcher.draw(replayPressedTexture, 
-							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
+							replayBounds.x, replayBounds.y);
 				}
 				else{
 					batcher.draw(replayTexture, 
-							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
+							replayBounds.x, replayBounds.y);
 				}
 				
 				if(mainMenuButtonPressed){
 					batcher.draw(mainMenuPressedTexture, 
-							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
+							mainMenuBounds.x, mainMenuBounds.y);
 				}
 				else{
 					batcher.draw(mainMenuTexture, 
-							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
-				}
-				
-				//if(runningGame.getBadHits()>10) runningGame.setScore(50);
-				//else{
-					//runningGame.setScore(100-(runningGame.getBadHits()*5));
-				//}
-				
+							mainMenuBounds.x, mainMenuBounds.y);
+				}				
 				
 				if(runningGame.getScore()>=50){
 					batcher.draw(nextTexture, 950, 30);
@@ -286,7 +286,6 @@ public class RunningGameScreen extends AbstractScreen{
 				batcher.draw(background2, 0, runningGame.getBackgroundYPosition() + background2.getHeight());
 				batcher.draw(panelBgTexture2, 
 						(VIRTUAL_WIDTH-panelBgTexture2.getWidth())/2, runningGame.getBackgroundYPosition() + panelBgTexture2.getHeight());
-				//System.out.println(runningGame.getBackgroundYPosition()+"");
 				int healthPosition = 800;
 				for(int ii = 0; ii < runningGame.getHealth(); ii++) {
 					batcher.draw(healthIcon, healthPosition, 20);
@@ -302,15 +301,19 @@ public class RunningGameScreen extends AbstractScreen{
 				
 				//batcher.draw(scoreBgTexture, 900, 80);
 				if (pauseButtonPressed) {
-					batcher.draw(pauseButtonPressedTexture,VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
+					batcher.draw(pauseButtonPressedTexture, pauseButtonBounds.getX(), 
+							pauseButtonBounds.getY());
 				} else {
-					batcher.draw(pauseButtonTexture, VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
+					batcher.draw(pauseButtonTexture, pauseButtonBounds.getX(), 
+							pauseButtonBounds.getY());
 				}
 				
 				if (helpButtonPressed) {
-					batcher.draw(helpButtonPressedTexture,0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
+					batcher.draw(helpButtonPressedTexture, helpButtonBounds.getX(), 
+							helpButtonBounds.getY());
 				} else {
-					batcher.draw(helpButtonTexture, 0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
+					batcher.draw(helpButtonTexture, helpButtonBounds.getX(), 
+							helpButtonBounds.getY());
 				}
 				
 				if (leftButtonPressed) {
@@ -352,7 +355,7 @@ public class RunningGameScreen extends AbstractScreen{
 					batcher.draw(indicatorsTexture[1], 865, 0);
 				}
 			*/
-		
+			
 				Iterator<RunningGameObstacle> itr = runningGame.getObstacles().iterator();
 				while(itr.hasNext()){
 					RunningGameObstacle obs = itr.next();
@@ -535,8 +538,6 @@ public class RunningGameScreen extends AbstractScreen{
 	
 	
 	public void stopMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.runningGameMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.runningGameMusicBg != null) {
 			if (this.runningGameMusicBg.isPlaying()) {
 				if (this.runningGameMusicBg.isLooping()) {
@@ -550,8 +551,6 @@ public class RunningGameScreen extends AbstractScreen{
 		}
 	}
 	public void pauseMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.runningGameMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.runningGameMusicBg != null) {
 			if (this.runningGameMusicBg.isPlaying()) {
 				if (this.runningGameMusicBg.isLooping()) {
@@ -568,14 +567,10 @@ public class RunningGameScreen extends AbstractScreen{
 	public void resume() {
 		super.resume();
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.runningGameMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				runningGameMusicBg.play();
 			} else {
 				this.runningGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/runningGame.ogg"));
-				System.out.println("play music after null");
 				runningGameMusicBg.setLooping(true);
 				runningGameMusicBg.setVolume(1.0f);
 				runningGameMusicBg.play();

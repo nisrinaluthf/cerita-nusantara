@@ -1,4 +1,5 @@
-backgrounds/bg_sumatera_old/scene4_bg_sumatera.png
+backgrounds/bg_sumatera_old/scene4_bg_sumatera.jpg
+music/sumatera/mst_4_7.ogg
 2
 speaker_dialog/pemburu_sedih.png
 speaker_dialog/raja.png

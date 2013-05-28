@@ -1,33 +1,32 @@
 package com.a4.ceritanusantara.controllers;
 
 import java.util.Iterator;
+import java.util.StringTokenizer;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Adegan;
+import com.a4.ceritanusantara.models.CeritaNusantara;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.RunningGame;
 import com.a4.ceritanusantara.models.RunningGameObstacle;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
-import com.a4.ceritanusantara.models.TapGameTarget;
 import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.HelpScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
-import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
 import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
 import com.a4.ceritanusantara.views.RunningGameScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 public class RunningGameController {
@@ -114,7 +113,8 @@ public class RunningGameController {
 					if(OverlapTester.pointInRectangle(mainMenuBounds, 
 							pos.x, pos.y)){
 						app.getScreen().dispose();
-						app.setScreen(new PilihSubCeritaScreen(app, app.getCeritaNusantara().getCerita(3)));
+						app.setScreen(new PilihSubCeritaScreen(app,
+								app.getCeritaNusantara().getCerita(runningGame.getAsalCerita())));
 					}
 				}
 				
@@ -162,7 +162,6 @@ public class RunningGameController {
 							//target.setHit(true);
 							runningGame.setHealth(runningGame.getHealth()-1);
 							runningGame.setScore(runningGame.getScore() - 10);
-							
 							//tapGame.setHits(tapGame.getHits()-1);
 							//tapGame.addBadHit();
 						//}
@@ -184,20 +183,11 @@ public class RunningGameController {
 				//runningGame.setGameOver();
 			//}
 			if (runningGame.getHealth()<=0 || runningGame.getDistance() >=runningGame.getFinishLine()) {
+				save();
 				runningGame.setGameOver();
 			}
 			
 			
-			
-			/*
-			if(tapGame.getHits()>=25){
-				int score = 50;
-				if(tapGame.getBadHits()<=50){
-					score = 100 - tapGame.getBadHits();
-				}
-				tapGame.gameOver();
-			}
-			*/
 			if(Gdx.input.justTouched()){
 				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
@@ -221,39 +211,6 @@ public class RunningGameController {
 				}
 				
 				
-				/*
-				for(int i=0; i<buttonsBounds.length; i++){
-					if(OverlapTester.pointInRectangle(buttonsBounds[i], pos.x, pos.y)){
-						buttons[i].setPressed(true);
-						Vector2 midPoint = new Vector2(buttonsBounds[i].x+(buttonsBounds[i].width/2), 
-								buttonsBounds[i].y+(buttonsBounds[i].height/2));
-						Iterator<TapGameTarget> itr = tapGame.getTargets().iterator();
-						try{
-							while(itr.hasNext()){
-								TapGameTarget target = itr.next();
-								if(OverlapTester.pointInRectangle(target.getBounds(), midPoint.x, 
-										midPoint.y) && target.getIndex()==i && !target.isHit()){
-									target.setPressed(true);
-									if(target.isBad()){
-										screen.playSoundFx("false");
-										target.setHit(true);
-										tapGame.setHits(tapGame.getHits()-1);
-										tapGame.addBadHit();
-									}
-									else {
-										screen.playSoundFx("true");
-										target.setHit(true);
-										tapGame.setHits(tapGame.getHits()+1);
-									}
-								}
-							}
-						}
-						catch(Exception exc){
-							System.out.println("error dari tapgamecontroller");	
-						}
-					}
-				}
-				*/
 			}
 			
 			if(Gdx.input.isTouched()){
@@ -329,6 +286,57 @@ public class RunningGameController {
 				*/
 			}
 		}
+		
+	}
+
+	private void save() {
+		FileHandle localFile = null;
+		
+		if(runningGame.getAsalCerita()==CeritaNusantara.SUMATERA){
+			localFile = Gdx.files.local("datasumatera");
+		}
+		else if(runningGame.getAsalCerita()==CeritaNusantara.KALIMANTAN){
+			localFile = Gdx.files.local("datakalimantan");
+		}
+		else if(runningGame.getAsalCerita()==CeritaNusantara.JAWA){
+			localFile = Gdx.files.local("datajawa");
+		}
+		else if(runningGame.getAsalCerita()==CeritaNusantara.BALI){
+			localFile = Gdx.files.local("databali");
+		}
+		
+		String data = localFile.readString();
+		StringTokenizer st = new StringTokenizer(data,  ";");
+		int i=0;
+		String tmp = "";
+		while(st.hasMoreTokens()){
+			if(runningGame.getIndex() == i){
+				StringTokenizer st2 = new StringTokenizer(st.nextToken(), " ");
+				st2.nextToken();
+				int currentScore = Integer.parseInt(st2.nextToken());
+				if (currentScore < runningGame.getScore()) {
+					currentScore = runningGame.getScore();
+				}
+				tmp += "unlocked "+ currentScore+";";
+			}
+			else if(runningGame.getNext().getIndex() == i){
+				StringTokenizer st2 = 
+						new StringTokenizer(st.nextToken(),  " ");
+				st2.nextToken();
+				tmp += "unlocked "+st2.nextToken()+";";
+				runningGame.getNext().setUnlocked(true);
+			}
+			else{
+				tmp += st.nextToken()+";";
+			}
+			i++;
+		}
+		
+		if(tmp.charAt(tmp.length()-1)==';'){
+			tmp = tmp.substring(0, tmp.length()-1);
+		}
+		localFile.writeString(tmp, false);
+		//System.out.println(tmp);
 		
 	}
 

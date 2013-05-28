@@ -22,17 +22,26 @@ public class PilihCeritaScreen extends AbstractScreen {
 	private Texture sumateraPressedTexture;
 	private Texture kalimantanTexture;
 	private Texture kalimantanPressedTexture;
+	private Texture jawaTexture;
+	private Texture jawaPressedTexture;
+	private Texture baliTexture;
+	private Texture baliPressedTexture;
 	
 	private Texture backButtonTexture;
 	private Texture backButtonPressedTexture;
 
 	private Rectangle[] sumateraBounds;
 	private Rectangle[] kalimantanBounds;
+	private Rectangle[] jawaBounds;
+	private Rectangle[] baliBounds;
 
 	private Rectangle backButtonBounds;
 
 	private boolean sumateraPressed;
 	private boolean kalimantanPressed;
+	private boolean jawaPressed;
+	private boolean baliPressed;
+	
 	private boolean backButtonPressed;
 
 	private Sound clickSfx;
@@ -46,49 +55,73 @@ public class PilihCeritaScreen extends AbstractScreen {
 	public PilihCeritaScreen(Aplikasi app){
 		super(app);
 
-		background = new Texture(Gdx.files.internal("backgrounds/pilihcerita_bg.png"));
+		background = new Texture(Gdx.files.internal("select_island/bg.png"));
 
-		sumateraTexture = new Texture(Gdx.files.internal("buttons/sumatera.png"));
-		sumateraPressedTexture = new Texture(Gdx.files.internal("buttons/sumatera_pressed.png"));
-		kalimantanTexture = new Texture(Gdx.files.internal("buttons/kalimantan.png"));
-		kalimantanPressedTexture = new Texture(Gdx.files.internal("buttons/kalimantan_pressed.png"));
+		sumateraTexture = 
+				new Texture(Gdx.files.internal("select_island/sumatera.png"));
+		sumateraPressedTexture = 
+				new Texture(Gdx.files.internal("select_island/sumatera_pressed.png"));
+		kalimantanTexture = 
+				new Texture(Gdx.files.internal("select_island/kalimantan.png"));
+		kalimantanPressedTexture = 
+				new Texture(Gdx.files.internal("select_island/kalimantan_pressed.png"));
+		jawaTexture = 
+				new Texture(Gdx.files.internal("select_island/jawa.png"));
+		jawaPressedTexture = 
+				new Texture(Gdx.files.internal("select_island/jawa_pressed.png"));
+		baliTexture = 
+				new Texture(Gdx.files.internal("select_island/bali.png"));
+		baliPressedTexture = 
+				new Texture(Gdx.files.internal("select_island/bali_pressed.png"));
 
 		sumateraBounds = new Rectangle[]{
-			new Rectangle(20, 400, 60, 60),
-			new Rectangle(65, 370, 60, 60),
-			new Rectangle(100, 330, 60, 60),
-			new Rectangle(130, 280, 80, 80),
-			new Rectangle(165, 235, 70, 70),
-			new Rectangle(200, 210, 60, 60)
+			new Rectangle(95, 442, 60, 60),
+			new Rectangle(150, 410, 60, 80),
+			new Rectangle(170, 370, 80, 60),
+			new Rectangle(220, 320, 80, 80),
+			new Rectangle(255, 290, 120, 80),
+			new Rectangle(270, 215, 140, 80),
+			new Rectangle(315, 180, 140, 80),
+			new Rectangle(360, 110, 100, 80)
 		};
 
 		kalimantanBounds = new Rectangle[]{
-			new Rectangle(320, 250, 200, 120),
-			new Rectangle(455, 365, 65, 70)
+			new Rectangle(620, 165, 160, 40),
+			new Rectangle(560, 200, 230, 135),
+			new Rectangle(525, 260, 65, 115),
+			new Rectangle(730, 275, 105, 180),
+			new Rectangle(670, 325, 200, 40),
+		};
+		
+		jawaBounds = new Rectangle[]{
+			new Rectangle(480, 60, 120, 60),
+			new Rectangle(600, 35, 180, 70),
+		};
+		
+		baliBounds = new Rectangle[]{
+				new Rectangle(790, 32, 55, 40)
 		};
 		
 		backButtonTexture = new Texture(Gdx.files.internal("buttons/back.png"));
 		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/back_pressed.png"));
 		
-		backButtonBounds = new Rectangle(0, 0, backButtonTexture.getWidth(),
-				backButtonTexture.getHeight());
+		backButtonBounds = new Rectangle(VIRTUAL_WIDTH-backButtonTexture.getWidth()-7,
+				7, backButtonTexture.getWidth(), backButtonTexture.getHeight());
 		
 		sumateraPressed = false;
 		kalimantanPressed = false;
+		jawaPressed = false;
+		baliPressed = false;
 		backButtonPressed = false;
 		
 		pilihCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.pilihCeritaMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				pilihCeritaMusicBg.setLooping(true);
 				pilihCeritaMusicBg.play();
 			} else {
 				this.pilihCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.ogg"));
-				System.out.println("play music after null");
 				pilihCeritaMusicBg.setLooping(true);
 				pilihCeritaMusicBg.play();
 			}
@@ -125,24 +158,40 @@ public class PilihCeritaScreen extends AbstractScreen {
 			batcher.draw(background, 0, 0);
 
 			if(sumateraPressed){
-				batcher.draw(sumateraPressedTexture, 0, 158);
+				batcher.draw(sumateraPressedTexture, 80, 100);
 			}
 			else{
-				batcher.draw(sumateraTexture, 0, 163);
+				batcher.draw(sumateraTexture, 80, 100);
 			}
 
 			if(kalimantanPressed){
-				batcher.draw(kalimantanPressedTexture, 270, 190);
+				batcher.draw(kalimantanPressedTexture, 505, 150);
 			}
 			else{
-				batcher.draw(kalimantanTexture, 275, 200);
+				batcher.draw(kalimantanTexture, 505, 150);
+			}
+			
+			if(jawaPressed){
+				batcher.draw(jawaPressedTexture, 460, 10);
+			}
+			else{
+				batcher.draw(jawaTexture, 460, 10);
+			}
+			
+			if(baliPressed){
+				batcher.draw(baliPressedTexture, 770, 15);
+			}
+			else{
+				batcher.draw(baliTexture, 770, 15);
 			}
 			
 			if (backButtonPressed) {
-				batcher.draw(backButtonPressedTexture, 0, 0);
+				batcher.draw(backButtonPressedTexture, 
+						backButtonBounds.getX(), backButtonBounds.getY());
 			}
 			else{
-				batcher.draw(backButtonTexture, 0, 0);
+				batcher.draw(backButtonTexture, 
+						backButtonBounds.getX(), backButtonBounds.getY());
 			}
 
 		batcher.end();
@@ -173,6 +222,16 @@ public class PilihCeritaScreen extends AbstractScreen {
 				debugRenderer.rect(kalimantanBounds[i].x, kalimantanBounds[i].y,
 						kalimantanBounds[i].width, kalimantanBounds[i].height);
 			}
+			
+			for(int i=0; i<jawaBounds.length; i++){
+				debugRenderer.rect(jawaBounds[i].x, jawaBounds[i].y,
+						jawaBounds[i].width, jawaBounds[i].height);
+			}
+			
+			for(int i=0; i<baliBounds.length; i++){
+				debugRenderer.rect(baliBounds[i].x, baliBounds[i].y,
+						baliBounds[i].width, baliBounds[i].height);
+			}
 
 		debugRenderer.end();
 	}
@@ -188,7 +247,6 @@ public class PilihCeritaScreen extends AbstractScreen {
 	
 	public void stopMusic() {
 		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.pilihCeritaMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.pilihCeritaMusicBg != null) {
 			if (this.pilihCeritaMusicBg.isPlaying()) {
 				if (this.pilihCeritaMusicBg.isLooping()) {
@@ -210,6 +268,14 @@ public class PilihCeritaScreen extends AbstractScreen {
 		return kalimantanBounds;
 	}
 	
+	public Rectangle[] getJawaBounds(){
+		return jawaBounds;
+	}
+	
+	public Rectangle[] getBaliBounds(){
+		return baliBounds;
+	}
+	
 	public Rectangle getBackButtonBounds(){
 		return backButtonBounds;
 	}
@@ -228,6 +294,22 @@ public class PilihCeritaScreen extends AbstractScreen {
 
 	public boolean kalimantanIsPressed() {
 		return kalimantanPressed;
+	}
+	
+	public void setJawaPressed (boolean pressed){
+		jawaPressed = pressed;
+	}
+
+	public boolean jawaIsPressed() {
+		return jawaPressed;
+	}
+	
+	public void setBaliPressed (boolean pressed){
+		baliPressed = pressed;
+	}
+
+	public boolean baliIsPressed() {
+		return baliPressed;
 	}
 
 	public boolean backButtonIsPressed() {

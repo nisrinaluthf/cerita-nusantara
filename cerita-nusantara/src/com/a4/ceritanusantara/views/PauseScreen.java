@@ -5,6 +5,7 @@ import com.a4.ceritanusantara.controllers.PauseController;
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.Labirin;
+import com.a4.ceritanusantara.models.Puzzle;
 import com.a4.ceritanusantara.models.RunningGame;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
@@ -29,6 +30,7 @@ public class PauseScreen extends AbstractScreen {
 	private Screen originScreen;
 	
 	private Texture background;
+	private Texture panel;
 	
 	private int type;
 	private SubCerita subcerita;
@@ -41,6 +43,7 @@ public class PauseScreen extends AbstractScreen {
 	private Texture restartButtonPressedTexture;
 	private Texture settingButtonTexture;
 	private Texture settingButtonPressedTexture;
+
 	
 	private Rectangle resumeButtonBounds;
 	private Rectangle restartButtonBounds;
@@ -83,6 +86,14 @@ public class PauseScreen extends AbstractScreen {
 		init();
 	}
 	
+	public PauseScreen(Aplikasi app, Screen originScreen, Puzzle puzzle) {
+		super(app);
+		this.originScreen = originScreen;
+		type = SubCerita.PUZZLE;
+		subcerita = puzzle;
+		init();
+	}
+	
 	public PauseScreen(Aplikasi app, Screen originScreen, Kuis kuis) {
 		super(app);
 		this.originScreen = originScreen;
@@ -91,8 +102,7 @@ public class PauseScreen extends AbstractScreen {
 		init();
 	}
 	
-	public PauseScreen(Aplikasi app, Screen originScreen,
-			RunningGame runningGame) {
+	public PauseScreen(Aplikasi app, Screen originScreen, RunningGame runningGame) {
 		super(app);
 		this.originScreen = originScreen;
 		type = SubCerita.RUNNING_GAME;
@@ -100,68 +110,68 @@ public class PauseScreen extends AbstractScreen {
 		init();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	private void init(){
-	setScreenType(1);
-		background = new Texture(Gdx.files.internal("backgrounds/pause_bg.png"));
+		setScreenType(1);
+		background = new Texture(Gdx.files.internal("backgrounds/bg.png"));
+		panel = new Texture(Gdx.files.internal("backgrounds/pause_bg.png"));
 		
 		resumeButtonTexture = 
-				new Texture(Gdx.files.internal("buttons/resume.png"));
+				new Texture(Gdx.files.internal("buttons/resume_140.png"));
 		
 		resumeButtonPressedTexture = 
-				new Texture(Gdx.files.internal("buttons/resume_pressed.png"));
+				new Texture(Gdx.files.internal("buttons/resume_pressed_140.png"));
 		
 		restartButtonTexture = 
-				new Texture(Gdx.files.internal("buttons/restart.png"));
+				new Texture(Gdx.files.internal("buttons/restart_120.png"));
 		
 		restartButtonPressedTexture = 
-				new Texture(Gdx.files.internal("buttons/restart_pressed.png"));
+				new Texture(Gdx.files.internal("buttons/restart_pressed_120.png"));
 		
 		exitButtonTexture = 
-				new Texture(Gdx.files.internal("buttons/mainmenu.png"));
+				new Texture(Gdx.files.internal("buttons/mainmenu_120.png"));
 		
 		exitButtonPressedTexture = 
-				new Texture(Gdx.files.internal("buttons/mainmenu_pressed.png"));
+				new Texture(Gdx.files.internal("buttons/mainmenu_pressed_120.png"));
 		
 		resumeButtonBounds = new Rectangle((VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2,
-				400, resumeButtonTexture.getWidth(),
+				230, resumeButtonTexture.getWidth(),
 				resumeButtonTexture.getHeight());
 		
-		restartButtonBounds = new Rectangle((VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2,
-				340, restartButtonTexture.getWidth(),
+		restartButtonBounds = new Rectangle((VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2+150,
+				80, restartButtonTexture.getWidth(),
 				restartButtonTexture.getHeight());
 		
-		exitButtonBounds = new Rectangle((VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2,
-				280, exitButtonTexture.getWidth(),
+		exitButtonBounds = new Rectangle((VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2-150,
+				80, exitButtonTexture.getWidth(),
 				exitButtonTexture.getHeight());
-				
+						
 		settingButtonTexture = 
-				new Texture(Gdx.files.internal("buttons/settings.png"));
+				new Texture(Gdx.files.internal("buttons/settings_button.png"));
 		
 		settingButtonPressedTexture = 
-				new Texture(Gdx.files.internal("buttons/settings_pressed.png"));
+				new Texture(Gdx.files.internal("buttons/settings_button_pressed.png"));
 
 		settingButtonBounds = new Rectangle((VIRTUAL_WIDTH-settingButtonTexture.getWidth())/2,
-				220, settingButtonTexture.getWidth(),
+				80, settingButtonTexture.getWidth(),
 				settingButtonTexture.getHeight());
+
+		
 		
 		resumeButtonPressed = false;
 		restartButtonPressed = false;
 		exitButtonPressed = false;
 		settingButtonPressed = false;
-		
+ 		
 		pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.ogg"));
+
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.pauseMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				pauseMusicBg.setLooping(true);
 				pauseMusicBg.play();
 			} else {
-				this.pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.ogg"));
-				System.out.println("play music after null");
+				this.pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.mp3"));
 				pauseMusicBg.setLooping(true);
 				pauseMusicBg.play();
 			}
@@ -206,6 +216,8 @@ public class PauseScreen extends AbstractScreen {
 			 * gambar background di sini
 			 */
 			batcher.draw(background, 0, 0);
+			batcher.draw(panel, (VIRTUAL_WIDTH-panel.getWidth())/2, 
+					(VIRTUAL_HEIGHT-panel.getHeight())/2);
 			
 			/*
 			 * gambar button2 di sini.
@@ -216,46 +228,47 @@ public class PauseScreen extends AbstractScreen {
 			
 			if (resumeButtonPressed) {
 				batcher.draw(resumeButtonPressedTexture, 
-						(VIRTUAL_WIDTH-resumeButtonPressedTexture.getWidth())/2, 400);
+						resumeButtonBounds.x, resumeButtonBounds.y);
 				
 			}
 			else {
 				batcher.draw(resumeButtonTexture, 
-						(VIRTUAL_WIDTH-resumeButtonTexture.getWidth())/2, 400);
+						resumeButtonBounds.x, resumeButtonBounds.y);
 			}
 			
 			if (restartButtonPressed) {
 				batcher.draw(restartButtonPressedTexture, 
-						(VIRTUAL_WIDTH-restartButtonPressedTexture.getWidth())/2, 340);
+						restartButtonBounds.x, restartButtonBounds.y);
 			}
 			else{
 				batcher.draw(restartButtonTexture, 
-						(VIRTUAL_WIDTH-restartButtonTexture.getWidth())/2, 340);
+						restartButtonBounds.x, restartButtonBounds.y);
 			}
 			
 			if (exitButtonPressed) {
 				batcher.draw(exitButtonPressedTexture, 
-						(VIRTUAL_WIDTH-exitButtonPressedTexture.getWidth())/2, 280);
+						exitButtonBounds.x, exitButtonBounds.y);
 			}
 			else{
 				batcher.draw(exitButtonTexture, 
-						(VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2, 280);
+						exitButtonBounds.x, exitButtonBounds.y);
 			}
 			
 			if (settingButtonPressed) {
 				batcher.draw(settingButtonPressedTexture, 
-						(VIRTUAL_WIDTH-exitButtonPressedTexture.getWidth())/2, 220);
+						settingButtonBounds.x, settingButtonBounds.y);
 			}
 			else{
 				batcher.draw(settingButtonTexture, 
-						(VIRTUAL_WIDTH-exitButtonTexture.getWidth())/2, 220);
-			}
+						settingButtonBounds.x, settingButtonBounds.y);
+ 			}
+
+			
 			
 		batcher.end();
 		
 		/*
 		 * kalo mau ngeliat boundnya ada di mana, ubah debug=true 
-		 * (line 35 kalo ngga salah)
 		 */
 		if(debug){
 			drawDebug();
@@ -311,8 +324,6 @@ public class PauseScreen extends AbstractScreen {
 		return type;
 	}
 	
-	
-	
 	public SubCerita getSubCerita(){
 		return subcerita;
 	}
@@ -332,6 +343,7 @@ public class PauseScreen extends AbstractScreen {
 	public boolean settingButtonIsPressed() {
 		return settingButtonPressed;
 	}
+
 	
 	public Rectangle getResumeButtonBounds(){
 		return resumeButtonBounds;
@@ -377,8 +389,6 @@ public class PauseScreen extends AbstractScreen {
 	
 	
 	public void stopMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.pauseMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.pauseMusicBg != null) {
 			if (this.pauseMusicBg.isPlaying()) {
 				if (this.pauseMusicBg.isLooping()) {
@@ -391,18 +401,8 @@ public class PauseScreen extends AbstractScreen {
 			this.pauseMusicBg = null;
 		}
 	}
-	/* 
-	 * --ignore dulu deh yak, bingung sebenernya buat apa ._.--
-	 * 
-	 * show() dipanggil saat screennya ini pertama kali
-	 * dibuat, di sini objek2 yang diperluin sama
-	 * screen, kayak controller, gambar2, dll dibuat
-	 * atau diinisialisasi. 
-	 */
-	 
+	
 	 public void pauseMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.adeganMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.pauseMusicBg != null) {
 			if (this.pauseMusicBg.isPlaying()) {
 				if (this.pauseMusicBg.isLooping()) {
@@ -421,12 +421,9 @@ public class PauseScreen extends AbstractScreen {
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
 			if (this.pauseMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				pauseMusicBg.play();
 			} else {
 				this.pauseMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.ogg"));
-				System.out.println("play music after null");
 				pauseMusicBg.setLooping(true);
 				pauseMusicBg.setVolume(1.0f);
 				pauseMusicBg.play();
@@ -435,6 +432,15 @@ public class PauseScreen extends AbstractScreen {
 			this.stopMusic();
 		}
 	}
+
+	/* 
+	 * --ignore dulu deh yak, bingung sebenernya buat apa ._.--
+	 * 
+	 * show() dipanggil saat screennya ini pertama kali
+	 * dibuat, di sini objek2 yang diperluin sama
+	 * screen, kayak controller, gambar2, dll dibuat
+	 * atau diinisialisasi. 
+	 */
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub

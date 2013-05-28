@@ -1,0 +1,11 @@
+backgrounds/bg_bali_old/scene6_bg_jawa.jpg
+music/jawa/mjw_6.ogg
+0
+7
+3.0:nar:Prabu Dewata Cengkar pun setuju. Perlahan-lahan, ia melangkah mundur sambil mengulur serban itu. 
+7.0:nar:Anehnya, setiap diulur, serban itu terus memanjang dan meluas hingga meliputi seluruh wilayah Kerajaan Medang Kamulan. 
+13.0:nar:Karena saking senangnya mendapat mangsa yang masih muda dan segar, sang Prabu terus mengulur serban itu sampai di pantai Laut Selatan tanpa disadarinya. 
+19.0:nar:Ketika ia mulai masuk ke tengah laut, Aji Saka segera menyentakkan serbannya, sehingga sang Prabu terjungkal dan seketika itu pula berubah menjadi seekor buaya putih. 
+22.0:nar:Mengetahui kabar tersebut, seluruh rakyat Medang Kamulan kembali dari tempat pengungsian mereka. 
+27.0:nar:Aji Saka kemudian dinobatkan menjadi Raja Medang Kamulan menggantikan Prabu Dewata Cengkar dengan gelar Prabu Anom Aji Saka. 
+32.0:nar:Ia memimpin Kerajaan Medang Kamulan dengan arif dan bijaksana, sehingga seluruh rakyatnya hidup tenang, aman, makmur, dan sentosa.

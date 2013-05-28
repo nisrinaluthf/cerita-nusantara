@@ -1,10 +1,13 @@
 package com.a4.ceritanusantara.models;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class Cerita {
-	String namaDaerah;
-	String namaCerita;
-	boolean unlocked;
-	SubCerita[] subcerita;
+	private String namaDaerah;
+	private String namaCerita;
+	private Texture[] subCeritaIcons;
+	private boolean unlocked;
+	private SubCerita[] subcerita;
 	
 	public Cerita(String namaDaerah, String namaCerita){
 		this.namaDaerah = namaDaerah;
@@ -37,6 +40,14 @@ public class Cerita {
 	
 	public void setSubCerita(SubCerita[] subcerita){
 		this.subcerita = subcerita;
+	}
+	
+	public void setSubCeritaIcons(Texture[] icons){
+		subCeritaIcons = icons;
+	}
+	
+	public Texture[] getSubCeritaIcons(){
+		return subCeritaIcons;
 	}
 	
 }

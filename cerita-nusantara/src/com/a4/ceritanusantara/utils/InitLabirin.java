@@ -19,18 +19,18 @@ public class InitLabirin {
 		String data = file.readString();
 		StringTokenizer st = new StringTokenizer(data, System.getProperty("line.separator"));
 		
-		labirin.setBackground(new
-				Texture(Gdx.files.internal(st.nextToken())));
+		labirin.setBackground(
+				new Texture(Gdx.files.internal(st.nextToken().trim())));
 		labirin.setPlayerTexture(new Texture[]{
-				new Texture(Gdx.files.internal(st.nextToken())),
-				new Texture(Gdx.files.internal(st.nextToken())),
-				new Texture(Gdx.files.internal(st.nextToken())),
-				new Texture(Gdx.files.internal(st.nextToken())),
+				new Texture(Gdx.files.internal(st.nextToken().trim())),
+				new Texture(Gdx.files.internal(st.nextToken().trim())),
+				new Texture(Gdx.files.internal(st.nextToken().trim())),
+				new Texture(Gdx.files.internal(st.nextToken().trim())),
 		});
 		labirin.setWallTexture(new
-				Texture(Gdx.files.internal(st.nextToken())));
+				Texture(Gdx.files.internal(st.nextToken().trim())));
 		labirin.setItemTexture(new
-				Texture(Gdx.files.internal(st.nextToken())));
+				Texture(Gdx.files.internal(st.nextToken().trim())));
 	
 		LabirinPlayer player = null;
 		List<LabirinWall> walls = new ArrayList<LabirinWall>();

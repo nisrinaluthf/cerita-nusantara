@@ -1,0 +1,8 @@
+backgrounds/bg_bali_old/scene8_bg_bali.jpg
+music/bali/mbl_8.ogg
+0
+4
+5.0:nar:Dan dalam perjalanan pulangnya, ketika Begawan Sidi Mantra sampai di Tanah Benteng, di torehkannya tongkatnya ke tanah untuk membuat batas dengan anaknya. 
+8.0:nar:Seketika itu pula bekas torehan itu bertambah lebar dan air laut naik menggenanginya. 
+10.0:nar:Dan lama kelamaan menjadi sebuah selat. 
+13.0:nar:Selat itulah yang sekarang di beri nama “Selat Bali”...

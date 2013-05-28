@@ -54,7 +54,6 @@ public class MainMenuController {
 			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 			
 			if(OverlapTester.pointInRectangle( playButtonBounds, pos.x, pos.y)){
-				System.out.println("musik berhenti harusnya");
 				screen.stopMusic();
 				screen.playSoundFx();
 				screen.setPlayButtonPressed(true);

@@ -46,45 +46,32 @@ public class SettingsScreen extends AbstractScreen {
 	private Screen originalScreen;
 	
 	public SettingsScreen(Aplikasi app, Screen origin) {
+
 		super(app);
 		originalScreen = origin;
-		// TODO Auto-generated constructor stub
-
-		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
+		background = new Texture(Gdx.files.internal("backgrounds/bg.png"));
 		
 		buttonBackground = new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
-		
-		//if(controller.getSettings().getBoolean("soundOn")) {
-			soundOnTexture = 
-				new Texture(Gdx.files.internal("buttons/toggle_on.png"));
-		
-		//} else {
-			soundOffTexture =
-					new Texture(Gdx.files.internal("buttons/toggle_off.png"));
-		//}
-				
-		//if(controller.getSettings().getBoolean("musicOn")) {
+		soundOnTexture = 
+				new Texture(Gdx.files.internal("buttons/sound_on.png"));
+		soundOffTexture =
+					new Texture(Gdx.files.internal("buttons/sound_off.png"));
 		musicOnTexture = 
-				new Texture(Gdx.files.internal("buttons/toggle_on.png"));
+				new Texture(Gdx.files.internal("buttons/music_on.png"));
+		musicOffTexture =
+					new Texture(Gdx.files.internal("buttons/music_off.png"));
 		
-		//} else {
-			musicOffTexture =
-					new Texture(Gdx.files.internal("buttons/toggle_off.png"));
-		//}
 		backButtonTexture = new Texture(Gdx.files.internal("buttons/back.png"));
 		backButtonPressedTexture = new Texture(Gdx.files.internal("buttons/back_pressed.png"));
-				
 		
-		soundButtonBounds = new Rectangle((VIRTUAL_WIDTH-soundOnTexture.getWidth())/2,
-				280, soundOnTexture.getWidth(),
-				soundOnTexture.getHeight()); 
+		soundButtonBounds = new Rectangle(520, 300, 
+				soundOnTexture.getWidth(), soundOnTexture.getHeight()); 
 				
-		musicButtonBounds = new Rectangle((VIRTUAL_WIDTH-musicOnTexture.getWidth())/2,
-				160, musicOnTexture.getWidth(),
-				musicOnTexture.getHeight());  
+		musicButtonBounds = new Rectangle(520, 160, 
+				musicOnTexture.getWidth(), musicOnTexture.getHeight());  
 		
-		backButtonBounds = new Rectangle(0,
-				0, backButtonTexture.getWidth(),
+		backButtonBounds = new Rectangle(7,
+				7, backButtonTexture.getWidth(),
 				backButtonTexture.getHeight());
 		
 		soundButtonPressed = false;
@@ -96,9 +83,7 @@ public class SettingsScreen extends AbstractScreen {
 		settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/main_menu.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			System.out.println("play music");
 			if (this.settingsMusicBg != null) {
-				System.out.println("play music");
 				settingsMusicBg.setLooping(true);
 				settingsMusicBg.play();
 			} 
@@ -114,8 +99,6 @@ public class SettingsScreen extends AbstractScreen {
 		
 	@Override
 	public void render(float delta) {
-		// TODO Auto-generated method stub
-		
 		cam.update();
 
         // set viewport
@@ -129,45 +112,38 @@ public class SettingsScreen extends AbstractScreen {
 			
 			batcher.draw(background, 0, 0);
 			
-			batcher.draw(buttonBackground, (VIRTUAL_WIDTH-buttonBackground.getWidth())/2, 145);
+			batcher.draw(buttonBackground, (VIRTUAL_WIDTH-buttonBackground.getWidth())/2, 100);
 			
 			if(controller.getSettings().getBoolean("soundOn")) {
 				batcher.draw(soundOnTexture, 
-						(VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 280);
-				
-			} else {
+						soundButtonBounds.getX(), soundButtonBounds.getY());
+			} 
+			else {
 				batcher.draw(soundOffTexture, 
-						(VIRTUAL_WIDTH-soundOffTexture.getWidth())/2, 280);
-				
+						soundButtonBounds.getX(), soundButtonBounds.getY());
 			}
 			
 			if(controller.getSettings().getBoolean("musicOn")) {
 				batcher.draw(musicOnTexture, 
-						(VIRTUAL_WIDTH-musicOnTexture.getWidth())/2, 160);
-						
-			} else {
+						musicButtonBounds.getX(), musicButtonBounds.getY());
+			} 
+			else {
 				batcher.draw(musicOffTexture, 
-						(VIRTUAL_WIDTH-musicOffTexture.getWidth())/2, 160);
-					
+						musicButtonBounds.getX(), musicButtonBounds.getY());
 			}
 			
 			if (backButtonPressed) {
-				batcher.draw(backButtonPressedTexture,0, 0);
+				batcher.draw(backButtonPressedTexture,
+						backButtonBounds.getX(), backButtonBounds.getY());
 			}
 			else{
-				batcher.draw(backButtonTexture, 0, 0);
+				batcher.draw(backButtonTexture, 
+						backButtonBounds.getX(), backButtonBounds.getY());
 			}
-				
-				
-			//batcher.draw(soundOnTexture, 
-				//	(VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 440);
 			
-			//batcher.draw(musicOnTexture, 
-			//	(VIRTUAL_WIDTH-musicOnTexture.getWidth())/2, 160);
-			font.setColor(3);
-			font.draw(batcher, "Suara", (VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 350);
-			font.draw(batcher, "Musik", (VIRTUAL_WIDTH-soundOnTexture.getWidth())/2, 230);
-			
+			font.setColor(1f, 0.0f, 0.0f, 1);
+			font.draw(batcher, "Suara", 390, 370);
+			font.draw(batcher, "Musik", 390, 230);
 			
 		batcher.end();
 		
@@ -190,7 +166,7 @@ public class SettingsScreen extends AbstractScreen {
 	public Screen getOriginScreen () {
 		return originalScreen;
 	}
-	
+
 	public Rectangle getSoundButtonBounds(){
 		return soundButtonBounds;
 	}
@@ -233,8 +209,6 @@ public class SettingsScreen extends AbstractScreen {
 	}
 	
 	public void stopMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.settingsMusicBg.getPosition());
-		//System.out.println("stop");
 		if(this.settingsMusicBg != null) {
 		if (this.settingsMusicBg.isPlaying()) {
 				if (this.settingsMusicBg.isLooping()) {
@@ -250,14 +224,11 @@ public class SettingsScreen extends AbstractScreen {
 	
 	public void updateMusic() {
 		if(this.settingsMusicBg == null || !this.settingsMusicBg.isPlaying()) {
-			System.out.println("play music");
 			if (this.settingsMusicBg != null) {
-				System.out.println("play music");
 				settingsMusicBg.setLooping(true);
 				settingsMusicBg.play();
 			} else {
 			this.settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/main_menu.ogg"));
-			System.out.println("play music after null");
 				settingsMusicBg.setLooping(true);
 				settingsMusicBg.play();
 			}

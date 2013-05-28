@@ -3,6 +3,7 @@ package com.a4.ceritanusantara.controllers;
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.Kuis;
+import com.a4.ceritanusantara.models.Puzzle;
 import com.a4.ceritanusantara.models.RunningGame;
 import com.a4.ceritanusantara.models.SubCerita;
 import com.a4.ceritanusantara.models.TapGame;
@@ -11,10 +12,11 @@ import com.a4.ceritanusantara.utils.OverlapTester;
 import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
-import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
 import com.a4.ceritanusantara.views.RunningGameScreen;
 import com.a4.ceritanusantara.views.SettingsScreen;
+import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
+import com.a4.ceritanusantara.views.PuzzleScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -22,12 +24,12 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class PauseController {
-	private Aplikasi app;
+  private Aplikasi app;
 	private PauseScreen screen;
 	private Rectangle resumeButtonBounds;
 	private Rectangle restartButtonBounds;
-	private Rectangle exitButtonBounds;
 	private Rectangle settingButtonBounds;
+	private Rectangle exitButtonBounds;
 	private OrthographicCamera cam;
 	private Rectangle viewport;
 	
@@ -73,7 +75,7 @@ public class PauseController {
 				screen.setExitButtonPressed(true);
 				
 			}
-			
+					
 			else if(OverlapTester.pointInRectangle(settingButtonBounds, 
 					pos.x, pos.y)){
 				screen.playSoundFx();
@@ -81,6 +83,7 @@ public class PauseController {
 				screen.setSettingButtonPressed(true);
 				
 			}
+
 		}
 		
 		if(Gdx.input.isTouched()){
@@ -112,12 +115,17 @@ public class PauseController {
 					else if(type==SubCerita.LABIRIN){
 						app.setScreen(new LabirinScreen(app, (Labirin)(screen.getSubCerita())));
 					}
+					else if(type==SubCerita.PUZZLE){
+						app.setScreen(new PuzzleScreen(app, (Puzzle)(screen.getSubCerita())));
+					}
 					else if(type==SubCerita.KUIS){
 						app.setScreen(new KuisScreen(app, (Kuis)(screen.getSubCerita())));
 					}
+					
 					else if(type==SubCerita.RUNNING_GAME){
 						app.setScreen(new RunningGameScreen(app, (RunningGame)(screen.getSubCerita())));
 					}
+
 					
 				}
 			}
@@ -125,17 +133,17 @@ public class PauseController {
 			else if(screen.exitButtonIsPressed()){
 				screen.setExitButtonPressed(false);
 				if(OverlapTester.pointInRectangle( exitButtonBounds, pos.x, pos.y)){
-					app.setScreen(new MainMenuScreen(app));
+					app.setScreen(new PilihSubCeritaScreen(app,
+							app.getCeritaNusantara().getCerita(screen.getSubCerita().getAsalCerita())));
 					
 				}
 			}
 			
 			else if(screen.settingButtonIsPressed()){
-				screen.setExitButtonPressed(false);
+				screen.setSettingButtonPressed(false);
 				if(OverlapTester.pointInRectangle( settingButtonBounds, pos.x, pos.y)){
 					screen.pause();
 					app.setScreen(new SettingsScreen(app, screen));
-					
 				}
 			}
 		}

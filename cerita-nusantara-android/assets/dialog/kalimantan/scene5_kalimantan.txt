@@ -1,4 +1,5 @@
-backgrounds/bg_kalimantan_old/scene5_bg_kalimantan.png
+backgrounds/bg_kalimantan_old/scene5_bg_kalimantan.jpg
+music/kalimantan/mkl_5.ogg
 2
 speaker_dialog/naga_left.png
 speaker_dialog/istri_nusa_sedih.png

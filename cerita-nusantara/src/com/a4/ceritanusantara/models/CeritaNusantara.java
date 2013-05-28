@@ -1,12 +1,12 @@
 package com.a4.ceritanusantara.models;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.util.StringTokenizer;
 
 import com.a4.ceritanusantara.utils.InitSubCerita;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Texture;
 
 public class CeritaNusantara {
 	
@@ -22,8 +22,7 @@ public class CeritaNusantara {
 				new Cerita("Sumatera", "Parkit Si Raja Parakeet"),
 				new Cerita("Kalimantan", "Asal Mula Pulau Nusa"),
 				new Cerita("Jawa", "Aji Saka, Asal Mula Huruf Jawa"),
-				new Cerita("Bali", "Asal Mula Selat Bali"),
-				null
+				new Cerita("Bali", "Asal Mula Selat Bali")
 		};
 		try{
 			initCerita();
@@ -118,13 +117,15 @@ public class CeritaNusantara {
 		cerita[JAWA].setSubCerita(new SubCerita[]{
 				new Adegan("Adegan 1", SubCerita.ADEGAN),
 				new Adegan("Adegan 2", SubCerita.ADEGAN),
-				new Puzzle("Permainan 1", SubCerita.PUZZLE),
+				new Labirin("Permainan 1", SubCerita.LABIRIN),
 				new Adegan("Adegan 3", SubCerita.ADEGAN),
 				new Adegan("Adegan 4", SubCerita.ADEGAN),
 				new Adegan("Adegan 5", SubCerita.ADEGAN),
 				new Adegan("Adegan 6", SubCerita.ADEGAN),
-				new TapGame("Permainan 2", SubCerita.TAP_GAME),
 				new Adegan("Adegan 7", SubCerita.ADEGAN),
+				new Adegan("Adegan 8", SubCerita.ADEGAN),
+				new Puzzle("Permainan 2", SubCerita.PUZZLE),
+				new Adegan("Adegan 9", SubCerita.ADEGAN),
 				new Kuis("Kuis", SubCerita.KUIS)
 		});
 		
@@ -155,18 +156,20 @@ public class CeritaNusantara {
 				new Adegan("Adegan 5", SubCerita.ADEGAN),
 				new TapGame("Permainan 2", SubCerita.TAP_GAME),
 				new Adegan("Adegan 6", SubCerita.ADEGAN),
+				new Adegan("Adegan 7", SubCerita.ADEGAN),
+				new Adegan("Adegan 8", SubCerita.ADEGAN),
 				new Kuis("Kuis", SubCerita.KUIS)
 		});
-		int i;
-		for(i=0; i<cerita[BALI].getSubCerita().length; i++){
+		
+		for(int i=0; i<cerita[BALI].getSubCerita().length; i++){
 			cerita[BALI].getSubCerita(i).setAsalCerita(BALI);
 			cerita[BALI].getSubCerita(i).setIndex(i);
 		}
-		//System.out.println(i+"");
+		
 		InitSubCerita.initBali(cerita[BALI]);
-		System.out.println("sebelum init cerita bali");
+		
 		len = cerita[BALI].getSubCerita().length;
-		for(i=0; i<len; i++){
+		for(int i=0; i<len; i++){
 			if(i<len-1){
 				cerita[BALI].getSubCerita(i).setNext(cerita[BALI].getSubCerita(i+1));
 			}
@@ -175,5 +178,34 @@ public class CeritaNusantara {
 			}
 		}
 		
+		Texture[] sumateraIcons = new Texture[cerita[SUMATERA].getSubCerita().length];
+		Texture[] kalimantanIcons = new Texture[cerita[KALIMANTAN].getSubCerita().length];
+		Texture[] jawaIcons = new Texture[cerita[JAWA].getSubCerita().length];
+		Texture[] baliIcons = new Texture[cerita[BALI].getSubCerita().length];
+		
+		for(int i=0; i<sumateraIcons.length; i++){
+			sumateraIcons[i] = new Texture(
+					Gdx.files.internal("select_scene/sumatera/"+(i+1)+".png"));
+		}
+		
+		for(int i=0; i<kalimantanIcons.length; i++){
+			kalimantanIcons[i] = new Texture(
+					Gdx.files.internal("select_scene/kalimantan/"+(i+1)+".png"));
+		}
+		
+		for(int i=0; i<jawaIcons.length; i++){
+			jawaIcons[i] = new Texture(
+					Gdx.files.internal("select_scene/jawa/"+(i+1)+".png"));
+		}
+		
+		for(int i=0; i<baliIcons.length; i++){
+			baliIcons[i] = new Texture(
+					Gdx.files.internal("select_scene/bali/"+(i+1)+".png"));
+		}
+		
+		cerita[SUMATERA].setSubCeritaIcons(sumateraIcons);
+		cerita[KALIMANTAN].setSubCeritaIcons(kalimantanIcons);
+		cerita[JAWA].setSubCeritaIcons(jawaIcons);
+		cerita[BALI].setSubCeritaIcons(baliIcons);
 	}
 }

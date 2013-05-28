@@ -1,9 +1,11 @@
 package com.a4.ceritanusantara.controllers;
 
 import java.util.Iterator;
+import java.util.StringTokenizer;
 
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Adegan;
+import com.a4.ceritanusantara.models.CeritaNusantara;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.SubCerita;
@@ -15,11 +17,12 @@ import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.HelpScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
-import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
+import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -68,7 +71,6 @@ public class TapGameController {
 	}
 
 	public void processInput() {
-		// TODO Auto-generated method stub
 		// Kalo back pause screen muncul
 		if(tapGame.isGameOver()){
 			if(Gdx.input.justTouched()){
@@ -115,7 +117,8 @@ public class TapGameController {
 					if(OverlapTester.pointInRectangle(mainMenuBounds, 
 							pos.x, pos.y)){
 						app.getScreen().dispose();
-						app.setScreen(new MainMenuScreen(app));
+						app.setScreen(new PilihSubCeritaScreen(app,
+								app.getCeritaNusantara().getCerita(tapGame.getAsalCerita())));
 					}
 				}
 				
@@ -159,21 +162,26 @@ public class TapGameController {
 			}
 			
 			if(tapGame.getHits()<=0){
+				save();
 				tapGame.gameOver();
 			}
+			System.out.println(tapGame.getScore());
 			if(tapGame.getHits()>=25){
+				
 				int score = 50;
 				if(tapGame.getBadHits()<=50){
 					score = 100 - tapGame.getBadHits();
 				}
+				tapGame.setScore(score);
+				save();
 				tapGame.gameOver();
+				//implement save score here
 			}
 			
 			if(Gdx.input.justTouched()){
 				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
-				//System.out.println(pauseButtonBounds.x+" "+pauseButtonBounds.y);
 				if(OverlapTester.pointInRectangle(pauseButtonBounds, pos.x, pos.y)){
 					screen.playSoundFx("default");
 					screen.pauseMusic();
@@ -184,7 +192,6 @@ public class TapGameController {
 					screen.pauseMusic();
 					screen.setHelpButtonPressed(true);	
 				}
-				
 				
 				for(int i=0; i<buttonsBounds.length; i++){
 					if(OverlapTester.pointInRectangle(buttonsBounds[i], pos.x, pos.y)){
@@ -217,7 +224,6 @@ public class TapGameController {
 						}
 					}
 				}
-				
 			}
 			
 			if(Gdx.input.isTouched()){
@@ -235,12 +241,11 @@ public class TapGameController {
 						
 					}
 				}
-				
 				else if(screen.helpButtonIsPressed()){
 					screen.setHelpButtonPressed(false);
 					if(OverlapTester.pointInRectangle( helpButtonBounds, pos.x, pos.y)){
 						screen.pause();
-						app.setScreen(new HelpScreen(app, screen, this.tapGame));
+						app.setScreen(new HelpScreen(app, screen, tapGame));
 					}
 				}
 				
@@ -250,7 +255,57 @@ public class TapGameController {
 					}
 				}
 			}
+		}	
+	}
+
+	private void save() {
+		FileHandle localFile = null;
+		
+		if(tapGame.getAsalCerita()==CeritaNusantara.SUMATERA){
+			localFile = Gdx.files.local("datasumatera");
 		}
+		else if(tapGame.getAsalCerita()==CeritaNusantara.KALIMANTAN){
+			localFile = Gdx.files.local("datakalimantan");
+		}
+		else if(tapGame.getAsalCerita()==CeritaNusantara.JAWA){
+			localFile = Gdx.files.local("datajawa");
+		}
+		else if(tapGame.getAsalCerita()==CeritaNusantara.BALI){
+			localFile = Gdx.files.local("databali");
+		}
+		
+		String data = localFile.readString();
+		StringTokenizer st = new StringTokenizer(data,  ";");
+		int i=0;
+		String tmp = "";
+		while(st.hasMoreTokens()){
+			if(tapGame.getIndex() == i){
+				StringTokenizer st2 = new StringTokenizer(st.nextToken(), " ");
+				st2.nextToken();
+				int currentScore = Integer.parseInt(st2.nextToken());
+				if (currentScore < tapGame.getScore()) {
+					currentScore = tapGame.getScore();
+				}
+				tmp += "unlocked "+ currentScore+";";
+			}
+			else if(tapGame.getNext().getIndex() == i){
+				StringTokenizer st2 = 
+						new StringTokenizer(st.nextToken(),  " ");
+				st2.nextToken();
+				tmp += "unlocked "+st2.nextToken()+";";
+				tapGame.getNext().setUnlocked(true);
+			}
+			else{
+				tmp += st.nextToken()+";";
+			}
+			i++;
+		}
+		
+		if(tmp.charAt(tmp.length()-1)==';'){
+			tmp = tmp.substring(0, tmp.length()-1);
+		}
+		localFile.writeString(tmp, false);
+		//System.out.println(tmp);
 		
 	}
 

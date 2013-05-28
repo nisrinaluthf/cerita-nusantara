@@ -1,7 +1,10 @@
 package com.a4.ceritanusantara.controllers;
 
+import java.util.StringTokenizer;
+
 import com.a4.ceritanusantara.Aplikasi;
 import com.a4.ceritanusantara.models.Adegan;
+import com.a4.ceritanusantara.models.CeritaNusantara;
 import com.a4.ceritanusantara.models.Kuis;
 import com.a4.ceritanusantara.models.Labirin;
 import com.a4.ceritanusantara.models.LabirinPlayer;
@@ -13,11 +16,12 @@ import com.a4.ceritanusantara.views.AdeganScreen;
 import com.a4.ceritanusantara.views.HelpScreen;
 import com.a4.ceritanusantara.views.KuisScreen;
 import com.a4.ceritanusantara.views.LabirinScreen;
-import com.a4.ceritanusantara.views.MainMenuScreen;
 import com.a4.ceritanusantara.views.PauseScreen;
+import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
 import com.a4.ceritanusantara.views.TapGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -26,7 +30,6 @@ import com.badlogic.gdx.math.Vector3;
 public class LabirinController {
 	
 private Aplikasi app;
-	
 	private LabirinScreen screen;
 	private Labirin labirin;
 	
@@ -52,8 +55,6 @@ private Aplikasi app;
 	private Rectangle viewport;
 
 	private Rectangle finish;
-	
-	
 
 	public LabirinController(LabirinScreen screen) {
 		// TODO Auto-generated constructor stub
@@ -63,18 +64,17 @@ private Aplikasi app;
 		app = screen.getAplikasi();
 		labirin = screen.getLabirin();
 		
-		player = labirin.getPlayer();
-		
 		pauseButtonBounds = screen.getPauseButtonBounds();
 		helpButtonBounds = screen.getHelpButtonBounds();
-		walls = labirin.getWalls();
 		
+
+		player = labirin.getPlayer();
+		walls = labirin.getWalls();
 		wallsPos = new Vector2[walls.length];
 		wallsBoundsTop = new Rectangle[walls.length];
 		wallsBoundsRight = new Rectangle[walls.length];
 		wallsBoundsBottom = new Rectangle[walls.length];
 		wallsBoundsLeft = new Rectangle[walls.length];
-		
 		
 		for(int i=0; i<walls.length; i++){
 			wallsPos[i] = walls[i].getPos();
@@ -104,6 +104,7 @@ private Aplikasi app;
 	public void processInput(float delta){
 		
 		if(labirin.timeLeft<0){
+			save();
 			labirin.gameOver();
 		}
 		
@@ -150,7 +151,8 @@ private Aplikasi app;
 					if(OverlapTester.pointInRectangle(mainMenuBounds, 
 							pos.x, pos.y)){
 						app.getScreen().dispose();
-						app.setScreen(new MainMenuScreen(app));
+						app.setScreen(new PilihSubCeritaScreen(app,
+								app.getCeritaNusantara().getCerita(labirin.getAsalCerita())));
 					}
 				}
 				
@@ -196,6 +198,7 @@ private Aplikasi app;
 			labirin.timeLeft-=delta;
 			
 			if(labirin.timeLeft<0){
+				save();
 				labirin.gameOver();
 			}
 			
@@ -228,12 +231,12 @@ private Aplikasi app;
 						
 					}
 				}
+				
 				else if(screen.helpButtonIsPressed()){
 					screen.setHelpButtonPressed(false);
 					if(OverlapTester.pointInRectangle( helpButtonBounds, pos.x, pos.y)){
 						screen.pause();
 						app.setScreen(new HelpScreen(app, screen, labirin));
-						
 					}
 				}
 			}
@@ -340,6 +343,7 @@ private Aplikasi app;
 					}
 					
 					labirin.setScore(score);
+					save();
 					labirin.gameOver();
 				}
 				else{
@@ -351,9 +355,56 @@ private Aplikasi app;
 			
 			labirin.getPlayer().setVelocityX(accelX);
 			labirin.getPlayer().setVelocityY(accelY);
-			
 		}
-		
 	}
 
+	private void save() {
+		FileHandle localFile = null;
+		
+		if(labirin.getAsalCerita()==CeritaNusantara.SUMATERA){
+			localFile = Gdx.files.local("datasumatera");
+		}
+		else if(labirin.getAsalCerita()==CeritaNusantara.KALIMANTAN){
+			localFile = Gdx.files.local("datakalimantan");
+		}
+		else if(labirin.getAsalCerita()==CeritaNusantara.JAWA){
+			localFile = Gdx.files.local("datajawa");
+		}
+		else if(labirin.getAsalCerita()==CeritaNusantara.BALI){
+			localFile = Gdx.files.local("databali");
+		}
+		
+		String data = localFile.readString();
+		StringTokenizer st = new StringTokenizer(data,  ";");
+		int i=0;
+		String tmp = "";
+		while(st.hasMoreTokens()){
+			if(labirin.getIndex() == i){
+				StringTokenizer st2 = new StringTokenizer(st.nextToken(), " ");
+				st2.nextToken();
+				int currentScore = Integer.parseInt(st2.nextToken());
+				if (currentScore < labirin.getScore()) {
+					currentScore = labirin.getScore();
+				}
+				tmp += "unlocked "+ currentScore+";";
+			}
+			else if(labirin.getNext().getIndex() == i){
+				StringTokenizer st2 = 
+						new StringTokenizer(st.nextToken(),  " ");
+				st2.nextToken();
+				tmp += "unlocked "+st2.nextToken()+";";
+				labirin.getNext().setUnlocked(true);
+			}
+			else{
+				tmp += st.nextToken()+";";
+			}
+			i++;
+		}
+		
+		if(tmp.charAt(tmp.length()-1)==';'){
+			tmp = tmp.substring(0, tmp.length()-1);
+		}
+		localFile.writeString(tmp, false);
+		
+	}
 }

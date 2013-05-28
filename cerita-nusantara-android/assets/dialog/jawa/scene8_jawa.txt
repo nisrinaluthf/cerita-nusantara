@@ -1,0 +1,12 @@
+backgrounds/bg_bali_old/scene8_bg_jawa.jpg
+music/jawa/mjw_8.ogg
+1
+speaker_dialog/ajisaka.png
+7
+3.0:nar:Sementara itu, Aji Saka sudah mulai gelisah menunggu kedatangan Dora dari Pegunung Gendeng membawa kerisnya.
+6.0:dia:0:Apa yang terjadi dengan Dora? Kenapa sampai saat ini dia belum juga kembali?
+12.0:nar:Sudah dua hari Aji Saka menunggu, namun Dora tak kunjung tiba. Akhirnya, ia memutuskan untuk menyusul abdinya itu ke Pegunungan Gendeng seorang diri.
+15.0:nar:Betapa terkejutnya ia saat tiba di sana. Ia mendapati kedua abdi setianya telah tewas. 
+18.0:nar:Mereka tewas karena ingin membuktikan kesetiaannya kepada tuan mereka. 
+21.0:nar:Untuk mengenang kesetiaan kedua abdinya tersebut, Aji Saka menciptakan aksara Jawa.
+24.0:nar:Bantulah Aji Saka menyusun aksara Jawa!

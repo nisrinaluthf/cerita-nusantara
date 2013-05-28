@@ -1,4 +1,5 @@
-backgrounds/bg_kalimantan_old/scene1_bg_kalimantan.png
+backgrounds/bg_kalimantan_old/scene1_bg_kalimantan.jpg
+music/kalimantan/mkl_1.ogg
 0
 4
 3.5:nar:Dahulu kala, hiduplah seorang laki-laki bernama Nusa. Ia tinggal bersama istri dan adik ipar laki-lakinya di sebuah kampung di pinggir Sungai Kahayan, Kalimantan Tengah.

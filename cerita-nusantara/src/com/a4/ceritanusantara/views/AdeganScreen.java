@@ -47,6 +47,8 @@ public class AdeganScreen extends AbstractScreen {
 	
 	private Sound pauseClickSfx;
 	
+	private float scrollIndex;
+	
 	
 	public AdeganScreen(Aplikasi app, Adegan adegan) {
 		super(app);
@@ -70,24 +72,22 @@ public class AdeganScreen extends AbstractScreen {
 		nextButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/dialog_next.png"));
 
-		
 		previousButtonBounds = new Rectangle(940, 19,
 				previousButtonTexture.getWidth(), previousButtonTexture.getHeight());
 		nextButtonBounds = new Rectangle(940, 82,
 				nextButtonTexture.getWidth(), nextButtonTexture.getHeight());
 		
-		
 		previousButtonPressed = false;
 		nextButtonPressed = false;
-		
 		
 		pauseButtonTexture = new Texture(
 				Gdx.files.internal("buttons/pause.png"));
 		pauseButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/pause_pressed.png"));
 		
-		pauseButtonBounds = new Rectangle( 950, 526, pauseButtonTexture.getWidth(),
-				pauseButtonTexture.getHeight());
+		pauseButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth()-7, 
+				VIRTUAL_HEIGHT-pauseButtonTexture.getHeight()-7, 
+				pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
 		
 		pauseButtonPressed = false;
 		
@@ -96,7 +96,7 @@ public class AdeganScreen extends AbstractScreen {
 				Gdx.files.internal("fonts/sf-cartoonist-hand-30-white-bold.png"),
 				false);
 		
-		adeganMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/adegan.ogg"));
+		adeganMusicBg = adegan.getMusic();
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
@@ -106,11 +106,14 @@ public class AdeganScreen extends AbstractScreen {
 				adeganMusicBg.setVolume(1.0f);
 				adeganMusicBg.play();
 			} 
-		} else if(this.adeganMusicBg != null && this.adeganMusicBg.isPlaying()) {
+		} 
+		else if(this.adeganMusicBg != null && this.adeganMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
 		
 		this.pauseClickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
+		
+		scrollIndex = 0;
 		
 		controller = new AdeganController(this);
 	}
@@ -135,14 +138,20 @@ public class AdeganScreen extends AbstractScreen {
 			AdeganText text = adeganText[adegan.getCurrentText()];
 			
 			if(adegan.getCurrentText()==adegan.getLength()-1){
-				font.drawWrapped(batcher, text.getText(), 10, 125, 892);
+				font.drawWrapped(batcher, text.getText().substring(0, (int)scrollIndex), 
+						10, 125, 892);
 			}
 			else if(text.getType()==AdeganText.NAR){
-				font.drawWrapped(batcher, text.getText(), 10, 125, 1004);
+				font.drawWrapped(batcher, text.getText().substring(0, (int)scrollIndex), 
+						10, 125, 1004);
 			}
 			else if(text.getType()==AdeganText.DIA){
-				font.drawWrapped(batcher, text.getText(), 10, 125, 892);
-				
+				font.drawWrapped(batcher, text.getText().substring(0, (int)scrollIndex), 
+						10, 125, 892);
+			}
+			
+			if(scrollIndex < text.getText().length()){
+				scrollIndex += 0.5;
 			}
 			
 			if(adegan.isDone()){
@@ -171,15 +180,16 @@ public class AdeganScreen extends AbstractScreen {
 			}
 			
 			if (pauseButtonPressed) {
-				batcher.draw(pauseButtonPressedTexture, 950, 526);
+				batcher.draw(pauseButtonPressedTexture, pauseButtonBounds.getX(), 
+						pauseButtonBounds.getY());
 			} else {
-				batcher.draw(pauseButtonTexture, 950, 526);
+				batcher.draw(pauseButtonTexture, pauseButtonBounds.getX(), 
+						pauseButtonBounds.getY());
 			}
+			
 
 		batcher.end();
-
 		controller.processInput(delta);
-
 	}
 	
 	public Rectangle getPreviousButtonBounds(){
@@ -225,13 +235,16 @@ public class AdeganScreen extends AbstractScreen {
 	public Adegan getAdegan() {
 		return adegan;
 	}
+	
+	public void resetScrollIndex(){
+		scrollIndex = 0;
+	}
 
 	public void playSoundFx(String key) {
 		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
 			if (key.equals("default"))
 				this.pauseClickSfx.play();
 	}
-	
 	
 	public void stopMusic() {
 		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.adeganMusicBg.getPosition());
@@ -248,6 +261,7 @@ public class AdeganScreen extends AbstractScreen {
 			this.adeganMusicBg = null;
 		}
 	}
+	
 	public void pauseMusic() {
 		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.adeganMusicBg.getPosition());
 		System.out.println("stop");
@@ -279,9 +293,10 @@ public class AdeganScreen extends AbstractScreen {
 				adeganMusicBg.setVolume(1.0f);
 				adeganMusicBg.play();
 			}
-		} else if(this.adeganMusicBg != null && this.adeganMusicBg.isPlaying()) {
+		} 
+		
+		else if (this.adeganMusicBg != null && this.adeganMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
-	}
-	
+	}	
 }

@@ -32,14 +32,18 @@ public class MainMenuScreen extends AbstractScreen {
 	
 	private Texture playButtonTexture;
 	private Texture settingsButtonTexture;
+	private Texture aboutButtonTexture;
 	private Texture playButtonPressedTexture;
 	private Texture settingsButtonPressedTexture;
+	private Texture aboutButtonPressedTexture;
 	
 	private Rectangle playButtonBounds;
 	private Rectangle settingsButtonBounds;
+	private Rectangle aboutButtonBounds;
 	
 	private boolean playButtonPressed;
 	private boolean settingsButtonPressed;
+	private boolean aboutButtonPressed;
 	
 	private boolean debug = false;
 	
@@ -51,9 +55,8 @@ public class MainMenuScreen extends AbstractScreen {
 	public MainMenuScreen(Aplikasi app){
 		super(app);
 		setScreenType(0);
-		
 		//inisialisasi semuanya
-		background = new Texture(Gdx.files.internal("backgrounds/main_bg.png"));
+		background = new Texture(Gdx.files.internal("backgrounds/bg_home.png"));
 		
 		playButtonTexture = 
 				new Texture(Gdx.files.internal("buttons/play.png"));
@@ -67,23 +70,35 @@ public class MainMenuScreen extends AbstractScreen {
 		settingsButtonPressedTexture = 
 				new Texture(Gdx.files.internal("buttons/settings_pressed.png"));
 		
-		playButtonBounds = new Rectangle((VIRTUAL_WIDTH-playButtonTexture.getWidth())/2,
-				280, playButtonTexture.getWidth(),
-				playButtonTexture.getHeight());
+		aboutButtonTexture = 
+				new Texture(Gdx.files.internal("buttons/about.png"));
 		
-		settingsButtonBounds = new Rectangle((VIRTUAL_WIDTH-settingsButtonTexture.getWidth())/2,
-				160, settingsButtonTexture.getWidth(),
-				settingsButtonTexture.getHeight());
+		aboutButtonPressedTexture = 
+				new Texture(Gdx.files.internal("buttons/about_pressed.png"));
+		
+		playButtonBounds = new Rectangle(0,	VIRTUAL_HEIGHT-playButtonTexture.getHeight()+160, 
+				playButtonTexture.getWidth()-80,
+				playButtonTexture.getHeight()-160);
+		
+		settingsButtonBounds = new Rectangle(VIRTUAL_WIDTH-settingsButtonTexture.getWidth()+80, 
+				VIRTUAL_HEIGHT-settingsButtonTexture.getHeight()+80, 
+				settingsButtonTexture.getWidth()-80,
+				settingsButtonTexture.getHeight()-80);
+		
+		aboutButtonBounds = new Rectangle(VIRTUAL_WIDTH-aboutButtonTexture.getWidth()+40, 
+				0, aboutButtonTexture.getWidth()-40,
+				aboutButtonTexture.getHeight()-60);
+		
 		
 		playButtonPressed = false;
 		settingsButtonPressed = false;
+		aboutButtonPressed = false;
 		
 		mainMenuMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/main_menu.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
+			
 			if (this.mainMenuMusicBg != null) {
-				System.out.println("play music");
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				mainMenuMusicBg.setLooping(true);
 				mainMenuMusicBg.play();
@@ -112,7 +127,7 @@ public class MainMenuScreen extends AbstractScreen {
                           (int) viewport.width, (int) viewport.height);
  
         /*
-		 * kalo ngga salah ini supaya background VIRTUALnya
+		 * kalo ngga salah ini supaya background virtualnya
 		 * warna hitam, tapi ngga tau juga sih ._.
 		 */
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
@@ -138,40 +153,43 @@ public class MainMenuScreen extends AbstractScreen {
 			 */
 			
 			if (playButtonPressed) {
-				batcher.draw(playButtonPressedTexture, 
-						(VIRTUAL_WIDTH-playButtonPressedTexture.getWidth())/2, 280);
+				batcher.draw(playButtonPressedTexture, 0,
+						VIRTUAL_HEIGHT-playButtonPressedTexture.getHeight());
 				
 			}
 			else {
-				batcher.draw(playButtonTexture, 
-						(VIRTUAL_WIDTH-playButtonTexture.getWidth())/2, 280);
+				batcher.draw(playButtonTexture, 0,
+						VIRTUAL_HEIGHT-playButtonTexture.getHeight());
 			}
 			
 			if (settingsButtonPressed) {
 				batcher.draw(settingsButtonPressedTexture, 
-						(VIRTUAL_WIDTH-settingsButtonPressedTexture.getWidth())/2, 160);
+						VIRTUAL_WIDTH-settingsButtonPressedTexture.getWidth(), 
+						VIRTUAL_HEIGHT-settingsButtonPressedTexture.getHeight());
 			}
 			else{
 				batcher.draw(settingsButtonTexture, 
-						(VIRTUAL_WIDTH-settingsButtonTexture.getWidth())/2, 160);
+						VIRTUAL_WIDTH-settingsButtonTexture.getWidth(), 
+						VIRTUAL_HEIGHT-settingsButtonTexture.getHeight());
+			}
+			
+			if (aboutButtonPressed) {
+				batcher.draw(aboutButtonPressedTexture, 
+						VIRTUAL_WIDTH-aboutButtonPressedTexture.getWidth(), 0);
+			}
+			else{
+				batcher.draw(aboutButtonTexture, 
+						VIRTUAL_WIDTH-aboutButtonTexture.getWidth(), 0);
 			}
 			
 		batcher.end();
 		
 		/*
-		 * kalo mau ngeliat boundnya ada di mana, ubah debug=true 
-		 * (line 35 kalo ngga salah)
+		 * kalo mau ngeliat boundnya ada di mana, ubah debug=true
 		 */
 		if(debug){
 			drawDebug();
 		}
-		
-		//--kalo mau ada sfx atau musik nanti di sini aja--
-		//System.out.println(Gdx.app.getPreferences("preferences").getBoolean("musicOn"));
-		
-		//System.out.println(Gdx.app.getPreferences("preferences").getBoolean("musicON")+"");
-		
-		//----------------end of sfx/musik-----------------
 		
 		/*
 		 * Selesai gambar panggil method processInput() nya
@@ -203,6 +221,10 @@ public class MainMenuScreen extends AbstractScreen {
 			}
 			debugRenderer.rect(settingsButtonBounds.x, settingsButtonBounds.y,
 					settingsButtonBounds.width, settingsButtonBounds.height);
+			
+			debugRenderer.rect(aboutButtonBounds.x, aboutButtonBounds.y,
+					aboutButtonBounds.width, aboutButtonBounds.height);
+			
 		debugRenderer.end();
 	}
 	
@@ -239,7 +261,6 @@ public class MainMenuScreen extends AbstractScreen {
 	
 	public void stopMusic() {
 		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.mainMenuMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.mainMenuMusicBg != null) {
 			if (this.mainMenuMusicBg.isPlaying()) {
 				if (this.mainMenuMusicBg.isLooping()) {

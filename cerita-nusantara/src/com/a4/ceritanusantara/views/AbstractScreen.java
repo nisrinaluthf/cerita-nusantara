@@ -36,7 +36,6 @@ public abstract class AbstractScreen implements Screen{
 		width = (int)VIRTUAL_WIDTH;
 		height = (int)VIRTUAL_HEIGHT;
 		
-		
 		cam = new OrthographicCamera(VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
 		cam.position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
 		
@@ -45,7 +44,7 @@ public abstract class AbstractScreen implements Screen{
 		viewport = new Rectangle(0f, 0f, (float)width, (float)height);
 	}
 	
-		public int getScreenType() {
+	public int getScreenType() {
 		return screenType;
 	}
 	

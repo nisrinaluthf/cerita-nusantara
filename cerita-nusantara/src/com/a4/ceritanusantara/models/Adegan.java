@@ -1,5 +1,6 @@
 package com.a4.ceritanusantara.models;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Adegan extends SubCerita {
@@ -7,6 +8,8 @@ public class Adegan extends SubCerita {
 	private Texture background;
 	private Texture[] charaTexture;
 	private AdeganText[] adeganText;
+	
+	private Music music;
 	
 	public float time;
 	public int currentText;
@@ -52,6 +55,14 @@ public class Adegan extends SubCerita {
 	
 	public AdeganText getAdeganText(int i){
 		return adeganText[i];
+	}
+	
+	public void setMusic(Music music){
+		this.music = music;
+	}
+	
+	public Music getMusic(){
+		return music;
 	}
 	
 	public boolean isDone(){

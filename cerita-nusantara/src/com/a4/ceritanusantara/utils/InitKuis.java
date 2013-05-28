@@ -14,12 +14,12 @@ public class InitKuis {
 		KuisQuestion[] questions = new KuisQuestion[5];
 		
 		for (int i=0; i<questions.length; i++){
-			questions[i] = new KuisQuestion(st.nextToken(), 
-					st.nextToken(), 
-					st.nextToken(), 
-					st.nextToken(), 
-					st.nextToken(), 
-					Integer.parseInt(st.nextToken()));
+			questions[i] = new KuisQuestion(st.nextToken().trim(), 
+					st.nextToken().trim(), 
+					st.nextToken().trim(), 
+					st.nextToken().trim(), 
+					st.nextToken().trim(), 
+					Integer.parseInt(st.nextToken().trim()));
 		}
 	
 		kuis.setQuestions(questions);

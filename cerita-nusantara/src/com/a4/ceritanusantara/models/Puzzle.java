@@ -6,21 +6,29 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Puzzle extends SubCerita{
 	
-	private static final float TIME = 91f;
+	public static final float TIME = 91f;
 	
 	private PuzzlePiece[][] pieces;
 	
 	private Texture background;
-	public float timeLeft;
+	private float timeLeft;
 	private boolean gameOver;
 	
 	private Random rand;
+
+	private boolean showSolved;
+
+	public float showSolvedTime;
+
+	private Texture solvedTexture;
 	
 	public Puzzle(String nama, int tipe){
 		super(nama, tipe);
 		rand = new Random();
 		timeLeft = TIME;
 		gameOver = false;
+		showSolved = false;
+		showSolvedTime = 2f;
 	}
 	
 	public void setPieces(PuzzlePiece[][] pieces){
@@ -29,6 +37,10 @@ public class Puzzle extends SubCerita{
 	
 	public void setBackground(Texture background){
 		this.background = background;
+	}
+	
+	public void setSolvedTexture(Texture solved){
+		solvedTexture = solved;
 	}
 	
 	public void decTime(float delta){
@@ -68,6 +80,8 @@ public class Puzzle extends SubCerita{
 		randomize();
 		timeLeft = TIME;
 		gameOver = false;
+		showSolved = false;
+		showSolvedTime = 2f;
 	}
 
 	public void randomize() {
@@ -83,6 +97,18 @@ public class Puzzle extends SubCerita{
 			}
 		}
 		
+	}
+
+	public void showSolved() {
+		showSolved = true;
+	}
+	
+	public boolean isShowingSolved(){
+		return showSolved;
+	}
+
+	public Texture getSolvedTexture() {
+		return solvedTexture;
 	}
 	
 }

@@ -1,0 +1,15 @@
+backgrounds/bg_bali_old/scene4_bg_bali.jpg
+music/bali/mbl_2_4.ogg
+2
+speaker_dialog/nagabesukih.png
+speaker_dialog/begawan.png
+9
+3.0:nar:Segera ia pun pergi ke Gunung Agung untuk memohon kepada Sang Naga Besukih agar diberikan pertolongan lagi. 
+6.0:nar:Sesampainya ia di Gunung Agung, dibunyikannya genta dan membaca mantra-mantra agar Sang Naga Besukih keluar dari istananya. 
+9.0:nar:Tidak beberapa lama, keluarlah akhirnya Sang Naga Besukih dari istananya.
+12.0:dia:0:Ada apa lagi Begawan Sidi Mantra? Mengapa engkau memanggilku lagi?
+15.0:dia:1:Maaf Sang Besukih, sekali lagi aku memohon bantuanmu agar aku bisa membayar hutang-hutang anakku. 
+18.0:dia:1:Aku sudah tidak punya apa-apa lagi dan aku sudah menasehatinya agar tidak berjudi, tapi ia tidak menghiraukanku.
+22.0:dia:0:Anakmu rupanya sudah tidak menghormati orang tuanya lagi. Tapi aku akan membantumu untuk yang terakhir kali. Ingat, terakhir kali.
+27.0:nar:Maka Sang Naga menggerakkan tubuhnya dan Begawan Sidi Mantra mengumpulkan emas dan permata yang berasal dari sisik-sisik tubuhnya yang berjatuhan. 
+31.0:nar:Lalu Begawan Sidi Mantra pun memohon diri. Dan setiba dirumahnya, Begawan Sidi Mantra segera melunasi hutang-hutang anaknya.

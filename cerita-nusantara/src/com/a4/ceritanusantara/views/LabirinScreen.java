@@ -64,6 +64,7 @@ public class LabirinScreen extends AbstractScreen{
 	private Sound pauseClickSfx;
 	
 	private Music labirinMusicBg;
+	private Texture panel;
 	
 	public LabirinScreen(Aplikasi app, Labirin labirin) {
 		super(app);
@@ -73,9 +74,9 @@ public class LabirinScreen extends AbstractScreen{
 		labirin.reinit();
 		
 		walls = labirin.getWalls();
-		for(int i=0; i<walls.length; i++){
-			System.out.println("wall"+walls[i].getX());
-		}
+		//for(int i=0; i<walls.length; i++){
+			//System.out.println("wall"+walls[i].getX());
+		//}
 		items = labirin.getItems();
 		
 		background = labirin.getBackground();
@@ -88,8 +89,10 @@ public class LabirinScreen extends AbstractScreen{
 		pauseButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/pause_pressed.png"));
 
-		pauseButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight(), pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
-		
+		pauseButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth()-17, 
+				VIRTUAL_HEIGHT-pauseButtonTexture.getHeight()-7, 
+				pauseButtonTexture.getWidth(), pauseButtonTexture.getHeight());
+
 		pauseButtonPressed = false;
 		
 		helpButtonTexture = new Texture(
@@ -97,27 +100,31 @@ public class LabirinScreen extends AbstractScreen{
 		helpButtonPressedTexture = new Texture(
 				Gdx.files.internal("buttons/help_pressed.png"));
 
-		helpButtonBounds = new Rectangle(0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight(), helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
+		helpButtonBounds = new Rectangle(VIRTUAL_WIDTH-pauseButtonTexture.getWidth()-17, 
+				VIRTUAL_HEIGHT-pauseButtonTexture.getHeight()-97, 
+				helpButtonTexture.getWidth(), helpButtonTexture.getHeight());
 		
 		helpButtonPressed = false;
-		
-		gameOverBg = new
-				Texture(Gdx.files.internal("backgrounds/gameover_bg.png"));
+	
+		gameOverBg = 
+				new Texture(Gdx.files.internal("backgrounds/bg.png"));
+		panel = 
+				new Texture(Gdx.files.internal("backgrounds/settings_bg.png"));
 		replayTexture = new
-				Texture(Gdx.files.internal("buttons/restart.png"));
+				Texture(Gdx.files.internal("buttons/restart_80.png"));
 		replayPressedTexture = new
-				Texture(Gdx.files.internal("buttons/restart_pressed.png"));
+				Texture(Gdx.files.internal("buttons/restart_pressed_80.png"));
 		mainMenuTexture = new
-				Texture(Gdx.files.internal("buttons/mainmenu.png"));
+				Texture(Gdx.files.internal("buttons/mainmenu_80.png"));
 		mainMenuPressedTexture = new
-				Texture(Gdx.files.internal("buttons/mainmenu_pressed.png"));
+				Texture(Gdx.files.internal("buttons/mainmenu_pressed_80.png"));
 		nextTexture = new
 				Texture(Gdx.files.internal("buttons/dialog_next.png"));
 		
 		//inisialisasi bounds buat game over screen here
-		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240,
+		replayBounds = new Rectangle((VIRTUAL_WIDTH-replayTexture.getWidth())/2+50, 200,
 				replayTexture.getWidth(), replayTexture.getHeight());
-		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180,
+		mainMenuBounds = new Rectangle((VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2-50, 200,
 				mainMenuTexture.getWidth(), mainMenuTexture.getHeight());
 		nextBounds = new Rectangle(950, 30, nextTexture.getWidth(), nextTexture.getHeight());
 		
@@ -166,26 +173,26 @@ public class LabirinScreen extends AbstractScreen{
 			if(labirin.isGameOver()){
 			
 				batcher.draw(gameOverBg, 0, 0);
+				batcher.draw(panel, (VIRTUAL_WIDTH-panel.getWidth())/2, 
+						(VIRTUAL_HEIGHT-panel.getHeight())/2);
+				
 				if(replayButtonPressed){
 					batcher.draw(replayPressedTexture, 
-							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
+							replayBounds.x, replayBounds.y);
 				}
 				else{
 					batcher.draw(replayTexture, 
-							(VIRTUAL_WIDTH-replayTexture.getWidth())/2, 240);
+							replayBounds.x, replayBounds.y);
 				}
 				
 				if(mainMenuButtonPressed){
-					System.out.println("mainmenu pressed drawed");
 					batcher.draw(mainMenuPressedTexture, 
-							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
+							mainMenuBounds.x, mainMenuBounds.y);
 				}
 				else{
 					batcher.draw(mainMenuTexture, 
-							(VIRTUAL_WIDTH-mainMenuTexture.getWidth())/2, 180);
+							mainMenuBounds.x, mainMenuBounds.y);
 				}
-				
-				
 				
 				if(labirin.getScore()>=50){
 					batcher.draw(nextTexture, 950, 30);
@@ -213,17 +220,20 @@ public class LabirinScreen extends AbstractScreen{
 						labirin.getPlayer().getY());
 				
 				if (pauseButtonPressed) {
-					batcher.draw(pauseButtonPressedTexture,VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
+					batcher.draw(pauseButtonPressedTexture, pauseButtonBounds.getX(), 
+							pauseButtonBounds.getY());
 				} else {
-					batcher.draw(pauseButtonTexture, VIRTUAL_WIDTH-pauseButtonTexture.getWidth(), VIRTUAL_HEIGHT-pauseButtonTexture.getHeight());
+					batcher.draw(pauseButtonTexture, pauseButtonBounds.getX(), 
+							pauseButtonBounds.getY());
 				}
 				
 				if (helpButtonPressed) {
-					batcher.draw(helpButtonPressedTexture,0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
+					batcher.draw(helpButtonPressedTexture, helpButtonBounds.getX(), 
+							helpButtonBounds.getY());
 				} else {
-					batcher.draw(helpButtonTexture, 0, VIRTUAL_HEIGHT-helpButtonTexture.getHeight());
+					batcher.draw(helpButtonTexture, helpButtonBounds.getX(), 
+							helpButtonBounds.getY());
 				}
-				
 				
 				int time = (int)labirin.timeLeft;
 				
@@ -239,11 +249,8 @@ public class LabirinScreen extends AbstractScreen{
 		}
 		
 	}
-	
-	
+
 	private void drawDebug() {
-		// TODO Auto-generated method stub
-		
 		Rectangle[] top = new Rectangle[walls.length];
 		Rectangle[] right = new Rectangle[walls.length];
 		Rectangle[] bottom = new Rectangle[walls.length];
@@ -286,6 +293,18 @@ public class LabirinScreen extends AbstractScreen{
 		return pauseButtonPressed;
 	}
 	
+	public void setHelpButtonPressed(boolean b) {
+		helpButtonPressed = b;
+	}
+	
+	public boolean helpButtonIsPressed(){
+		return helpButtonPressed;
+	}
+
+	public Rectangle getHelpButtonBounds(){
+		return helpButtonBounds;
+	}
+	
 	public Rectangle getReplayBounds(){
 		return replayBounds;
 	}
@@ -320,19 +339,6 @@ public class LabirinScreen extends AbstractScreen{
 	
 	public boolean nextButtonIsPressed(){
 		return nextButtonPressed;
-	}
-	
-	public Rectangle getHelpButtonBounds(){
-		return helpButtonBounds;
-	}
-
-	public void setHelpButtonPressed(boolean b) {
-		helpButtonPressed = b;
-		
-	}
-	
-	public boolean helpButtonIsPressed(){
-		return helpButtonPressed;
 	}
 
 	public Labirin getLabirin() {
@@ -395,7 +401,8 @@ public class LabirinScreen extends AbstractScreen{
 				labirinMusicBg.setVolume(1.0f);
 				labirinMusicBg.play();
 			}
-		} else if(this.labirinMusicBg != null && this.labirinMusicBg.isPlaying()) {
+		} 
+		else if(this.labirinMusicBg != null && this.labirinMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
 	}

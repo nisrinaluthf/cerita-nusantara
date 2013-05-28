@@ -1,4 +1,5 @@
-backgrounds/bg_sumatera_old/scene1_bg_sumatera.png
+backgrounds/bg_sumatera_old/scene1_bg_sumatera.jpg
+music/sumatera/mst_1_3.ogg
 4
 speaker_dialog/pemburu.png
 speaker_dialog/parkit1_kiri.png

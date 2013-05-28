@@ -12,8 +12,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
-	
-
 	public class PilihCeritaController {
 	
 	private Aplikasi app;
@@ -21,6 +19,9 @@ import com.badlogic.gdx.math.Vector3;
 	private PilihCeritaScreen screen;
 	private Rectangle[] sumateraBounds;
 	private Rectangle[] kalimantanBounds;
+	private Rectangle[] jawaBounds;
+	private Rectangle[] baliBounds;
+	
 	private Rectangle backButtonBounds;
 	private OrthographicCamera cam;
 	private Rectangle viewport;
@@ -31,6 +32,9 @@ import com.badlogic.gdx.math.Vector3;
 		app = screen.getAplikasi();
 		sumateraBounds = screen.getSumateraBounds();
 		kalimantanBounds = screen.getKalimantanBounds();
+		jawaBounds = screen.getJawaBounds();
+		baliBounds = screen.getBaliBounds();
+		
 		backButtonBounds = this.screen.getBackButtonBounds();
 		cam = screen.getCam();
 		viewport = screen.getViewport();
@@ -58,10 +62,23 @@ import com.badlogic.gdx.math.Vector3;
 					screen.setKalimantanPressed(true);
 				}
 			}
+			
+			for(int i=0; i<jawaBounds.length; i++){
+				if(OverlapTester.pointInRectangle( jawaBounds[i], pos.x, pos.y)){
+					screen.playSoundFx("pilihcerita");
+					screen.setJawaPressed(true);
+				}
+			}
+			
+			for(int i=0; i<baliBounds.length; i++){
+				if(OverlapTester.pointInRectangle( baliBounds[i], pos.x, pos.y)){
+					screen.playSoundFx("pilihcerita");
+					screen.setBaliPressed(true);
+				}
+			}
 			if(OverlapTester.pointInRectangle( backButtonBounds,pos.x, pos.y)){
 				screen.playSoundFx("back");
 				screen.setBackButtonPressed(true);
-				System.out.println("back to home");
 			}
 		}
 		
@@ -97,6 +114,33 @@ import com.badlogic.gdx.math.Vector3;
 					}
 				}
 			}
+			
+			if(screen.jawaIsPressed()){
+				screen.setJawaPressed(false);
+				for(int i=0; i<jawaBounds.length; i++){
+					if(OverlapTester.pointInRectangle( jawaBounds[i], pos.x, pos.y)){
+						screen.stopMusic();
+						app.getScreen().dispose();
+						app.setScreen(new PilihSubCeritaScreen(app, 
+								app.getCeritaNusantara().getCerita(CeritaNusantara.JAWA)));
+						
+					}
+				}
+			}
+			
+			if(screen.baliIsPressed()){
+				screen.setBaliPressed(false);
+				for(int i=0; i<baliBounds.length; i++){
+					if(OverlapTester.pointInRectangle( baliBounds[i], pos.x, pos.y)){
+						screen.stopMusic();
+						app.getScreen().dispose();
+						app.setScreen(new PilihSubCeritaScreen(app, 
+								app.getCeritaNusantara().getCerita(CeritaNusantara.BALI)));
+						
+					}
+				}
+			}
+			
 			if(screen.backButtonIsPressed()){
 				screen.setBackButtonPressed(false);
 				if(OverlapTester.pointInRectangle( backButtonBounds, pos.x, pos.y)){
@@ -105,7 +149,6 @@ import com.badlogic.gdx.math.Vector3;
 					app.getScreen().dispose();
 					app.setScreen(new MainMenuScreen(app));
 				}
-				System.out.println("back diklik");
 			}
 			
 		}
