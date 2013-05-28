@@ -179,10 +179,10 @@ public class PilihCeritaScreen extends AbstractScreen {
 			}
 			
 			if(baliPressed){
-				batcher.draw(baliPressedTexture, 770, 15);
+				batcher.draw(baliPressedTexture, 790, 15);
 			}
 			else{
-				batcher.draw(baliTexture, 770, 15);
+				batcher.draw(baliTexture, 790, 15);
 			}
 			
 			if (backButtonPressed) {

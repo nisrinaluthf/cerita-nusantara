@@ -8,6 +8,7 @@ public class Cerita {
 	private Texture[] subCeritaIcons;
 	private boolean unlocked;
 	private SubCerita[] subcerita;
+	private Texture bgSelectScene;
 	
 	public Cerita(String namaDaerah, String namaCerita){
 		this.namaDaerah = namaDaerah;
@@ -48,6 +49,14 @@ public class Cerita {
 	
 	public Texture[] getSubCeritaIcons(){
 		return subCeritaIcons;
+	}
+
+	public Texture getBgSelectScene() {
+		return bgSelectScene;
+	}
+
+	public void setBgSelectScene(Texture bgSelectScene) {
+		this.bgSelectScene = bgSelectScene;
 	}
 	
 }

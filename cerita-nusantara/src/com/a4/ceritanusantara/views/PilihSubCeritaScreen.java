@@ -48,8 +48,7 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 	public PilihSubCeritaScreen(Aplikasi app, Cerita cerita) {
 		super(app);
 		subcerita = cerita.getSubCerita();
-		background = new Texture(Gdx.files.internal("select_scene/bg_"
-				+subcerita.length+".png"));
+		background = cerita.getBgSelectScene();
 	
 		circle = new Texture(Gdx.files.internal("select_scene/circle.png"));	
 		circlePressed = new Texture(

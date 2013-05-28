@@ -207,5 +207,14 @@ public class CeritaNusantara {
 		cerita[KALIMANTAN].setSubCeritaIcons(kalimantanIcons);
 		cerita[JAWA].setSubCeritaIcons(jawaIcons);
 		cerita[BALI].setSubCeritaIcons(baliIcons);
+		
+		cerita[SUMATERA].setBgSelectScene(new Texture(
+				Gdx.files.internal("select_scene/select_scene_sumatera.jpg")));
+		cerita[KALIMANTAN].setBgSelectScene(new Texture(
+				Gdx.files.internal("select_scene/select_scene_kalimantan.jpg")));
+		cerita[JAWA].setBgSelectScene(new Texture(
+				Gdx.files.internal("select_scene/select_scene_jawa.jpg")));
+		cerita[BALI].setBgSelectScene(new Texture(
+				Gdx.files.internal("select_scene/select_scene_bali.jpg")));
 	}
 }
