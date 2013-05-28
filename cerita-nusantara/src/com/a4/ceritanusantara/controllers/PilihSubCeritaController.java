@@ -76,7 +76,6 @@ public class PilihSubCeritaController {
 				screen.playSoundFx("back");
 				screen.stopMusic();
 				screen.setBackButtonPressed(true);
-				System.out.println("back to pilih cerita");
 			}
 			
 		}
@@ -125,7 +124,6 @@ public class PilihSubCeritaController {
 					app.getScreen().dispose();
 					app.setScreen(new PilihCeritaScreen(app));
 				}
-				System.out.println("back diklik");
 			}
 		}
 		if (Gdx.input.isKeyPressed(Keys.BACK)){

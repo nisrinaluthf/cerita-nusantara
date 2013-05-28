@@ -52,6 +52,8 @@ public class PuzzleScreen extends AbstractScreen{
 	private BitmapFont font44;
 	
 	private Sound pauseClickSfx;
+	private Sound dragPieceSfx;
+	private Sound dropPieceSfx;
 	private Music runningGameMusicBg;
 			
 	private boolean debug = false;
@@ -140,6 +142,8 @@ public class PuzzleScreen extends AbstractScreen{
 		}
 		
 		this.pauseClickSfx = Gdx.audio.newSound(Gdx.files.internal("sound/click.mp3"));
+		this.dragPieceSfx = Gdx.audio.newSound(Gdx.files.internal("sound/drag_puzzle.ogg"));
+		this.dropPieceSfx = Gdx.audio.newSound(Gdx.files.internal("sound/drop_puzzle.ogg"));
 		
 		controller = new PuzzleController(this);
 	}
@@ -323,8 +327,13 @@ public class PuzzleScreen extends AbstractScreen{
 	
 	public void playSoundFx(String key) {
 		if(Gdx.app.getPreferences("preferences").getBoolean("soundOn"))
-			if (key.equals("default"))
+			if (key.equals("default")) {
 				this.pauseClickSfx.play();
+			} else if(key.equals("drag")) {
+				this.dragPieceSfx.play();
+			} else if(key.equals("drop")) {
+				this.dropPieceSfx.play();
+			} 
 	}
 	
 	

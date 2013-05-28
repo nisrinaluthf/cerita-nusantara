@@ -158,7 +158,7 @@ public class PuzzleController {
 			tmp = tmp.substring(0, tmp.length()-1);
 		}
 		localFile.writeString(tmp, false);
-		System.out.println(tmp);
+		//System.out.println(tmp);
 		
 	}
 
@@ -194,6 +194,7 @@ public class PuzzleController {
 					for (int j=pieces[i].length-1; j>=0 && currentPiece==null; j--){
 						if(OverlapTester.pointInRectangle(pieces[i][j].getBounds(), 
 								pos.x, pos.y) && !pieces[i][j].isSolved()){
+							screen.playSoundFx("drag");
 							pieces[i][j].setPressed(true);	
 							currentPiece = pieces[i][j];
 							prevPos = pos;
@@ -247,6 +248,7 @@ public class PuzzleController {
 						currentPiece.getTarget().getBounds())){
 					currentPiece.setX(currentPiece.getCorrectPos().x);
 					currentPiece.setY(currentPiece.getCorrectPos().y);
+					screen.playSoundFx("drop");
 					currentPiece.setSolved();
 				}
 				

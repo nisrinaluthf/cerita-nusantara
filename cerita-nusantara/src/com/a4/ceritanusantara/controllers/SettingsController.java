@@ -39,12 +39,6 @@ public class SettingsController {
 		musicButtonBounds = this.screen.getMusicButtonBounds();
 		backButtonBounds = this.screen.getBackButtonBounds();
 		prefs = Gdx.app.getPreferences("preferences");
-		//if (prefs == null) {
-			//prefs.putBoolean("soundOn", true);
-			//prefs.putBoolean("musicOn", true);
-			//prefs.flush();
-		//}
-		System.out.println("setting controller di create");
 		cam = this.screen.getCam();
 		viewport = this.screen.getViewport();
 

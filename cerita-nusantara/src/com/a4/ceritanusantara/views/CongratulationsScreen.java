@@ -31,7 +31,6 @@ public class CongratulationsScreen extends AbstractScreen {
 	private boolean facebookButtonPressed;
 	private boolean twitterButtonPressed;
 	
-	private boolean debug = false;
 	private Rectangle nextButtonBounds;
 	private Texture nextButtonTexture;
 	private boolean nextButtonPressed;
