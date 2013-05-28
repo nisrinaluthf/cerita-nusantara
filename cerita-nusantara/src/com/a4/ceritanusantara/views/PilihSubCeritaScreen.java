@@ -57,22 +57,22 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 		lockTexture = new Texture(Gdx.files.internal("select_scene/lock.png"));
 		
 		buttonPos = new Vector2[]{
-				new Vector2(740, 451),
-				new Vector2(540, 451),
-				new Vector2(340, 451),
-				new Vector2(150, 451),
+				new Vector2(710, 360),
+				new Vector2(540, 361),
+				new Vector2(375, 361),
+				new Vector2(190, 350),
 				
-				new Vector2(30, 348),
+				new Vector2(30, 265),
 				
-				new Vector2(160, 235),
-				new Vector2(360, 235),
-				new Vector2(560, 235),
-				new Vector2(755, 235),
+				new Vector2(200, 200),
+				new Vector2(370, 180),
+				new Vector2(535, 180),
+				new Vector2(725, 175),
 				
-				new Vector2(870, 128),
+				new Vector2(870, 100),
 				
-				new Vector2(740, 35),
-				new Vector2(540, 35)
+				new Vector2(720, 15),
+				new Vector2(550, 15)
 		};
 		
 		subCeritaButtonBounds = new Rectangle[buttonPos.length];
