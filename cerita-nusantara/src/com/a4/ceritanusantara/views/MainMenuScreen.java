@@ -78,7 +78,7 @@ public class MainMenuScreen extends AbstractScreen {
 		playButtonPressed = false;
 		settingsButtonPressed = false;
 		
-		mainMenuMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+		mainMenuMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/main_menu.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");

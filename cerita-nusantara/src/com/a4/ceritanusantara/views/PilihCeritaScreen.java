@@ -77,7 +77,7 @@ public class PilihCeritaScreen extends AbstractScreen {
 		kalimantanPressed = false;
 		backButtonPressed = false;
 		
-		pilihCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.mp3"));
+		pilihCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
@@ -87,7 +87,7 @@ public class PilihCeritaScreen extends AbstractScreen {
 				pilihCeritaMusicBg.setLooping(true);
 				pilihCeritaMusicBg.play();
 			} else {
-				this.pilihCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.mp3"));
+				this.pilihCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_cerita.ogg"));
 				System.out.println("play music after null");
 				pilihCeritaMusicBg.setLooping(true);
 				pilihCeritaMusicBg.play();

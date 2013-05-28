@@ -109,7 +109,7 @@ public class RunningGameScreen extends AbstractScreen{
 		//indicatorsTexture = runningGame.getIndicators();
 		
 		gameOverBg = new
-				Texture(Gdx.files.internal("backgrounds/gameover_bg.png"));
+				Texture(Gdx.files.internal("backgrounds/gameover_bg.jpg"));
 		replayTexture = new
 				Texture(Gdx.files.internal("buttons/restart.png"));
 		replayPressedTexture = new
@@ -191,7 +191,7 @@ public class RunningGameScreen extends AbstractScreen{
 		
 		helpButtonPressed = false;
 		
-		//scoreBgTexture = new Texture(Gdx.files.internal("selatbali_running/score_bg.png"));
+		//scoreBgTexture = new Texture(Gdx.files.internal("selatbali_running/score_bg.jpg"));
 		//scoreFrameTexture = new Texture(Gdx.files.internal("selatbali_running/score_frame.png"));
 		
 		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
@@ -199,7 +199,7 @@ public class RunningGameScreen extends AbstractScreen{
 		
 		//buttons = runningGame.getButtons();
 		
-		runningGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.mp3"));
+		runningGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/runningGame.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
@@ -352,7 +352,7 @@ public class RunningGameScreen extends AbstractScreen{
 					batcher.draw(indicatorsTexture[1], 865, 0);
 				}
 			*/
-			
+		
 				Iterator<RunningGameObstacle> itr = runningGame.getObstacles().iterator();
 				while(itr.hasNext()){
 					RunningGameObstacle obs = itr.next();
@@ -574,7 +574,7 @@ public class RunningGameScreen extends AbstractScreen{
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				runningGameMusicBg.play();
 			} else {
-				this.runningGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/runningGame.mp3"));
+				this.runningGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/runningGame.ogg"));
 				System.out.println("play music after null");
 				runningGameMusicBg.setLooping(true);
 				runningGameMusicBg.setVolume(1.0f);

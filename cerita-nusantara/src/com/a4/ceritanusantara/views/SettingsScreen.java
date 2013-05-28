@@ -93,7 +93,7 @@ public class SettingsScreen extends AbstractScreen {
 		font = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		
-		settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+		settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/main_menu.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			System.out.println("play music");
@@ -256,7 +256,7 @@ public class SettingsScreen extends AbstractScreen {
 				settingsMusicBg.setLooping(true);
 				settingsMusicBg.play();
 			} else {
-			this.settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/Happy_Alley.wav"));
+			this.settingsMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/main_menu.ogg"));
 			System.out.println("play music after null");
 				settingsMusicBg.setLooping(true);
 				settingsMusicBg.play();

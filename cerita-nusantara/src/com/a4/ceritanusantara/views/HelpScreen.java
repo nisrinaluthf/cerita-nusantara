@@ -94,7 +94,7 @@ public class HelpScreen extends AbstractScreen {
 		
 		resumeButtonPressed = false;
 		
-		helpMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.mp3"));
+		helpMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
@@ -104,7 +104,7 @@ public class HelpScreen extends AbstractScreen {
 				helpMusicBg.setLooping(true);
 				helpMusicBg.play();
 			} else {
-				this.helpMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.mp3"));
+				this.helpMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.ogg"));
 				System.out.println("play music after null");
 				helpMusicBg.setLooping(true);
 				helpMusicBg.play();

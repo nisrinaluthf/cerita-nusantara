@@ -105,7 +105,7 @@ public class PilihSubCeritaScreen extends AbstractScreen{
 		
 		backButtonPressed = false;
 		
-		pilihSubCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.mp3"));
+		pilihSubCeritaMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/pilih_adegan.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");

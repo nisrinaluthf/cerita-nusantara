@@ -133,7 +133,7 @@ public class TapGameScreen extends AbstractScreen{
 		
 		buttons = tapGame.getButtons();
 		
-		tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.mp3"));
+		tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
@@ -421,7 +421,7 @@ public class TapGameScreen extends AbstractScreen{
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				tapGameMusicBg.play();
 			} else {
-				this.tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.mp3"));
+				this.tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.ogg"));
 				System.out.println("play music after null");
 				tapGameMusicBg.setLooping(true);
 				tapGameMusicBg.setVolume(1.0f);

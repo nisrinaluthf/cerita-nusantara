@@ -117,7 +117,7 @@ public class KuisScreen extends AbstractScreen{
 		
 		pauseButtonPressed = false;
 		
-		kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.mp3"));
+		kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
@@ -402,7 +402,7 @@ public class KuisScreen extends AbstractScreen{
 				kuisMusicBg.setVolume(0.25f);
 				kuisMusicBg.play();
 			} else {
-				this.kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.mp3"));
+				this.kuisMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/kuis.ogg"));
 				System.out.println("play music after null");
 				kuisMusicBg.setLooping(true);
 				kuisMusicBg.setVolume(0.25f);

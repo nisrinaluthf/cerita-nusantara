@@ -162,6 +162,7 @@ public class RunningGameController {
 							//target.setHit(true);
 							runningGame.setHealth(runningGame.getHealth()-1);
 							runningGame.setScore(runningGame.getScore() - 10);
+							
 							//tapGame.setHits(tapGame.getHits()-1);
 							//tapGame.addBadHit();
 						//}

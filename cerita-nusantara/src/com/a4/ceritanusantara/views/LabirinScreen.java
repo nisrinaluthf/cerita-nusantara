@@ -128,7 +128,7 @@ public class LabirinScreen extends AbstractScreen{
 		font44 = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		
-		labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.mp3"));
+		labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			//System.out.println("play music");
@@ -389,7 +389,7 @@ public class LabirinScreen extends AbstractScreen{
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				labirinMusicBg.play();
 			} else {
-				this.labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.mp3"));
+				this.labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.ogg"));
 				System.out.println("play music after null");
 				labirinMusicBg.setLooping(true);
 				labirinMusicBg.setVolume(1.0f);
