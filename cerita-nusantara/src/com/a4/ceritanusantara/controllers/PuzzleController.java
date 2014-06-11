@@ -162,7 +162,6 @@ public class PuzzleController {
 			tmp = tmp.substring(0, tmp.length()-1);
 		}
 		localFile.writeString(tmp, false);
-		//System.out.println(tmp);
 		
 	}
 

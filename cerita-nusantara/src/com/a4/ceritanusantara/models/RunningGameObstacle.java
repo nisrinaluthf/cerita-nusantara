@@ -96,4 +96,8 @@ public class RunningGameObstacle {
     public void setType(int type) {
         this.type = type;
     }
+    
+    public void dispose() {
+		this.obstacle.dispose();
+	}
 }

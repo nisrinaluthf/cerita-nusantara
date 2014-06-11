@@ -72,4 +72,9 @@ public class TapGameButton {
     public boolean isPressed() {
         return pressed;
     }
+    
+    public void dispose() {
+		this.buttonTexture.dispose();
+		this.buttonPressedTexture.dispose();
+	}
 }

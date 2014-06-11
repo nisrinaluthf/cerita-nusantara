@@ -49,12 +49,10 @@ public class SettingsController {
 	}
 	
 	public void processInput(){
-		//System.out.println("masuk setting controller process input");
 		if(Gdx.input.justTouched()){
 			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 			cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 			
-			//System.out.println(soundButtonBounds+" x: "+Gdx.input.getX()/screen.ppuX+" y: "+(screen.height-Gdx.input.getY())/screen.ppuY);
 			if(OverlapTester.pointInRectangle( soundButtonBounds,pos.x, pos.y)){
 				
 				screen.setSoundButtonPressed(true);
@@ -109,11 +107,12 @@ public class SettingsController {
 					app.getScreen().dispose();
 					Screen ori = screen.getOriginScreen();
 					if(((AbstractScreen) ori).getScreenType() == 0) {
-						app.getScreen().dispose();
+						//app.getScreen().dispose();
 						app.setScreen(new MainMenuScreen(app));
-					} else {
+					} 
+					else {
 						screen.getOriginScreen().resume();
-						app.getScreen().dispose();
+						//app.getScreen().dispose();
 						app.setScreen(screen.getOriginScreen());
 					}
 

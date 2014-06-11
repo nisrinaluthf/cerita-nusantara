@@ -78,7 +78,6 @@ public class LabirinPlayer {
 	
 	public void reinit() {
 		// TODO Auto-generated method stub
-		System.out.println("reinit labirinplayer dipanggil");
 		pos = new Vector2(initPos.x, initPos.y);
 		bounds = new Rectangle(pos.x, pos.y, 23, 23);
 		velocity = new Vector2(0, 0);

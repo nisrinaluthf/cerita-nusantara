@@ -81,9 +81,6 @@ public class LabirinScreen extends AbstractScreen{
 		labirin.reinit();
 		
 		walls = labirin.getWalls();
-		//for(int i=0; i<walls.length; i++){
-			//System.out.println("wall"+walls[i].getX());
-		//}
 		items = labirin.getItems();
 		
 		background = labirin.getBackground();
@@ -377,8 +374,6 @@ public class LabirinScreen extends AbstractScreen{
 	
 	
 	public void stopMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.labirinMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.labirinMusicBg != null) {
 			if (this.labirinMusicBg.isPlaying()) {
 				if (this.labirinMusicBg.isLooping()) {
@@ -392,32 +387,23 @@ public class LabirinScreen extends AbstractScreen{
 		}
 	}
 	public void pauseMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.labirinMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.labirinMusicBg != null) {
 			if (this.labirinMusicBg.isPlaying()) {
 				if (this.labirinMusicBg.isLooping()) {
 					this.labirinMusicBg.setLooping(false);
 				}
 				this.labirinMusicBg.pause();
-				//this.labirinMusicBg.dispose();
-				//this.labirinMusicBg = null;
 			}
-			//this.labirinMusicBg = null;
 		}
 	}
 	
 	public void resume() {
 		super.resume();
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.labirinMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				labirinMusicBg.play();
 			} else {
 				this.labirinMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/labirin.ogg"));
-				System.out.println("play music after null");
 				labirinMusicBg.setLooping(true);
 				labirinMusicBg.setVolume(1.0f);
 				labirinMusicBg.play();
@@ -430,14 +416,8 @@ public class LabirinScreen extends AbstractScreen{
 	
 	public void dispose() {
 		super.dispose();
-		//background.dispose();
-		//wallTexture.dispose();
-		/*
-		for(int i=0; i<playerTexture.length; i++){
-			playerTexture[i].dispose();
-		}
-		*/
-		pauseButtonTexture.dispose();		
+		pauseButtonTexture.dispose();	
+		pauseButtonPressedTexture.dispose();	
 		helpButtonTexture.dispose();
 		helpButtonPressedTexture.dispose();
 		//itemTexture.dispose();	
@@ -454,6 +434,12 @@ public class LabirinScreen extends AbstractScreen{
 		panel.dispose();
 		gameover.dispose();
 		finishTexture.dispose();
+		this.itemTexture.dispose();
+		this.wallTexture.dispose();
+		for(int idx = 0; idx < this.playerTexture.length; idx++){
+			this.playerTexture[idx].dispose();
+		}
+		this.labirin.dispose();
 	}
 
 }

@@ -88,7 +88,6 @@ public class RunningGameController {
 					screen.playSoundFx("default");
 					screen.stopMusic();
 					screen.setMainMenuButtonPressed(true);
-					//System.out.println("mainmenu");
 				}
 				
 				else if(OverlapTester.pointInRectangle(nextBounds, 
@@ -107,7 +106,6 @@ public class RunningGameController {
 					screen.setReplayButtonPressed(false);
 					if(OverlapTester.pointInRectangle(replayBounds, pos.x, pos.y)){
 						app.getScreen().dispose();
-						System.out.println("replay");
 						app.setScreen(new RunningGameScreen(app, runningGame));
 					}
 				}
@@ -196,7 +194,6 @@ public class RunningGameController {
 				Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 				cam.unproject(pos, viewport.x, viewport.y, viewport.width, viewport.height);
 				
-				System.out.println(pauseButtonBounds.x+" "+pauseButtonBounds.y);
 				if(OverlapTester.pointInRectangle(pauseButtonBounds, pos.x, pos.y)){
 					screen.playSoundFx("default");
 					screen.pauseMusic();
@@ -227,7 +224,6 @@ public class RunningGameController {
 						float currentPosition = runningGame.getPlayerXPosition();
 						if(currentPosition >= runningGame.getLeftLimit()-5.0f) {
 							runningGame.setPlayerXPosition(currentPosition-5.0f);
-							//System.out.println("gerak ke kiri " + runningGame.getPlayerXPosition());
 						} else {
 							runningGame.setPlayerXPosition(runningGame.getLeftLimit());
 						}
@@ -240,7 +236,6 @@ public class RunningGameController {
 						float currentPosition = runningGame.getPlayerXPosition();
 						if(currentPosition <= (runningGame.getRightLimit()+5.0f)) {
 							runningGame.setPlayerXPosition(currentPosition+5.0f);
-							//System.out.println("gerak ke kanan " + runningGame.getPlayerXPosition());
 						} else {
 							runningGame.setPlayerXPosition(runningGame.getRightLimit());
 						}
@@ -340,7 +335,6 @@ public class RunningGameController {
 			tmp = tmp.substring(0, tmp.length()-1);
 		}
 		localFile.writeString(tmp, false);
-		//System.out.println(tmp);
 		
 	}
 

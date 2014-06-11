@@ -184,35 +184,31 @@ public class CeritaNusantara {
 			}
 		}
 		
-		Texture[] sumateraIcons = new Texture[cerita[SUMATERA].getSubCerita().length];
-		Texture[] kalimantanIcons = new Texture[cerita[KALIMANTAN].getSubCerita().length];
-		Texture[] jawaIcons = new Texture[cerita[JAWA].getSubCerita().length];
-		Texture[] baliIcons = new Texture[cerita[BALI].getSubCerita().length];
+		String[] sumateraIconPaths = new String[cerita[SUMATERA].getSubCerita().length];
+		String[] kalimantanIconPaths = new String[cerita[KALIMANTAN].getSubCerita().length];
+		String[] jawaIconPaths = new String[cerita[JAWA].getSubCerita().length];
+		String[] baliIconPaths = new String[cerita[BALI].getSubCerita().length];
 		
-		for(int i=0; i<sumateraIcons.length; i++){
-			sumateraIcons[i] = new Texture(
-					Gdx.files.internal("select_scene/sumatera/"+(i+1)+".png"));
+		for(int i=0; i<sumateraIconPaths.length; i++){
+			sumateraIconPaths[i] = "select_scene/sumatera/"+(i+1)+".png";
 		}
 		
-		for(int i=0; i<kalimantanIcons.length; i++){
-			kalimantanIcons[i] = new Texture(
-					Gdx.files.internal("select_scene/kalimantan/"+(i+1)+".png"));
+		for(int i=0; i<kalimantanIconPaths.length; i++){
+			kalimantanIconPaths[i] = "select_scene/kalimantan/"+(i+1)+".png";
 		}
 		
-		for(int i=0; i<jawaIcons.length; i++){
-			jawaIcons[i] = new Texture(
-					Gdx.files.internal("select_scene/jawa/"+(i+1)+".png"));
+		for(int i=0; i<jawaIconPaths.length; i++){
+			jawaIconPaths[i] = "select_scene/jawa/"+(i+1)+".png";
 		}
 		
-		for(int i=0; i<baliIcons.length; i++){
-			baliIcons[i] = new Texture(
-					Gdx.files.internal("select_scene/bali/"+(i+1)+".png"));
+		for(int i=0; i<baliIconPaths.length; i++){
+			baliIconPaths[i] = "select_scene/bali/"+(i+1)+".png";
 		}
 		
-		cerita[SUMATERA].setSubCeritaIcons(sumateraIcons);
-		cerita[KALIMANTAN].setSubCeritaIcons(kalimantanIcons);
-		cerita[JAWA].setSubCeritaIcons(jawaIcons);
-		cerita[BALI].setSubCeritaIcons(baliIcons);
+		cerita[SUMATERA].setSubCeritaIcons(sumateraIconPaths);
+		cerita[KALIMANTAN].setSubCeritaIcons(kalimantanIconPaths);
+		cerita[JAWA].setSubCeritaIcons(jawaIconPaths);
+		cerita[BALI].setSubCeritaIcons(baliIconPaths);
 		
 		cerita[SUMATERA].setBgSelectScene(new Texture(
 				Gdx.files.internal("select_scene/select_scene_sumatera.jpg")));
@@ -222,5 +218,6 @@ public class CeritaNusantara {
 				Gdx.files.internal("select_scene/select_scene_jawa.jpg")));
 		cerita[BALI].setBgSelectScene(new Texture(
 				Gdx.files.internal("select_scene/select_scene_bali.jpg")));
+				
 	}
 }

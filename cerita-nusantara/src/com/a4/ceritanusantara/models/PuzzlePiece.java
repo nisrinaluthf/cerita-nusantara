@@ -132,6 +132,9 @@ public class PuzzlePiece {
 	public boolean isSolved() {
 		return solved;
 	}
-
+	
+	public void dispose() {
+		this.texture.dispose();
+	}
 	
 }

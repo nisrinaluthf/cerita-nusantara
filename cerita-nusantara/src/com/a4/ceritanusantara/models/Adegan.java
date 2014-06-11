@@ -1,5 +1,6 @@
 package com.a4.ceritanusantara.models;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -164,6 +165,25 @@ public class Adegan extends SubCerita {
 	 */
 	public int getLength(){
 		return adeganText.length;
+	}
+	
+	public void dispose() {
+		this.music.dispose();
+		for(int idx = 0; idx < this.charaTexture.length; idx++) {
+			this.charaTexture[idx].dispose();
+		}
+	}
+
+	public void setMusic(String musicPath) {
+		this.music = Gdx.audio.newMusic(Gdx.files.internal(musicPath));
+	}
+
+	public void setCharaTexture(String[] chara) {
+		this.charaTexture = new Texture[chara.length];
+		
+		for(int idx = 0; idx < this.charaTexture.length; idx++) {
+			this.charaTexture[idx] = new Texture(Gdx.files.internal(chara[idx]));
+		}
 	}
 	
 }

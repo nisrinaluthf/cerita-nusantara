@@ -118,4 +118,14 @@ public class Puzzle extends SubCerita{
 		return solvedTexture;
 	}
 	
+	public void dispose() {
+		this.background.dispose();
+		this.solvedTexture.dispose();
+		for(int i=0; i< this.pieces.length; i++) {
+			for(int j=0; j< this.pieces[i].length; i++) {
+				this.pieces[i][j].dispose();
+			}
+		}
+	}
+	
 }

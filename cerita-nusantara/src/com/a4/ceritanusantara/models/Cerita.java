@@ -1,5 +1,6 @@
 package com.a4.ceritanusantara.models;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
@@ -53,6 +54,14 @@ public class Cerita {
 		subCeritaIcons = icons;
 	}
 	
+	public void setSubCeritaIcons(String[] paths){
+		subCeritaIcons = new Texture[paths.length];
+		for(int i=0; i<subCeritaIcons.length; i++){
+			subCeritaIcons[i] = new Texture(
+					Gdx.files.internal(paths[i]));
+		}
+	}
+	
 	public Texture[] getSubCeritaIcons(){
 		return subCeritaIcons;
 	}
@@ -65,4 +74,10 @@ public class Cerita {
 		this.bgSelectScene = bgSelectScene;
 	}
 	
+	public void dispose() {
+		this.bgSelectScene.dispose();
+		for(int idx = 0; idx < this.subCeritaIcons.length; idx++) {
+			this.subCeritaIcons[idx].dispose();
+		}
+	}
 }

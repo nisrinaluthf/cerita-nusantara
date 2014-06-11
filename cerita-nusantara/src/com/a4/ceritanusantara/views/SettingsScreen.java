@@ -274,7 +274,6 @@ public class SettingsScreen extends AbstractScreen {
 		}
 		
 	public void dispose(){
-		super.dispose();
 		background.dispose();
 		buttonBackground.dispose();
 		
@@ -289,6 +288,7 @@ public class SettingsScreen extends AbstractScreen {
 		font.dispose();
 		settingsMusicBg.dispose();
 		clickSfx.dispose();
+		super.dispose();
 	}
 
 }

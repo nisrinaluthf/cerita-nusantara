@@ -594,16 +594,16 @@ public class RunningGameScreen extends AbstractScreen{
 	public void dispose(){
 		super.dispose();
 		
-		/*
+		
 		background.dispose();
 		panelBgTexture.dispose();
 		background2.dispose();
 		panelBgTexture2.dispose();
-		*/
 		
-		//playerTexture.dispose();
+		
+		playerTexture.dispose();
 		progressBar.dispose();
-		//progressIcon.dispose();
+		progressIcon.dispose();
 		healthIcon.dispose();
 		finishLine.dispose();
 		
@@ -635,5 +635,7 @@ public class RunningGameScreen extends AbstractScreen{
 
 		panel.dispose();
 		gameover.dispose();
+		
+		this.runningGame.dispose();
 	}
 }

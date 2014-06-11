@@ -106,11 +106,12 @@ public class RunningGame extends SubCerita {
 			RunningGameObstacle obs = itr.next();
 			obs.setPos(obs.getPos() - this.VELOCITY);
 			//System.out.println("posisi obstacle "+(obs.getPos() - this.VELOCITY));
-			/*
+			
 			if(obs.getPos()<-126){
+				obs.dispose();
 				itr.remove();
 			}
-			*/
+			
 		}
 		
 		if(backgroundYPosition > -604 )
@@ -212,6 +213,13 @@ public class RunningGame extends SubCerita {
 	public List<RunningGameObstacle> getObstacles() {
 		// TODO Auto-generated method stub
 		return this.obstacles;
+	}
+	
+	public void dispose() {
+		this.background.dispose();
+		this.PanelBgTexture.dispose();
+		this.player.dispose();
+		this.progressIcon.dispose();
 	}
 
 }

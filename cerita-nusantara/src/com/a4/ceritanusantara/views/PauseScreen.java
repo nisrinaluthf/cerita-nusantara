@@ -419,7 +419,6 @@ public class PauseScreen extends AbstractScreen {
 	public void resume() {
 		super.resume();
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.pauseMusicBg != null) {
 				pauseMusicBg.play();
 			} else {

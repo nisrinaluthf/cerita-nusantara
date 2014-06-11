@@ -8,7 +8,6 @@ import com.a4.ceritanusantara.views.CongratulationsScreen;
 import com.a4.ceritanusantara.views.PilihSubCeritaScreen;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;

@@ -135,7 +135,8 @@ public class AdeganController {
 							}
 							else if(type==SubCerita.KUIS){
 								screen.stopMusic();
-								app.getScreen().dispose();app.setScreen(new KuisScreen(app, (Kuis)next));
+								app.getScreen().dispose();
+								app.setScreen(new KuisScreen(app, (Kuis)next));
 							}
 						}
 					}

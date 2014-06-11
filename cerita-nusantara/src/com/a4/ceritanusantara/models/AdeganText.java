@@ -1,5 +1,6 @@
 package com.a4.ceritanusantara.models;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
@@ -25,6 +26,12 @@ public class AdeganText {
 		this.background = background;
 	}
 	
+	public AdeganText(String text, int type, String path) {
+		this.text = text;
+		this.type = type;
+		this.background = new Texture(Gdx.files.internal(path));
+	}
+
 	public String getText(){
 		return text;
 	}
@@ -48,11 +55,14 @@ public class AdeganText {
 	
 
 	public void setBackground(Texture background) {
-		// TODO Auto-generated method stub
 		this.background = background;
 	}
 	
 	public Texture getBackground(){
 		return background;
+	}
+	
+	public void dispose() {
+		this.background.dispose();
 	}
 }

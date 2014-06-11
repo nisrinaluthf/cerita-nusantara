@@ -167,4 +167,18 @@ public class TapGame extends SubCerita {
     public boolean isGameOver() {
         return gameOver;
     }
+    
+    public void dispose() {
+		this.background.dispose();
+		this.PanelBgTexture.dispose();
+		for(int idx = 0; idx < this.targetsTexture.length; idx++) {
+			this.targetsTexture[idx].dispose();
+		}
+		for(int idx = 0; idx < this.targetsPressedTexture.length; idx++) {
+			this.targetsPressedTexture[idx].dispose();
+		}
+		for(int idx = 0; idx < this.indicatorsTexture.length; idx++) {
+			this.indicatorsTexture[idx].dispose();
+		}
+	}
 }

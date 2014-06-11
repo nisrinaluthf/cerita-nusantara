@@ -85,7 +85,6 @@ public class TapGameController {
 					screen.playSoundFx("default");
 					screen.stopMusic();
 					screen.setReplayButtonPressed(true);
-					System.out.println("replay");
 				}
 				
 				else if(OverlapTester.pointInRectangle(mainMenuBounds, 
@@ -93,7 +92,6 @@ public class TapGameController {
 					screen.playSoundFx("default");
 					screen.stopMusic();
 					screen.setMainMenuButtonPressed(true);
-					System.out.println("mainmenu");
 				}
 				
 				else if(OverlapTester.pointInRectangle(nextBounds, 
@@ -169,7 +167,6 @@ public class TapGameController {
 				save();
 				tapGame.gameOver();
 			}
-			System.out.println(tapGame.getScore());
 			if(tapGame.getHits()>=25){
 				
 				int score = 60;

@@ -34,7 +34,6 @@ public class LabirinWall {
 	}
 	
 	public Vector2 getPos(){
-		System.out.println(pos.x+" "+pos.y);
 		return pos;
 	}
 	

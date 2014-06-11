@@ -134,4 +134,12 @@ public class Labirin extends SubCerita{
 		return finish;
 	}
 	
+	public void dispose() {
+		this.background.dispose();
+		this.wallTexture.dispose();
+		this.itemTexture.dispose();
+		for(int idx = 0; idx < this.playerTexture.length; idx++) {
+			this.playerTexture[idx].dispose();
+		}
+	}
 }

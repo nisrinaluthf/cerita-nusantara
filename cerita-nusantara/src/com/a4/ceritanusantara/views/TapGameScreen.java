@@ -414,8 +414,6 @@ public class TapGameScreen extends AbstractScreen{
 		super.resume();
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
 			if (this.tapGameMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				tapGameMusicBg.play();
 			} else {
 				this.tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.ogg"));

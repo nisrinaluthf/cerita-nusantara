@@ -58,7 +58,7 @@ public class PuzzleScreen extends AbstractScreen{
 	private Sound pauseClickSfx;
 	private Sound dragPieceSfx;
 	private Sound dropPieceSfx;
-	private Music runningGameMusicBg;
+	private Music tapGameMusicBg;
 			
 	private boolean debug = false;
 	private Texture solved;
@@ -136,15 +136,15 @@ public class PuzzleScreen extends AbstractScreen{
 		font44 = new BitmapFont(Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.fnt"),
 				Gdx.files.internal("fonts/sf-cartoonist-hand-44-black-bold.png"), false);
 		
-		runningGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.ogg"));
+		tapGameMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/tapGame.ogg"));
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			if (this.runningGameMusicBg != null) {
-				runningGameMusicBg.setLooping(true);
-				runningGameMusicBg.setVolume(1.0f);
-				runningGameMusicBg.play();
+			if (this.tapGameMusicBg != null) {
+				tapGameMusicBg.setLooping(true);
+				tapGameMusicBg.setVolume(1.0f);
+				tapGameMusicBg.play();
 			} 
-		} else if(this.runningGameMusicBg != null && this.runningGameMusicBg.isPlaying()) {
+		} else if(this.tapGameMusicBg != null && this.tapGameMusicBg.isPlaying()) {
 			this.stopMusic();
 		}
 		
@@ -358,12 +358,12 @@ public class PuzzleScreen extends AbstractScreen{
 	
 	
 	public void stopMusic() {
-		if(this.runningGameMusicBg != null) {
-			if (this.runningGameMusicBg.isPlaying()) {
-				if (this.runningGameMusicBg.isLooping()) {
-					this.runningGameMusicBg.setLooping(false);
+		if(this.tapGameMusicBg != null) {
+			if (this.tapGameMusicBg.isPlaying()) {
+				if (this.tapGameMusicBg.isLooping()) {
+					this.tapGameMusicBg.setLooping(false);
 				}
-				this.runningGameMusicBg.stop();
+				this.tapGameMusicBg.stop();
 				//this.runningGameMusicBg.dispose();
 				//this.runningGameMusicBg = null;
 			}
@@ -371,12 +371,12 @@ public class PuzzleScreen extends AbstractScreen{
 		}
 	}
 	public void pauseMusic() {
-		if(this.runningGameMusicBg != null) {
-			if (this.runningGameMusicBg.isPlaying()) {
-				if (this.runningGameMusicBg.isLooping()) {
-					this.runningGameMusicBg.setLooping(false);
+		if(this.tapGameMusicBg != null) {
+			if (this.tapGameMusicBg.isPlaying()) {
+				if (this.tapGameMusicBg.isLooping()) {
+					this.tapGameMusicBg.setLooping(false);
 				}
-				this.runningGameMusicBg.pause();
+				this.tapGameMusicBg.pause();
 				//this.runningGameMusicBg.dispose();
 				//this.runningGameMusicBg = null;
 			}
@@ -387,14 +387,13 @@ public class PuzzleScreen extends AbstractScreen{
 	public void dispose(){
 		super.dispose();
 		
-		//background.dispose();
-		/*
+		background.dispose();
+		
 		for(int i=0; i<piecesTexture.length; i++){
 			for(int j=0; j<piecesTexture[i].length; j++){
 				piecesTexture[i][j].dispose();
 			}
 		}
-		*/
 			
 		pauseButtonTexture.dispose();
 		pauseButtonPressedTexture.dispose();
@@ -412,7 +411,10 @@ public class PuzzleScreen extends AbstractScreen{
 		pauseClickSfx.dispose();
 		dragPieceSfx.dispose();
 		dropPieceSfx.dispose();
-		runningGameMusicBg.dispose();
+		tapGameMusicBg.dispose();
+		this.solved.dispose();
+		this.panel.dispose();
+		this.gameover.dispose();
 	}
 	
 }

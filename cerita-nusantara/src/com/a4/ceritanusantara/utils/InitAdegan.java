@@ -4,10 +4,7 @@ import java.util.StringTokenizer;
 
 import com.a4.ceritanusantara.models.Adegan;
 import com.a4.ceritanusantara.models.AdeganText;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Texture;
 
 /**
  * Kelas InitAdegan merepresentasikan kelas yang digunakan untuk mengambil data
@@ -21,26 +18,28 @@ public class InitAdegan {
         StringTokenizer st = new StringTokenizer(data, System.getProperty("line.separator"));
 
         int bgAmt = Integer.parseInt(st.nextToken().trim());
-        Texture[] bgArray = new Texture[bgAmt];
+        //Texture[] bgArray = new Texture[bgAmt];
+        String[] bgArrayPath = new String[bgAmt];
 
-        for (int i = 0; i < bgArray.length; i++) {
-            bgArray[i] = new Texture(Gdx.files.internal(st.nextToken().trim()));
+        for (int i = 0; i < bgArrayPath.length; i++) {
+            bgArrayPath[i] = st.nextToken().trim();
         }
 
-        Music music = Gdx.audio.newMusic(Gdx.files.internal(st.nextToken().trim()));
-        adegan.setMusic(music);
+        //Music music = Gdx.audio.newMusic(Gdx.files.internal(st.nextToken().trim()));
+        String musicPath = st.nextToken().trim();
+        adegan.setMusic(musicPath);
 
-        Texture[] chara = new Texture[Integer.parseInt(st.nextToken().trim())];
-
+        //Texture[] chara = new Texture[Integer.parseInt(st.nextToken().trim())];
+        String[] chara = new String[Integer.parseInt(st.nextToken().trim())];
         for (int i = 0; i < chara.length; i++) {
-            chara[i] = new Texture(Gdx.files.internal(st.nextToken().trim()));
+            chara[i] = st.nextToken().trim();
         }
         adegan.setCharaTexture(chara);
 
         AdeganText[] adeganText = new AdeganText[Integer.parseInt(st.nextToken().trim())];
         for (int i = 0; i < adeganText.length; i++) {
             StringTokenizer st2 = new StringTokenizer(st.nextToken(), ":");
-            Texture background = bgArray[Integer.parseInt(st2.nextToken().trim())];
+            String background = bgArrayPath[Integer.parseInt(st2.nextToken().trim())];
             int type = 0;
             if (st2.nextToken().equals("dia")) {
                 type = 1;

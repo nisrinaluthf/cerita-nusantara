@@ -103,7 +103,6 @@ public class AdeganScreen extends AbstractScreen {
 		adeganMusicBg = adegan.getMusic();
 		
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.adeganMusicBg != null) {
 				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				adeganMusicBg.setLooping(true);
@@ -251,24 +250,17 @@ public class AdeganScreen extends AbstractScreen {
 	}
 	
 	public void stopMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.adeganMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.adeganMusicBg != null) {
 			if (this.adeganMusicBg.isPlaying()) {
 				if (this.adeganMusicBg.isLooping()) {
 					this.adeganMusicBg.setLooping(false);
 				}
 				this.adeganMusicBg.stop();
-				//this.adeganMusicBg.dispose();
-				//this.adeganMusicBg = null;
 			}
-			//this.adeganMusicBg = null;
 		}
 	}
 	
 	public void pauseMusic() {
-		//Gdx.app.getPreferences("preferences").putFloat("music_pos", this.adeganMusicBg.getPosition());
-		System.out.println("stop");
 		if(this.adeganMusicBg != null) {
 			if (this.adeganMusicBg.isPlaying()) {
 				if (this.adeganMusicBg.isLooping()) {
@@ -285,14 +277,10 @@ public class AdeganScreen extends AbstractScreen {
 	public void resume() {
 		super.resume();
 		if(Gdx.app.getPreferences("preferences").getBoolean("musicOn")) {
-			//System.out.println("play music");
 			if (this.adeganMusicBg != null) {
-				System.out.println("play music");
-				//Gdx.app.getPreferences("preferences").getFloat("music_pos");
 				adeganMusicBg.play();
 			} else {
 				this.adeganMusicBg = Gdx.audio.newMusic(Gdx.files.internal("music/adegan.mp3"));
-				System.out.println("play music after null");
 				adeganMusicBg.setLooping(true);
 				adeganMusicBg.setVolume(1.0f);
 				adeganMusicBg.play();
@@ -322,18 +310,22 @@ public class AdeganScreen extends AbstractScreen {
 		previousButtonPressedTexture.dispose();
 		nextButtonPressedTexture.dispose();
 		
-		/*
+		
 		for(int i=0; i<character.length; i++){
 			character[i].dispose();
 		}
-		*/
+		
 		
 		pauseButtonTexture.dispose();
 		pauseButtonPressedTexture.dispose();
 		
 		font.dispose();
-		//adeganMusicBg.dispose();
+		adeganMusicBg.dispose();
 		pauseClickSfx.dispose();
+		adegan.dispose();
+		for(int i=0; i<this.adeganText.length; i++){
+			this.adeganText[i].dispose();
+		}
 		
 	}
 }

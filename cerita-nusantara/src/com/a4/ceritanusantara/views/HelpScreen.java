@@ -228,5 +228,6 @@ public class HelpScreen extends AbstractScreen {
 		helpMusicBg.dispose();
 		clickSfx.dispose();
 		help.dispose();
+		
 	}
 }
