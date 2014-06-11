@@ -83,13 +83,10 @@ public class AdeganController {
 						screen.setNextButtonPressed(true);	
 					}
 				}
-				//if(adegan.getPrev()!=null){
-					if(OverlapTester.pointInRectangle(previousButtonBounds,pos.x, pos.y)){
-						screen.playSoundFx("default");
-						screen.setPreviousButtonPressed(true);	
-					}
-				//}
-				
+				if(OverlapTester.pointInRectangle(previousButtonBounds,pos.x, pos.y)){
+					screen.playSoundFx("default");
+					screen.setPreviousButtonPressed(true);	
+				}
 			}
 			
 			if(!Gdx.input.isTouched()){
@@ -143,6 +140,7 @@ public class AdeganController {
 						}
 					}
 				}
+
 				//if(adegan.getPrev()!=null){
 					if(screen.previousButtonIsPressed()){
 						screen.setPreviousButtonPressed(false);
@@ -176,6 +174,7 @@ public class AdeganController {
 								screen.stopMusic();
 								app.getScreen().dispose();
 								app.setScreen(new KuisScreen(app, (Kuis)prev));
+
 							}*/
 						}
 					}

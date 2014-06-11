@@ -22,10 +22,12 @@ public class Aplikasi extends Game {
 		
 	}
 
+
 	@Override
 	public void create() {
 		ceritaNusantara = new CeritaNusantara();
 		setScreen(new MainMenuScreen(this));
+
 	}
 	
 	public CeritaNusantara getCeritaNusantara(){
