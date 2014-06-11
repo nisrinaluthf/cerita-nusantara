@@ -1,5 +1,5 @@
 1
-backgrounds/bg_sumatera_old/scene8_bg_sumatera.jpg
+backgrounds/bg_sumatera_old/scene18_bg_sumatera.jpg
 music/sumatera/mst_8.ogg
 0
 3

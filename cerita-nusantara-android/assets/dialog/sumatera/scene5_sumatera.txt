@@ -1,5 +1,5 @@
 1
-backgrounds/bg_sumatera_old/scene5_bg_sumatera.jpg
+backgrounds/bg_sumatera_old/scene45_bg_sumatera.jpg
 music/sumatera/mst_4_7.ogg
 3
 speaker_dialog/raja.png
