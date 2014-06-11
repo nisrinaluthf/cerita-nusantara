@@ -1,0 +1,15 @@
+3
+backgrounds/bg_bali_old/scene24567_bg_bali.jpg
+backgrounds/bg_bali_old/scene23456_bg_bali.jpg
+backgrounds/bg_bali_old/scene2456_bg_bali.jpg
+music/bali/mbl_6.ogg
+0
+8
+0:nar:Manik berhasil memotong ekor naga besukih!
+0:nar:Sang Naga Besukih meronta dan segera membalikkan badannya. Akan tetapi, Manik Angkeran telah pergi. 
+0:nar:Sang Naga pun segera mengejar Manik ke segala penjuru, tetapi ia tidak dapat menemukan Manik Angkeran, yang ditemui hanyalah bekas tapak kaki Manik Angkeran.
+0:nar:Maka dengan kesaktiannya, Sang Naga Besukih membakar bekas tapak kaki Manik Angkeran. Walaupun Manik Angkeran sudah jauh dari Sang Naga, tetapi Naga Besukih amat sakti.
+0:nar:Ia pun tetap merasakan pembakaran tapak kaki tersebut sehingga tubuh Manik Angkeran terasa panas sehingga ia rebah dan lama kelamaan menjadi abu.
+1:nar:Di Jawa Timur, Begawan Sidi Mantra sedang gelisah karena anaknya Manik Angkeran telah hilang dan genta pemujaannya juga hilang. 
+1:nar:Tetapi Begawan Sidi Mantra tahu kalau gentanya diambil oleh anaknya Manik Angkeran dan merasa bahwa anaknya pergi ke Gunung Agung menemui Sang Naga Besukih. 
+2:nar:Maka berangkatlah ia ke Gunung Agung.

@@ -1,0 +1,30 @@
+3
+backgrounds/bg_bali_old/scene23456_bg_bali.jpg
+backgrounds/bg_bali_old/scene2456_bg_bali.jpg
+backgrounds/bg_bali_old/scene24567_bg_bali.jpg
+music/bali/mbl_5.ogg
+3
+speaker_dialog/manik.png
+speaker_dialog/begawan.png
+speaker_dialog/nagabesukih.png
+20
+0:nar:Karena dengan mudahnya Begawan Sidi Mantra mendapatkan harta, Manik Angkeran pun merasa heran melihatnya.
+0:dia:0:Ayah, darimana ayah mendapatkan semua kekayaan itu?
+0:dia:1:Sudahlah Manik Angkeran, jangan kau tanyakan dari mana ayah mendapat harta itu. Berhentilah berjudi dan menyabung ayam, karena itu semua dilarang oleh agama. 
+0:dia:1:Dan inipun untuk terakhir kalinya ayah membantumu. Lain kali apabila engkau berhutang lagi, ayah tidak akan membantumu lagi.
+0:nar:Tetapi ternyata Manik Angkeran tidak dapat meninggalkan kebiasaan buruknya itu, ia tetap berjudi dan berjudi terus. Sehingga dalam waktu singkat hutangnya sudah menumpuk banyak. 
+0:nar:Walaupun ia sudah meminta bantuan ayahnya, ayahnya tetap tidak mau membantunya lagi. Sehingga ia pun bertekad untuk mencari tahu sumber kekayaan ayahnya. 
+0:nar:Bertanyalah ia kesana kemari, dan beberapa temannya memberitahu bahwa ayahnya mendapat kekayaan di Gunung Agung. 
+1:nar:Karena keserakahannya, Manik Angkeran pun mencuri genta ayahnya dan pergi ke Gunung Agung.
+1:nar:Sesampai di Gunung Agung, segeralah ia membunyikan genta tersebut. 
+1:nar:Mendengar bunyi genta, Sang Naga Besukih merasa terpanggil, tetapi ia heran, karena tidak mendengar mantra-mantra yang biasanya diucapkan oleh Begawan Sidi Mantra apabila membunyikan genta tersebut. 
+1:nar:Maka keluarlah Sang Naga untuk melihat siapa yang datang memangilnya. Setelah keluar, bertemulah Sang Naga dengan Manik Angkeran. 
+2:nar:Melihat Manik Angkeran, Sang Naga Besukih pun tidak dapat menahan marahnya.
+2:dia:2:Hai Manik Angkeran! Ada apa engkau memanggilku dengan genta yang kau curi dari ayahmu itu?
+2:dia:0:Sang Naga bantulah aku. Berilah aku harta yang melimpah agar aku bisa membayar hutang-hutangku. 
+2:dia:0:Kalau kali ini aku tak bisa membayarnya, orang-orang akan membunuhku. Kasihanilah aku.
+2:dia:2:Baiklah, aku akan membantumu.
+2:nar:Setelah memberikan nasehat kepada Manik Angkeran, Sang Naga segera membalikkan badannya untuk mengambil harta yang akan diberikan ke Manik Angkeran.
+2:nar:Pada saat Sang Naga membenamkan kepala dan tubuhnya kedalam bumi untuk mengambil harta, Manik Angkeran pun melihat ekor Sang Naga yang ada dipemukaan bumi dipenuhi oleh intan dan permata, maka timbullah niat jahatnya.
+2:nar:Manik Angkeran segera menghunus keris dan memotong ekor Sang Naga Besukih.
+2:nar:Bantulah Manik Angkeran untuk memotong ekor naga dengan memotong pada ekor pada kotak putih dan menghindari ekor pada kotak hitam!

@@ -1,0 +1,8 @@
+1
+backgrounds/bg_sumatera_old/scene8_bg_sumatera.jpg
+music/sumatera/mst_8.ogg
+0
+3
+0:nar:Selamat! Si Parkit telah keluar dari istana!
+0:nar:Akhirnya Si Parkit yang cerdik itu bebas terbang ke hutan belantara tempat tinggalnya dulu yang ia cintai.
+0:nar:Kedatangan Si Parkit pun disambut dengan meriah oleh rakyatnya. Akhirnya, Si Parkit, Raja Parakeet, kembali ke tempat tinggalnya.

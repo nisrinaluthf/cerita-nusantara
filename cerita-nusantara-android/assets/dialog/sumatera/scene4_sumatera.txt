@@ -1,0 +1,20 @@
+1
+backgrounds/bg_sumatera_old/scene4_bg_sumatera.jpg
+music/sumatera/mst_4_7.ogg
+2
+speaker_dialog/pemburu_sedih.png
+speaker_dialog/raja.png
+13
+0:nar:Selamat! Kamu berhasil membantu Si Parkit bernyanyi dengan baik!
+0:nar:Sampai pada suatu hari, kemerduan suara si Parkit tersebut terdengar oleh Raja Aceh di istananya.
+0:nar:Raja Aceh itu ingin agar burung parakeet itu menjadi miliknya. Sang Raja memanggil si Pemburu menghadap kepadanya.
+0:nar:Si Pemburu pun datang ke istana dengan perasaan bimbang, karena ia sangat sayang pada si Parkit.
+0:nar:Sampai di hadapan Raja Aceh, ia tidak bersedia memberikan si Parkit yang bersuara merdu itu kepada Sang Raja.
+0:dia:0:"Ampun, Baginda! Hamba tidak bermaksud menentang keinginan Baginda!"
+0:dia:1:"Lalu, kenapa kamu tidak mau memberikan burung itu?"
+0:dia:0:"Ampun, Baginda! Mohon beribu ampun! Hamba sangat sayang pada burung tersebut. Selama ini hamba telah memeliharanya dengan baik."
+0:dia:1:"Kalau begitu, bagaimana jika kuganti dengan uang yang sangat banyak?"
+0:dia:0:"Ampun, Baginda! Jika Baginda benar-benar menyukai burung parakeet tersebut, silakan kirim pengawal untuk mengambilnya!"
+0:nar:Sang Raja sangat senang mendengar jawaban si Pemburu.
+0:nar:Ia pun segera memerintahkan beberapa pengawalnya untuk mengambil burung parakeet tersebut dan menyerahkan uang yang dijanjikannya kepada si Pemburu.
+0:nar:Si Parkit pun dibawa ke istana dan dimasukkan ke dalam sangkar emas. Setiap hari si Parkit disediakan makanan yang enak.

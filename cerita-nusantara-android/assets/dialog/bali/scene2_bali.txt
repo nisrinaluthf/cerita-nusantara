@@ -1,0 +1,24 @@
+3
+backgrounds/bg_bali_old/scene23456_bg_bali.jpg
+backgrounds/bg_bali_old/scene2456_bg_bali.jpg
+backgrounds/bg_bali_old/scene24567_bg_bali.jpg
+music/bali/mbl_2_4.ogg
+3
+speaker_dialog/manik.png
+speaker_dialog/begawan.png
+speaker_dialog/nagabesukih.png
+14
+0:nar:Manik berhasil lari dari kejaran warga dan sampai di rumahnya.
+0:nar:Akhirnya datanglah Manik ketempat ayahnya, dan dengan nada sedih ia meminta ayahnya untuk membayar hutang-hutangnya.
+0:dia:0:"Ayah.. Tolong bantu Manik untuk membayar hutang-hutang Manik.. Manik dikejar-kejar warga karena belum membayar hutang.."
+0:dia:1:"Aaahh.. Kau ini, masih saja suka berjudi! Tidak kapok-kapoknya kamu! Tapi ya sudahlah aku akan membayar semua hutang-hutangmu."
+1:nar:Maka dengan kekuatan batinnya, Begawan Sidi Mantra mendapat petunjuk bahwa ada sebuah Gunung yang bernama Gunung Agung yang terletak di sebelah timur.
+1:nar:Di Gunung Agung konon terdapat harta yang melimpah. Berbekal petunjuk tersebut, pergilah Begawan Sidi Mantra ke Gunung Agung dengan membawa genta pemujaannya. 
+2:nar:Setelah sekian lama perjalanannya, sampailah ia ke Gunung Agung. Segeralah ia mengucapkan mantra sambil membunyikan gentanya. Dan keluarlah seekor naga besar bernama Naga Besukih.
+2:dia:2:"Hai Begawan Sidi Mantra, ada apa engkau memanggilku?"
+2:dia:1:"Sang Besukih, kekayaanku telah dihabiskan anakku untuk berjudi. Sekarang karena hutangnya menumpuk, dia dikejar-kejar oleh orang-orang. Aku mohon, bantulah aku agar aku bisa membayar hutang anakku!"
+2:dia:2:"Baiklah, aku akan memenuhi permintaanmu Begawan Sidi Mantra, tapi kau harus menasehati anakmu agar tidak berjudi lagi, karena kau tahu berjudi itu dilarang agama!"
+2:dia:1:"Aku berjanji akan menasehati anakku."
+2:nar:Kemudian Sang Naga Besukih menggetarkan badannya dan sisik-sisiknya yang berjatuhan segera berubah emas dan intan.
+2:dia:2:"Ambillah Begawan Sidi Mantra. Bayarlah hutang-hutang anakmu. Dan jangan lupa nasehati dia agar tidak berjudi lagi."
+2:dia:1:"Terima Kasih Naga Besukih."

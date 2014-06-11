@@ -1,0 +1,21 @@
+1
+backgrounds/bg_bali_old/scene1_bg_bali.jpg
+music/bali/mbl_1.ogg
+3
+speaker_dialog/pemuda1.png
+speaker_dialog/pemuda2.png
+speaker_dialog/manik.png
+13
+0:nar:Pada jaman dahulu kala, ada seorang pemuda bernama Manik Angkeran. Ayahnya seorang Begawan yang berbudi pekerti luhur, yang bernama Begawan Sidi Mantra.
+0:nar:Walaupun ayahnya seorang yang disegani oleh masyarakat sekitar dan memiliki pengetahuan agama yang luas, tetapi Manik Angkeran adalah seorang anak yang manja, yang kerjanya hanya berjudi dan mengadu ayam seperti berandalan-berandalan yang ada di desanya.
+0:nar:Mungkin ini karena ia telah ditinggal oleh Ibunya yang meninggal sewaktu melahirkannya. Karena kebiasaannya itu, kekayaan ayahnya makin lama makin habis dan akhirnya mereka jatuh miskin.
+0:nar:Walaupun keadaan mereka sudah miskin, kebiasaan Manik Angkeran tidak juga berkurang, bahkan karena dalam berjudi ia selalu kalah, hutangnya makin lama makin banyak dan ia pun di kejar-kejar oleh orang-orang yang dihutanginya.
+0:dia:0:"Hai Manik Angkeran! Bayar hutangmu sekarang!"
+0:dia:2:"Maaf, saya belum punya uang untuk membayarnya."
+0:dia:0:"Ahh..! Kau banyak alasan. Cepat bayar sekarang!"
+0:dia:2:"Aku benar-benar tidak punya uang."
+0:nar:Kemudian datang pemuda lain yang juga dihutangi oleh manik angkeran
+0:dia:1:"Wahh.. Disini kau rupanya Manik.. Kau belum lupa dengan hutang-hutangmu kan? Cepat bayar sekarang! Kau terlalu lama menunggak."
+0:dia:2:"Aku masih belum punya uang.. Nanti saja ya.."
+0:nar:Karena merasa terpojokkan oleh orang-orang yang menagih hutangnya, akhirnya Manik Angkeran lari menghindari mereka.
+0:nar:Bantulah Manik Angkeran lari dari kejaran warga dengan menghindari rintangan-rintangan yang ada hingga Manik sampai ke rumahnya dengan menghindari rintangan selama berlari!

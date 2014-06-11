@@ -1,0 +1,38 @@
+1
+backgrounds/bg_kalimantan_old/scene6_bg_kalimantan.jpg
+music/kalimantan/mkl_6.ogg
+3
+speaker_dialog/jelawat_kiri.png
+speaker_dialog/saluang_kiri.png
+speaker_dialog/naga.png
+30
+0:nar:Nusa menetap sementara di sebuah teluk yang agak dalam tiba di muara Sungai Kahayan.
+0:nar:Ia sangat senang, karena terdapat banyak jenis ikan yang hidup di sana untuk dimakan. Namun kehadirannya menjadi ancaman bagi kehidupan ikan-ikan tersebut.
+0:nar:Oleh karena itu, ikan-ikan tersebut berusaha mencari cara untuk mengusirnya. Mereka pun berkumpul.
+0:dia:0:"Apa yang harus kita lakukan untuk mengusir naga itu?"
+0:dia:1:"Aku punya akal. Aku akan bercerita kepada naga itu bahwa di lautan sana ada seekor naga besar yang ingin mengadu kekuatan dengannya."
+0:dia:0:"Lalu, apa rencanamu selanjutnya?"
+0:dia:1:"Tenang, saudara-saudara! Serahkan semua persoalan ini kepadaku. Aku akan meminta bantuan kalian jika aku memerlukannya."
+0:dia:1:"Bersiap-siap saja menunggu komando dariku."
+0:nar:Keesokan harinya, Ikan Saluang mulai menjalankan rencananya. Ia menunggu seorang diri di suatu tempat yang tidak jauh dari naga itu berada.
+0:nar:Ia berpikir, naga itu tidak mungkin memangsa tubuhnya yang kecil itu, karena tentu tidak akan mengenyangkannya. Tidak lama kemudian, naga itu pun datang menghampirinya.
+0:dia:2:"Hei, Ikan Saluang! Kenapa kamu bersedih?"
+0:dia:1:"Iya, Tuan Naga! Ada sesuatu yang membuat Hamba bersedih."
+0:dia:2:"Apakah itu, Ikan Saluang? Katakanlah!"
+0:dia:1:"Begini, Tuan. Kemarin Hamba bertemu seekor naga besar di lautan sana."
+0:dia:2:"Apa katamu? Naga? Apakah dia lebih besar dari pada aku?"
+0:dia:1:"Besarnya hampir sama seperti Tuan. Rupanya dia sudah mengetahui keberadaan Tuan di sini. Bahkan, dia menantang Tuan untuk mengadu kekuatan."
+0:nar:Mendengar cerita Ikan Saluang itu, Naga Nusa pun naik pitam.
+0:dia:2:"Berani sekali naga itu menantangku. Katakan padanya bahwa aku menerima tantangannya! Besok suruh dia datang ke tempat ini, aku akan menunggunya!"
+0:dia:1:"Baik, Tuan Naga!"
+0:nar:Keesokan harinya, Naga Nusa pun datang menunggu di tempat itu.
+0:nar:Sementara Ikan Saluang, bersembunyi di balik bebatuan bersama teman-temannya sambil memerhatikan gerak-gerik Naga Nusa yang sedang mondar-mandir menunggu kedatangan musuhnya.
+0:nar:Namun, musuh yang ditunggu-tunggunya tak kunjung datang, karena naga yang dimaksudkan Ikan Saluang itu memang tidak ada.
+0:nar:Akhirnya ia pun kelelahan dan tertidur di tempat itu.
+0:nar:Ikan Saluang pun tidak menyia-nyiakan kesempatan itu. Pelan-pelan ia mendekati ekor Naga Nusa, lalu berteriak dengan keras.
+0:dia:1:"Tuanku! Musuh datang!"
+0:nar:Mendengar teriakan itu, Naga Nusa menjadi panik. Dengan secepat kilat, ia memutar kepalanya ke arah ekornya, sehingga air sungai itu beriak.
+0:nar:Ia mengira suara air itu adalah musuhnya. Tanpa berpikir panjang, ia pun menyerang dan menggigitnya. Namun, tanpa disadari, ia menggigit ekornya sendiri.
+0:dia:2:"Aduuhhh....!"
+0:nar:Pada saat itulah, Ikan Saluang segera memerintahkan semua teman-temannya untuk menggerogoti luka Naga Nusa.
+0:nar:Bantulah ikan-ikan untuk menyerang naga dengan menekan tombol kuning dan hindari menekan tombol merah!

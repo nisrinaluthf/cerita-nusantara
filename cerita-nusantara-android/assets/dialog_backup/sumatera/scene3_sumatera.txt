@@ -1,0 +1,26 @@
+1
+backgrounds/bg_sumatera_old/scene3_bg_sumatera.jpg
+music/sumatera/mst_1_3.ogg
+2
+speaker_dialog/pemburu_geram.png
+speaker_dialog/siparkit_kiri.png
+19
+0:nar:Dengan rasa kesal, Si Pemburu berjalan seenaknya, tiba-tiba ia jatuh terpeleset. 
+0:nar:Kawanan burung parakeet yang berpura-pura mati di sekitarnya pun kaget dan terbang dengan seketika tanpa menunggu hitungan dari si Parkit.
+0:nar:Si Pemburu pun berdiri kaget, karena ia merasa telah ditipu oleh kawanan burung parakeet itu.
+0:dia:0:Sial! Aku ditipu..!
+0:nar:Namun, tiba-tiba ia tersenyum, karena melihat ada seekor burung parakeet yang masih melekat pada perekatnya. 
+0:nar:Lalu ia menghampiri burung parakeet tersebut, yang tidak lain adalah si Parkit.
+0:dia:0:Kamu akan kubunuh!
+0:dia:1:Ampuni hamba, Tuan! Jangan bunuh hamba! Lepaskan hamba, Tuan!
+0:dia:0:Enak saja! Kamu dan teman-temanmu telah menipuku. Kalau tidak, pasti aku sudah banyak menangkap kalian!
+0:dia:1:Iya. Tapi itu kan bukan salahku. Ampuni hamba, Tuan! Hamba akan menghibur Tuan setiap hari!
+0:dia:0:Menghiburku?
+0:dia:1:Betul, Tuan. Hamba akan bernyanyi setiap hari untuk Tuan!
+0:dia:0:Memangnya suaramu bagus?
+0:nar:Si Parkit pun bernyanyi. Suara si Parkit yang merdu itu berhasil mumbujuk si Pemburu, sehingga ia tidak jadi dibunuh.
+0:dia:0:Baiklah, aku tidak akan membunuhmu, tapi kamu harus bernyanyi setiap hari!
+0:nar:Karena takut dibunuh, si Parkit pun setuju. Setelah itu, si Pemburu membawa si Parkit pulang.
+0:nar:Sesampai di rumahnya, si Parkit tidak dikurung dalam sangkar, tapi salah satu kakinya diikat pada tiang yang cukup tinggi.
+0:nar:Sejak saat itu, setiap hari si Parkit selalu bernyanyi untuk menghibur si Pemburu itu dan ia sangat senang mendengarkan suara Si Parkit.
+0:nar:Bantulah Si Parkit untuk bernyanyi dengan menekan nada pada kotak yang sesuai! Hindari menekan nada berwarna hitam!

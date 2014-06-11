@@ -1,0 +1,9 @@
+1
+backgrounds/bg_sumatera_old/scene2_bg_sumatera.jpg
+music/sumatera/mst_1_3.ogg
+1
+speaker_dialog/pemburu_sedih.png
+3
+0:nar:Keesokan harinya, si Pemburu pun datang.
+0:nar:Dengan sangat hati-hati, si Pemburu melepaskan burung parakeet tersebut satu persatu dari perekatnya.
+0:dia:0:Wah.. kenapa burung-burung parakeet ini tidak bergerak? Jangan-jangan mereka semua telah mati.

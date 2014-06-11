@@ -1,0 +1,19 @@
+2
+backgrounds/bg_kalimantan_old/scene45_bg_kalimantan.jpg
+backgrounds/bg_kalimantan_old/scene3_bg_kalimantan.jpg
+music/kalimantan/mkl_4.ogg
+1
+speaker_dialog/nusa.png
+12
+0:nar:Keesokan harinya, Nusa sangat terkejut mendapati tubuhnya dipenuhi dengan bintil-bintil berwarna merah dan terasa sangat gatal.
+0:nar:Ia pun mulai panik dan kemudian menyuruh istri dan adik iparnya untuk membantu menggaruk tubuhnya.
+0:nar:Namun anehnya, semakin digaruk, tubuhnya semakin terasa gatal dan perih.
+0:nar:Melihat kondisinya seperti itu, Nusa segera menyuruh adik iparnya untuk pergi mencari bantuan, sementara istrinya terus membantu menggaruk tubuhnya.
+0:nar:Menjelang siang, bintil-bintil merah itu berubah menjadi sisik sebesar uang logam memenuhi sebagian tubuhnya.
+0:nar:Kemudian, tubuhnya bertambah besar dan memanjang hingga mencapai sekitar lima depa.
+0:nar:Dari kaki sampai ke ketiaknya telah berubah menjadi naga, sedangkan tangan, leher, dan kepalanya masih berwujud manusia.
+0:dia:0:Maafkan Abang, Dik! Rupanya telur yang Abang makan tadi malam adalah telur naga.
+0:dia:0:Lihat tubuh dan kaki Abang! Sebentar lagi Abang akan menjadi seekor naga. Tapi, Adik tidak usah sedih, karena ini sudah takdir Tuhan.
+0:nar:Tidak lama kemudian, adik iparnya kembali bersama warga yang siap untuk membantunya.
+0:nar:Namun saat melihat tubuh Nusa, mereka tidak dapat berbuat apa-apa, karena mereka belum pernah melihat kejadian aneh seperti itu.
+1:nar:Akhirnya, hampir sehari semalam mereka hanya duduk mengelilingi tubuh Nusa yang tergeletak tidak berdaya di atas pasir sambil memerhatikan perkembangan selanjutnya.

@@ -1,0 +1,26 @@
+2
+backgrounds/bg_bali_old/scene46_bg_jawa.jpg
+backgrounds/bg_bali_old/scene4578_bg_jawa.jpg
+music/jawa/mjw_4_5.ogg
+4
+speaker_dialog/dora.png
+speaker_dialog/ajisaka.png
+speaker_dialog/pengawal1.png
+speaker_dialog/pengawal2.png
+16
+0:nar: Mendengar pejelasan itu, Aji Saka dan abdinya memutuskan untuk pergi ke Negeri Medang Kamulan. Ia ingin menolong rakyat Medang Kamulan dari kebengisan Prabu Dewata Cengkar.
+0:nar:Setelah sehari semalam berjalan keluar masuk hutan, menyebarangi sungai, serta menaiki dan menuruni bukit, akhirnya mereka sampai di kota Kerajaan Medang Kamulan. 
+0:nar:Suasana kota itu tampak sepi. Kota itu bagaikan kota mati. Tak seorang pun yang terlihat lalu lalang di jalan. 
+0:nar:Semua pintu rumah tertutup rapat. Para penduduk tidak mau keluar rumah, karena takut dimangsa oleh sang Prabu.
+0:dia:0:Apa yang harus kita lakukan, Tuan?
+0:dia:1:Kamu tunggu di luar saja! Biarlah aku sendiri yang masuk ke istana menemui Raja bengis itu.
+0:nar:Dengan gagahnya, Aji Saka berjalan menuju ke istana. Suasana di sekitar istana tampak sepi.
+0:nar:Hanya ada beberapa orang pengawal yang sedang mondar-mandir di depan pintu gerbang istana.
+1:dia:2:Berhenti, Anak Muda!
+1:dia:3:Kamu siapa dan apa tujuanmu kemari?” 
+1:dia:1:Saya Aji Saka dari Medang Kawit ingin bertemu dengan sang Prabu.
+1:dia:2:Hai, Anak Muda! Apakah kamu tidak takut dimangsa sang Prabu?
+1:dia:1:Ketahuilah, Tuan-Tuan! Tujuan saya kemari memang untuk menyerahkan diri saya kepada sang Prabu untuk dimangsa.
+1:nar:Para pengawal istana terkejut mendengar jawaban Aji Saka. Tanpa banyak tanya, mereka pun mengizinkan Aji Saka masuk ke dalam istana. 
+1:nar:Saat berada di dalam istana, ia mendapati Prabu Dewata Cengkar sedang murka, karena Patih Jugul tidak membawa mangsa untuknya. 
+1:nar:Tanpa rasa takut sedikit pun, ia langsung menghadap kepada sang Prabu dan menyerahkan diri untuk dimangsa.

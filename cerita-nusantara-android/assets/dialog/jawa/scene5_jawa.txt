@@ -1,0 +1,16 @@
+1
+backgrounds/bg_bali_old/scene4578_bg_jawa.jpg
+music/jawa/mjw_4_5.ogg
+2
+speaker_dialog/ajisaka.png
+speaker_dialog/prabu.png
+9
+0:dia:0:"Ampun, Gusti Prabu! Hamba Aji Saka. Jika Baginda berkenan, hamba siap menjadi santapan Baginda hari ini."
+0:nar:Betapa senangnya hati sang Prabu mendapat tawaran makanan. 
+0:nar:Dengan tidak sabar, ia segera memerintahkan Patih Jugul untuk menangkap dan memotong-motong tubuh Aji Saka untuk dimasak. 
+0:nar:Ketika Patih Jugul akan menangkapnya, Aji Saka mundur selangkah.
+0:dia:0:"Ampun, Gusti! Sebelum ditangkap, Hamba ada satu permintaan. Hamba mohon imbalan sebidang tanah seluas serban hamba ini."
+0:dia:1:"Hanya itu permintaanmu, hai Anak Muda! Apakah kamu tidak ingin meminta yang lebih luas lagi?"
+0:dia:0:"Sudah cukup Gusti. Hamba hanya menginginkan seluas serban ini."
+0:dia:1:"Baiklah kalau begitu, Anak Muda! Sebelum memakanmu, akan kupenuhi permintaanmu terlebih dahulu."
+0:dia:0:"Ampun, Gusti! Untuk menghindari kecurangan, alangkah baiknya jika Gusti sendiri yang mengukurnya."

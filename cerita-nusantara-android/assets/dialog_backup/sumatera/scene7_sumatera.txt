@@ -1,0 +1,17 @@
+1
+backgrounds/bg_sumatera_old/scene7_bg_sumatera.jpg
+music/sumatera/mst_4_7.ogg
+3
+speaker_dialog/raja.png
+speaker_dialog/pengawal_sedih.png
+speaker_dialog/siparkit_kiri.png
+9
+0:nar:Sang Raja sangat sedih mendengar berita kematian burung parakeetnya, sebab tidak akan ada lagi yang menghiburnya.
+0:nar:Meskipun sang Raja masih memiliki burung parakeet yang lain, tetapi suaranya tidak semerdu si Parkit karena sudah tidak bisa tertolong lagi.
+0:dia:0:Siapkan upacara penguburan! Kuburkan burung parakeetku itu dengan baik!
+0:dia:1:Siap, Tuanku! Hamba laksanakan!
+0:nar:Penguburan si Parkit akan dilaksanakan dengan upacara kebesaran kerajaan. Pada saat persiapan penguburan, si Parkit dikeluarkan dari sangkarnya karena dianggap sudah mati.
+0:nar:Ketika ia melihat semua orang sibuk, dengan cepatnya ia terbang setinggi-tingginya. Di udara ia berteriak dengan riang gembira.
+0:dia:2:Aku bebaasss...!!! Aku bebaasss....!!!
+0:nar:Orang-orang hanya terheran-heran melihat si Parkit yang dikira sudah mati itu bisa terbang tinggi.
+0:nar:Bantulah Si Parkit untuk keluar dari istana kerajaan dengan mencari jalan keluar dari labirin istana ini!

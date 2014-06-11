@@ -1,0 +1,11 @@
+1
+backgrounds/bg_bali_old/scene237_bg_jawa.jpg
+music/jawa/mjw_2_3.ogg
+1
+speaker_dialog/bapak2.png
+5
+0:nar:Setelah setengah hari berjalan, sampailah mereka di sebuah hutan yang sangat lebat. 
+0:nar:Ketika akan melintasi hutan tersebut, tiba-tiba Aji Saka mendengar teriakan seorang laki-laki meminta tolong.
+0:dia:0:Tolong...!!! Tolong...!!! Tolong...!!!
+0:nar:Mendengar teriakan itu, Aji Saka dan Dora segera menuju ke sumber suara tersebut. 
+0:nar:Bantulah Aji Saka dan Dora untuk menemukan sumber suara minta tolong itu dengan mencari jalan keluar dari labirin ini!

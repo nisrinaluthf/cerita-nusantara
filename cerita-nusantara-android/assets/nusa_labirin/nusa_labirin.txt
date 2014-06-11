@@ -1,0 +1,31 @@
+nusa_labirin/background.png
+nusa_labirin/nusa_up.png
+nusa_labirin/nusa_right.png
+nusa_labirin/nusa_down.png
+nusa_labirin/nusa_left.png
+nusa_labirin/wall.png
+nusa_labirin/item.png
+XXXXXXXXXXXXXXXFFFXXXXXXXXXXXX
+X     X                  X   X
+XXXX  X     XXX          X   X
+X  X  X       X          X   X
+X  X  XXXXXXXXXXXX   X       X
+X        X     O X   X   XXXXX
+X        X       X   X       X
+XXXXXX   X   XXXXX   X       X
+X            X   X   X       X
+X            X   XXXXXXXXX   X
+X  X   XXXXXXX   X       X   X
+X  X   X  X              X   X
+X  X   X  X   XXXXXXXX   X   X
+X  X   X    O X      X   X   X
+XXXX   XXXXXXXX      X   X   X
+X                    X   X   X
+X                XXXXX   X   X
+X  XXXXXXXXXXXX      X   X   X
+X             X      X   X   X
+X             X      X   X   X
+XXXXXXXXXXX   XXXX   X   X   X
+X                            X
+X              P             X
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

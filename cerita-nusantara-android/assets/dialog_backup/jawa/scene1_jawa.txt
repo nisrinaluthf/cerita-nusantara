@@ -1,0 +1,17 @@
+1
+backgrounds/bg_bali_old/scene1_bg_jawa.jpg
+music/jawa/mjw_1.ogg
+2
+speaker_dialog/ajisaka.png
+speaker_dialog/sembada.png
+10
+0:nar:Alkisah, di Dusun Medang Kawit, Desa Majethi, Jawa Tengah, hiduplah seorang pendekar tampan yang sakti mandraguna bernama Aji Saka. 
+0:nar:Ia mempunyai sebuah keris pusaka dan serban sakti. Selain sakti, ia juga rajin dan baik hati. 
+0:nar:Ia senantiasa membantu ayahnya bekerja di ladang, dan menolong orang-orang yang membutuhkan pertolongannya. 
+0:nar:Ke mana pun pergi, ia selalu ditemani oleh dua orang abdinya yang bernama Dora dan Sembada.
+0:nar:Pada suatu hari, Aji Saka meminta izin kepada ayahnya untuk pergi mengembara bersama Dora. 
+0:nar:Sementara, Sembada ditugaskan untuk membawa dan menjaga keris pusaka miliknya ke Pegunungan Kendeng.
+0:dia:0:Sembada! Bawa keris pusaka ini ke Pegunungan Kendeng. Kamu harus menjaganya dengan baik dan jangan berikan kepada siapa pun sampai aku sendiri yang mengambilnya!
+0:dia:1:Baik, Tuan! Saya berjanji akan menjaga dan merawat keris pusaka Tuan!
+0:nar:Setelah itu, berangkatlah Sembada ke arah utara menuju Gunung Kendeng, sedangkan Aji Saka dan Dora berangkat mengembara menuju ke arah selatan. 
+0:nar:Mereka tidak membawa bekal pakaian kecuali yang melekat pada tubuh mereka.

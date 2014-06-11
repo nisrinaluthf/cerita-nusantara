@@ -1,0 +1,15 @@
+1
+backgrounds/bg_sumatera_old/scene6_bg_sumatera.jpg
+music/sumatera/mst_4_7.ogg
+2
+speaker_dialog/siparkit_kiri.png
+speaker_dialog/pengawal_sedih.png
+8
+0:nar:Beberapa hari kemudian, si Parkit bahkan tidak mau memakan apa pun yang di sediakan di dalam sangkar emasnya.
+0:nar:Ia terus teringat pada hutan belantara tempat tinggalnya dulu. Si Parkit pun mulai berpikir.
+0:dia:0:Bagaimana caranya ya... Aku bisa keluar dari sangkar ini?
+0:nar:Tak lama, ia pun menemukan akal.
+0:dia:0:Aahh....aku harus berpura-pura mati lagi!
+0:nar:Si Parkit tersenyum sambil membayangkan dirinya lepas dan terbang tinggi. 
+0:nar:Akhirnya, pada suatu hari, ia pun berpura-pura mati. Petugas Istana yang mengetahui si Parkit mati segera menghadap sang Raja.
+0:dia:1:Ampun, Tuanku. Hamba sudah merawat dan memelihara sebaik mungkin, tapi burung parakeet ini tidak tertolong lagi, mungkin karena sudah tua.

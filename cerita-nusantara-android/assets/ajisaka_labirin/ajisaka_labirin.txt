@@ -1,0 +1,31 @@
+ajisaka_labirin/background.jpg
+ajisaka_labirin/ajisaka.png
+ajisaka_labirin/ajisaka.png
+ajisaka_labirin/ajisaka.png
+ajisaka_labirin/ajisaka.png
+ajisaka_labirin/wall.png
+ajisaka_labirin/item.png
+XFFFXXXXXXXXXXXXXXXXXXXXXXXXXX
+X    OX             X        X
+XXXX  X     XXX     X        X
+X  X  X       X     X        X
+X  X  XXXXXXXXXXXX  XXX   X  X
+X        X   X            XXXX
+X        X   X               X
+XXXXXX   X   X  XXXXXX       X
+X            X       X    X  X
+X            X       XXXXXX  X
+X  X   XXXXXXX       X       X
+X  X   X  X          X  XXX  X
+X  X   X  X   XXXXXXXXXXX    X
+X  X   X  X   X   X          X
+XXXX   XXXX   X   X          X
+X                 X     X    X
+X                 X     X    X
+X  XXXXXXXXXXXX   X     X    X
+X             X   X     XXXXXX
+X             X   X          X
+XXXXX   XXX   XXXXXXXX       X
+X         X      OX       XXXX
+X         X       X     P    X
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

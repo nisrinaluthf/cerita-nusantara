@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>cerita-nusantara-desktop</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>assets</name>
+			<type>2</type>
+			<location>D:/Workspace/cerita-nusantara/cerita-nusantara-android/assets</location>
+		</link>
+		<link>
+			<name>data</name>
+			<type>2</type>
+			<location>C:/Users/Nina/Documents/GitHub/cerita-nusantara/cerita-nusantara-android/data</location>
+		</link>
+	</linkedResources>
+</projectDescription>

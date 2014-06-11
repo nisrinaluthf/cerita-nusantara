@@ -1,0 +1,22 @@
+3
+backgrounds/bg_bali_old/scene4578_bg_jawa.jpg
+backgrounds/bg_bali_old/scene237_bg_jawa.jpg
+backgrounds/bg_bali_old/scene78_bg_jawa.jpg
+music/jawa/mjw_7.ogg
+3
+speaker_dialog/ajisaka.png
+speaker_dialog/dora.png
+speaker_dialog/sembada.png
+12
+0:nar:Pada suatu hari, Aji Saka memanggil Dora untuk menghadap kepadanya.
+0:dia:0:Dora! Pergilah ke Pegunungan Kendeng untuk mengambil kerisku. Katakan kepada Sembada bahwa aku yang menyuruhmu. 
+0:dia:1:Baiklah, Gusti!
+1:nar:Setelah berhari-hari berjalan, sampailah Dora di Pegunungan Gendeng. 
+1:nar:Ketika kedua sahabat tersebut bertemu, mereka saling rangkul untuk melepas rasa rindu. Setelah itu, Dora pun menyampaikan maksud kedatangannya kepada Sembada.
+1:dia:1:Sembada, sahabatku! Kini Tuan Aji Saka telah menjadi raja Negeri Medang Kamulan. Beliau mengutusku kemari untuk mengambil keris pusakanya untuk dibawa ke istana.
+1:dia:2:Tidak, sabahatku! Tuan Aji berpesan kepadaku bahwa keris ini tidak boleh diberikan kepada siapa pun, kecuali beliau sendiri yang datang mengambilnya.
+1:nar:Karena merasa mendapat tanggung jawab dari Aji Saka, Dora pun harus mengambil keris itu dari tangan Sembada untuk dibawa ke istana. 
+1:nar:Kedua orang abdi bersahabat tersebut tidak ada yang mau mengalah. Mereka bersikeras mempertahankan tanggungjawab masing-masing dari Aji Saka. 
+1:nar:Mereka bertekad lebih baik mati daripada mengkhianati perintah tuannya. 
+1:nar:Akhirnya, terjadilah pertarungan sengit antara kedua orang bersahabat tersebut. 
+2:nar:Mereka sama kuat dan tangguhnya, sehingga mereka pun mati bersama.

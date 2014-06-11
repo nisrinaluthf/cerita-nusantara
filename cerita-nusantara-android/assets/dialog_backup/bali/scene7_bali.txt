@@ -1,0 +1,21 @@
+1
+backgrounds/bg_bali_old/scene24567_bg_bali.jpg
+music/bali/mbl_7.ogg
+2
+speaker_dialog/begawan.png
+speaker_dialog/nagabesukih.png
+14
+0:nar:Sesampainya di Gunung Agung, dilihatnya Sang Naga Besukih sedang berada di luar istananya. Dengan tergesa-gesa Begawan Sidi Mantra bertanya kepada Sang Naga Besukih.
+0:dia:0:Wahai Sang Besukih, adakah anakku Manik Angkeran datang kemari?
+0:dia:1:Ya, ia telah datang kemari untuk meminta harta yang akan dipakainya untuk melunasi hutang-hutangnya. 
+0:dia:1:Tetapi ketika aku membalikkan badan hendak mengambil harta untuknya, dipotonglah ekorku olehnya. 
+0:dia:1:Dan aku telah membakarnya sampai musnah, karena sikap anakmu tidak tahu balas budi itu. 
+0:dia:1:Sekarang apa maksud kedatanganmu kemari, Begawan Sidi Mantra?
+0:dia:0:Maafkan aku, Sang Besukih! Anakku cuma satu, karena itu aku mohon agar anakku dihidupkan kembali.
+0:dia:1:Demi persahabatan kita, aku akan memenuhi permintaanmu. Tapi dengan satu syarat, kembalikan ekorku seperti semula.
+0:dia:0:Baiklah, aku pun akan memenuhi syaratmu!
+0:nar:Maka dengan mengerahkan kekuatan mereka masing-masing, Manik Angkeran pun hidup kembali. 
+0:nar:Demikian pula dengan ekor Sang Naga Besukih bisa kembali utuh seperti semula. 
+0:nar:Dinasehatinya Manik Angkeran oleh Sang Naga Besukih dan Begawan Sidi Mantra secara panjang lebar dan setelah itu pulanglah Begawan Sidi Mantra ke Jawa Timur. 
+0:nar:Tetapi Manik Angkeran tidak boleh ikut pulang, ia harus tetap tinggal di sekitar Gunung Agung. 
+0:nar:Karena Manik Angkeran sudah sadar dan berubah, ia pun tidak membangkang dan menuruti perintah ayahnya tersebut.

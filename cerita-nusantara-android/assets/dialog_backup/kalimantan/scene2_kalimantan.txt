@@ -1,0 +1,17 @@
+2
+backgrounds/bg_kalimantan_old/scene12_bg_kalimantan.jpg
+backgrounds/bg_kalimantan_old/scene2_bg_kalimantan.jpg
+music/kalimantan/mkl_2.ogg
+2
+speaker_dialog/nusa.png
+speaker_dialog/adik.png
+9
+0:nar:Melihat kondisi itu, Nusa bersama istri dan adik iparnya memutuskan untuk pindah ke sebuah dusun dengan harapan akan mendapatkan sumber penghidupan yang lebih baik.
+1:nar:Setelah tiga hari menyusuri Sungai Rungan (anak Sungai Kahayan) dengan bekal seadanya, sampailah mereka di persimpangan sungai.
+1:nar:Namun, mereka tidak dapat melanjutkan perjalanan, karena ada sebatang pohon besar yang tumbang dan melintang di tengah sungai.
+1:nar:Untuk melintasi sungai itu, mereka harus memotong pohon itu. Hingga sore, pohon itu belum juga terputus.
+1:nar:Perut mereka pun sudah mulai keroncongan, sementara bekal yang mereka bawa sudah habis.
+1:nar:Akhirnya, Nusa memutuskan untuk pergi mencari makanan ke hutan di sekitar sungai itu.
+1:dia:0:Aku akan pergi mencari makanan di tengah hutan itu. Kamu selesaikan saja pekerjaan itu.
+1:dia:1:Baik, Bang!
+1:nar:Bantulah Nusa mencari jalan di hutan untuk mendapat makanan dengan mencari telur! Jangan sampai melewati batas waktu yang ditentukan!

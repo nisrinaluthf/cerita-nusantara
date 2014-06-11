@@ -1,0 +1,14 @@
+1
+backgrounds/bg_kalimantan_old/scene3_bg_kalimantan.jpg
+music/kalimantan/mkl_3.ogg
+2
+speaker_dialog/nusa.png
+speaker_dialog/istri_nusa.png
+7
+0:nar:Nusa berhasil mendapatkan telur!
+0:dia:0:"Hei, lihatlah! Aku membawa makanan enak untuk makan malam kita. Dik, tolong rebus telur ini!"
+0:dia:1:"Maaf, Bang! Adik tidak mau, karena Adik tahu telur binatang apa yang Abang bawa itu."
+0:dia:0:"Ah, Abang tidak peduli ini telur binatang apa. Yang penting Abang bisa kenyang. Abang sudah tidak kuat lagi menahan lapar."
+0:nar:Akhirnya, telur itu dimasak sendiri oleh Nusa. Hampir tengah malam telur itu baru matang.
+0:nar:Ia pun membangunkan istri dan adik iparnya yang sudah terlelap tidur, namun keduanya tidak mau memakan telur itu.
+0:nar:Akhirnya, telur itu dimakan sendiri oleh Nusa sampai habis...

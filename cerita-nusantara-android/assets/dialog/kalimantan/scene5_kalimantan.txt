@@ -1,0 +1,28 @@
+2
+backgrounds/bg_kalimantan_old/scene5-0_bg_kalimantan.jpg
+backgrounds/bg_kalimantan_old/scene5-1_bg_kalimantan.jpg
+music/kalimantan/mkl_5.ogg
+2
+speaker_dialog/naga.png
+speaker_dialog/istri_nusa_sedih.png
+20
+0:nar:Keesokan harinya, Nusa benar-benar sudah berubah menjadi seekor ular naga. Tubuhnya semakin panjang dan besar.
+0:nar:Panjangnya sudah mencapai sekitar duapuluh lima depa, dan besarnya tiga kali pohon kelapa.
+0:nar:Menjelang siang, Nusa meminta kepada seluruh warga agar menggulingkan tubuhnya ke sungai.
+0:dia:0:"Tolong bantu gulingkan tubuhku ke dalam sungai itu! Aku sudah tidak kuat lagi menahan terik matahari."
+0:nar:Warga pun beramai-ramai mendorong tubuhnya ke dalam sungai. Namun, baru beberapa saat berada di dalam air, tiba-tiba Nusa merasa sangat lapar.
+0:dia:0:"Aduh..., aku lapar sekali. Tolong carikan aku ikan! Seru Nusa sambil menahan rasa lapar."
+0:nar:Warga pun segera berpencar mencari ikan di danau atau telaga yang berada di sekitar hutan.
+0:nar:Beberapa lama kemudian, warga kembali dengan membawa ikan yang banyak. Dalam sekejap, ikan-ikan itu pun habis dilahapnya.
+0:nar:Menjelang senja, Nusa berpesan kepada istrinya.
+0:dia:0:"Dik! Nanti malam akan turun hujan lebat diiringi guntur dan petir. Air sungai ini akan meluap."
+0:dia:0:"Sampaikan hal ini kepada warga, agar segera meninggalkan tempat ini."
+0:dia:0:"Saat sungai banjir, Abang akan menuju ke Sungai Kahayan dan terus ke muara."
+0:dia:0:"Abang akan tinggal beberapa waktu di sana, dan kemudian meneruskan perjalanan ke laut. Di sanalah Abang akan tinggal untuk selamanya."
+0:dia:1:"Bang, jangan tinggalkan Adik! Adik tidak mau kehilangan Abang."
+0:dia:0:"Sudahlah, Dik! Ini sudah takdir Tuhan. Setelah Abang pergi, pulanglah bersama warga itu!"
+1:nar:Ketika malam sudah larut, hujan lebat yang diramalkan Nusa benar-benar terjadi. 
+1:nar:Suara guntur bergemuruh diiringi oleh petir yang menyambar-nyambar.
+1:nar:Kilat memancar sambung-menyambung.. Istri Nusa dan semua warga segera menjauh dari sungai.
+1:nar:Mereka dirundung perasaan cemas dan takut. Beberapa saat kemudian, air Sungai Rungan pun meluap.
+1:nar:Tubuh Nusa terbawa arus banjir menuju muara Sungai Kahayan.

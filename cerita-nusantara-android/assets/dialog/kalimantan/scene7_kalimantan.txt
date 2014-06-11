@@ -1,0 +1,8 @@
+1
+backgrounds/bg_kalimantan_old/scene7_bg_kalimantan.jpg
+music/kalimantan/mkl_7.ogg
+0
+3
+0:nar:Tenaga Naga Nusa semakin lemah. Beberapa saat kemudian, Naga Nusa akhirnya mati.
+0:nar:Semua ikan yang ada di dasar Sungai Kahayan berdatangan memakan daging Naga Nusa hingga habis. Hanya kerangkanya yang tersisa.
+0:nar:Lama kelamaan, kerangka tersebut tertimbun tanah dan ditumbuhi pepohonan. Tumpukan pepohonan itu kemudian membentuk sebuah pulau yang kini dikenal dengan nama Pulau Nusa.

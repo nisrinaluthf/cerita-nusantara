@@ -1,0 +1,27 @@
+1
+backgrounds/bg_sumatera_old/scene1_bg_sumatera.jpg
+music/sumatera/mst_1_3.ogg
+4
+speaker_dialog/pemburu.png
+speaker_dialog/parkit1_kiri.png
+speaker_dialog/parkit2_kiri.png
+speaker_dialog/siparkit_kiri.png
+18
+0:nar:Nanggroe Aceh Darussalam merupakan propinsi di Indonesia yang kaya, subur dan makmur. Konon, di tengah hutan belantara itu, hiduplah sekawanan burung parakeet yang hidup damai, tenteram, dan makmur.
+0:nar:Setiap hari mereka bernyanyi riang dengan suara merdu bersahut-sahutan dan saling membantu mencari makanan. Kawanan burung tersebut dipimpin oleh seorang raja parakeet yang bernama si Parkit.
+0:nar:Namun, di tengah suasana bahagia itu, kedamaian mereka terusik oleh kedatangan seorang Pemburu. Ternyata, ia berniat menangkap dan menjual burung parakeet tersebut.
+0:nar:Pelan-pelan tapi pasti, si Pemburu itu melangkah ke arah kawanan burung parakeet itu, lalu memasang perekat di sekitar sarang-sarangnya.
+0:dia:0:"Ehm.. Aku akan kaya raya dengan menjual kalian!"
+0:dia:1:"Hati-hati! Pemburu itu telah memasang perekat di sekitar sarang kita! Jangan sampai tertipu! Sebaiknya kita tidak terbang ke mana-mana dulu!"
+0:dia:2:"Ya, betul! Kita memang harus berhati-hati."
+0:nar:Namun, karena harus mencari makan, burung-burung parakeet itu pun keluar dari sarangnya. Alhasil, apa yang ditakutkan burung-burung parakeet itu pun terjadi.
+0:nar:Bencana tak terelakkan, burung-burung parakeet itu terekat pada perekat si Pemburu. Mereka meronta-ronta untuk melepaskan diri dari perekat tersebut, namun usaha mereka sia-sia.
+0:nar:Kawanan burung parakeet tersebut menjadi panik dan bingung, kecuali si Parkit, raja parakeet.
+0:dia:3:"Tenang, Rakyatku! Ini adalah perekat yang dipasang si Pemburu. Berarti dia ingin menangkap kita hidup-hidup."
+0:dia:3:"Jadi, kalau kita mati, si Pemburu itu tidak akan mengambil kita. Besok, ketika si Pemburu itu datang, kita pura-pura mati saja!"
+0:nar:Mendengar penjelasan raja Parakeet itu, rakyatnya terdiam. Sejenak, suasana menjadi hening. Di tengah keheningan itu ...
+0:dia:1:"Berpura-pura mati? Untuk apa?"
+0:dia:3:"Besok, setelah si Pemburu melepaskan kita dari perekat yang dipasangnya, dia akan memeriksa kita satu per satu."
+0:dia:3:"Bila dilihatnya kita telah mati, maka dia akan meninggalkan kita di sini. Tunggu sampai hitunganku yang ke seratus agar kita dapat terbang secara bersama-sama!"
+0:dia:2:"Oh, begitu..!? Baiklah, besok kita akan berpura-pura mati agar dapat bebas dari Pemburu itu!"
+0:nar:Kini, rakyatnya sudah mengerti apa yang direncanakan oleh si Parkit. Mereka berjanji akan menuruti perintah rajanya.

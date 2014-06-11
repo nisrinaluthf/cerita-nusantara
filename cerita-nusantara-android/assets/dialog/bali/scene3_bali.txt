@@ -1,0 +1,15 @@
+1
+backgrounds/bg_bali_old/scene23456_bg_bali.jpg
+music/bali/mbl_2_4.ogg
+2
+speaker_dialog/begawan.png
+speaker_dialog/manik.png
+8
+0:nar:Maka Begawan Sidi Mantra segera pergi dari Gunung Agung. Lalu pulanglah ia ke rumahnya di Jawa Timur. 
+0:nar:Sesampainya dirumah, di bayarlah semua hutang anaknya dan tak lupa ia menasehati anaknya agar tidak berjudi lagi.
+0:dia:0:"Ini untuk melunasi semua hutang-hutangmu.. Tetapi kamu jangan mengulangi kesalahanmu lagi.. Jangan berjudi lagi.. Mengerti kamu?"
+0:dia:1:"Iya ayah.."
+0:nar:Tetapi rupanya nasehat ayahnya tidak dihiraukan oleh Manik Angkeran. Dia tetap berjudi dan mengadu ayam setiap hari. 
+0:nar:Lama-kelamaan, hutang Manik Angkeran pun semakin banyak dan ia pun di kejar-kejar lagi oleh orang-orang yang dihutanginya. 
+0:nar:Dan seperti sebelumnya, pergilah Manik Angkeran menghadap ayahnya dan memohon agar hutang-hutangnya dilunasi lagi. 
+0:nar:Walaupun dengan sedikit kesal, sebagai seorang ayah, Begawan Sidi Mantra pun berjanji akan melunasi hutang-hutang tersebut.

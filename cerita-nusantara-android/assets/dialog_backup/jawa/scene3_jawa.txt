@@ -1,0 +1,23 @@
+1
+backgrounds/bg_bali_old/scene237_bg_jawa.jpg
+music/jawa/mjw_2_3.ogg
+2
+speaker_dialog/ajisaka.png
+speaker_dialog/bapak2.png
+16
+0:nar:Tak lama kemudian, mereka mendapati seorang laki-laki paruh baya sedang dipukuli oleh dua orang perampok.
+0:dia:0:Hei, hentikan perbuatan kalian!
+0:nar:Kedua perampok itu tidak menghiraukan teriakan Aji Saka. Mereka tetap memukuli laki-laki itu. 
+0:nar:Melihat tindakan kedua perampok tersebut, Aji Saka pun naik pitam. 
+0:nar:Dengan secepat kilat, ia melayangkan sebuah tendangan keras ke kepala kedua perampok tersebut hingga tersungkur ke tanah dan tidak sadarkan diri. 
+0:nar:Setelah itu, ia dan abdinya segera menghampiri laki-laki itu.
+0:dia:0:Maaf, Pak, Kalau boleh kami tahu, Bapak dari mana dan kenapa berada di tengah hutan ini?
+0:nar:Lelaki paruh baya itu pun bercerita bahwa dia seorang pengungsi dari Negeri Medang Kamulan. 
+0:nar:Ia mengungsi karena raja di negerinya yang bernama Prabu Dewata Cengkar suka memakan daging manusia. 
+0:nar:Setiap hari ia memakan daging seorang manusia yang dipersembahkan oleh Patihnya yang bernama Jugul Muda. 
+0:nar:Karena takut menjadi mangsa sang Raja, sebagian rakyat mengungsi secara diam-diam ke daerah lain. 
+0:nar:Aji Saka dan abdinya tersentak kaget mendengar cerita laki-laki tua yang baru saja ditolongnya itu.
+0:dia:0:Bagaimana itu bisa terjadi, Pak?
+0:dia:1:Begini, Tuan! Kegemaran Prabu Dewata Cengkar memakan daging manusia bermula ketika seorang juru masak istana teriris jarinya.
+0:dia:1:Lalu potongan jari itu masuk ke dalam sup yang disajikan untuk sang Prabu. 
+0:dia:1:Rupanya, beliau sangat menyukainya. Sejak itulah sang Prabu menjadi senang makan daging manusia dan sifatnya pun berubah menjadi bengis.
